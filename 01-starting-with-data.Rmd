@@ -1,18 +1,12 @@
 ---
-output:
-  html_document:
-    self_contained: no
-    theme: spacelab
+title: Getting started with data
 ---
-
-[Home](Index.html)
-
-# Getting started with data
 
 ```{r, echo=FALSE}
 knitr::opts_chunk$set(results="markup")
 dat <- iris[iris$Species != "virginica",]
 ```
+
 ## Analyzing Iris Data
 
 We are studying differences in morphology in two species of Iris: Iris setosa 

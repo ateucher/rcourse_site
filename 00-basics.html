@@ -15,27 +15,37 @@
 
 <script src="libs/jquery-1.11.0/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link href="libs/bootstrap-2.3.2/css/spacelab.min.css" rel="stylesheet" />
+<link href="libs/bootstrap-2.3.2/css/flatly.min.css" rel="stylesheet" />
 <link href="libs/bootstrap-2.3.2/css/bootstrap-responsive.min.css" rel="stylesheet" />
 <script src="libs/bootstrap-2.3.2/js/bootstrap.min.js"></script>
 
+
 <style type="text/css">code{white-space: pre;}</style>
-<link rel="stylesheet"
-      href="libs/highlight/default.css"
-      type="text/css" />
-<script src="libs/highlight/highlight.js"></script>
+<style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; }
+code > span.dt { color: #204a87; }
+code > span.dv { color: #0000cf; }
+code > span.bn { color: #0000cf; }
+code > span.fl { color: #0000cf; }
+code > span.ch { color: #4e9a06; }
+code > span.st { color: #4e9a06; }
+code > span.co { color: #8f5902; font-style: italic; }
+code > span.ot { color: #8f5902; }
+code > span.al { color: #ef2929; }
+code > span.fu { color: #000000; }
+code > span.er { font-weight: bold; }
+</style>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
   }
 </style>
-<script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
-}
-</script>
 
 
 
@@ -76,23 +86,23 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <p>Let’s start by learning about our tool.</p>
 <p><em>Point out the different windows in RStudio.</em> * Console, Scripts, Environments, Plots * Avoid using shortcuts. * Code and workflow is more reproducible if we can document everything that we do. * Our end goal is not just to “do stuff” but to do it in a way that anyone can easily and exactly replicate our workflow and results.</p>
 <p>You can get output from R simply by typing in math</p>
-<pre class="r"><code>3 + 5</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span> +<span class="st"> </span><span class="dv">5</span></code></pre>
 <pre><code>## [1] 8</code></pre>
-<pre class="r"><code>12 / 7</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">12</span> /<span class="st"> </span><span class="dv">7</span></code></pre>
 <pre><code>## [1] 1.714</code></pre>
 <p>or by typing words</p>
-<pre class="r"><code>&quot;Hello World&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="st">&quot;Hello World&quot;</span></code></pre>
 <pre><code>## [1] &quot;Hello World&quot;</code></pre>
 <div id="calculations" class="section level3">
 <h3>Calculations</h3>
 <p>R can be used just like a calculator (as shown before).</p>
-<pre class="r"><code>3 + 5</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span> +<span class="st"> </span><span class="dv">5</span></code></pre>
 <pre><code>## [1] 8</code></pre>
-<pre class="r"><code>12 / 7</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">12</span> /<span class="st"> </span><span class="dv">7</span></code></pre>
 <pre><code>## [1] 1.714</code></pre>
-<pre class="r"><code>6 * 5</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">6</span> *<span class="st"> </span><span class="dv">5</span></code></pre>
 <pre><code>## [1] 30</code></pre>
-<pre class="r"><code>3 ^ 4</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span> ^<span class="st"> </span><span class="dv">4</span></code></pre>
 <pre><code>## [1] 81</code></pre>
 <ol style="list-style-type: decimal">
 <li>What is nine raised to the power of three?</li>
@@ -101,9 +111,9 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 </ol>
 <div id="r-respects-standard-order-of-operations-in-math" class="section level4">
 <h4>R Respects standard order of operations in math:</h4>
-<pre class="r"><code>3 * 4 + 5</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span> *<span class="st"> </span><span class="dv">4</span> +<span class="st"> </span><span class="dv">5</span></code></pre>
 <pre><code>## [1] 17</code></pre>
-<pre class="r"><code>3 * (4 + 5)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span> *<span class="st"> </span>(<span class="dv">4</span> +<span class="st"> </span><span class="dv">5</span>)</code></pre>
 <pre><code>## [1] 27</code></pre>
 </div>
 </div>
@@ -111,9 +121,9 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <h3>Assignment</h3>
 <p>R is an <em>object-oriented</em> programming language. Everything we do in R, we do with <em>objects</em>. We can save our results to an <em>object</em>, if we give it a name.</p>
 <p><code>&lt;-</code> is the assignment operator.The <em>result</em> of the operation on the right hand side of <code>&lt;-</code> is <em>assigned</em> to an object with the name specified on the left hand side of <code>&lt;-</code>. Put spaces around <code>&lt;-</code> (and all other operators).</p>
-<pre class="r"><code>hrs_per_day &lt;- 24
-days_per_week &lt;- 7
-hrs_per_week &lt;- hrs_per_day * days_per_week
+<pre class="sourceCode r"><code class="sourceCode r">hrs_per_day &lt;-<span class="st"> </span><span class="dv">24</span>
+days_per_week &lt;-<span class="st"> </span><span class="dv">7</span>
+hrs_per_week &lt;-<span class="st"> </span>hrs_per_day *<span class="st"> </span>days_per_week
 hrs_per_week</code></pre>
 <pre><code>## [1] 168</code></pre>
 <ol style="list-style-type: decimal">
@@ -136,29 +146,29 @@ hrs_per_week</code></pre>
 <p>Most of R’s power and flexibility comes from <em>functions</em>.</p>
 <p>A function is a saved object that takes inputs to perform a task. Functions take in information and return outputs. A function takes zero, one, or many <em>arguments</em> (also called <em>parameters</em>), depending on the function, and <em>returns</em> a value. To call a function, type its name followed by brackets <code>()</code>. Arguments go inside the brackets and are separated by commas.</p>
 <p><code>output = name_of_function(arg1,arg2,arg3)</code></p>
-<pre class="r"><code>log(10)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(<span class="dv">10</span>)</code></pre>
 <pre><code>## [1] 2.303</code></pre>
-<pre class="r"><code>sqrt(4)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt</span>(<span class="dv">4</span>)</code></pre>
 <pre><code>## [1] 2</code></pre>
-<pre class="r"><code>max(4,8,2,6,9)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">max</span>(<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">2</span>,<span class="dv">6</span>,<span class="dv">9</span>)</code></pre>
 <pre><code>## [1] 9</code></pre>
-<pre class="r"><code>date() # Not all functions require arguments</code></pre>
-<pre><code>## [1] &quot;Wed May 21 13:13:10 2014&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">date</span>() <span class="co"># Not all functions require arguments</span></code></pre>
+<pre><code>## [1] &quot;Wed May 21 13:30:00 2014&quot;</code></pre>
 <div id="specifying-arguments" class="section level4">
 <h4>Specifying arguments</h4>
 <p>Arguments can be specified using <em>positional</em> and/or <em>named</em> matching. Some arguments have default values.</p>
-<pre class="r"><code># Positional matching: 10 is the first (and only) argument, and base is not 
-# specified, so the default (e; i.e., natural logarithm) is used
-log(5)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Positional matching: 10 is the first (and only) argument, and base is not </span>
+<span class="co"># specified, so the default (e; i.e., natural logarithm) is used</span>
+<span class="kw">log</span>(<span class="dv">5</span>)</code></pre>
 <pre><code>## [1] 1.609</code></pre>
-<pre class="r"><code># If you want to do base 10 log:
-log(5, 10)          # OR</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># If you want to do base 10 log:</span>
+<span class="kw">log</span>(<span class="dv">5</span>, <span class="dv">10</span>)          <span class="co"># OR</span></code></pre>
 <pre><code>## [1] 0.699</code></pre>
-<pre class="r"><code>log(x=5, base=10)   # OR even</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(<span class="dt">x=</span><span class="dv">5</span>, <span class="dt">base=</span><span class="dv">10</span>)   <span class="co"># OR even</span></code></pre>
 <pre><code>## [1] 0.699</code></pre>
-<pre class="r"><code>log(base=10, x=5)   # But this is bad form, can cause rampant confusion because:</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(<span class="dt">base=</span><span class="dv">10</span>, <span class="dt">x=</span><span class="dv">5</span>)   <span class="co"># But this is bad form, can cause rampant confusion because:</span></code></pre>
 <pre><code>## [1] 0.699</code></pre>
-<pre class="r"><code>log(10,5)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(<span class="dv">10</span>,<span class="dv">5</span>)</code></pre>
 <pre><code>## [1] 1.431</code></pre>
 </div>
 <div id="help" class="section level4">
@@ -175,11 +185,11 @@ log(5, 10)          # OR</code></pre>
 <div id="some-other-useful-functions-for-navigating" class="section level4">
 <h4>Some other useful functions for navigating</h4>
 <p>Get / set your working directory:</p>
-<pre class="r"><code>getwd()</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getwd</span>()</code></pre>
 <pre><code>## [1] &quot;H:/_dev/RCourse/course_notes&quot;</code></pre>
-<pre class="r"><code>setwd(&quot;H:/&quot;)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;H:/&quot;</span>)</code></pre>
 <p>Get information about your current R Session. This is often helpful when trying to figure out what went wrong, and when asking for help:</p>
-<pre class="r"><code>sessionInfo()</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sessionInfo</span>()</code></pre>
 <pre><code>## R version 3.1.0 (2014-04-10)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
 ## 
@@ -206,16 +216,16 @@ log(5, 10)          # OR</code></pre>
 <h3>Workspace</h3>
 <p>When a value is assigned to an object, the object can be used in subsequent calculations because it is stored in your <em>workspace</em>. The workspace is an area of memory associated with the current session</p>
 <p>List objects in your workspace with <code>ls()</code> function.</p>
-<pre class="r"><code>x &lt;- 5
-ls()</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">5</span>
+<span class="kw">ls</span>()</code></pre>
 <pre><code>## [1] &quot;days_per_week&quot; &quot;hrs_per_day&quot;   &quot;hrs_per_week&quot;  &quot;metadata&quot;     
 ## [5] &quot;x&quot;</code></pre>
 <p>Remove objects from your workspace with the <code>rm()</code> function.</p>
-<pre class="r"><code>rm(x)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(x)</code></pre>
 <p>Remove all objects from your workspace.</p>
-<pre class="r"><code>ls()</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls</span>()</code></pre>
 <pre><code>## [1] &quot;days_per_week&quot; &quot;hrs_per_day&quot;   &quot;hrs_per_week&quot;  &quot;metadata&quot;</code></pre>
-<pre class="r"><code>rm(list = ls())</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())</code></pre>
 <p><em>Notice that we have <strong>nested</strong> one function inside of another.</em> Calling <code>ls()</code> generates a list of objects to remove. This listis then passed to the <code>list</code> argument of <code>rm()</code>, so all the items in that list are removed.</p>
 </div>
 </div>
@@ -240,37 +250,37 @@ ls()</code></pre>
 <li><p><strong>complex</strong>: <code>1+4i</code> (complex numbers with real and imaginary parts)</p></li>
 </ul>
 <p><code>class()</code> - what is it?</p>
-<pre class="r"><code># Example
-x &lt;- &quot;Hello World&quot;
-class(x)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Example</span>
+x &lt;-<span class="st"> &quot;Hello World&quot;</span>
+<span class="kw">class</span>(x)</code></pre>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<pre class="r"><code>y &lt;- 10
-class(y)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="dv">10</span>
+<span class="kw">class</span>(y)</code></pre>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
-<pre class="r"><code>z &lt;- 5L
-class(z)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">z &lt;-<span class="st"> </span>5L
+<span class="kw">class</span>(z)</code></pre>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
-<pre class="r"><code>q &lt;- TRUE
-class(q)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">q &lt;-<span class="st"> </span><span class="ot">TRUE</span>
+<span class="kw">class</span>(q)</code></pre>
 <pre><code>## [1] &quot;logical&quot;</code></pre>
 <p>Logicals (<code>TRUE, FALSE</code>) merit a bit more exploration, derived with <code>&gt;, &lt;, &gt;=, &lt;=, ==, !=</code></p>
-<pre class="r"><code>5 &gt; 3</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">5</span> &gt;<span class="st"> </span><span class="dv">3</span></code></pre>
 <pre><code>## [1] TRUE</code></pre>
-<pre class="r"><code>3 &gt;= 3</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span> &gt;=<span class="st"> </span><span class="dv">3</span></code></pre>
 <pre><code>## [1] TRUE</code></pre>
-<pre class="r"><code>a &lt;- 9
-b &lt;- 10
-a == b # This is called a &quot;logical equals&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="dv">9</span>
+b &lt;-<span class="st"> </span><span class="dv">10</span>
+a ==<span class="st"> </span>b <span class="co"># This is called a &quot;logical equals&quot;</span></code></pre>
 <pre><code>## [1] FALSE</code></pre>
-<pre class="r"><code>a != b</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">a !=<span class="st"> </span>b</code></pre>
 <pre><code>## [1] TRUE</code></pre>
 <p><em>Note: You can encode logicals with <code>T</code> and <code>F</code> <strong>but don’t do it!</strong></em> Use <code>TRUE</code> and <code>FALSE</code>:</p>
-<pre class="r"><code>T</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">T</code></pre>
 <pre><code>## [1] TRUE</code></pre>
-<pre class="r"><code>T &lt;- FALSE
+<pre class="sourceCode r"><code class="sourceCode r">T &lt;-<span class="st"> </span><span class="ot">FALSE</span>
 T</code></pre>
 <pre><code>## [1] FALSE</code></pre>
-<pre class="r"><code># Chaos ensues</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Chaos ensues</span></code></pre>
 </div>
 <div id="understanding-basic-data-structures-in-r" class="section level3">
 <h3>Understanding basic data structures in R</h3>
@@ -288,47 +298,47 @@ T</code></pre>
 <p>A vector is the most common and basic data structure in <code>R</code> and is pretty much the workhorse of R. It is a one-dimensional object with a series of values, all of the same type.</p>
 <p>A vector is a collection of elements that are most commonly <code>character</code>, <code>logical</code>, <code>integer</code> or <code>numeric</code>.</p>
 <p>You can create an empty vector of various types by using their corresponding functions, such as <code>character()</code>, <code>numeric()</code>, etc.</p>
-<pre class="r"><code>character(5) ## empty character vector of length 5</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">character</span>(<span class="dv">5</span>) ## empty character vector of length 5</code></pre>
 <pre><code>## [1] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot;</code></pre>
-<pre class="r"><code>numeric(5)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">numeric</span>(<span class="dv">5</span>)</code></pre>
 <pre><code>## [1] 0 0 0 0 0</code></pre>
-<pre class="r"><code>logical(5)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">logical</span>(<span class="dv">5</span>)</code></pre>
 <pre><code>## [1] FALSE FALSE FALSE FALSE FALSE</code></pre>
 <p>Usually, empty vectors aren’t that useful. Use the function <code>c()</code> to manually construct vectors:</p>
-<pre class="r"><code>x &lt;- c(1, 2, 3)
+<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)
 x</code></pre>
 <pre><code>## [1] 1 2 3</code></pre>
-<pre class="r"><code>length(x)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(x)</code></pre>
 <pre><code>## [1] 3</code></pre>
 <p><code>x</code> is a numeric vector. These are the most common kind. They are numeric objects and are treated as double precision real (decimal) numbers.</p>
 <p>To explicitly create integers, add an <code>L</code> to each (or <em>coerce</em> to the integer type using <code>as.integer()</code>).</p>
-<pre class="r"><code>x1 &lt;- c(1L, 2L, 3L)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">x1 &lt;-<span class="st"> </span><span class="kw">c</span>(1L, 2L, 3L)</code></pre>
 <p>You can also have logical vectors.</p>
-<pre class="r"><code>y &lt;- c(TRUE, TRUE, FALSE, FALSE)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>)</code></pre>
 <p>Finally you can have character vectors:</p>
-<pre class="r"><code>first.names &lt;- c(&quot;Sarah&quot;, &quot;Tracy&quot;, &quot;John&quot;)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">first.names &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Sarah&quot;</span>, <span class="st">&quot;Tracy&quot;</span>, <span class="st">&quot;John&quot;</span>)</code></pre>
 <p><strong>Examine your vector</strong></p>
-<pre class="r"><code>length(first.names)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(first.names)</code></pre>
 <pre><code>## [1] 3</code></pre>
-<pre class="r"><code>class(first.names)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(first.names)</code></pre>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<pre class="r"><code>str(first.names)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(first.names)</code></pre>
 <pre><code>##  chr [1:3] &quot;Sarah&quot; &quot;Tracy&quot; &quot;John&quot;</code></pre>
 <ol style="list-style-type: decimal">
 <li>Do you see a property that’s common to all these vectors above?</li>
 </ol>
 <p><strong>Add elements to a vector</strong></p>
-<pre class="r"><code>c(first.names, &quot;Annette&quot;)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">c</span>(first.names, <span class="st">&quot;Annette&quot;</span>)</code></pre>
 <pre><code>## [1] &quot;Sarah&quot;   &quot;Tracy&quot;   &quot;John&quot;    &quot;Annette&quot;</code></pre>
 <p>Note that the above doesn’t actually change the <code>first.names</code> vector itself. Rather, it prints out a new (unassigned) vector made up of <code>first.names</code> with “Annette” added to the end. If you want to actually update the <code>first.names</code> vector, you need to reassign it:</p>
-<pre class="r"><code>first.names &lt;- c(first.names, &quot;Annette&quot;)
+<pre class="sourceCode r"><code class="sourceCode r">first.names &lt;-<span class="st"> </span><span class="kw">c</span>(first.names, <span class="st">&quot;Annette&quot;</span>)
 first.names</code></pre>
 <pre><code>## [1] &quot;Sarah&quot;   &quot;Tracy&quot;   &quot;John&quot;    &quot;Annette&quot;</code></pre>
 <p>You can also create vectors as a sequence of numbers using <code>:</code> or <code>seq()</code></p>
-<pre class="r"><code>series &lt;- 1:10
-seq(10)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">series &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">10</span>
+<span class="kw">seq</span>(<span class="dv">10</span>)</code></pre>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
-<pre class="r"><code>seq(1, 10, by = 0.1)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dt">by =</span> <span class="fl">0.1</span>)</code></pre>
 <pre><code>##  [1]  1.0  1.1  1.2  1.3  1.4  1.5  1.6  1.7  1.8  1.9  2.0  2.1  2.2  2.3
 ## [15]  2.4  2.5  2.6  2.7  2.8  2.9  3.0  3.1  3.2  3.3  3.4  3.5  3.6  3.7
 ## [29]  3.8  3.9  4.0  4.1  4.2  4.3  4.4  4.5  4.6  4.7  4.8  4.9  5.0  5.1
@@ -337,26 +347,26 @@ seq(10)</code></pre>
 ## [71]  8.0  8.1  8.2  8.3  8.4  8.5  8.6  8.7  8.8  8.9  9.0  9.1  9.2  9.3
 ## [85]  9.4  9.5  9.6  9.7  9.8  9.9 10.0</code></pre>
 <p><code>NaN</code> means Not a Number. It’s an undefined value.</p>
-<pre class="r"><code>0/0</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">0</span>/<span class="dv">0</span></code></pre>
 <pre><code>## [1] NaN</code></pre>
 <div id="what-happens-when-you-mix-types" class="section level4">
 <h4>What happens when you mix types?</h4>
 <p>R will create a resulting vector that is the least common denominator; this is called <em>coersion</em>. The coercion will move towards the one that’s easiest to <em>coerce</em> to:</p>
 <p><code>logical &lt; integer &lt; double &lt; complex &lt; character</code></p>
 <p>Guess what the following do without running them first</p>
-<pre class="r"><code>xx &lt;- c(1.7, &quot;a&quot;) 
-xx &lt;- c(TRUE, 2) 
-xx &lt;- c(&quot;a&quot;, TRUE) </code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">xx &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">1.7</span>, <span class="st">&quot;a&quot;</span>) 
+xx &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="dv">2</span>) 
+xx &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="ot">TRUE</span>) </code></pre>
 <p>This is called implicit coercion. You can also coerce vectors explicitly using the <code>as.&lt;class_name&gt;</code>. Example</p>
-<pre class="r"><code>as.numeric(&quot;1&quot;)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.numeric</span>(<span class="st">&quot;1&quot;</span>)</code></pre>
 <pre><code>## [1] 1</code></pre>
-<pre class="r"><code>as.character(1:2)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.character</span>(<span class="dv">1</span>:<span class="dv">2</span>)</code></pre>
 <pre><code>## [1] &quot;1&quot; &quot;2&quot;</code></pre>
 <ol style="list-style-type: decimal">
 <li>What happens when you try to coerce the following vector to numeric?</li>
 </ol>
-<pre class="r"><code>x &lt;- c(&quot;txt&quot;, &quot;one&quot;, &quot;1&quot;, &quot;1.9&quot;)
-y &lt;- as.numeric(x)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;txt&quot;</span>, <span class="st">&quot;one&quot;</span>, <span class="st">&quot;1&quot;</span>, <span class="st">&quot;1.9&quot;</span>)
+y &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(x)</code></pre>
 <pre><code>## Warning: NAs introduced by coercion</code></pre>
 <ol style="list-style-type: decimal">
 <li>Calculate the mean of <code>y</code>. What happens?</li>
@@ -365,56 +375,56 @@ y &lt;- as.numeric(x)</code></pre>
 <div id="indexing" class="section level4">
 <h4><strong>Indexing</strong></h4>
 <p>Each element in a vector has a numbered postiion and these numbers can be specified to subset the vector using <code>vector_name[index(es)]</code>.</p>
-<pre class="r"><code>first.names[1]</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">first.names[<span class="dv">1</span>]</code></pre>
 <pre><code>## [1] &quot;Sarah&quot;</code></pre>
 <p>Note that this doesn’t actually change <code>first.names</code>, it just extracts and prints to the screen the elements you told it to (in this case the first name).</p>
 <p>You can also put a vector inside the square brackets with the positions you want to extract:</p>
-<pre class="r"><code>first.names[c(1,2,4)]</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">first.names[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>)]</code></pre>
 <pre><code>## [1] &quot;Sarah&quot;   &quot;Tracy&quot;   &quot;Annette&quot;</code></pre>
-<pre class="r"><code>p &lt;- c(1:3)
+<pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">3</span>)
 first.names[p]</code></pre>
 <pre><code>## [1] &quot;Sarah&quot; &quot;Tracy&quot; &quot;John&quot;</code></pre>
 <p>You can use negative numbers to exclude elements:</p>
-<pre class="r"><code>first.names[-3] # omit the third element</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">first.names[-<span class="dv">3</span>] <span class="co"># omit the third element</span></code></pre>
 <pre><code>## [1] &quot;Sarah&quot;   &quot;Tracy&quot;   &quot;Annette&quot;</code></pre>
 <ol style="list-style-type: decimal">
 <li>Remove Tracy and John from the <code>first.names</code> vector. How did you do this?</li>
 </ol>
-<pre class="r"><code>first.names[-c(2,3)]</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">first.names[-<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)]</code></pre>
 <pre><code>## [1] &quot;Sarah&quot;   &quot;Annette&quot;</code></pre>
-<pre class="r"><code>first.names[-2:-3]</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">first.names[-<span class="dv">2</span>:-<span class="dv">3</span>]</code></pre>
 <pre><code>## [1] &quot;Sarah&quot;   &quot;Annette&quot;</code></pre>
-<pre class="r"><code>first.names[c(1,4)]</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">first.names[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)]</code></pre>
 <pre><code>## [1] &quot;Sarah&quot;   &quot;Annette&quot;</code></pre>
-<pre class="r"><code>first.names[!first.names %in% c(&quot;Tracy&quot;, &quot;John&quot;)]</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">first.names[!first.names %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Tracy&quot;</span>, <span class="st">&quot;John&quot;</span>)]</code></pre>
 <pre><code>## [1] &quot;Sarah&quot;   &quot;Annette&quot;</code></pre>
 </div>
 </div>
 <div id="matrix" class="section level3">
 <h3>Matrix</h3>
 <p>Matrices are a special vector in R. They are not a separate type of object but simply a vector with dimensions added on to it. Matrices have rows and columns.</p>
-<pre class="r"><code>m &lt;- matrix(nrow = 2, ncol = 2)
+<pre class="sourceCode r"><code class="sourceCode r">m &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">2</span>)
 m</code></pre>
 <pre><code>##      [,1] [,2]
 ## [1,]   NA   NA
 ## [2,]   NA   NA</code></pre>
-<pre class="r"><code>dim(m)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(m)</code></pre>
 <pre><code>## [1] 2 2</code></pre>
 <p>Matrices are filled column-wise.</p>
-<pre class="r"><code>m &lt;- matrix(1:6, nrow = 2, ncol = 3)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">m &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span>:<span class="dv">6</span>, <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">3</span>)</code></pre>
 <p>Other ways to construct a matrix</p>
-<pre class="r"><code>m      &lt;- 1:10
-dim(m) &lt;- c(2, 5)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">m      &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">10</span>
+<span class="kw">dim</span>(m) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">5</span>)</code></pre>
 <p>This takes a vector and transform into a matrix with 2 rows and 5 columns.</p>
 <p>Another way is to bind columns or rows using <code>cbind()</code> and <code>rbind()</code>.</p>
-<pre class="r"><code>x &lt;- 1:3
-y &lt;- 10:12
-cbind(x, y)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">3</span>
+y &lt;-<span class="st"> </span><span class="dv">10</span>:<span class="dv">12</span>
+<span class="kw">cbind</span>(x, y)</code></pre>
 <pre><code>##      x  y
 ## [1,] 1 10
 ## [2,] 2 11
 ## [3,] 3 12</code></pre>
-<pre class="r"><code>rbind(x, y)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rbind</span>(x, y)</code></pre>
 <pre><code>##   [,1] [,2] [,3]
 ## x    1    2    3
 ## y   10   11   12</code></pre>
@@ -423,7 +433,7 @@ cbind(x, y)</code></pre>
 <h3>Lists</h3>
 <p>In R lists are a lot like vectors. Unlike vectors however, the contents of a list are not restricted to a single data type and can encompass any mixture of data types (even other lists!). This makes them fundamentally different from vectors.</p>
 <p>Create lists using <code>list()</code> or coerce other objects using <code>as.list()</code></p>
-<pre class="r"><code>x &lt;- list(1, &quot;a&quot;, TRUE, 1+4i)
+<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span>, <span class="st">&quot;a&quot;</span>, <span class="ot">TRUE</span>, <span class="dv">1</span>+4i)
 x</code></pre>
 <pre><code>## [[1]]
 ## [1] 1
@@ -436,16 +446,16 @@ x</code></pre>
 ## 
 ## [[4]]
 ## [1] 1+4i</code></pre>
-<pre class="r"><code>x &lt;- 1:10
-x &lt;- as.list(x)
-length(x)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">10</span>
+x &lt;-<span class="st"> </span><span class="kw">as.list</span>(x)
+<span class="kw">length</span>(x)</code></pre>
 <pre><code>## [1] 10</code></pre>
 <p>Lists, like vectors, can be <em>indexed</em>, though slightly differently. Use double square brackets <code>list[[index]]</code> to get the contents of a list element. Using single square will still return a list.</p>
 <ol style="list-style-type: decimal">
 <li>What is the class of <code>x[1]</code>?</li>
 <li>How about <code>x[[1]]</code>?</li>
 </ol>
-<pre class="r"><code>Andy &lt;- list(name = &quot;Andy&quot;, fav_nums = 1:10, fav_data = head(iris))
+<pre class="sourceCode r"><code class="sourceCode r">Andy &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">name =</span> <span class="st">&quot;Andy&quot;</span>, <span class="dt">fav_nums =</span> <span class="dv">1</span>:<span class="dv">10</span>, <span class="dt">fav_data =</span> <span class="kw">head</span>(iris))
 Andy</code></pre>
 <pre><code>## $name
 ## [1] &quot;Andy&quot;
@@ -481,24 +491,24 @@ Andy</code></pre>
 <p>They are better than using simple integer labels because factors are what are called self describing. male and female is more descriptive than 1s and 2s. Helpful when there is no additional metadata.</p>
 <p>Which is male? 1 or 2? You wouldn’t be able to tell with just integer data. Factors have this information built in.</p>
 <p>Factors can be created with <code>factor()</code>. Input is often a character vector.</p>
-<pre class="r"><code>x &lt;- factor(c(&quot;yes&quot;, &quot;no&quot;, &quot;no&quot;, &quot;yes&quot;, &quot;yes&quot;))
+<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;yes&quot;</span>, <span class="st">&quot;no&quot;</span>, <span class="st">&quot;no&quot;</span>, <span class="st">&quot;yes&quot;</span>, <span class="st">&quot;yes&quot;</span>))
 x</code></pre>
 <pre><code>## [1] yes no  no  yes yes
 ## Levels: no yes</code></pre>
-<pre class="r"><code>str(x)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(x)</code></pre>
 <pre><code>##  Factor w/ 2 levels &quot;no&quot;,&quot;yes&quot;: 2 1 1 2 2</code></pre>
 <p><code>table(x)</code> will return a frequency table counting the number of elements in each level.</p>
 <p>If you need to convert a factor to a character vector, simply use</p>
-<pre class="r"><code>as.character(x)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.character</span>(x)</code></pre>
 <pre><code>## [1] &quot;yes&quot; &quot;no&quot;  &quot;no&quot;  &quot;yes&quot; &quot;yes&quot;</code></pre>
 <p>To convert a factor to a numeric vector, go via a character. Compare:</p>
-<pre class="r"><code>f &lt;- factor(c(1,5,10,2))
-as.numeric(f) ## wrong!</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">f &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">2</span>))
+<span class="kw">as.numeric</span>(f) ## wrong!</code></pre>
 <pre><code>## [1] 1 3 4 2</code></pre>
-<pre class="r"><code>as.numeric(as.character(f))</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.numeric</span>(<span class="kw">as.character</span>(f))</code></pre>
 <pre><code>## [1]  1  5 10  2</code></pre>
 <p>In modeling functions, it is important to know what the baseline level is. This is the first factor but by default the ordering is determined by alphanumerical order of elements. You can change this by speciying the <code>levels</code> (another option is to use the function <code>relevel()</code>).</p>
-<pre class="r"><code>x &lt;- factor(c(&quot;yes&quot;, &quot;no&quot;, &quot;yes&quot;), levels = c(&quot;yes&quot;, &quot;no&quot;))
+<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;yes&quot;</span>, <span class="st">&quot;no&quot;</span>, <span class="st">&quot;yes&quot;</span>), <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;yes&quot;</span>, <span class="st">&quot;no&quot;</span>))
 x</code></pre>
 <pre><code>## [1] yes no  yes
 ## Levels: yes no</code></pre>
@@ -515,7 +525,7 @@ x</code></pre>
 </ul>
 <div id="creating-data-frames" class="section level4">
 <h4>Creating data frames</h4>
-<pre class="r"><code>dat &lt;- data.frame(id = letters[1:10], x = 1:10, y = 11:20)
+<pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id =</span> letters[<span class="dv">1</span>:<span class="dv">10</span>], <span class="dt">x =</span> <span class="dv">1</span>:<span class="dv">10</span>, <span class="dt">y =</span> <span class="dv">11</span>:<span class="dv">20</span>)
 dat</code></pre>
 <pre><code>##    id  x  y
 ## 1   a  1 11
@@ -569,7 +579,7 @@ dat</code></pre>
 <div id="get-new-functions-packages" class="section level3">
 <h3>Get new functions: Packages</h3>
 <p>To install any package use <code>install.packages()</code></p>
-<pre class="r"><code>install.packages(&quot;ggplot2&quot;)  ## install the ggplot2 package</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)  ## install the ggplot2 package</code></pre>
 <p>You can’t ever learn all of R, but you can learn how to build a program and how to find help to do the things that you want to do.</p>
 <p>Let’s get hands-on.</p>
 </div>

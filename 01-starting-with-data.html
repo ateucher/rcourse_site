@@ -11,31 +11,41 @@
 
 
 
-<title></title>
+<title>Getting started with data</title>
 
 <script src="libs/jquery-1.11.0/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link href="libs/bootstrap-2.3.2/css/spacelab.min.css" rel="stylesheet" />
+<link href="libs/bootstrap-2.3.2/css/flatly.min.css" rel="stylesheet" />
 <link href="libs/bootstrap-2.3.2/css/bootstrap-responsive.min.css" rel="stylesheet" />
 <script src="libs/bootstrap-2.3.2/js/bootstrap.min.js"></script>
 
+
 <style type="text/css">code{white-space: pre;}</style>
-<link rel="stylesheet"
-      href="libs/highlight/default.css"
-      type="text/css" />
-<script src="libs/highlight/highlight.js"></script>
+<style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; }
+code > span.dt { color: #204a87; }
+code > span.dv { color: #0000cf; }
+code > span.bn { color: #0000cf; }
+code > span.fl { color: #0000cf; }
+code > span.ch { color: #4e9a06; }
+code > span.st { color: #4e9a06; }
+code > span.co { color: #8f5902; font-style: italic; }
+code > span.ot { color: #8f5902; }
+code > span.al { color: #ef2929; }
+code > span.fu { color: #000000; }
+code > span.er { font-weight: bold; }
+</style>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
   }
 </style>
-<script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
-}
-</script>
 
 
 
@@ -47,11 +57,11 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 <a href="index.html">Home</a>
 
+<div id="header">
+<h1 class="title">Getting started with data</h1>
+</div>
 
 
-<p><a href="Index.html">Home</a></p>
-<div id="getting-started-with-data" class="section level1">
-<h1>Getting started with data</h1>
 <div id="analyzing-iris-data" class="section level2">
 <h2>Analyzing Iris Data</h2>
 <p>We are studying differences in morphology in two species of Iris: Iris setosa and Iris versicolor.</p>
@@ -89,21 +99,21 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <li>Look around - you’ll see where we are</li>
 <li>Create a directory to hold the data</li>
 </ul>
-<pre class="r"><code>getwd()</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getwd</span>()</code></pre>
 <pre><code>## [1] &quot;H:/_dev/RCourse/course_notes&quot;</code></pre>
 </div>
 <div id="loading-data" class="section level2">
 <h2>Loading Data</h2>
 <p>Words are useful, but what’s more useful are the sentences and stories we use them to build. Similarly, while a lot of powerful tools are built into languages like R, even more lives in the libraries they are used to build. Importing a library is like getting a piece of lab equipment out of a storage locker and setting it up on the bench. Once it’s done, we can ask the library to do things for us.</p>
 <p>To load our iris data, we need to download our data to a place we can use it We will use <code>dir.create()</code> and <code>read.csv()</code>. These are built-in functions in R. Let’s check out the help screen.</p>
-<pre class="r"><code>dir.create(&quot;data&quot;)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dir.create</span>(<span class="st">&quot;data&quot;</span>)</code></pre>
 <pre><code>## Warning: &#39;data&#39; already exists</code></pre>
 <ul>
 <li>download the iris file</li>
 <li>put it in your data directory for these exercises</li>
 </ul>
 <p>Load the data into R:</p>
-<pre class="r"><code>read.csv(&#39;data/iris.csv&#39;)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">read.csv</span>(<span class="st">&#39;data/iris.csv&#39;</span>)</code></pre>
 <pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
 ## 1            5.1         3.5          1.4         0.2     setosa
 ## 2            4.9         3.0          1.4         0.2     setosa
@@ -209,54 +219,54 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <p><code>read.csv()</code> has many arguments including the name of the file we want to read, and the delimiter that separates values on a line.</p>
 <p>When we are finished typing and press <code>Control+Enter</code> on Windows or <code>Cmd + Return</code> on Mac, the console runs our command. Since we haven’t told it to do anything else with the function’s output, the console displays it. In this case, that output is the data we just loaded.</p>
 <p>Our call to <code>read.csv()</code> read the file, but didn’t save the data as an object. To do that, we need to assign the data frame to a variable. A variable is just a name for a value, such as <code>x</code>, <code>current_temperature</code>, or <code>subject_id</code>. We can create a new variable simply by assigning a value to it using <code>&lt;-</code></p>
-<pre class="r"><code>weight_kg &lt;- 55</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">weight_kg &lt;-<span class="st"> </span><span class="dv">55</span></code></pre>
 <p>Once a variable has a value, we can print it:</p>
-<pre class="r"><code>weight_kg</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">weight_kg</code></pre>
 <pre><code>## [1] 55</code></pre>
 <p>and do arithmetic with it:</p>
-<pre class="r"><code>2.2 * weight_kg</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="fl">2.2</span> *<span class="st"> </span>weight_kg</code></pre>
 <pre><code>## [1] 121</code></pre>
 <p>We can use the function <code>paste()</code> to strings made up from different objects, if we separate them with commas.</p>
-<pre class="r"><code>paste(&quot;weight in pounds:&quot;, 2.2 * weight_kg)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">paste</span>(<span class="st">&quot;weight in pounds:&quot;</span>, <span class="fl">2.2</span> *<span class="st"> </span>weight_kg)</code></pre>
 <pre><code>## [1] &quot;weight in pounds: 121&quot;</code></pre>
 <p>We can also change an object’s value by assigning it a new value:</p>
-<pre class="r"><code>weight_kg &lt;- 57.5
-# weight in kilograms is now
+<pre class="sourceCode r"><code class="sourceCode r">weight_kg &lt;-<span class="st"> </span><span class="fl">57.5</span>
+<span class="co"># weight in kilograms is now</span>
 weight_kg</code></pre>
 <pre><code>## [1] 57.5</code></pre>
 <p>If we imagine the variable as a sticky note with a name written on it, assignment is like putting the sticky note on a particular value This means that assigning a value to one object does not change the values of other variables.</p>
 <p>For example, let’s store the subject’s weight in pounds in a variable</p>
-<pre class="r"><code>weight_lb &lt;- 2.2 * weight_kg
-# weight in kg...
+<pre class="sourceCode r"><code class="sourceCode r">weight_lb &lt;-<span class="st"> </span><span class="fl">2.2</span> *<span class="st"> </span>weight_kg
+<span class="co"># weight in kg...</span>
 weight_kg</code></pre>
 <pre><code>## [1] 57.5</code></pre>
-<pre class="r"><code># ...and in pounds
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ...and in pounds</span>
 weight_lb</code></pre>
 <pre><code>## [1] 126.5</code></pre>
 <p>and then change <code>weight_kg</code>:</p>
-<pre class="r"><code>weight_kg &lt;- 100.0
-# weight in kg now...
+<pre class="sourceCode r"><code class="sourceCode r">weight_kg &lt;-<span class="st"> </span><span class="fl">100.0</span>
+<span class="co"># weight in kg now...</span>
 weight_kg</code></pre>
 <pre><code>## [1] 100</code></pre>
-<pre class="r"><code># ...and in weight pounds still
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ...and in weight pounds still</span>
 weight_lb</code></pre>
 <pre><code>## [1] 126.5</code></pre>
 <p><strong>Updating a Variable</strong></p>
 <p>Since <code>weight_lb</code> doesn’t “remember” where its value came from, it isn’t automatically updated when <code>weight_kg</code> changes. This is different from the way spreadsheets work.</p>
 <p><strong>Challenges</strong></p>
 <p>Draw diagrams showing what variables refer to what values after each statement in the following program:</p>
-<pre class="r"><code>mass &lt;- 47.5
-age  &lt;- 122
-mass &lt;- mass * 2.0
-age  &lt;- age - 20</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">mass &lt;-<span class="st"> </span><span class="fl">47.5</span>
+age  &lt;-<span class="st"> </span><span class="dv">122</span>
+mass &lt;-<span class="st"> </span>mass *<span class="st"> </span><span class="fl">2.0</span>
+age  &lt;-<span class="st"> </span>age -<span class="st"> </span><span class="dv">20</span></code></pre>
 <p>We can also add to variable that are vectors, and update them by making them longer. For example, if we are creating a vector of patient weights, we could update that vector using <code>c()</code>. <code>c()</code> takes any number of vectors as arguments, and combines or <em>concatenates</em> them, in the order supplied, into a single vector.</p>
-<pre class="r"><code>weights &lt;- 100
-weights &lt;- c(weights, 80)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">weights &lt;-<span class="st"> </span><span class="dv">100</span>
+weights &lt;-<span class="st"> </span><span class="kw">c</span>(weights, <span class="dv">80</span>)</code></pre>
 <p>What happens here is that we take the original vector weights, and we are adding the second item to the end of the first one. We can do this over and over again to build a vector or a dataset. As we program, this may be useful to autoupdate results that we are collecting or calculating.</p>
 <p>Now that we know how to assign things to variables, let’s re-run <code>read.csv</code> and save its result:</p>
-<pre class="r"><code>dat &lt;- read.csv(&#39;data/iris.csv&#39;)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;data/iris.csv&#39;</span>)</code></pre>
 <p>This statement doesn’t produce any output because assignment doesn’t display anything. If we want to check that our data has been loaded, we can print the variable’s value:</p>
-<pre class="r"><code>dat</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">dat</code></pre>
 <pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
 ## 1            5.1         3.5          1.4         0.2     setosa
 ## 2            4.9         3.0          1.4         0.2     setosa
@@ -359,7 +369,7 @@ weights &lt;- c(weights, 80)</code></pre>
 ## 99           5.1         2.5          3.0         1.1 versicolor
 ## 100          5.7         2.8          4.1         1.3 versicolor</code></pre>
 <p>For large data sets it is convenient to use the <code>head()</code> to display the first few rows of data, and <code>tail()</code> to see the end</p>
-<pre class="r"><code>head(dat)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(dat)</code></pre>
 <pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
 ## 1          5.1         3.5          1.4         0.2  setosa
 ## 2          4.9         3.0          1.4         0.2  setosa
@@ -367,7 +377,7 @@ weights &lt;- c(weights, 80)</code></pre>
 ## 4          4.6         3.1          1.5         0.2  setosa
 ## 5          5.0         3.6          1.4         0.2  setosa
 ## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
-<pre class="r"><code>tail(dat)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tail</span>(dat)</code></pre>
 <pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
 ## 95           5.6         2.7          4.2         1.3 versicolor
 ## 96           5.7         3.0          4.2         1.2 versicolor
@@ -386,16 +396,16 @@ weights &lt;- c(weights, 80)</code></pre>
 <div id="manipulating-data" class="section level2">
 <h2>Manipulating Data</h2>
 <p>Now that our data is in memory, we can start doing things with it. First, let’s ask what type of thing <code>dat</code> <em>is</em>:</p>
-<pre class="r"><code>class(dat)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(dat)</code></pre>
 <pre><code>## [1] &quot;data.frame&quot;</code></pre>
-<pre class="r"><code>str(dat)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(dat)</code></pre>
 <pre><code>## &#39;data.frame&#39;:    100 obs. of  5 variables:
 ##  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
 ##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
 ##  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
 ##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
 ##  $ Species     : Factor w/ 3 levels &quot;setosa&quot;,&quot;versicolor&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
-<pre class="r"><code>summary(dat)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(dat)</code></pre>
 <pre><code>##   Sepal.Length   Sepal.Width    Petal.Length   Petal.Width   
 ##  Min.   :4.30   Min.   :2.00   Min.   :1.00   Min.   :0.100  
 ##  1st Qu.:5.00   1st Qu.:2.80   1st Qu.:1.50   1st Qu.:0.200  
@@ -436,11 +446,11 @@ weights &lt;- c(weights, 80)</code></pre>
 </ul>
 <p><code>str</code> output tells us the dimensions and the data types (int is integer) of each column.</p>
 <p>We can see what its shape is like this:</p>
-<pre class="r"><code>dim(dat)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(dat)</code></pre>
 <pre><code>## [1] 100   5</code></pre>
-<pre class="r"><code>nrow(dat)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nrow</span>(dat)</code></pre>
 <pre><code>## [1] 100</code></pre>
-<pre class="r"><code>ncol(dat)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ncol</span>(dat)</code></pre>
 <pre><code>## [1] 5</code></pre>
 <p>This tells us that data has 100 rows and 5 columns.</p>
 </div>
@@ -449,14 +459,14 @@ weights &lt;- c(weights, 80)</code></pre>
 <h3>Indexing</h3>
 <p>We talked about vectors before, and indexing them. Each column in a data frame is a vector, and can be indexed as such.</p>
 <p>If we want to get a single value from the data frame, we must provide an row and column indices for the value we want in square brackets: <code>dataframe[rows,columns]</code></p>
-<pre class="r"><code># first value in dat
-dat[1, 1]</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># first value in dat</span>
+dat[<span class="dv">1</span>, <span class="dv">1</span>]</code></pre>
 <pre><code>## [1] 5.1</code></pre>
-<pre class="r"><code># middle value in dat
-dat[30, 3]</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># middle value in dat</span>
+dat[<span class="dv">30</span>, <span class="dv">3</span>]</code></pre>
 <pre><code>## [1] 1.6</code></pre>
 <p>An index like <code>[30, 20]</code> selects a single element of data frame, but we can select sections as well. Entering nothing in either the rows or columns spot selects all. For example, we can select the first ten rows across all columns, like this. :</p>
-<pre class="r"><code>dat[1:10,]</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">dat[<span class="dv">1</span>:<span class="dv">10</span>,]</code></pre>
 <pre><code>##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
 ## 1           5.1         3.5          1.4         0.2  setosa
 ## 2           4.9         3.0          1.4         0.2  setosa
@@ -470,7 +480,7 @@ dat[30, 3]</code></pre>
 ## 10          4.9         3.1          1.5         0.1  setosa</code></pre>
 <p>The notation <code>1:10</code> means, “Start at index 1 and go to index 10.”</p>
 <p>and we don’t have to take all the values in the slice, we can use <code>c()</code> to select certain values or groups of values:</p>
-<pre class="r"><code>dat[c(1:10, 20:30),]</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">dat[<span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">10</span>, <span class="dv">20</span>:<span class="dv">30</span>),]</code></pre>
 <pre><code>##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
 ## 1           5.1         3.5          1.4         0.2  setosa
 ## 2           4.9         3.0          1.4         0.2  setosa
@@ -498,7 +508,7 @@ dat[30, 3]</code></pre>
 <div id="referencing-columns" class="section level3">
 <h3>Referencing Columns</h3>
 <p>When referencing a column, the <code>$</code> operator is used to separate the data frame and the column name. Let’s look at the petal widths:</p>
-<pre class="r"><code>dat$Petal.Width</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">dat$Petal.Width</code></pre>
 <pre><code>##   [1] 0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 0.2 0.2 0.1 0.1 0.2 0.4 0.4
 ##  [18] 0.3 0.3 0.3 0.2 0.4 0.2 0.5 0.2 0.2 0.4 0.2 0.2 0.2 0.2 0.4 0.1 0.2
 ##  [35] 0.2 0.2 0.2 0.1 0.2 0.2 0.3 0.3 0.2 0.6 0.4 0.3 0.2 0.2 0.2 0.2 1.4
@@ -506,13 +516,13 @@ dat[30, 3]</code></pre>
 ##  [69] 1.5 1.1 1.8 1.3 1.5 1.2 1.3 1.4 1.4 1.7 1.5 1.0 1.1 1.0 1.2 1.6 1.5
 ##  [86] 1.6 1.5 1.3 1.3 1.3 1.2 1.4 1.2 1.0 1.3 1.2 1.3 1.3 1.1 1.3</code></pre>
 <p>Now say we want to get the mean of the petal widths:</p>
-<pre class="r"><code>mean(dat$Petal.Width)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(dat$Petal.Width)</code></pre>
 <pre><code>## [1] 0.786</code></pre>
 <p>When analyzing, we often want to look at partial statistics, such as the maximum value per patient or the average value per day. One way to do this is to select the data we want to create a new temporary array, then ask it to do the calculation:</p>
-<pre class="r"><code># patient_1 &lt;- dat[1, ] # first row, all of the columns
-# max(patient_1)        # max inflammation for patient 1</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># patient_1 &lt;- dat[1, ] # first row, all of the columns</span>
+<span class="co"># max(patient_1)        # max inflammation for patient 1</span></code></pre>
 <p>We don’t actually need to store the row in a variable of its own. Instead, we can combine the selection and the method call:</p>
-<pre class="r"><code># max(dat[2,])          # max inflammation for patient 2</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># max(dat[2,])          # max inflammation for patient 2</span></code></pre>
 <p><strong>EXERCISES</strong></p>
 <ol style="list-style-type: decimal">
 <li>If <code>dat</code> holds our data frame of patient data, what does <code>dat[3:3, 4:4]</code> produce? What about <code>dat[3:3, 4:1]</code>? Explain the results to the person sitting next to you</li>
@@ -525,12 +535,12 @@ dat[30, 3]</code></pre>
 <!-- FIXME: needs I presume the rBlocks code here to produce the figure? -->
 
 <p>To support this, in R we can use the <code>apply()</code> function:</p>
-<pre class="r"><code>help(apply) # r ?apply</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">help</span>(apply) <span class="co"># r ?apply</span></code></pre>
 <p><code>apply()</code> allows us to repeat a function on all of the rows (<code>MARGIN = 1</code>), columns (<code>2</code>), or both(<code>1:2</code>) of a matrix (or higher dimensions of an array).</p>
 <p>If each row is a patient, and we want to know each patient’s average inflammation, we will need to iterate our method across all of the rows.</p>
-<pre class="r"><code># avg_inflammation &lt;- apply(dat, 2, mean)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># avg_inflammation &lt;- apply(dat, 2, mean)</span></code></pre>
 <p>Some operations, such as the column-wise means have more efficient alternatives. For example <code>rowMeans()</code> and <code>colMeans()</code>.</p>
-<pre class="r"><code># colMeans(dat)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># colMeans(dat)</span></code></pre>
 <div id="challenge" class="section level3">
 <h3>Challenge</h3>
 <ol style="list-style-type: decimal">
@@ -539,12 +549,12 @@ dat[30, 3]</code></pre>
 <li>What is the length of your new variable?</li>
 </ol>
 <p>We can also create a vector of our study days (the number of columns in data)</p>
-<pre class="r"><code># tempo &lt;- 1:40
-# r
-# tempo &lt;- 1:ncol(dat)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># tempo &lt;- 1:40</span>
+<span class="co"># r</span>
+<span class="co"># tempo &lt;- 1:ncol(dat)</span></code></pre>
 <p>Notice that the object was named <code>tempo</code> instead of <code>time</code>. <code>time</code> is a R built-in function, and as good practice avoid giving existing function names to your objects.</p>
 <p>Now that we have all this summary information, we can put it back together into a data frame that we can use for further analysis and plotting, provided they are the same length.</p>
-<pre class="r"><code># d.summary &lt;- data.frame(tempo, avg_inflammation, min_inflammation, max_inflammation)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># d.summary &lt;- data.frame(tempo, avg_inflammation, min_inflammation, max_inflammation)</span></code></pre>
 </div>
 </div>
 <div id="plotting" class="section level2">
@@ -555,10 +565,10 @@ dat[30, 3]</code></pre>
 </blockquote>
 <p>and the best way to develop insight is often to visualize data. Visualization deserves an entire lecture (or course) of its own, but we can explore a few features of R’s base plotting package.</p>
 <p>Lets use the average inflammation data that we saved and plot it over the study time.</p>
-<pre class="r"><code># plot(tempo, avg_inflammation)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot(tempo, avg_inflammation)</span></code></pre>
 <p>The result is roughly a linear rise and fall, which is suspicious: based on other studies, we expect a sharper rise and slower fall. Let’s have a look at two other statistics:</p>
-<pre class="r"><code># plot(tempo, max_inflammation)</code></pre>
-<pre class="r"><code> # plot(tempo, min_inflammation)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot(tempo, max_inflammation)</span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"> <span class="co"># plot(tempo, min_inflammation)</span></code></pre>
 <p>The maximum value rises and falls perfectly smoothly, while the minimum seems to be a step function. Neither result seems particularly likely, so either there’s a mistake in our calculations or something is wrong with our data.</p>
 <p><strong>EXERCISES</strong></p>
 <ol style="list-style-type: decimal">
@@ -586,7 +596,6 @@ dat[30, 3]</code></pre>
 <div id="next-steps" class="section level2">
 <h2>Next Steps</h2>
 <p>Our work so far has convinced us that something’s wrong with our first data file. We would like to check the other 11 the same way, but typing in the same commands repeatedly is tedious and error-prone. Since computers don’t get bored (that we know of), we should create a way to do a complete analysis with a single command, and then figure out how to repeat that step once for each file. These operations are the subjects of the next two lessons.</p>
-</div>
 </div>
 
 
