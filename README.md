@@ -1,2 +1,2 @@
-RCoure_site
+RCourse_site
 ===========
