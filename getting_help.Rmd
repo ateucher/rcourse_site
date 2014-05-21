@@ -10,6 +10,7 @@ To get help help for a particular function, type ? and then the function name:
 ```
 
 General help:
+
 * [Cookbook for R](http://www.cookbook-r.com/)
 * Google (It actually knows what "R" is now)
 * Stackoverflow.com (use the `[r]` tag)
@@ -17,4 +18,5 @@ General help:
 * Each other! (Talk it out)
 
 ggplot2:
+
 * http://docs.ggplot2.org/current/

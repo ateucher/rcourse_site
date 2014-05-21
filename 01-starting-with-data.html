@@ -106,8 +106,7 @@ code > span.er { font-weight: bold; }
 <h2>Loading Data</h2>
 <p>Words are useful, but what’s more useful are the sentences and stories we use them to build. Similarly, while a lot of powerful tools are built into languages like R, even more lives in the libraries they are used to build. Importing a library is like getting a piece of lab equipment out of a storage locker and setting it up on the bench. Once it’s done, we can ask the library to do things for us.</p>
 <p>To load our iris data, we need to download our data to a place we can use it We will use <code>dir.create()</code> and <code>read.csv()</code>. These are built-in functions in R. Let’s check out the help screen.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dir.create</span>(<span class="st">&quot;data&quot;</span>)</code></pre>
-<pre><code>## Warning: &#39;data&#39; already exists</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dir.create</span>(<span class="st">&quot;data&quot;</span>, <span class="dt">showWarnings =</span> <span class="ot">FALSE</span>)</code></pre>
 <ul>
 <li>download the iris file</li>
 <li>put it in your data directory for these exercises</li>
@@ -368,7 +367,8 @@ weights &lt;-<span class="st"> </span><span class="kw">c</span>(weights, <span c
 ## 98           6.2         2.9          4.3         1.3 versicolor
 ## 99           5.1         2.5          3.0         1.1 versicolor
 ## 100          5.7         2.8          4.1         1.3 versicolor</code></pre>
-<p>For large data sets it is convenient to use the <code>head()</code> to display the first few rows of data, and <code>tail()</code> to see the end</p>
+<p>It’s important to note that anything we do with <code>dat</code> here will not affect the original <code>csv</code> file. This is an important concept of reproducibility - don’t touch your original data!</p>
+<p>For large data sets it is convenient to use the <code>head()</code> to display the first few rows of data, or <code>tail()</code> to see the end</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(dat)</code></pre>
 <pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
 ## 1          5.1         3.5          1.4         0.2  setosa
@@ -385,7 +385,7 @@ weights &lt;-<span class="st"> </span><span class="kw">c</span>(weights, <span c
 ## 98           6.2         2.9          4.3         1.3 versicolor
 ## 99           5.1         2.5          3.0         1.1 versicolor
 ## 100          5.7         2.8          4.1         1.3 versicolor</code></pre>
-<p>In RStudio’s environment pane, you can also click on the</p>
+<p>In RStudio’s environment pane, you can also click on the little table icon next to the data frame name.</p>
 <p><strong>BREAK</strong></p>
 <ul>
 <li>Make sure everyone has imported the data</li>
@@ -404,7 +404,7 @@ weights &lt;-<span class="st"> </span><span class="kw">c</span>(weights, <span c
 ##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
 ##  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
 ##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
-##  $ Species     : Factor w/ 3 levels &quot;setosa&quot;,&quot;versicolor&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+##  $ Species     : Factor w/ 2 levels &quot;setosa&quot;,&quot;versicolor&quot;: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(dat)</code></pre>
 <pre><code>##   Sepal.Length   Sepal.Width    Petal.Length   Petal.Width   
 ##  Min.   :4.30   Min.   :2.00   Min.   :1.00   Min.   :0.100  
@@ -416,7 +416,7 @@ weights &lt;-<span class="st"> </span><span class="kw">c</span>(weights, <span c
 ##        Species  
 ##  setosa    :50  
 ##  versicolor:50  
-##  virginica : 0  
+##                 
 ##                 
 ##                 
 ## </code></pre>
@@ -453,19 +453,22 @@ weights &lt;-<span class="st"> </span><span class="kw">c</span>(weights, <span c
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ncol</span>(dat)</code></pre>
 <pre><code>## [1] 5</code></pre>
 <p>This tells us that data has 100 rows and 5 columns.</p>
+<!-- This may be a good place to talk about vectors -->
+
 </div>
 </div>
 <div id="indexing" class="section level3">
 <h3>Indexing</h3>
 <p>We talked about vectors before, and indexing them. Each column in a data frame is a vector, and can be indexed as such.</p>
 <p>If we want to get a single value from the data frame, we must provide an row and column indices for the value we want in square brackets: <code>dataframe[rows,columns]</code></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># first value in dat</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># first value in first column in dat</span>
 dat[<span class="dv">1</span>, <span class="dv">1</span>]</code></pre>
 <pre><code>## [1] 5.1</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># middle value in dat</span>
-dat[<span class="dv">30</span>, <span class="dv">3</span>]</code></pre>
-<pre><code>## [1] 1.6</code></pre>
-<p>An index like <code>[30, 20]</code> selects a single element of data frame, but we can select sections as well. Entering nothing in either the rows or columns spot selects all. For example, we can select the first ten rows across all columns, like this. :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># third value in fifth column in dat</span>
+dat[<span class="dv">3</span>,<span class="dv">5</span>]</code></pre>
+<pre><code>## [1] setosa
+## Levels: setosa versicolor</code></pre>
+<p>An index like <code>[30, 3]</code> selects a single element of data frame, but we can select sections as well. Entering nothing in either the rows or columns spot selects all. For example, we can select the first ten rows across all columns, like this. :</p>
 <pre class="sourceCode r"><code class="sourceCode r">dat[<span class="dv">1</span>:<span class="dv">10</span>,]</code></pre>
 <pre><code>##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
 ## 1           5.1         3.5          1.4         0.2  setosa
@@ -479,7 +482,7 @@ dat[<span class="dv">30</span>, <span class="dv">3</span>]</code></pre>
 ## 9           4.4         2.9          1.4         0.2  setosa
 ## 10          4.9         3.1          1.5         0.1  setosa</code></pre>
 <p>The notation <code>1:10</code> means, “Start at index 1 and go to index 10.”</p>
-<p>and we don’t have to take all the values in the slice, we can use <code>c()</code> to select certain values or groups of values:</p>
+<p>We don’t have to take consecutive values, we can use <code>c()</code> to select certain values or groups of values:</p>
 <pre class="sourceCode r"><code class="sourceCode r">dat[<span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">10</span>, <span class="dv">20</span>:<span class="dv">30</span>),]</code></pre>
 <pre><code>##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
 ## 1           5.1         3.5          1.4         0.2  setosa
@@ -504,6 +507,109 @@ dat[<span class="dv">30</span>, <span class="dv">3</span>]</code></pre>
 ## 29          5.2         3.4          1.4         0.2  setosa
 ## 30          4.7         3.2          1.6         0.2  setosa</code></pre>
 <p>Here we have taken rows 1 through 10 and 20 through 30.</p>
+<p>Columns can also be referenced by name:</p>
+<pre class="sourceCode r"><code class="sourceCode r">dat[,<span class="kw">c</span>(<span class="st">&quot;Petal.Length&quot;</span>, <span class="st">&quot;Species&quot;</span>)] <span class="co"># Returns all rows</span></code></pre>
+<pre><code>##     Petal.Length    Species
+## 1            1.4     setosa
+## 2            1.4     setosa
+## 3            1.3     setosa
+## 4            1.5     setosa
+## 5            1.4     setosa
+## 6            1.7     setosa
+## 7            1.4     setosa
+## 8            1.5     setosa
+## 9            1.4     setosa
+## 10           1.5     setosa
+## 11           1.5     setosa
+## 12           1.6     setosa
+## 13           1.4     setosa
+## 14           1.1     setosa
+## 15           1.2     setosa
+## 16           1.5     setosa
+## 17           1.3     setosa
+## 18           1.4     setosa
+## 19           1.7     setosa
+## 20           1.5     setosa
+## 21           1.7     setosa
+## 22           1.5     setosa
+## 23           1.0     setosa
+## 24           1.7     setosa
+## 25           1.9     setosa
+## 26           1.6     setosa
+## 27           1.6     setosa
+## 28           1.5     setosa
+## 29           1.4     setosa
+## 30           1.6     setosa
+## 31           1.6     setosa
+## 32           1.5     setosa
+## 33           1.5     setosa
+## 34           1.4     setosa
+## 35           1.5     setosa
+## 36           1.2     setosa
+## 37           1.3     setosa
+## 38           1.4     setosa
+## 39           1.3     setosa
+## 40           1.5     setosa
+## 41           1.3     setosa
+## 42           1.3     setosa
+## 43           1.3     setosa
+## 44           1.6     setosa
+## 45           1.9     setosa
+## 46           1.4     setosa
+## 47           1.6     setosa
+## 48           1.4     setosa
+## 49           1.5     setosa
+## 50           1.4     setosa
+## 51           4.7 versicolor
+## 52           4.5 versicolor
+## 53           4.9 versicolor
+## 54           4.0 versicolor
+## 55           4.6 versicolor
+## 56           4.5 versicolor
+## 57           4.7 versicolor
+## 58           3.3 versicolor
+## 59           4.6 versicolor
+## 60           3.9 versicolor
+## 61           3.5 versicolor
+## 62           4.2 versicolor
+## 63           4.0 versicolor
+## 64           4.7 versicolor
+## 65           3.6 versicolor
+## 66           4.4 versicolor
+## 67           4.5 versicolor
+## 68           4.1 versicolor
+## 69           4.5 versicolor
+## 70           3.9 versicolor
+## 71           4.8 versicolor
+## 72           4.0 versicolor
+## 73           4.9 versicolor
+## 74           4.7 versicolor
+## 75           4.3 versicolor
+## 76           4.4 versicolor
+## 77           4.8 versicolor
+## 78           5.0 versicolor
+## 79           4.5 versicolor
+## 80           3.5 versicolor
+## 81           3.8 versicolor
+## 82           3.7 versicolor
+## 83           3.9 versicolor
+## 84           5.1 versicolor
+## 85           4.5 versicolor
+## 86           4.5 versicolor
+## 87           4.7 versicolor
+## 88           4.4 versicolor
+## 89           4.1 versicolor
+## 90           4.0 versicolor
+## 91           4.4 versicolor
+## 92           4.6 versicolor
+## 93           4.0 versicolor
+## 94           3.3 versicolor
+## 95           4.2 versicolor
+## 96           4.2 versicolor
+## 97           4.2 versicolor
+## 98           4.3 versicolor
+## 99           3.0 versicolor
+## 100          4.1 versicolor</code></pre>
 </div>
 <div id="referencing-columns" class="section level3">
 <h3>Referencing Columns</h3>

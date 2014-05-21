@@ -4,7 +4,6 @@ title: Getting started with data
 
 ```{r, echo=FALSE}
 knitr::opts_chunk$set(results="markup")
-dat <- iris[iris$Species != "virginica",]
 ```
 
 ## Analyzing Iris Data
@@ -58,7 +57,7 @@ We will use `dir.create()` and `read.csv()`. These are built-in functions in R.
 Let's check out the help screen.
 
 ```{r}
-dir.create("data")
+dir.create("data", showWarnings = FALSE)
 
 ```
 
@@ -67,14 +66,9 @@ dir.create("data")
 
 Load the data into R:
 
-```{r eval=FALSE}
+```{r}
 read.csv('data/iris.csv')
 ```
-
-```{r echo=FALSE}
-dat
-```
-
 
 The expression `read.csv()` is a function that asks R to load a `.csv` file 
 into R's workspace as a data frame.
@@ -185,7 +179,7 @@ results that we are collecting or calculating.
 Now that we know how to assign things to variables, let's re-run `read.csv` and 
 save its result:
 
-```{r eval=FALSE}
+```{r}
 dat <- read.csv('data/iris.csv')
 ```
 
@@ -197,15 +191,20 @@ variable's value:
 dat
 ```
 
+It's important to note that anything we do with `dat` here will not affect the 
+original `csv` file. This is an important concept of reproducibility - don't 
+touch your original data!
+
 For large data sets it is convenient to use the `head()` to display the first 
-few rows of data, and `tail()` to see the end
+few rows of data, or `tail()` to see the end
 
 ```{r}
 head(dat)
 tail(dat)
 ```
 
-In RStudio's environment pane, you can also click on the 
+In RStudio's environment pane, you can also click on the little table icon next
+to the data frame name.
 
 __BREAK__
 
@@ -266,6 +265,8 @@ ncol(dat)
 
 This tells us that data has `r nrow(dat)` rows and `r ncol(dat)` columns.
 
+<!-- This may be a good place to talk about vectors -->
+
 ### Indexing
 
 We talked about vectors before, and indexing them.  Each column in a data frame 
@@ -275,13 +276,13 @@ If we want to get a single value from the data frame, we must provide an row and
 column indices for the value we want in square brackets: `dataframe[rows,columns]`
 
 ```{r}
-# first value in dat
+# first value in first column in dat
 dat[1, 1]
-# middle value in dat
-dat[30, 3]
+# third value in fifth column in dat
+dat[3,5]
 ```
 
-An index like `[30, 20]` selects a single element of data frame, but we can 
+An index like `[30, 3]` selects a single element of data frame, but we can 
 select sections as well. Entering nothing in either the rows or columns spot 
 selects all.
 For example, we can select the first ten rows across all columns, like this. :
@@ -292,13 +293,22 @@ dat[1:10,]
 
 The notation `1:10` means, "Start at index 1 and go to index 10." 
 
-and we don't have to take all the values in the slice, we can use `c()` to select certain values or groups of values:
+We don't have to take consecutive values, we can use `c()` to select certain 
+values or groups of values:
 
 ```{r}
 dat[c(1:10, 20:30),]
 ```
 
 Here we have taken rows 1 through 10 and 20 through 30.
+
+Columns can also be referenced by name:
+
+```{r}
+dat[,c("Petal.Length", "Species")] # Returns all rows
+
+```
+
 
 ### Referencing Columns
 
