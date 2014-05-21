@@ -145,7 +145,7 @@ log(10,5)
 All functions come with a help screen. To get help on a function, type `?` 
 followed by the function name.
 
-```
+```{r eval=FALSE}
 ?log
 ```
 

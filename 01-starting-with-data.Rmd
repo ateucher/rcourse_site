@@ -57,7 +57,7 @@ We will use `dir.create()` and `read.csv()`. These are built-in functions in R.
 Let's check out the help screen.
 
 ```{r}
-dir.create("data", showWarnings = FALSE)
+dir.create("data")
 
 ```
 
@@ -265,6 +265,42 @@ ncol(dat)
 
 This tells us that data has `r nrow(dat)` rows and `r ncol(dat)` columns.
 
+### Referencing Columns
+
+When referencing a column, the `$` operator is used to separate the data frame 
+and the column name. In a data frame, each column is a _vector_ of the same 
+length. Let's look at the petal widths:
+
+```{r}
+dat$Petal.Width
+```
+
+Now say we want to get the mean of the petal widths, or the maximum of the sepal 
+lengths:
+
+```{r}
+mean(dat$Petal.Width)
+max(dat$Sepal.Length)
+```
+
+You can also use the `$` operator to reference columns that don't yet exist, but
+you would like to create.  For example, the measurements in this dataset are in 
+cm, but perhaps we want to compare sepal lengths with another dataset that has 
+measurements in inches:
+
+```{r}
+dat$Sepal.Length.in <- dat$Sepal.Length / 2.54
+head(dat)
+```
+
+Or, perhaps what we are really interested in is the ratio of petal length to 
+petal width:
+
+```{r}
+dat$Petal.LW.Ratio <- dat$Petal.Length / dat$Petal.Width
+head(dat)
+```
+
 <!-- This may be a good place to talk about vectors -->
 
 ### Indexing
@@ -279,7 +315,7 @@ column indices for the value we want in square brackets: `dataframe[rows,columns
 # first value in first column in dat
 dat[1, 1]
 # third value in fifth column in dat
-dat[3,5]
+dat[3, 5]
 ```
 
 An index like `[30, 3]` selects a single element of data frame, but we can 
@@ -305,27 +341,39 @@ Here we have taken rows 1 through 10 and 20 through 30.
 Columns can also be referenced by name:
 
 ```{r}
-dat[,c("Petal.Length", "Species")] # Returns all rows
+dat[, "Petal.Length"] # Returns all rows
+dat[, c("Petal.Length", "Species")]  # Can specify more than one column by using a character vector
 
 ```
 
+#### Indexing using conditionals
 
-### Referencing Columns
-
-When referencing a column, the `$` operator is used to separate the data frame 
-and the column name.  Let's look at the petal widths:
+Sometimes we are interested in extracting data based on something else.  Lets 
+say we want to look at all of the flowers measured that had really wide sepals:
 
 ```{r}
-dat$Petal.Width
+mean.sw <- mean(dat$Sepal.Width) # First find the average sepal width
+mean.sw
+dat[dat$Sepal.Width > mean.sw, ]
 ```
 
-Now say we want to get the mean of the petal widths:
+Let's break that down a little. `dat$Sepal.Width > mean.sw` returns a _Logical_ 
+vector of the same length as `dat$Sepal.Width`; that is a vector of `TRUE` and 
+`FALSE` based on testing each element of `dat$Sepal.Width` to see if it is 
+greater than `mean.sw`.
 
 ```{r}
-mean(dat$Petal.Width)
-
+dat$Sepal.Width > mean.sw
 ```
 
+When you put that logical vector inside the row index, just the rows which are 
+`TRUE` are returned. This type of conditional indexing is very powerful:
+
+```{r}
+dat[dat$Species == "setosa",]
+```
+
+TODO: Something a bit more complicated here maybe? Then a quick plot in base graphics, then dplyr
 
 When analyzing, we often want to look at partial statistics, such as the maximum value per patient or the average value per day. 
 One way to do this is to select the data we want to create a new temporary array, then ask it to do the calculation:

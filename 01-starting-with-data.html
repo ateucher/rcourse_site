@@ -106,7 +106,8 @@ code > span.er { font-weight: bold; }
 <h2>Loading Data</h2>
 <p>Words are useful, but what’s more useful are the sentences and stories we use them to build. Similarly, while a lot of powerful tools are built into languages like R, even more lives in the libraries they are used to build. Importing a library is like getting a piece of lab equipment out of a storage locker and setting it up on the bench. Once it’s done, we can ask the library to do things for us.</p>
 <p>To load our iris data, we need to download our data to a place we can use it We will use <code>dir.create()</code> and <code>read.csv()</code>. These are built-in functions in R. Let’s check out the help screen.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dir.create</span>(<span class="st">&quot;data&quot;</span>, <span class="dt">showWarnings =</span> <span class="ot">FALSE</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dir.create</span>(<span class="st">&quot;data&quot;</span>)</code></pre>
+<pre><code>## Warning: &#39;data&#39; already exists</code></pre>
 <ul>
 <li>download the iris file</li>
 <li>put it in your data directory for these exercises</li>
@@ -404,7 +405,7 @@ weights &lt;-<span class="st"> </span><span class="kw">c</span>(weights, <span c
 ##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
 ##  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
 ##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
-##  $ Species     : Factor w/ 2 levels &quot;setosa&quot;,&quot;versicolor&quot;: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+##  $ Species     : chr  &quot;setosa&quot; &quot;setosa&quot; &quot;setosa&quot; &quot;setosa&quot; ...</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(dat)</code></pre>
 <pre><code>##   Sepal.Length   Sepal.Width    Petal.Length   Petal.Width   
 ##  Min.   :4.30   Min.   :2.00   Min.   :1.00   Min.   :0.100  
@@ -413,12 +414,12 @@ weights &lt;-<span class="st"> </span><span class="kw">c</span>(weights, <span c
 ##  Mean   :5.47   Mean   :3.10   Mean   :2.86   Mean   :0.786  
 ##  3rd Qu.:5.90   3rd Qu.:3.40   3rd Qu.:4.33   3rd Qu.:1.300  
 ##  Max.   :7.00   Max.   :4.40   Max.   :5.10   Max.   :1.800  
-##        Species  
-##  setosa    :50  
-##  versicolor:50  
-##                 
-##                 
-##                 
+##    Species         
+##  Length:100        
+##  Class :character  
+##  Mode  :character  
+##                    
+##                    
 ## </code></pre>
 <p>The output tells us that data currently is a data frame in R. This is similar to a spreadsheet in MS Excel, that many of us are familiar with using.</p>
 <div id="data-frames" class="section level3">
@@ -453,9 +454,59 @@ weights &lt;-<span class="st"> </span><span class="kw">c</span>(weights, <span c
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ncol</span>(dat)</code></pre>
 <pre><code>## [1] 5</code></pre>
 <p>This tells us that data has 100 rows and 5 columns.</p>
+</div>
+</div>
+<div id="referencing-columns" class="section level3">
+<h3>Referencing Columns</h3>
+<p>When referencing a column, the <code>$</code> operator is used to separate the data frame and the column name. In a data frame, each column is a <em>vector</em> of the same length. Let’s look at the petal widths:</p>
+<pre class="sourceCode r"><code class="sourceCode r">dat$Petal.Width</code></pre>
+<pre><code>##   [1] 0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 0.2 0.2 0.1 0.1 0.2 0.4 0.4
+##  [18] 0.3 0.3 0.3 0.2 0.4 0.2 0.5 0.2 0.2 0.4 0.2 0.2 0.2 0.2 0.4 0.1 0.2
+##  [35] 0.2 0.2 0.2 0.1 0.2 0.2 0.3 0.3 0.2 0.6 0.4 0.3 0.2 0.2 0.2 0.2 1.4
+##  [52] 1.5 1.5 1.3 1.5 1.3 1.6 1.0 1.3 1.4 1.0 1.5 1.0 1.4 1.3 1.4 1.5 1.0
+##  [69] 1.5 1.1 1.8 1.3 1.5 1.2 1.3 1.4 1.4 1.7 1.5 1.0 1.1 1.0 1.2 1.6 1.5
+##  [86] 1.6 1.5 1.3 1.3 1.3 1.2 1.4 1.2 1.0 1.3 1.2 1.3 1.3 1.1 1.3</code></pre>
+<p>Now say we want to get the mean of the petal widths, or the maximum of the sepal lengths:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(dat$Petal.Width)</code></pre>
+<pre><code>## [1] 0.786</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">max</span>(dat$Sepal.Length)</code></pre>
+<pre><code>## [1] 7</code></pre>
+<p>You can also use the <code>$</code> operator to reference columns that don’t yet exist, but you would like to create. For example, the measurements in this dataset are in cm, but perhaps we want to compare sepal lengths with another dataset that has measurements in inches:</p>
+<pre class="sourceCode r"><code class="sourceCode r">dat$Sepal.Length.in &lt;-<span class="st"> </span>dat$Sepal.Length /<span class="st"> </span><span class="fl">2.54</span>
+<span class="kw">head</span>(dat)</code></pre>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa
+##   Sepal.Length.in
+## 1           2.008
+## 2           1.929
+## 3           1.850
+## 4           1.811
+## 5           1.969
+## 6           2.126</code></pre>
+<p>Or, perhaps what we are really interested in is the ratio of petal length to petal width:</p>
+<pre class="sourceCode r"><code class="sourceCode r">dat$Petal.LW.Ratio &lt;-<span class="st"> </span>dat$Petal.Length /<span class="st"> </span>dat$Petal.Width
+<span class="kw">head</span>(dat)</code></pre>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa
+##   Sepal.Length.in Petal.LW.Ratio
+## 1           2.008           7.00
+## 2           1.929           7.00
+## 3           1.850           6.50
+## 4           1.811           7.50
+## 5           1.969           7.00
+## 6           2.126           4.25</code></pre>
 <!-- This may be a good place to talk about vectors -->
 
-</div>
 </div>
 <div id="indexing" class="section level3">
 <h3>Indexing</h3>
@@ -465,9 +516,8 @@ weights &lt;-<span class="st"> </span><span class="kw">c</span>(weights, <span c
 dat[<span class="dv">1</span>, <span class="dv">1</span>]</code></pre>
 <pre><code>## [1] 5.1</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># third value in fifth column in dat</span>
-dat[<span class="dv">3</span>,<span class="dv">5</span>]</code></pre>
-<pre><code>## [1] setosa
-## Levels: setosa versicolor</code></pre>
+dat[<span class="dv">3</span>, <span class="dv">5</span>]</code></pre>
+<pre><code>## [1] &quot;setosa&quot;</code></pre>
 <p>An index like <code>[30, 3]</code> selects a single element of data frame, but we can select sections as well. Entering nothing in either the rows or columns spot selects all. For example, we can select the first ten rows across all columns, like this. :</p>
 <pre class="sourceCode r"><code class="sourceCode r">dat[<span class="dv">1</span>:<span class="dv">10</span>,]</code></pre>
 <pre><code>##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
@@ -480,7 +530,18 @@ dat[<span class="dv">3</span>,<span class="dv">5</span>]</code></pre>
 ## 7           4.6         3.4          1.4         0.3  setosa
 ## 8           5.0         3.4          1.5         0.2  setosa
 ## 9           4.4         2.9          1.4         0.2  setosa
-## 10          4.9         3.1          1.5         0.1  setosa</code></pre>
+## 10          4.9         3.1          1.5         0.1  setosa
+##    Sepal.Length.in Petal.LW.Ratio
+## 1            2.008          7.000
+## 2            1.929          7.000
+## 3            1.850          6.500
+## 4            1.811          7.500
+## 5            1.969          7.000
+## 6            2.126          4.250
+## 7            1.811          4.667
+## 8            1.969          7.500
+## 9            1.732          7.000
+## 10           1.929         15.000</code></pre>
 <p>The notation <code>1:10</code> means, “Start at index 1 and go to index 10.”</p>
 <p>We don’t have to take consecutive values, we can use <code>c()</code> to select certain values or groups of values:</p>
 <pre class="sourceCode r"><code class="sourceCode r">dat[<span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">10</span>, <span class="dv">20</span>:<span class="dv">30</span>),]</code></pre>
@@ -505,10 +566,39 @@ dat[<span class="dv">3</span>,<span class="dv">5</span>]</code></pre>
 ## 27          5.0         3.4          1.6         0.4  setosa
 ## 28          5.2         3.5          1.5         0.2  setosa
 ## 29          5.2         3.4          1.4         0.2  setosa
-## 30          4.7         3.2          1.6         0.2  setosa</code></pre>
+## 30          4.7         3.2          1.6         0.2  setosa
+##    Sepal.Length.in Petal.LW.Ratio
+## 1            2.008          7.000
+## 2            1.929          7.000
+## 3            1.850          6.500
+## 4            1.811          7.500
+## 5            1.969          7.000
+## 6            2.126          4.250
+## 7            1.811          4.667
+## 8            1.969          7.500
+## 9            1.732          7.000
+## 10           1.929         15.000
+## 20           2.008          5.000
+## 21           2.126          8.500
+## 22           2.008          3.750
+## 23           1.811          5.000
+## 24           2.008          3.400
+## 25           1.890          9.500
+## 26           1.969          8.000
+## 27           1.969          4.000
+## 28           2.047          7.500
+## 29           2.047          7.000
+## 30           1.850          8.000</code></pre>
 <p>Here we have taken rows 1 through 10 and 20 through 30.</p>
 <p>Columns can also be referenced by name:</p>
-<pre class="sourceCode r"><code class="sourceCode r">dat[,<span class="kw">c</span>(<span class="st">&quot;Petal.Length&quot;</span>, <span class="st">&quot;Species&quot;</span>)] <span class="co"># Returns all rows</span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">dat[, <span class="st">&quot;Petal.Length&quot;</span>] <span class="co"># Returns all rows</span></code></pre>
+<pre><code>##   [1] 1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 1.5 1.6 1.4 1.1 1.2 1.5 1.3
+##  [18] 1.4 1.7 1.5 1.7 1.5 1.0 1.7 1.9 1.6 1.6 1.5 1.4 1.6 1.6 1.5 1.5 1.4
+##  [35] 1.5 1.2 1.3 1.4 1.3 1.5 1.3 1.3 1.3 1.6 1.9 1.4 1.6 1.4 1.5 1.4 4.7
+##  [52] 4.5 4.9 4.0 4.6 4.5 4.7 3.3 4.6 3.9 3.5 4.2 4.0 4.7 3.6 4.4 4.5 4.1
+##  [69] 4.5 3.9 4.8 4.0 4.9 4.7 4.3 4.4 4.8 5.0 4.5 3.5 3.8 3.7 3.9 5.1 4.5
+##  [86] 4.5 4.7 4.4 4.1 4.0 4.4 4.6 4.0 3.3 4.2 4.2 4.2 4.3 3.0 4.1</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">dat[, <span class="kw">c</span>(<span class="st">&quot;Petal.Length&quot;</span>, <span class="st">&quot;Species&quot;</span>)]  <span class="co"># Can specify more than one column by using a character vector</span></code></pre>
 <pre><code>##     Petal.Length    Species
 ## 1            1.4     setosa
 ## 2            1.4     setosa
@@ -610,20 +700,232 @@ dat[<span class="dv">3</span>,<span class="dv">5</span>]</code></pre>
 ## 98           4.3 versicolor
 ## 99           3.0 versicolor
 ## 100          4.1 versicolor</code></pre>
-</div>
-<div id="referencing-columns" class="section level3">
-<h3>Referencing Columns</h3>
-<p>When referencing a column, the <code>$</code> operator is used to separate the data frame and the column name. Let’s look at the petal widths:</p>
-<pre class="sourceCode r"><code class="sourceCode r">dat$Petal.Width</code></pre>
-<pre><code>##   [1] 0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 0.2 0.2 0.1 0.1 0.2 0.4 0.4
-##  [18] 0.3 0.3 0.3 0.2 0.4 0.2 0.5 0.2 0.2 0.4 0.2 0.2 0.2 0.2 0.4 0.1 0.2
-##  [35] 0.2 0.2 0.2 0.1 0.2 0.2 0.3 0.3 0.2 0.6 0.4 0.3 0.2 0.2 0.2 0.2 1.4
-##  [52] 1.5 1.5 1.3 1.5 1.3 1.6 1.0 1.3 1.4 1.0 1.5 1.0 1.4 1.3 1.4 1.5 1.0
-##  [69] 1.5 1.1 1.8 1.3 1.5 1.2 1.3 1.4 1.4 1.7 1.5 1.0 1.1 1.0 1.2 1.6 1.5
-##  [86] 1.6 1.5 1.3 1.3 1.3 1.2 1.4 1.2 1.0 1.3 1.2 1.3 1.3 1.1 1.3</code></pre>
-<p>Now say we want to get the mean of the petal widths:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(dat$Petal.Width)</code></pre>
-<pre><code>## [1] 0.786</code></pre>
+<div id="indexing-using-conditionals" class="section level4">
+<h4>Indexing using conditionals</h4>
+<p>Sometimes we are interested in extracting data based on something else. Lets say we want to look at all of the flowers measured that had really wide sepals:</p>
+<pre class="sourceCode r"><code class="sourceCode r">mean.sw &lt;-<span class="st"> </span><span class="kw">mean</span>(dat$Sepal.Width) <span class="co"># First find the average sepal width</span>
+mean.sw</code></pre>
+<pre><code>## [1] 3.099</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">dat[dat$Sepal.Width &gt;<span class="st"> </span>mean.sw, ]</code></pre>
+<pre><code>##    Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+## 1           5.1         3.5          1.4         0.2     setosa
+## 3           4.7         3.2          1.3         0.2     setosa
+## 4           4.6         3.1          1.5         0.2     setosa
+## 5           5.0         3.6          1.4         0.2     setosa
+## 6           5.4         3.9          1.7         0.4     setosa
+## 7           4.6         3.4          1.4         0.3     setosa
+## 8           5.0         3.4          1.5         0.2     setosa
+## 10          4.9         3.1          1.5         0.1     setosa
+## 11          5.4         3.7          1.5         0.2     setosa
+## 12          4.8         3.4          1.6         0.2     setosa
+## 15          5.8         4.0          1.2         0.2     setosa
+## 16          5.7         4.4          1.5         0.4     setosa
+## 17          5.4         3.9          1.3         0.4     setosa
+## 18          5.1         3.5          1.4         0.3     setosa
+## 19          5.7         3.8          1.7         0.3     setosa
+## 20          5.1         3.8          1.5         0.3     setosa
+## 21          5.4         3.4          1.7         0.2     setosa
+## 22          5.1         3.7          1.5         0.4     setosa
+## 23          4.6         3.6          1.0         0.2     setosa
+## 24          5.1         3.3          1.7         0.5     setosa
+## 25          4.8         3.4          1.9         0.2     setosa
+## 27          5.0         3.4          1.6         0.4     setosa
+## 28          5.2         3.5          1.5         0.2     setosa
+## 29          5.2         3.4          1.4         0.2     setosa
+## 30          4.7         3.2          1.6         0.2     setosa
+## 31          4.8         3.1          1.6         0.2     setosa
+## 32          5.4         3.4          1.5         0.4     setosa
+## 33          5.2         4.1          1.5         0.1     setosa
+## 34          5.5         4.2          1.4         0.2     setosa
+## 35          4.9         3.1          1.5         0.2     setosa
+## 36          5.0         3.2          1.2         0.2     setosa
+## 37          5.5         3.5          1.3         0.2     setosa
+## 38          4.9         3.6          1.4         0.1     setosa
+## 40          5.1         3.4          1.5         0.2     setosa
+## 41          5.0         3.5          1.3         0.3     setosa
+## 43          4.4         3.2          1.3         0.2     setosa
+## 44          5.0         3.5          1.6         0.6     setosa
+## 45          5.1         3.8          1.9         0.4     setosa
+## 47          5.1         3.8          1.6         0.2     setosa
+## 48          4.6         3.2          1.4         0.2     setosa
+## 49          5.3         3.7          1.5         0.2     setosa
+## 50          5.0         3.3          1.4         0.2     setosa
+## 51          7.0         3.2          4.7         1.4 versicolor
+## 52          6.4         3.2          4.5         1.5 versicolor
+## 53          6.9         3.1          4.9         1.5 versicolor
+## 57          6.3         3.3          4.7         1.6 versicolor
+## 66          6.7         3.1          4.4         1.4 versicolor
+## 71          5.9         3.2          4.8         1.8 versicolor
+## 86          6.0         3.4          4.5         1.6 versicolor
+## 87          6.7         3.1          4.7         1.5 versicolor
+##    Sepal.Length.in Petal.LW.Ratio
+## 1            2.008          7.000
+## 3            1.850          6.500
+## 4            1.811          7.500
+## 5            1.969          7.000
+## 6            2.126          4.250
+## 7            1.811          4.667
+## 8            1.969          7.500
+## 10           1.929         15.000
+## 11           2.126          7.500
+## 12           1.890          8.000
+## 15           2.283          6.000
+## 16           2.244          3.750
+## 17           2.126          3.250
+## 18           2.008          4.667
+## 19           2.244          5.667
+## 20           2.008          5.000
+## 21           2.126          8.500
+## 22           2.008          3.750
+## 23           1.811          5.000
+## 24           2.008          3.400
+## 25           1.890          9.500
+## 27           1.969          4.000
+## 28           2.047          7.500
+## 29           2.047          7.000
+## 30           1.850          8.000
+## 31           1.890          8.000
+## 32           2.126          3.750
+## 33           2.047         15.000
+## 34           2.165          7.000
+## 35           1.929          7.500
+## 36           1.969          6.000
+## 37           2.165          6.500
+## 38           1.929         14.000
+## 40           2.008          7.500
+## 41           1.969          4.333
+## 43           1.732          6.500
+## 44           1.969          2.667
+## 45           2.008          4.750
+## 47           2.008          8.000
+## 48           1.811          7.000
+## 49           2.087          7.500
+## 50           1.969          7.000
+## 51           2.756          3.357
+## 52           2.520          3.000
+## 53           2.717          3.267
+## 57           2.480          2.938
+## 66           2.638          3.143
+## 71           2.323          2.667
+## 86           2.362          2.812
+## 87           2.638          3.133</code></pre>
+<p>Let’s break that down a little. <code>dat$Sepal.Width &gt; mean.sw</code> returns a <em>Logical</em> vector of the same length as <code>dat$Sepal.Width</code>; that is a vector of <code>TRUE</code> and <code>FALSE</code> based on testing each element of <code>dat$Sepal.Width</code> to see if it is greater than <code>mean.sw</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r">dat$Sepal.Width &gt;<span class="st"> </span>mean.sw</code></pre>
+<pre><code>##   [1]  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE
+##  [12]  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+##  [23]  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+##  [34]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE FALSE  TRUE  TRUE
+##  [45]  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE
+##  [56] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE
+##  [67] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
+##  [78] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE
+##  [89] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [100] FALSE</code></pre>
+<p>When you put that logical vector inside the row index, just the rows which are <code>TRUE</code> are returned. This type of conditional indexing is very powerful:</p>
+<pre class="sourceCode r"><code class="sourceCode r">dat[dat$Species ==<span class="st"> &quot;setosa&quot;</span>,]</code></pre>
+<pre><code>##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1           5.1         3.5          1.4         0.2  setosa
+## 2           4.9         3.0          1.4         0.2  setosa
+## 3           4.7         3.2          1.3         0.2  setosa
+## 4           4.6         3.1          1.5         0.2  setosa
+## 5           5.0         3.6          1.4         0.2  setosa
+## 6           5.4         3.9          1.7         0.4  setosa
+## 7           4.6         3.4          1.4         0.3  setosa
+## 8           5.0         3.4          1.5         0.2  setosa
+## 9           4.4         2.9          1.4         0.2  setosa
+## 10          4.9         3.1          1.5         0.1  setosa
+## 11          5.4         3.7          1.5         0.2  setosa
+## 12          4.8         3.4          1.6         0.2  setosa
+## 13          4.8         3.0          1.4         0.1  setosa
+## 14          4.3         3.0          1.1         0.1  setosa
+## 15          5.8         4.0          1.2         0.2  setosa
+## 16          5.7         4.4          1.5         0.4  setosa
+## 17          5.4         3.9          1.3         0.4  setosa
+## 18          5.1         3.5          1.4         0.3  setosa
+## 19          5.7         3.8          1.7         0.3  setosa
+## 20          5.1         3.8          1.5         0.3  setosa
+## 21          5.4         3.4          1.7         0.2  setosa
+## 22          5.1         3.7          1.5         0.4  setosa
+## 23          4.6         3.6          1.0         0.2  setosa
+## 24          5.1         3.3          1.7         0.5  setosa
+## 25          4.8         3.4          1.9         0.2  setosa
+## 26          5.0         3.0          1.6         0.2  setosa
+## 27          5.0         3.4          1.6         0.4  setosa
+## 28          5.2         3.5          1.5         0.2  setosa
+## 29          5.2         3.4          1.4         0.2  setosa
+## 30          4.7         3.2          1.6         0.2  setosa
+## 31          4.8         3.1          1.6         0.2  setosa
+## 32          5.4         3.4          1.5         0.4  setosa
+## 33          5.2         4.1          1.5         0.1  setosa
+## 34          5.5         4.2          1.4         0.2  setosa
+## 35          4.9         3.1          1.5         0.2  setosa
+## 36          5.0         3.2          1.2         0.2  setosa
+## 37          5.5         3.5          1.3         0.2  setosa
+## 38          4.9         3.6          1.4         0.1  setosa
+## 39          4.4         3.0          1.3         0.2  setosa
+## 40          5.1         3.4          1.5         0.2  setosa
+## 41          5.0         3.5          1.3         0.3  setosa
+## 42          4.5         2.3          1.3         0.3  setosa
+## 43          4.4         3.2          1.3         0.2  setosa
+## 44          5.0         3.5          1.6         0.6  setosa
+## 45          5.1         3.8          1.9         0.4  setosa
+## 46          4.8         3.0          1.4         0.3  setosa
+## 47          5.1         3.8          1.6         0.2  setosa
+## 48          4.6         3.2          1.4         0.2  setosa
+## 49          5.3         3.7          1.5         0.2  setosa
+## 50          5.0         3.3          1.4         0.2  setosa
+##    Sepal.Length.in Petal.LW.Ratio
+## 1            2.008          7.000
+## 2            1.929          7.000
+## 3            1.850          6.500
+## 4            1.811          7.500
+## 5            1.969          7.000
+## 6            2.126          4.250
+## 7            1.811          4.667
+## 8            1.969          7.500
+## 9            1.732          7.000
+## 10           1.929         15.000
+## 11           2.126          7.500
+## 12           1.890          8.000
+## 13           1.890         14.000
+## 14           1.693         11.000
+## 15           2.283          6.000
+## 16           2.244          3.750
+## 17           2.126          3.250
+## 18           2.008          4.667
+## 19           2.244          5.667
+## 20           2.008          5.000
+## 21           2.126          8.500
+## 22           2.008          3.750
+## 23           1.811          5.000
+## 24           2.008          3.400
+## 25           1.890          9.500
+## 26           1.969          8.000
+## 27           1.969          4.000
+## 28           2.047          7.500
+## 29           2.047          7.000
+## 30           1.850          8.000
+## 31           1.890          8.000
+## 32           2.126          3.750
+## 33           2.047         15.000
+## 34           2.165          7.000
+## 35           1.929          7.500
+## 36           1.969          6.000
+## 37           2.165          6.500
+## 38           1.929         14.000
+## 39           1.732          6.500
+## 40           2.008          7.500
+## 41           1.969          4.333
+## 42           1.772          4.333
+## 43           1.732          6.500
+## 44           1.969          2.667
+## 45           2.008          4.750
+## 46           1.890          4.667
+## 47           2.008          8.000
+## 48           1.811          7.000
+## 49           2.087          7.500
+## 50           1.969          7.000</code></pre>
+<p>TODO: Something a bit more complicated here maybe? Then a quick plot in base graphics, then dplyr</p>
 <p>When analyzing, we often want to look at partial statistics, such as the maximum value per patient or the average value per day. One way to do this is to select the data we want to create a new temporary array, then ask it to do the calculation:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># patient_1 &lt;- dat[1, ] # first row, all of the columns</span>
 <span class="co"># max(patient_1)        # max inflammation for patient 1</span></code></pre>
@@ -633,6 +935,7 @@ dat[<span class="dv">3</span>,<span class="dv">5</span>]</code></pre>
 <ol style="list-style-type: decimal">
 <li>If <code>dat</code> holds our data frame of patient data, what does <code>dat[3:3, 4:4]</code> produce? What about <code>dat[3:3, 4:1]</code>? Explain the results to the person sitting next to you</li>
 </ol>
+</div>
 </div>
 </div>
 <div id="functions---operations-across-axes" class="section level2">
