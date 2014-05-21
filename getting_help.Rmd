@@ -1,0 +1,20 @@
+---
+title: Getting R Help
+---
+
+To get help help for a particular function, type ? and then the function name:
+
+```
+?mean
+
+```
+
+General help:
+* [Cookbook for R](http://www.cookbook-r.com/)
+* Google (It actually knows what "R" is now)
+* Stackoverflow.com (use the `[r]` tag)
+* Search the r-help mailing list
+* Each other! (Talk it out)
+
+ggplot2:
+* http://docs.ggplot2.org/current/

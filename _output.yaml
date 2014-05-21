@@ -1,0 +1,7 @@
+html_document:
+  self_contained: false
+  theme: spacelab
+  lib_dir: libs
+  includes:
+    before_body: include/before_body.html
+      
