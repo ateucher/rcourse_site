@@ -22,13 +22,13 @@ and Iris versicolor.
 To do all that, we'll have to learn a little bit about programming.
 
 ### Objectives
-* Explain what a library is, and what libraries are used for.
-* Load an R library and use the things it contains.
 * Read tabular data from a file into a program.
 * Assign values to variables.
 * Learn about data types
+* Explain what a library is, and what libraries are used for.
+* Load an R library and use the things it contains
 * Select individual values and subsections from data.
-* Perform operations on arrays of data.
+* Perform operations on data frames.
 * Display simple graphs.
 
 ## RStudio Projects
