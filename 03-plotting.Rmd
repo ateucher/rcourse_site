@@ -7,7 +7,7 @@ opts_chunk$set(message=FALSE)
 
 ## Basic plotting
 
-R's base (vuilt-in) plotting functions are powerful and very flexible, but not 
+R's base (built-in) plotting functions are powerful and very flexible, but not 
 overly user friendly. For simple exploratory plots that don't need to look nice, 
 they are useful. They are generally specified  as `plot(x, y, ...)`
 
@@ -330,15 +330,15 @@ ggplot(dat, aes(x=Species, y=Sepal.Width, fill=Species)) + geom_violin()
 
 ```
 
-What if we want to split up the measurements and compare them all?  We need 
-measurement as a variable... There is another package by Hadley Wickham (see a 
-trend here?) that helps us restructure, or reshape our data: It's called 
-`reshape2`.
+What if we want to split up the measurements and compare them all?  We need the 
+type of measurement (`Petal.length`, `Petal.Width`) as a variable rather than each 
+as a column heading. There is another package by Hadley Wickham (see a trend 
+here?) that helps us restructure, or reshape our data: It's called `reshape2`.
 
 ```{r irisreshapebox, warning=FALSE}
 require(reshape2)
 dat_long <- melt(dat)
-head(dat)
+head(dat_long)
 
 ggplot(dat_long, aes(x=variable, y=value, fill=Species)) + geom_boxplot()
 
