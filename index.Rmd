@@ -11,9 +11,21 @@ On this page you will find links to the data we need for the course, as well as 
 
 [01 - Starting with Data](01-starting-with-data.html)
 
+[02 - Data munging with dplyr](02-dplyr.html)
+
+[03 - Plotting](03-plotting.html)
+
 [Getting help](getting_help.html)
 
 #### Data
 [Iris dataset](data/iris.csv)
 
 [Toothgrowth dataset](data/toothgrowth.csv)
+
+#### Credits
+Most of the material here was borrowed and adapted from 
+[Software Carpentry](http://www.softwarecarpentry.org)'s
+[novice R Bootcamp material](https://github.com/swcarpentry/bc/tree/master/novice/r)
+and [Poisson Consulting](http://www.poissonconsulting.ca/)'s 
+[R course notes](http://www.poissonconsulting.ca/courses/2012/06/05/an-introduction-to-r-course-12.html).
+Much of the `dplyr` material came from the dplyr [package vignette](http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html) 

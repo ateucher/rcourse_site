@@ -2,14 +2,15 @@
 title: Getting started with data
 ---
 
-```{r, echo=FALSE}
-knitr::opts_chunk$set(results="markup")
+```{r, echo=FALSE, message=FALSE}
+require(knitr)
+opts_chunk$set(results="markup")
 ```
 
 ## Analyzing Iris Data
 
-We are studying differences in morphology in two species of Iris: Iris setosa 
-and Iris versicolor.
+We are studying differences in morphology in two species of Iris: _Iris setosa_ 
+and _Iris versicolor_.
 
 ### We want to:
 
@@ -22,19 +23,18 @@ and Iris versicolor.
 To do all that, we'll have to learn a little bit about programming.
 
 ### Objectives
-* Read tabular data from a file into a program.
+* Read tabular data from a file into **R**.
 * Assign values to variables.
-* Learn about data types
-* Explain what a library is, and what libraries are used for.
-* Load an R library and use the things it contains
-* Select individual values and subsections from data.
-* Perform operations on data frames.
-* Display simple graphs.
+* Learn about data types and structures
+* Select individual values and subsections from data
+* Perform operations on data frames
+* Explain what a package is, and what packages are used for.
+* Load an R package and use the things it contains
 
 ## RStudio Projects
-* Projects in RStudio help keep our code, data, and outputs well organized
+* Projects in RStudio help us keep our code, data, and outputs well organized
 * when we quit RStudio, it will help us remember where we left off
-* Open a new project, in a new directory -> Empty Project
+* Open a new project -> New Directory -> Empty Project
 * Look around  - you'll see where we are
 * Create a directory to hold the data
 
@@ -44,13 +44,6 @@ getwd()
 ```
 
 ## Loading Data
-
-Words are useful, but what's more useful are the sentences and stories we use 
-them to build. Similarly, while a lot of powerful tools are built into 
-languages like R, even more lives in the libraries they are used to build.
-Importing a library is like getting a piece of lab equipment out of a storage 
-locker and setting it up on the bench. Once it's done, we can ask the library 
-to do things for us.
 
 To load our iris data, we need to download our data to a place we can use it
 We will use `dir.create()` and `read.csv()`. These are built-in functions in R. 
@@ -161,20 +154,46 @@ mass <- mass * 2.0
 age  <- age - 20
 ```
 
-We can also add to variable that are vectors, and update them by making them 
-longer. For example, if we are creating a vector of patient weights, we could 
-update that vector using `c()`. `c()` takes any number of vectors as arguments, 
-and combines or *concatenates* them, in the order supplied, into a single vector.
+### Vectors
+
+So far all of our objects have been single numbers... but they are acually 
+vectors of length1. A vector is the most common and basic data structure in `R` 
+and is pretty much the workhorse of R. It is a one-dimensional object with a 
+series of values, all of the same type.
+
+You can create, or add to vectors using the function `c()`. `c()` takes any 
+number of vectors as arguments, and combines or *concatenates* them, in the 
+order supplied, into a single vector. For example, if we are creating a vector 
+of patient weights, we could create and then update that vector using `c()`.
 
 ```{r}
-weights <- 100
+weights <- c(100, 70, 45, 62, 81)
 weights <- c(weights, 80)
+weights
 ```
 
 What happens here is that we take the original vector weights, and we are adding 
 the second item to the end of the first one. We can do this over and over again 
 to build a vector or a dataset. As we program, this may be useful to autoupdate 
 results that we are collecting or calculating.
+
+`weights` is a numeric vector, but there are other kinds as well: `character` 
+(letters and words) and `logical` (`TRUE`or `FALSE`) are the other most common.
+
+#### A note about naming things:
+
+> There are only two hard things in Computer Science: cache invalidation and naming things.
+> 
+> -- Phil Karlton
+
+Name things so that you can understand them later, try to balance brevity with 
+clarity. `x` is easy to type, but may not mean much.
+
+* Only begin names with letters.
+* Separate words with a dot (`my.var`) or an underscore (`my_var`), or use 
+`camelCase`.
+* Try to be consistent.
+* Avoid giving things names that already exist (like `mean`, `sum`, `log`)
 
 Now that we know how to assign things to variables, let's re-run `read.csv` and 
 save its result:
@@ -263,7 +282,7 @@ nrow(dat)
 ncol(dat)
 ```
 
-This tells us that data has `r nrow(dat)` rows and `r ncol(dat)` columns.
+This tells us that `dat` has `r nrow(dat)` rows and `r ncol(dat)` columns.
 
 ### Referencing Columns
 
@@ -276,11 +295,25 @@ dat$Petal.Width
 ```
 
 Now say we want to get the mean of the petal widths, or the maximum of the sepal 
-lengths:
+widths:
 
 ```{r}
 mean(dat$Petal.Width)
-max(dat$Sepal.Length)
+max(dat$Sepal.Width)
+```
+
+Wait, what happened there? Why is the max of sepal width `NA`?  Let's have a look:
+
+```{r}
+dat$Sepal.Width # First look at the data - there are some values that are NA.
+```
+
+`NA` is a special encoding for a missing value in a vector... look at help file 
+for `max()`: `?max`.  You'll see there's an argument called `na.rm`, where the 
+default is `FALSE`.  If we change it to true, `max` ignores the `NA` values:
+
+```{r}
+max(dat$Sepal.Width, na.rm=TRUE)
 ```
 
 You can also use the `$` operator to reference columns that don't yet exist, but
@@ -301,6 +334,14 @@ dat$Petal.LW.Ratio <- dat$Petal.Length / dat$Petal.Width
 head(dat)
 ```
 
+You can remove columns by assigning `NULL` to them. Let's get rid of those two 
+we just created to get back to our original data frame.
+
+```{r}
+dat$Petal.LW.Ratio <- NULL
+dat$Sepal.Length.in <- NULL
+```
+
 <!-- This may be a good place to talk about vectors -->
 
 ### Indexing
@@ -318,7 +359,7 @@ dat[1, 1]
 dat[3, 5]
 ```
 
-An index like `[30, 3]` selects a single element of data frame, but we can 
+An index like `dat[30, 3]` selects a single element of data frame, but we can 
 select sections as well. Entering nothing in either the rows or columns spot 
 selects all.
 For example, we can select the first ten rows across all columns, like this. :
@@ -338,7 +379,7 @@ dat[c(1:10, 20:30),]
 
 Here we have taken rows 1 through 10 and 20 through 30.
 
-Columns can also be referenced by name:
+Columns can also be referenced by name (in quotes):
 
 ```{r}
 dat[, "Petal.Length"] # Returns all rows
@@ -349,21 +390,21 @@ dat[, c("Petal.Length", "Species")]  # Can specify more than one column by using
 #### Indexing using conditionals
 
 Sometimes we are interested in extracting data based on something else.  Lets 
-say we want to look at all of the flowers measured that had really wide sepals:
+say we want to look at all of the flowers measured that had really long sepals:
 
 ```{r}
-mean.sw <- mean(dat$Sepal.Width) # First find the average sepal width
-mean.sw
-dat[dat$Sepal.Width > mean.sw, ]
+mean.sl <- mean(dat$Sepal.Length) # First find the average sepal length
+mean.sl
+dat[dat$Sepal.Length > mean.sl, ]
 ```
 
-Let's break that down a little. `dat$Sepal.Width > mean.sw` returns a _Logical_ 
-vector of the same length as `dat$Sepal.Width`; that is a vector of `TRUE` and 
-`FALSE` based on testing each element of `dat$Sepal.Width` to see if it is 
-greater than `mean.sw`.
+Let's break that down a little. `dat$Sepal.Length > mean.sl` returns a _Logical_ 
+vector of the same length as `dat$Sepal.Length`; that is a vector of `TRUE` and 
+`FALSE` based on testing each element of `dat$Sepal.Length` to see if it is 
+greater than `mean.sl`.
 
 ```{r}
-dat$Sepal.Width > mean.sw
+dat$Sepal.Length > mean.sl
 ```
 
 When you put that logical vector inside the row index, just the rows which are 
@@ -373,115 +414,19 @@ When you put that logical vector inside the row index, just the rows which are
 dat[dat$Species == "setosa",]
 ```
 
-TODO: Something a bit more complicated here maybe? Then a quick plot in base graphics, then dplyr
-
-When analyzing, we often want to look at partial statistics, such as the maximum value per patient or the average value per day. 
-One way to do this is to select the data we want to create a new temporary array, then ask it to do the calculation:
+what if you want to find the mean of the petal lengths of just _Iris setosa_?
 
 ```{r}
-# patient_1 <- dat[1, ] # first row, all of the columns
-# max(patient_1)        # max inflammation for patient 1
+mean(dat[dat$Species == "setosa", "Petal.Length"])
+
 ```
-
-We don't actually need to store the row in a variable of its own. 
-Instead, we can combine the selection and the method call:
-
-```{r}
-# max(dat[2,])          # max inflammation for patient 2
-```
-
-__EXERCISES__
-
-1. If `dat` holds our data frame of patient data, what does `dat[3:3, 4:4]` produce? 
-What about `dat[3:3, 4:1]`? Explain the results to the person sitting next to you
-
-
-## Functions - Operations Across Axes
-
-What if we need the maximum inflammation for all patients, or the average for each day? 
-As the diagram below shows, we want to perform the operation across an axis:
-
-<!-- FIXME: needs I presume the rBlocks code here to produce the figure? -->
-
-To support this, in R we can use the `apply()` function:
-
-```{r, eval=FALSE}
-help(apply) # r ?apply
-```
-
-`apply()` allows us to repeat a function on all of the rows (`MARGIN = 1`), columns (`2`), or both(`1:2`) of a matrix (or higher dimensions of an array).
-
-If each row is a patient, and we want to know each patient's average inflammation, we will need to iterate our method across all of the rows. 
-	
-```{r}
-# avg_inflammation <- apply(dat, 2, mean)
-```
-
-Some operations, such as the column-wise means have more efficient alternatives. For example `rowMeans()` and `colMeans()`.
-```{r}
-# colMeans(dat)
-```
-
-### Challenge  
-1. Find the maximum and minimum values for inflammation at each day (rows are patients, and columns are days).
-2. Save these values to a varible.
-3. What is the length of your new variable?
-
-```{r, echo=FALSE}
-# min_inflammation <- apply(dat, 2, min)
-# max_inflammation <- apply(dat, 2, max)
-```
-
-We can also create a vector of our study days (the number of columns in data)
-
-```{r}
-# tempo <- 1:40
-# r
-# tempo <- 1:ncol(dat)
-```
-
-Notice that the object was named `tempo` instead of `time`. `time` is a R built-in function, and as good practice avoid giving existing function names to your objects. 
-
-Now that we have all this summary information, we can put it back together into a data frame that we can use for further analysis and plotting, provided they are the same length.
-
-```{r}
-# d.summary <- data.frame(tempo, avg_inflammation, min_inflammation, max_inflammation)
-```
-
-## Plotting  
-The mathematician Richard Hamming once said
-
-> The purpose of computing is insight, not numbers
-
-and the best way to develop insight is often to visualize data. Visualization deserves an entire lecture (or course) of its own, but we can explore a few features of R's base plotting package. 
-
-Lets use the average inflammation data that we saved and plot it over the study time. 
-
-```{r, plot-avg-inflammation}
-# plot(tempo, avg_inflammation)
-```
-
-The result is roughly a linear rise and fall, which is suspicious: based on other studies, we expect a sharper rise and slower fall. Let's have a look at two other statistics:
-
-```{r, plot-max-inflammation}
-# plot(tempo, max_inflammation)
-```
-
-```{r, plot-min-inflammation}
- # plot(tempo, min_inflammation)
-```
-The maximum value rises and falls perfectly smoothly, while the minimum seems to be a step function. Neither result seems particularly likely, so either there's a mistake in our calculations or something is wrong with our data.
-
-__EXERCISES__
-
-1. Create a plot showing the standard deviation of the inflammation data 
-for each day across all patients.
 
 ## Key Points
 
 * Import a package into your workspace using `library("pkgname")`.
 * The key data types in R?
-* Use `variable <- value` to assign a value to a variable in order to record it in memory.
+* Use `variable <- value` to assign a value to a variable in order to record it 
+  in memory.
 * Objects are created on demand whenever a value is assigned to them.
 * Use `print(something)` (or just `something`) to display `something`.
 * The expression `dim()` gives the dimensions of a data frame or matrix.
@@ -490,10 +435,4 @@ for each day across all patients.
 * Use `from:to` to specify a sequence that includes the indices from `from` to `to`.
 * Use `#` to add comments to programs.
 * Use `mean()`, `max()`, `min()` and `sd()` to calculate simple statistics.
-* Update vectors using `c()`
-<!-- * Write a simple for loop -->
-* Use base R to create simple visualizations.
-
-## Next Steps
-
-Our work so far has convinced us that something's wrong with our first data file. We would like to check the other 11 the same way, but typing in the same commands repeatedly is tedious and error-prone. Since computers don't get bored (that we know of), we should create a way to do a complete analysis with a single command, and then figure out how to repeat that step once for each file. These operations are the subjects of the next two lessons.
+* Create and update vectors using `c()`

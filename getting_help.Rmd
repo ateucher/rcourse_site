@@ -14,7 +14,7 @@ General help:
 * [Cookbook for R](http://www.cookbook-r.com/)
 * Google (It actually knows what "R" is now)
 * Stackoverflow.com (use the `[r]` tag)
-* Search the r-help mailing list
+* http://www.rdocumentation.org/
 * Each other! (Talk it out)
 
 ggplot2:

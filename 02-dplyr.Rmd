@@ -1,0 +1,178 @@
+### Data munging with dplyr
+
+While a lot of powerful tools are built into R, its greatest power comes from 
+its massive base of users and developers, and the tools they create.  These 
+tools come in the form of packages that we download, then load - they give us 
+access to many more functions.  Loading a package into R is like getting a piece 
+of lab equipment out of a storage locker and setting it up on the bench. Once 
+it's done, we can ask the package to do things for us.
+
+We're going to start by using a package called "dplyr", built by Hadley Wickham.  
+dplyr provides a set of simple functions that correspond to the most common data 
+manipulation verbs, so that you can easily translate your thoughts into code. 
+Most of the this functionality is available in base **R**, but this package 
+makes this kind of work much easier.
+
+```{r eval=FALSE}
+install.packages("dplyr") # Install the package
+```
+
+```{r}
+require(dplyr) #Load the package into memory
+```
+
+`dplyr` implements the following verbs useful for data manipulation:
+
+* `group_by()`: set the grouping variable(s)
+* `filter()`: focus on a subset of rows
+* `select()`: focus on a subset of variables
+* `mutate()`: add new columns (also `mutate_each()`)
+* `summarise()`: reduce each group to a smaller number of summary statistics 
+  (also `summarise_each()`)
+* `arrange()`: re-order the rows
+
+#### Filter rows with `filter()`
+
+`filter()` allows you to select a subset of the rows of a data frame. The first 
+argument is the name of the data frame, and the second and subsequent are 
+filtering expressions evaluated in the context of that data frame
+
+```{r}
+filter(dat, Sepal.Length > 5, Petal.Length > 1.5)
+```
+
+Remember we talked about indexing to select rows... the equivalent would be:
+
+```{r}
+dat[dat$Sepal.Length > 5 & dat$Petal.Length > 1.5,]
+```
+
+What if we want to select flowers with Sepal Length > 5 **OR** Petal Length > 1.5?
+(The above uses **AND**).  In **R**, the `|` (pipe) character means **OR**
+
+```{r}
+filter(dat, Sepal.Length > 5 | Petal.Length > 1.5)
+## Works with indexing as well:
+dat[dat$Sepal.Length > 5 | dat$Petal.Length > 1.5,]
+```
+
+#### Arrange rows with `arrange()`
+
+`arrange()` works similarly to `filter()` except that instead of filtering or 
+selecting rows, it reorders them. It takes a data frame, and a set of column 
+names (or more complicated expressions) to order by. If you provide more than 
+one column name, each additional column will be used to break ties in the values 
+of preceding columns:
+
+```{r}
+arrange(dat, Sepal.Length, Sepal.Width)
+```
+
+Use `desc()` to order a column in descending order:
+
+```{r}
+arrange(dat, desc(Petal.Length))
+```
+
+#### Select columns with `select()`
+
+Often you work with large datasets with many columns where only a few are 
+actually of interest to you. `select()` allows you to rapidly zoom in on a 
+useful subset using operations that usually only work on numeric variable positions:
+
+```{r}
+# Select columns by name
+select(dat, Sepal.Length, Sepal.Width, Species)
+# Select all columns between Petal.Length and Species (inclusive)
+select(dat, Petal.Length:Species)
+# Select all columns except the last two (inclusive)
+select(dat, -(Sepal.Length:Sepal.Width))
+```
+
+#### Add new columns with `mutate()`
+
+As well as selecting from the set of existing columns, it's often useful to add 
+new columns that are functions of existing columns. This is the job of `mutate()`:
+
+```{r}
+mutate(dat,
+  Petal.Ratio = Petal.Length / Petal.Width,
+  Sepal.Ratio = Sepal.Length / Sepal.Width)
+```
+
+#### Summarise values with `summarise()`
+
+The last verb is `summarise()`, which collapses a data frame to a single row. 
+It's not very useful (yet):
+
+```{r}
+summarise(dat, mean.Petal.Length = mean(Petal.Length, na.rm = TRUE))
+```
+
+You may have noticed that all these functions are very similar:
+
+* The first argument is a data frame.
+
+* The subsequent arguments describe what to do with it, and you can refer
+  to columns in the data frame directly without using `$`.
+
+* The result is a new data frame
+
+These five functions provide the basis of a language of data manipulation. At 
+the most basic level, you can only alter a tidy data frame in five useful ways: 
+you can reorder the rows (`arrange()`), pick observations and variables of 
+interest (`filter()` and `select()`), add new variables that are functions of 
+existing variables (`mutate()`) or collapse many values to a summary 
+(`summarise()`). The remainder of the language comes from applying the five 
+functions to different types of data, like to grouped data, as described next.
+
+It's used for the **split, apply, combine** approach to data manipulation: You 
+**split** a dataset by some variable, **apply** some operation(s) to each piece, 
+and **combine** the pieces back together.
+
+We'll use this to generate some _per-species_ statistics, because the mean of 
+some measurement across all species isn't that meaningful.
+
+```{r}
+grp_spp <- group_by(dat, Species)
+
+summarise(grp_spp, 
+          mean.Petal.Length = mean(Petal.Length), 
+          sd.Petal.Length = sd(Petal.Length))
+
+mutate(grp_spp, SL.mean.ratio = Sepal.Length / mean(Sepal.Length))
+```
+
+This is nice and handy, but you can also chain these things together by using 
+the `%>%` operator. This helps make your code very readable, and eliminates the 
+need to create intermediate objects.
+
+This is especially true if we want to do several operations that depend on the 
+result of a previous operation. Here we want to group by species, use only the 
+individuals that have a Sepal Length longer than 5cm, calculate the number of 
+each species that meet those criteria, then calculate the mean and standard
+deviation of petal length for each species.
+
+`x %>% f(y)` turns into `f(x, y)` so you can use it to write multiple 
+operations so you can read from left-to-right, top-to-bottom:
+
+```{r}
+sum_dat <- dat %>%
+  group_by(Species) %>%
+  filter(Sepal.Length > 5) %>%
+  mutate(n = n()) %>%           # n(): number of observations in the current group
+  summarise(mean.Petal.Length = mean(Petal.Length), 
+            sd.Petal.Length = sd(Petal.Length))
+```
+
+Note that the NA in Sepal.Width crept back in.  We can specify na.rm by using 
+the `.` operator; this specifies where the values from preceding operation go 
+(the default; i.e., without using the `.`, is the first position).
+
+```{r}
+sum_dat <- dat %>%
+  group_by(Species) %>%
+  filter(Sepal.Length > 5) %>%
+  mutate(n = n()) %>%
+  summarise_each(funs(mean(., na.rm=TRUE)))
+```
