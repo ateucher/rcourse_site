@@ -1090,6 +1090,7 @@ dat[dat$Sepal.Length &gt;<span class="st"> </span><span class="dv">5</span> |<sp
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise</span>(dat, <span class="dt">mean.Petal.Length =</span> <span class="kw">mean</span>(Petal.Length, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre>
 <pre><code>##   mean.Petal.Length
 ## 1             2.861</code></pre>
+<p>_Notice that we haven’t been assigning these things to any objects, so they just print out to the console and then are gone.</p>
 <p>You may have noticed that all these functions are very similar:</p>
 <ul>
 <li><p>The first argument is a data frame.</p></li>

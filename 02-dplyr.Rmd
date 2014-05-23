@@ -109,6 +109,9 @@ It's not very useful (yet):
 summarise(dat, mean.Petal.Length = mean(Petal.Length, na.rm = TRUE))
 ```
 
+_Notice that we haven't been assigning these things to any objects, so they just 
+print out to the console and then are gone.
+
 You may have noticed that all these functions are very similar:
 
 * The first argument is a data frame.
