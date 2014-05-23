@@ -1215,8 +1215,14 @@ dat[dat$Sepal.Length &gt;<span class="st"> </span><span class="dv">5</span> |<sp
 ## 99           5.1          NA          3.0         1.1 versicolor
 ## 100          5.7         2.8          4.1         1.3 versicolor
 ## Variables not shown: SL.mean.ratio (dbl)</code></pre>
-<p>This is nice and handy, but you can also chain these things together by using the <code>%&gt;%</code> operator. This helps make your code very readable, and eliminates the need to create intermediate objects.</p>
-<p>This is especially true if we want to do several operations that depend on the result of a previous operation. Here we want to group by species, use only the individuals that have a Sepal Length longer than 5cm, calculate the number of each species that meet those criteria, then calculate the mean and standard deviation of petal length for each species.</p>
+<p>This is nice and handy, but what if we want to do several operations that depend on the result of a previous operation? We want to group by species, use only the individuals that have a Sepal Length longer than 5cm, calculate the number of each species that meet those criteria, then calculate the mean and standard deviation of petal length for each species.</p>
+<pre class="sourceCode r"><code class="sourceCode r">grp_spp &lt;-<span class="st"> </span><span class="kw">group_by</span>(dat, Species)
+temp1 &lt;-<span class="st"> </span><span class="kw">filter</span>(grp_spp, Sepal.Length &gt;<span class="dv">5</span>)
+temp2 &lt;-<span class="st"> </span><span class="kw">mutate</span>(temp1, <span class="dt">n=</span><span class="kw">n</span>()) <span class="co"># n(): number of observations in the current group</span>
+summary_dat &lt;-<span class="st"> </span><span class="kw">summarise</span>(temp2, 
+                        <span class="dt">mean.Petal.Length =</span> <span class="kw">mean</span>(Petal.Length), 
+                        <span class="dt">sd.Petal.Length =</span> <span class="kw">sd</span>(Petal.Length))</code></pre>
+<p>you can also chain these things together by using the <code>%&gt;%</code> operator. This helps make your code very readable, and eliminates the need to create intermediate objects.</p>
 <p><code>x %&gt;% f(y)</code> turns into <code>f(x, y)</code> so you can use it to write multiple operations so you can read from left-to-right, top-to-bottom:</p>
 <pre class="sourceCode r"><code class="sourceCode r">sum_dat &lt;-<span class="st"> </span>dat %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(Species) %&gt;%
@@ -1230,6 +1236,17 @@ dat[dat$Sepal.Length &gt;<span class="st"> </span><span class="dv">5</span> |<sp
 <span class="st">  </span><span class="kw">filter</span>(Sepal.Length &gt;<span class="st"> </span><span class="dv">5</span>) %&gt;%
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">n =</span> <span class="kw">n</span>()) %&gt;%
 <span class="st">  </span><span class="kw">summarise_each</span>(<span class="kw">funs</span>(<span class="kw">mean</span>(., <span class="dt">na.rm=</span><span class="ot">TRUE</span>)))</code></pre>
+<p>Let’s check if we got the same answer:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">all.equal</span>(sum_dat, summary_dat)</code></pre>
+<pre><code>## [1] &quot;Cols in y but not x: mean.Petal.Length, sd.Petal.LengthCols in x but not y: Sepal.Length, n, Petal.Width, Sepal.Width, Petal.Length&quot;</code></pre>
+<p>Now let’s clean up a bit. See all objects in your workspace with <code>ls()</code>. You also see these things in your environment pane in RStudio.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls</span>()</code></pre>
+<pre><code>## [1] &quot;grp_spp&quot;     &quot;metadata&quot;    &quot;sum_dat&quot;     &quot;summary_dat&quot; &quot;temp1&quot;      
+## [6] &quot;temp2&quot;</code></pre>
+<p>Remove them with <code>rm</code>:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(temp1)
+<span class="co"># Or remove a list of objects:</span>
+<span class="kw">rm</span>(temp2, summary_dat)</code></pre>
 </div>
 </div>
 

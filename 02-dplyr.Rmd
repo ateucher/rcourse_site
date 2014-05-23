@@ -143,15 +143,25 @@ summarise(grp_spp,
 mutate(grp_spp, SL.mean.ratio = Sepal.Length / mean(Sepal.Length))
 ```
 
-This is nice and handy, but you can also chain these things together by using 
-the `%>%` operator. This helps make your code very readable, and eliminates the 
-need to create intermediate objects.
-
-This is especially true if we want to do several operations that depend on the 
-result of a previous operation. Here we want to group by species, use only the 
+This is nice and handy, but what if we want to do several operations that depend 
+on the result of a previous operation? We want to group by species, use only the 
 individuals that have a Sepal Length longer than 5cm, calculate the number of 
 each species that meet those criteria, then calculate the mean and standard
 deviation of petal length for each species.
+
+```{r}
+grp_spp <- group_by(dat, Species)
+temp1 <- filter(grp_spp, Sepal.Length >5)
+temp2 <- mutate(temp1, n=n()) # n(): number of observations in the current group
+summary_dat <- summarise(temp2, 
+                        mean.Petal.Length = mean(Petal.Length), 
+                        sd.Petal.Length = sd(Petal.Length))
+
+```
+
+you can also chain these things together by using the `%>%` operator. This helps 
+make your code very readable, and eliminates the need to create intermediate 
+objects.
 
 `x %>% f(y)` turns into `f(x, y)` so you can use it to write multiple 
 operations so you can read from left-to-right, top-to-bottom:
@@ -175,4 +185,24 @@ sum_dat <- dat %>%
   filter(Sepal.Length > 5) %>%
   mutate(n = n()) %>%
   summarise_each(funs(mean(., na.rm=TRUE)))
+```
+
+Let's check if we got the same answer:
+```{r}
+all.equal(sum_dat, summary_dat)
+```
+
+Now let's clean up a bit. See all objects in your workspace with `ls()`.  You 
+also see these things in your environment pane in RStudio.
+
+```{r}
+ls()
+```
+
+Remove them with `rm`:
+
+```{r}
+rm(temp1)
+# Or remove a list of objects:
+rm(temp2, summary_dat)
 ```
