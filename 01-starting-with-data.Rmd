@@ -342,8 +342,6 @@ dat$Petal.LW.Ratio <- NULL
 dat$Sepal.Length.in <- NULL
 ```
 
-<!-- This may be a good place to talk about vectors -->
-
 ### Indexing
 
 We talked about vectors before, and indexing them.  Each column in a data frame 

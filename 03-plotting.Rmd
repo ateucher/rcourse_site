@@ -1,8 +1,9 @@
 # Data visualization with ggplot2
 
-```{r, echo=FALSE, message=FALSE, eval=TRUE}
+```{r, echo=FALSE, message=FALSE}
 library(knitr)
-opts_chunk$set(message=FALSE)
+opts_chunk$set(message=FALSE, results="markup")
+dat <- read.csv("data/iris.csv")
 ```
 
 ## Basic plotting
@@ -339,6 +340,8 @@ here?) that helps us restructure, or reshape our data: It's called `reshape2`.
 require(reshape2)
 dat_long <- melt(dat)
 head(dat_long)
+
+ggplot(dat_long, aes(x=variable, y=value, fill=Species)) + geom_boxplot()
 
 ggplot(dat_long, aes(x=variable, y=value, fill=Species)) + geom_boxplot()
 

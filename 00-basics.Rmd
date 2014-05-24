@@ -163,7 +163,7 @@ sample examples at the very bottom.
 #### Some other useful functions for navigating
 
 Get / set your working directory:
-```{r}
+```{r eval=FALSE}
 getwd()
 setwd("H:/")
 ```

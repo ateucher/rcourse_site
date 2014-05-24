@@ -219,11 +219,13 @@ dat_long &lt;-<span class="st"> </span><span class="kw">melt</span>(dat)
 ## 6  setosa Sepal.Length   5.4</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(dat_long, <span class="kw">aes</span>(<span class="dt">x=</span>variable, <span class="dt">y=</span>value, <span class="dt">fill=</span>Species)) +<span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre>
 <p><img src="03-plotting_files/figure-html/irisreshapebox1.png" alt="plot of chunk irisreshapebox" /></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(dat_long, <span class="kw">aes</span>(<span class="dt">x=</span>variable, <span class="dt">y=</span>value, <span class="dt">fill=</span>Species)) +<span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre>
+<p><img src="03-plotting_files/figure-html/irisreshapebox2.png" alt="plot of chunk irisreshapebox" /></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(dat_long, <span class="kw">aes</span>(<span class="dt">x=</span>Species, <span class="dt">y=</span>value, <span class="dt">fill=</span>Species)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_violin</span>() +<span class="st"> </span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>variable) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Measurement (cm)&quot;</span>)</code></pre>
-<p><img src="03-plotting_files/figure-html/irisreshapebox2.png" alt="plot of chunk irisreshapebox" /></p>
+<p><img src="03-plotting_files/figure-html/irisreshapebox3.png" alt="plot of chunk irisreshapebox" /></p>
 </div>
 </div>
 </div>
