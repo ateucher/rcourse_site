@@ -1,4 +1,12 @@
-### Data munging with dplyr
+---
+title: Data munging with dplyr
+---
+
+```{r, echo=FALSE, message=FALSE}
+require(knitr)
+opts_chunk$set(results="markup")
+dat <- read.csv("data/iris.csv")
+```
 
 While a lot of powerful tools are built into R, its greatest power comes from 
 its massive base of users and developers, and the tools they create.  These 

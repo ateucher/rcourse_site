@@ -31,7 +31,8 @@ R is a versatile, open source programming language that was specifically designe
 
 Let's start by learning about our tool.
 
-_Point out the different windows in RStudio._ 
+_Point out the different windows in RStudio._
+
 * Console, Scripts, Environments, Plots
 * Avoid using shortcuts. 
 * Code and workflow is more reproducible if we can document everything that we do.
@@ -78,7 +79,7 @@ R can be used just like a calculator (as shown before).
 R is an _object-oriented_ programming language.  Everything we do in R, we 
 do with _objects_. We can save our results to an _object_, if we give it a name.
 
-`<-` is the assignment operator.The *result* of the operation on the right hand 
+`<-` is the assignment operator.  The *result* of the operation on the right hand 
 side of `<-` is *assigned* to an object with the name specified on the left 
 hand side of `<-`.  Put spaces around `<-` (and all other operators).
 
@@ -163,7 +164,7 @@ sample examples at the very bottom.
 #### Some other useful functions for navigating
 
 Get / set your working directory:
-```{r}
+```{r eval=FALSE}
 getwd()
 setwd("H:/")
 ```

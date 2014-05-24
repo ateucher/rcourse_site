@@ -1,8 +1,6 @@
 ---
-title: R Course
+title: An Introduction to R
 ---
-
-### Welcome to the R Course
 
 On this page you will find links to the data we need for the course, as well as course notes for each of the modules
 
@@ -26,6 +24,10 @@ On this page you will find links to the data we need for the course, as well as 
 Most of the material here was borrowed and adapted from 
 [Software Carpentry](http://www.softwarecarpentry.org)'s
 [novice R Bootcamp material](https://github.com/swcarpentry/bc/tree/master/novice/r)
-and [Poisson Consulting](http://www.poissonconsulting.ca/)'s 
+
+and 
+
+[Poisson Consulting](http://www.poissonconsulting.ca/)'s 
 [R course notes](http://www.poissonconsulting.ca/courses/2012/06/05/an-introduction-to-r-course-12.html).
+
 Much of the `dplyr` material came from the dplyr [package vignette](http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html) 
