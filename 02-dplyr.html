@@ -1699,7 +1699,7 @@ summary_dat &lt;-<span class="st"> </span><span class="kw">summarise</span>(temp
 <span class="st">  </span><span class="kw">summarise_each</span>(<span class="kw">funs</span>(<span class="kw">mean</span>(., <span class="dt">na.rm=</span><span class="ot">TRUE</span>)))</code></pre>
 <p>Let’s check if we got the same answer:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">all.equal</span>(sum_dat, summary_dat)</code></pre>
-<pre><code>## [1] &quot;Cols in y but not x: sd.Petal.Length, mean.Petal.LengthCols in x but not y: Sepal.Width, n, Petal.Length, Petal.Width, Sepal.Length&quot;</code></pre>
+<pre><code>## [1] &quot;Cols in y but not x: mean.Petal.Length, sd.Petal.LengthCols in x but not y: Petal.Length, Petal.Width, Sepal.Length, n, Sepal.Width&quot;</code></pre>
 <p>Now let’s clean up a bit. See all objects in your workspace with <code>ls()</code>. You also see these things in your environment pane in RStudio.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls</span>()</code></pre>
 <pre><code>## [1] &quot;dat&quot;         &quot;grp_spp&quot;     &quot;metadata&quot;    &quot;sum_dat&quot;     &quot;summary_dat&quot;
@@ -1708,6 +1708,11 @@ summary_dat &lt;-<span class="st"> </span><span class="kw">summarise</span>(temp
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(temp1)
 <span class="co"># Or remove a list of objects:</span>
 <span class="kw">rm</span>(temp2, summary_dat)</code></pre>
+</div>
+<div id="outputting-files" class="section level3">
+<h3>Outputting files</h3>
+<p>We’ve done our summaries, but now we want to save them so we can share our amazing findings. Just like we use the function <code>read.csv()</code> to read in data, we use <code>write.csv()</code> to write it out.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.csv</span>(sum_dat, <span class="st">&quot;iris_summaries.csv&quot;</span>, <span class="dt">row.names=</span><span class="ot">FALSE</span>)</code></pre>
 </div>
 
 

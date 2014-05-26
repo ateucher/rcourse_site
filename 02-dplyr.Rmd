@@ -217,3 +217,14 @@ rm(temp1)
 # Or remove a list of objects:
 rm(temp2, summary_dat)
 ```
+
+### Outputting files
+
+We've done our summaries, but now we want to save them so we can share our 
+amazing findings.  Just like we use the function `read.csv()` to read in data, 
+we use `write.csv()` to write it out.
+
+```{r eval=FALSE}
+write.csv(sum_dat, "iris_summaries.csv", row.names=FALSE)
+```
+

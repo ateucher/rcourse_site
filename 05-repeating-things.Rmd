@@ -1,0 +1,132 @@
+---
+title: Repeating Things
+---
+
+```{r echo=FALSE, results='hide', message=FALSE}
+dat <- read.csv("data/iris.csv")
+```
+
+One of the big advantages of working with data in an environment like R is that 
+we can repeat and automate things really easily.
+
+### *apply family of functions: `sapply()` and `lapply()`
+
+These functions _apply_ an arbitrary function over a list (or vector).  They can 
+be a little tough to master, but they can be really useful.
+
+#### Lists
+
+In R lists are a lot like vectors. Unlike vectors however, the contents of a 
+list are not restricted to a single data type and can encompass any mixture of 
+data types (even other lists!). This makes them fundamentally different from 
+vectors.
+
+Create lists using `list()` or coerce other objects using `as.list()`
+
+```{r}
+x <- list(1, "a", TRUE, 1+4i)
+x
+
+x <- 1:10
+x <- as.list(x)
+length(x)
+```
+
+
+Lists, like vectors, can be _indexed_, though slightly differently.  Use double 
+square brackets `list[[index]]` to get the contents of a list element. Using 
+single square will still return a list.
+
+1. What is the class of `x[1]`?
+2. How about `x[[1]]`?
+
+```{r}
+Andy <- list(name = "Andy", fav_nums = 1:10, fav_data = head(iris))
+Andy
+```
+
+1. What is the length of this object? What about its structure?
+
+Lists can be extremely useful inside functions. You can “staple” together lots 
+of different kinds of results into a single object that a function can return.
+
+A list does not print to the console like a vector. Instead, each element of 
+the list starts on a new line.
+
+* A data frame is a special type of list where every element of the list is a 
+vector of the same length.
+
+#### lapply
+
+What it does: Returns a list of same length as the input. 
+Each element of the output is a result of applying a function to the 
+corresponding element.
+
+```{r, eval = TRUE}
+my_list <- list(a = 1:10, b = 2:20)
+my_list
+lapply(my_list, mean)
+```
+
+#### sapply
+
+`sapply` is a more user friendly version of `lapply` and will simplify its 
+output to a vector if it can.
+
+Let's work with the same list we just created.
+
+```{r, eval = TRUE}
+my_list
+sapply(my_list, mean)
+```
+
+Now lets' see where this might actually be useful.
+
+Say instead of all of our iris data in one nice file, we have it in separate 
+files; we could read them in one by one, but what if we had 50 files?  It would 
+get really tedious.  First, we can list the files with the `list.files()` 
+function:
+
+```{r}
+list.files("data")
+list.files("data", pattern = "iris_", full.names=TRUE)
+iris_files <- list.files("data", pattern = "iris_", full.names=TRUE)
+```
+
+We can now take that list of files, and using `lapply()` and the `read.csv()` 
+function to read in all of those files.
+
+```{r}
+iris_list <- lapply(iris_files, read.csv, stringsAsFactors=FALSE)
+dat2 <- rbind_all(iris_list)
+```
+
+### For loops
+
+```{r}
+x <- c("apples", "oranges", "bananas", "strawberries")
+
+for(i in x) {
+    print(i)
+}
+
+for(i in 1:4) {
+    print(x[i])
+}
+
+for(i in seq_along(x)) {
+    print(x[i])
+}
+```
+
+Let's say we had our iris data in one big file (which we do), but we needed to 
+save a file for each species.
+
+```{r eval=FALSE}
+for (name in unique(dat$Species)) {
+  subdat <- dat[dat$Species == name,]
+  write.csv(subdat, paste("data/iris_", name, ".csv", sep=""), 
+            row.names = FALSE)
+}
+```
+

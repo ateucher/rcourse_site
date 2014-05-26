@@ -15,10 +15,16 @@ On this page you will find links to the data we need for the course, as well as 
 
 [04 - Basic statistics](04-basic_stats.html)
 
+[05 - Repeating things](05-repeating-things.html)
+
+[06 - Functions](06-functions.html)
+
 [Getting help](getting_help.html)
 
 #### Data
-[Iris dataset](data/iris.csv)
+[Iris dataset (csv)](data/iris.csv)
+
+[Iris dataset (zip)](data/iris.zip)
 
 [Toothgrowth dataset](data/toothgrowth.csv)
 
