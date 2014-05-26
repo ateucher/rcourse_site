@@ -62,8 +62,6 @@ code > span.er { font-weight: bold; }
 </div>
 
 
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(ggplot2)
-<span class="kw">require</span>(dplyr)</code></pre>
 <p>Of course, R was written by statisticians, for statisticians. We’re not going to go deep into stats - partly because I’m not really that qualified to teach it, and because we don’t have time to cover all of the potential needs that people in the course will have. But we can cover a few of the basics, and introduce common <strong>R</strong> way of fitting statistical models.</p>
 <div id="t-test" class="section level3">
 <h3>t-test</h3>
@@ -72,37 +70,38 @@ code > span.er { font-weight: bold; }
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Simulate some data with a normal distribution, a mean of 0, and sd of 1.</span>
 data &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>)
 <span class="kw">mean</span>(data)</code></pre>
-<pre><code>## [1] 0.04139</code></pre>
+<pre><code>## [1] 0.03251</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(data, <span class="dt">mu=</span><span class="dv">0</span>)</code></pre>
 <pre><code>## 
 ##  One Sample t-test
 ## 
 ## data:  data
-## t = 0.4223, df = 99, p-value = 0.6737
+## t = 0.3122, df = 99, p-value = 0.7555
 ## alternative hypothesis: true mean is not equal to 0
 ## 95 percent confidence interval:
-##  -0.1531  0.2359
+##  -0.1741  0.2391
 ## sample estimates:
 ## mean of x 
-##   0.04139</code></pre>
+##   0.03251</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">## Unsurprisingly, not significant.</code></pre>
 <p>For the iris data, we want to use a two-sample t-test. I like using the formula specification because it’s similar to how many other statistical tests are specified: <code>t.test(Value ~ factor, data=)</code></p>
 <p>Since we’re only interested in setosa and virginica, we need to get rid of versicolor.</p>
-<pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span>iris
-<span class="kw">require</span>(dplyr)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(dplyr)
 setosa.virginica &lt;-<span class="st"> </span><span class="kw">filter</span>(dat, Species !=<span class="st"> &quot;versicolor&quot;</span>)
 <span class="kw">summary</span>(setosa.virginica)</code></pre>
 <pre><code>##   Sepal.Length  Sepal.Width    Petal.Length   Petal.Width  
 ##  Min.   :4.3   Min.   :2.20   Min.   :1.00   Min.   :0.10  
 ##  1st Qu.:5.0   1st Qu.:3.00   1st Qu.:1.50   1st Qu.:0.20  
 ##  Median :5.7   Median :3.20   Median :3.20   Median :1.00  
-##  Mean   :5.8   Mean   :3.20   Mean   :3.51   Mean   :1.14  
-##  3rd Qu.:6.5   3rd Qu.:3.42   3rd Qu.:5.53   3rd Qu.:2.00  
+##  Mean   :5.8   Mean   :3.21   Mean   :3.51   Mean   :1.14  
+##  3rd Qu.:6.5   3rd Qu.:3.50   3rd Qu.:5.53   3rd Qu.:2.00  
 ##  Max.   :7.9   Max.   :4.40   Max.   :6.90   Max.   :2.50  
+##                NA&#39;s   :4                                   
 ##        Species  
 ##  setosa    :50  
 ##  versicolor: 0  
 ##  virginica :50  
+##                 
 ##                 
 ##                 
 ## </code></pre>
@@ -148,12 +147,6 @@ petal.reg &lt;-<span class="st"> </span><span class="kw">lm</span>(Petal.Length 
 ## Residual standard error: 0.166 on 48 degrees of freedom
 ## Multiple R-squared:  0.11,   Adjusted R-squared:  0.0914 
 ## F-statistic: 5.93 on 1 and 48 DF,  p-value: 0.0186</code></pre>
-<div id="checking-assumptions" class="section level4">
-<h4>Checking Assumptions</h4>
-<p>We can check assumptions using <code>plot()</code>. There are actually a bunch of different <code>plot</code> methods in R, which are dispatched depending on the type of object you call them on. When you call plot on an <code>lm</code> object, a series of diagnostic plots is created to help us check the assumptions of <code>lm()</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(petal.reg)</code></pre>
-<p><img src="04-basic_stats_files/figure-html/olsreg-check1.png" alt="plot of chunk olsreg-check" /> <img src="04-basic_stats_files/figure-html/olsreg-check2.png" alt="plot of chunk olsreg-check" /> <img src="04-basic_stats_files/figure-html/olsreg-check3.png" alt="plot of chunk olsreg-check" /> <img src="04-basic_stats_files/figure-html/olsreg-check4.png" alt="plot of chunk olsreg-check" /></p>
-</div>
 <div id="plot-the-data-with-the-regression-line-along-with-confidence-limits" class="section level4">
 <h4>Plot the data with the regression line, along with confidence limits</h4>
 <pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(setosa.dat, <span class="kw">aes</span>(<span class="dt">x =</span> Petal.Width, <span class="dt">y =</span> Petal.Length)) +<span class="st"> </span><span class="kw">geom_point</span>()
@@ -174,10 +167,24 @@ p +<span class="st"> </span><span class="kw">geom_line</span>(<span class="dt">d
 <pre class="sourceCode r"><code class="sourceCode r">p +<span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)</code></pre>
 <p><img src="04-basic_stats_files/figure-html/olsreg-ggplot-lm.png" alt="plot of chunk olsreg-ggplot-lm" /></p>
 </div>
+<div id="checking-assumptions" class="section level4">
+<h4>Checking Assumptions</h4>
+<p>A linear regression model is only valid if its residuals are consistent with the assumed error structure. We can check these assumptions by plotting the residuals vs the fitted values.</p>
+<pre class="sourceCode r"><code class="sourceCode r">fitted &lt;-<span class="st"> </span><span class="kw">fitted</span>(petal.reg)
+residuals &lt;-<span class="st"> </span><span class="kw">resid</span>(petal.reg)
+
+<span class="kw">ggplot</span>(<span class="dt">data=</span><span class="ot">NULL</span>, <span class="kw">aes</span>(<span class="dt">x =</span> fitted, <span class="dt">y =</span> residuals)) +<span class="st"> </span><span class="kw">geom_point</span>() +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>)</code></pre>
+<p><img src="04-basic_stats_files/figure-html/ggplot-resids.png" alt="plot of chunk ggplot-resids" /></p>
+<p>We can check also assumptions using <code>plot()</code>. There are actually a bunch of different <code>plot</code> methods in R, which are dispatched depending on the type of object you call them on. When you call plot on an <code>lm</code> object, a series of diagnostic plots is created to help us check the assumptions of <code>lm()</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(petal.reg)</code></pre>
+<p><img src="04-basic_stats_files/figure-html/olsreg-check1.png" alt="plot of chunk olsreg-check" /> <img src="04-basic_stats_files/figure-html/olsreg-check2.png" alt="plot of chunk olsreg-check" /> <img src="04-basic_stats_files/figure-html/olsreg-check3.png" alt="plot of chunk olsreg-check" /> <img src="04-basic_stats_files/figure-html/olsreg-check4.png" alt="plot of chunk olsreg-check" /></p>
+<p>Get more information on these plots by checking <code>?plot.lm</code>.</p>
+</div>
 </div>
 <div id="analysis-of-variance-anova" class="section level3">
 <h3>Analysis of Variance (ANOVA)</h3>
-<p>Now say we want to compare an attribute among all three species, then we can’t use a t-test; we have to use an ANOVA. Since an ANOVA is simply a linear regression model with categorical rather than continuous predictor variable, we still use the <code>lm()</code> function. Here it is important Let’s test for differences in petal length among all three species.</p>
+<p>Now say we want to compare an attribute among all three species, then we can’t use a t-test; we have to use an ANOVA. Since an ANOVA is simply a linear regression model with a categorical rather than continuous predictor variable, we still use the <code>lm()</code> function. Let’s test for differences in petal length among all three species.</p>
 <pre class="sourceCode r"><code class="sourceCode r">petal_length.aov &lt;-<span class="st"> </span><span class="kw">lm</span>(Petal.Length ~<span class="st"> </span>Species, <span class="dt">data=</span>dat)
 <span class="kw">summary</span>(petal_length.aov)</code></pre>
 <pre><code>## 
@@ -208,14 +215,81 @@ p +<span class="st"> </span><span class="kw">geom_line</span>(<span class="dt">d
 ## Residuals 147     27     0.2                   
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p>We can check assumptions using <code>plot()</code>. There are actually a bunch of different <code>plot</code> methods in R, which are dispatched depending on the type of object you call them on. When you call plot on an <code>lm</code> object, a series of diagnostic plots is created to help us check the assumptions of <code>lm()</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(petal_length.aov)</code></pre>
-<p><img src="04-basic_stats_files/figure-html/anova_plot1.png" alt="plot of chunk anova_plot" /> <img src="04-basic_stats_files/figure-html/anova_plot2.png" alt="plot of chunk anova_plot" /> <img src="04-basic_stats_files/figure-html/anova_plot3.png" alt="plot of chunk anova_plot" /> <img src="04-basic_stats_files/figure-html/anova_plot4.png" alt="plot of chunk anova_plot" /></p>
+<div id="plot" class="section level4">
+<h4>Plot</h4>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> Species, <span class="dt">y =</span> Petal.Length)) +<span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre>
+<p><img src="04-basic_stats_files/figure-html/petal-box-plot1.png" alt="plot of chunk petal-box-plot" /></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> Species, <span class="dt">y =</span> Petal.Length)) +<span class="st"> </span><span class="kw">geom_point</span>()</code></pre>
+<p><img src="04-basic_stats_files/figure-html/petal-box-plot2.png" alt="plot of chunk petal-box-plot" /></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> Species, <span class="dt">y =</span> Petal.Length)) +<span class="st"> </span><span class="kw">geom_jitter</span>()</code></pre>
+<p><img src="04-basic_stats_files/figure-html/petal-box-plot3.png" alt="plot of chunk petal-box-plot" /></p>
+</div>
+<div id="check-assumptions" class="section level4">
+<h4>Check assumptions</h4>
+<pre class="sourceCode r"><code class="sourceCode r">fitted &lt;-<span class="st"> </span><span class="kw">fitted</span>(petal_length.aov)
+residuals &lt;-<span class="st"> </span><span class="kw">resid</span>(petal_length.aov)
+
+<span class="kw">ggplot</span>(<span class="dt">data=</span><span class="ot">NULL</span>, <span class="kw">aes</span>(<span class="dt">x =</span> fitted, <span class="dt">y =</span> residuals)) +<span class="st"> </span><span class="kw">geom_point</span>() +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>)</code></pre>
+<p><img src="04-basic_stats_files/figure-html/ggplot-aov-resids.png" alt="plot of chunk ggplot-aov-resids" /></p>
+</div>
+</div>
+<div id="generalized-linear-models-logistic-regression" class="section level3">
+<h3>Generalized linear models: Logistic regression</h3>
+<p>Say you want to know whether elevation can predict whether or not a particular species of beetle is present (all other things being equal of course). You walk up a hillside, starting at 100m elevation and sampling for the beetle every 10m until you reach 1000m. At each stop you record whether or the beetle is present (<code>1</code>) or absent (<code>0</code>).</p>
+<p>First, let’s simulate some data</p>
+<pre class="sourceCode r"><code class="sourceCode r">## Generate a sequence of elevations
+elev &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">100</span>, <span class="dv">1000</span>, <span class="dt">by=</span><span class="dv">10</span>)
+
+<span class="co"># Generate a vector of probabilities the same length as `elev` with increasing </span>
+<span class="co"># probabilities</span>
+probs &lt;-<span class="st"> </span><span class="dv">0</span>:<span class="kw">length</span>(elev) /<span class="st"> </span><span class="kw">length</span>(elev)
+
+## Generate a sequence of 0&#39;s and 1&#39;s
+pres &lt;-<span class="st"> </span><span class="kw">rbinom</span>(<span class="kw">length</span>(elev), <span class="dv">1</span>, <span class="dt">prob=</span>probs)
+
+## combine into a data frame and remove consituent parts
+elev_pres.data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(elev, pres)
+<span class="kw">rm</span>(elev, pres)
+
+## Plot the data
+<span class="kw">ggplot</span>(elev_pres.data, <span class="kw">aes</span>(<span class="dt">x =</span> elev, <span class="dt">y =</span> pres)) +<span class="st"> </span><span class="kw">geom_point</span>()</code></pre>
+<p><img src="04-basic_stats_files/figure-html/glm-binom-sim.png" alt="plot of chunk glm-binom-sim" /></p>
+<p>Presence / absence data is a classic example of where to use logistic regression; the outcome is binary (0 or 1), and the predictor variable is continuous (elevation, in this case). Logisitic regression is a particular type of model in the family of <em>Generalized Linear Models</em>. Where ordinary least squares regression assumes a normal disribution of the response variable, <em>Generalized linear models</em> assume a different distribution. Logistic regression assumes a binomial distribution (outcome will be in one of two states). Another common example is the poisson distribution, which is often useful for count data.<br />Implementing GLMs is relatively straightforward using the <code>glm()</code> function. You specify the model formula in the same way as in <code>lm()</code>, and specify the distribution you want in the <em>family</em> parameter.</p>
+<pre class="sourceCode r"><code class="sourceCode r">lr1 &lt;-<span class="st"> </span><span class="kw">glm</span>(pres ~<span class="st"> </span>elev, <span class="dt">data=</span>elev_pres.data, <span class="dt">family=</span>binomial)
+<span class="kw">summary</span>(lr1)</code></pre>
+<pre><code>## 
+## Call:
+## glm(formula = pres ~ elev, family = binomial, data = elev_pres.data)
+## 
+## Deviance Residuals: 
+##    Min      1Q  Median      3Q     Max  
+## -2.039  -0.823  -0.448   0.845   2.023  
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -2.83338    0.66274   -4.28  1.9e-05 ***
+## elev         0.00488    0.00109    4.49  7.3e-06 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 125.878  on 90  degrees of freedom
+## Residual deviance:  98.588  on 89  degrees of freedom
+## AIC: 102.6
+## 
+## Number of Fisher Scoring iterations: 3</code></pre>
+<p>So let’s add the curve generated by the logistic regression to the plot:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(elev_pres.data, <span class="kw">aes</span>(<span class="dt">x =</span> elev, <span class="dt">y =</span> pres)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> <span class="kw">predict</span>(lr1, <span class="dt">type=</span><span class="st">&quot;response&quot;</span>)))</code></pre>
+<p><img src="04-basic_stats_files/figure-html/lr-plot.png" alt="plot of chunk lr-plot" /></p>
 </div>
 <div id="more-advanced-linear-models-and-model-selection-using-aic" class="section level3">
 <h3>More advanced linear models and model selection using AIC</h3>
 <pre class="sourceCode r"><code class="sourceCode r">mod1 &lt;-<span class="st"> </span><span class="kw">lm</span>(Sepal.Length ~<span class="st"> </span>Sepal.Width *<span class="st"> </span>Species, <span class="dt">data=</span>iris)
-mod2 &lt;-<span class="st"> </span><span class="kw">lm</span>(Sepal.Length ~<span class="st"> </span>Sepal.Width +<span class="st"> </span>Species, <span class="dt">data=</span>iris)
+mod2 &lt;-<span class="st"> </span><span class="kw">lm</span>(Sepal.Length ~<span class="st"> </span>Sepal.Width +<span class="st"> </span>Species, <span class="dt">data=</span>iris) <span class="co"># ANCOVA</span>
 mod3 &lt;-<span class="st"> </span><span class="kw">lm</span>(Sepal.Length ~<span class="st"> </span>Sepal.Width, <span class="dt">data=</span>iris)
 mod4 &lt;-<span class="st"> </span><span class="kw">lm</span>(Sepal.Length ~<span class="st"> </span>Species, <span class="dt">data=</span>iris)
 
@@ -226,53 +300,10 @@ mod4 &lt;-<span class="st"> </span><span class="kw">lm</span>(Sepal.Length ~<spa
 ## mod3  3 372.0
 ## mod4  4 231.5</code></pre>
 <p>Let’s plot the data:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(<span class="dt">x=</span>Sepal.Width, <span class="dt">y=</span>Sepal.Length, <span class="dt">colour=</span>Species, <span class="dt">group=</span>Species)) +<span class="st"> </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)</code></pre>
-<p><img src="04-basic_stats_files/figure-html/unnamed-chunk-3.png" alt="plot of chunk unnamed-chunk-3" /></p>
-</div>
-<div id="logistic-regression" class="section level3">
-<h3>Logistic regression</h3>
-<p>Say you want to know whether elevation can predict whether or not a particular species of beetle is present (all other things being equal of course). You walk up a hillside, starting at 100m elevation and sampling for the beetle every 10m until you reach 1000m. At each stop you record whether or the beetle is present (<code>1</code>) or absent (<code>0</code>).</p>
-<p>First, let’s simulate some data</p>
-<pre class="sourceCode r"><code class="sourceCode r">## Generate a sequence of elevations
-elev &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">100</span>, <span class="dv">1000</span>, <span class="dt">by=</span><span class="dv">10</span>)
-
-## Generate a sequence of 0&#39;s and 1&#39;s with 
-pres &lt;-<span class="st"> </span><span class="kw">rbinom</span>(<span class="kw">length</span>(elev), <span class="dv">1</span>, <span class="dt">prob=</span><span class="dv">0</span>:<span class="kw">length</span>(elev) /<span class="st"> </span><span class="kw">length</span>(elev))
-
-## combine into a data frame and remove consituent parts
-elev_pres.data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(elev, pres)
-<span class="kw">rm</span>(elev, pres)
-
-## Plot the data
-<span class="kw">plot</span>(pres ~<span class="st"> </span>elev, <span class="dt">data=</span>elev_pres.data)</code></pre>
-<p><img src="04-basic_stats_files/figure-html/glm-binom-sim.png" alt="plot of chunk glm-binom-sim" /></p>
-<pre class="sourceCode r"><code class="sourceCode r">lr1 &lt;-<span class="st"> </span><span class="kw">glm</span>(pres ~<span class="st"> </span>elev, <span class="dt">data=</span>elev_pres.data, <span class="dt">family=</span>binomial)
-<span class="kw">summary</span>(lr1)</code></pre>
-<pre><code>## 
-## Call:
-## glm(formula = pres ~ elev, family = binomial, data = elev_pres.data)
-## 
-## Deviance Residuals: 
-##    Min      1Q  Median      3Q     Max  
-## -1.839  -0.771  -0.408   0.797   1.909  
-## 
-## Coefficients:
-##             Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept) -3.07878    0.69338   -4.44  9.0e-06 ***
-## elev         0.00531    0.00114    4.66  3.2e-06 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## (Dispersion parameter for binomial family taken to be 1)
-## 
-##     Null deviance: 125.878  on 90  degrees of freedom
-## Residual deviance:  95.025  on 89  degrees of freedom
-## AIC: 99.03
-## 
-## Number of Fisher Scoring iterations: 4</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(pres ~<span class="st"> </span>elev, <span class="dt">data=</span>elev_pres.data)
-<span class="kw">curve</span>(<span class="kw">predict</span>(lr1, <span class="kw">data.frame</span>(<span class="dt">elev=</span>x), <span class="dt">type=</span><span class="st">&quot;resp&quot;</span>), <span class="dt">add=</span><span class="ot">TRUE</span>)</code></pre>
-<p><img src="04-basic_stats_files/figure-html/glm-binom.png" alt="plot of chunk glm-binom" /></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(<span class="dt">x=</span>Sepal.Width, <span class="dt">y=</span>Sepal.Length, <span class="dt">colour=</span>Species, <span class="dt">group=</span>Species)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">formula =</span> y ~<span class="st"> </span>x)</code></pre>
+<p><img src="04-basic_stats_files/figure-html/ggplot-adv-lm.png" alt="plot of chunk ggplot-adv-lm" /></p>
 </div>
 
 

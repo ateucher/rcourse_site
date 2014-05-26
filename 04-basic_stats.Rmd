@@ -3,8 +3,10 @@ title: Basic statistics
 ---
 
 ```{r echo=FALSE, results='hide', message=FALSE}
+dat <- read.csv("data/iris.csv")
 require(ggplot2)
 require(dplyr)
+set.seed(42)
 ```
 
 
@@ -42,7 +44,6 @@ Since we're only interested in setosa and virginica, we need to get rid of
 versicolor.
 
 ```{r dropfort-test}
-dat <- iris
 require(dplyr)
 setosa.virginica <- filter(dat, Species != "versicolor")
 summary(setosa.virginica)
@@ -155,7 +156,7 @@ ggplot(data = dat, aes(x = Species, y = Petal.Length)) + geom_jitter()
 
 #### Check assumptions
 
-```{r ggplot-resids}
+```{r ggplot-aov-resids}
 fitted <- fitted(petal_length.aov)
 residuals <- resid(petal_length.aov)
 
@@ -232,7 +233,7 @@ AIC(mod1, mod2, mod3, mod4)
 ```
 
 Let's plot the data:
-```{r}
+```{r ggplot-adv-lm}
 ggplot(iris, aes(x=Sepal.Width, y=Sepal.Length, colour=Species, group=Species)) + 
   geom_point() + 
   geom_smooth(method="lm", formula = y ~ x)
