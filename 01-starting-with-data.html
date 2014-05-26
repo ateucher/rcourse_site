@@ -122,7 +122,7 @@ code > span.er { font-weight: bold; }
 ## 7            4.6         3.4          1.4         0.3     setosa
 ## 8            5.0         3.4          1.5         0.2     setosa
 ## 9            4.4         2.9          1.4         0.2     setosa
-## 10           4.9          NA          1.5         0.1     setosa
+## 10           4.9         3.1          1.5         0.1     setosa
 ## 11           5.4         3.7          1.5         0.2     setosa
 ## 12           4.8         3.4          1.6         0.2     setosa
 ## 13           4.8         3.0          1.4         0.1     setosa
@@ -143,7 +143,7 @@ code > span.er { font-weight: bold; }
 ## 28           5.2         3.5          1.5         0.2     setosa
 ## 29           5.2         3.4          1.4         0.2     setosa
 ## 30           4.7         3.2          1.6         0.2     setosa
-## 31           4.8          NA          1.6         0.2     setosa
+## 31           4.8         3.1          1.6         0.2     setosa
 ## 32           5.4         3.4          1.5         0.4     setosa
 ## 33           5.2         4.1          1.5         0.1     setosa
 ## 34           5.5         4.2          1.4         0.2     setosa
@@ -165,12 +165,12 @@ code > span.er { font-weight: bold; }
 ## 50           5.0         3.3          1.4         0.2     setosa
 ## 51           7.0         3.2          4.7         1.4 versicolor
 ## 52           6.4         3.2          4.5         1.5 versicolor
-## 53           6.9         3.1          4.9         1.5 versicolor
+## 53           6.9          NA          4.9         1.5 versicolor
 ## 54           5.5         2.3          4.0         1.3 versicolor
 ## 55           6.5         2.8          4.6         1.5 versicolor
 ## 56           5.7         2.8          4.5         1.3 versicolor
 ## 57           6.3         3.3          4.7         1.6 versicolor
-## 58           4.9          NA          3.3         1.0 versicolor
+## 58           4.9         2.4          3.3         1.0 versicolor
 ## 59           6.6         2.9          4.6         1.3 versicolor
 ## 60           5.2         2.7          3.9         1.4 versicolor
 ## 61           5.0         2.0          3.5         1.0 versicolor
@@ -184,7 +184,7 @@ code > span.er { font-weight: bold; }
 ## 69           6.2         2.2          4.5         1.5 versicolor
 ## 70           5.6         2.5          3.9         1.1 versicolor
 ## 71           5.9         3.2          4.8         1.8 versicolor
-## 72           6.1         2.8          4.0         1.3 versicolor
+## 72           6.1          NA          4.0         1.3 versicolor
 ## 73           6.3         2.5          4.9         1.5 versicolor
 ## 74           6.1         2.8          4.7         1.2 versicolor
 ## 75           6.4         2.9          4.3         1.3 versicolor
@@ -211,8 +211,58 @@ code > span.er { font-weight: bold; }
 ## 96           5.7         3.0          4.2         1.2 versicolor
 ## 97           5.7         2.9          4.2         1.3 versicolor
 ## 98           6.2         2.9          4.3         1.3 versicolor
-## 99           5.1          NA          3.0         1.1 versicolor
-## 100          5.7         2.8          4.1         1.3 versicolor</code></pre>
+## 99           5.1         2.5          3.0         1.1 versicolor
+## 100          5.7         2.8          4.1         1.3 versicolor
+## 101          6.3         3.3          6.0         2.5  virginica
+## 102          5.8         2.7          5.1         1.9  virginica
+## 103          7.1         3.0          5.9         2.1  virginica
+## 104          6.3         2.9          5.6         1.8  virginica
+## 105          6.5         3.0          5.8         2.2  virginica
+## 106          7.6          NA          6.6         2.1  virginica
+## 107          4.9         2.5          4.5         1.7  virginica
+## 108          7.3         2.9          6.3         1.8  virginica
+## 109          6.7         2.5          5.8         1.8  virginica
+## 110          7.2         3.6          6.1         2.5  virginica
+## 111          6.5         3.2          5.1         2.0  virginica
+## 112          6.4         2.7          5.3         1.9  virginica
+## 113          6.8         3.0          5.5         2.1  virginica
+## 114          5.7         2.5          5.0         2.0  virginica
+## 115          5.8         2.8          5.1         2.4  virginica
+## 116          6.4         3.2          5.3         2.3  virginica
+## 117          6.5          NA          5.5         1.8  virginica
+## 118          7.7         3.8          6.7         2.2  virginica
+## 119          7.7         2.6          6.9         2.3  virginica
+## 120          6.0         2.2          5.0         1.5  virginica
+## 121          6.9         3.2          5.7         2.3  virginica
+## 122          5.6         2.8          4.9         2.0  virginica
+## 123          7.7         2.8          6.7         2.0  virginica
+## 124          6.3         2.7          4.9         1.8  virginica
+## 125          6.7         3.3          5.7         2.1  virginica
+## 126          7.2         3.2          6.0         1.8  virginica
+## 127          6.2         2.8          4.8         1.8  virginica
+## 128          6.1          NA          4.9         1.8  virginica
+## 129          6.4         2.8          5.6         2.1  virginica
+## 130          7.2         3.0          5.8         1.6  virginica
+## 131          7.4         2.8          6.1         1.9  virginica
+## 132          7.9         3.8          6.4         2.0  virginica
+## 133          6.4         2.8          5.6         2.2  virginica
+## 134          6.3         2.8          5.1         1.5  virginica
+## 135          6.1         2.6          5.6         1.4  virginica
+## 136          7.7         3.0          6.1         2.3  virginica
+## 137          6.3         3.4          5.6         2.4  virginica
+## 138          6.4         3.1          5.5         1.8  virginica
+## 139          6.0         3.0          4.8         1.8  virginica
+## 140          6.9         3.1          5.4         2.1  virginica
+## 141          6.7         3.1          5.6         2.4  virginica
+## 142          6.9         3.1          5.1         2.3  virginica
+## 143          5.8         2.7          5.1         1.9  virginica
+## 144          6.8         3.2          5.9         2.3  virginica
+## 145          6.7         3.3          5.7         2.5  virginica
+## 146          6.7         3.0          5.2         2.3  virginica
+## 147          6.3         2.5          5.0         1.9  virginica
+## 148          6.5         3.0          5.2         2.0  virginica
+## 149          6.2         3.4          5.4         2.3  virginica
+## 150          5.9         3.0          5.1         1.8  virginica</code></pre>
 <p>The expression <code>read.csv()</code> is a function that asks R to load a <code>.csv</code> file into R’s workspace as a data frame.</p>
 <p><code>read.csv()</code> has many arguments including the name of the file we want to read, and the delimiter that separates values on a line.</p>
 <p>When we are finished typing and press <code>Control+Enter</code> on Windows or <code>Cmd + Return</code> on Mac, the console runs our command. Since we haven’t told it to do anything else with the function’s output, the console displays it. In this case, that output is the data we just loaded.</p>
@@ -294,7 +344,7 @@ weights</code></pre>
 ## 7            4.6         3.4          1.4         0.3     setosa
 ## 8            5.0         3.4          1.5         0.2     setosa
 ## 9            4.4         2.9          1.4         0.2     setosa
-## 10           4.9          NA          1.5         0.1     setosa
+## 10           4.9         3.1          1.5         0.1     setosa
 ## 11           5.4         3.7          1.5         0.2     setosa
 ## 12           4.8         3.4          1.6         0.2     setosa
 ## 13           4.8         3.0          1.4         0.1     setosa
@@ -315,7 +365,7 @@ weights</code></pre>
 ## 28           5.2         3.5          1.5         0.2     setosa
 ## 29           5.2         3.4          1.4         0.2     setosa
 ## 30           4.7         3.2          1.6         0.2     setosa
-## 31           4.8          NA          1.6         0.2     setosa
+## 31           4.8         3.1          1.6         0.2     setosa
 ## 32           5.4         3.4          1.5         0.4     setosa
 ## 33           5.2         4.1          1.5         0.1     setosa
 ## 34           5.5         4.2          1.4         0.2     setosa
@@ -337,12 +387,12 @@ weights</code></pre>
 ## 50           5.0         3.3          1.4         0.2     setosa
 ## 51           7.0         3.2          4.7         1.4 versicolor
 ## 52           6.4         3.2          4.5         1.5 versicolor
-## 53           6.9         3.1          4.9         1.5 versicolor
+## 53           6.9          NA          4.9         1.5 versicolor
 ## 54           5.5         2.3          4.0         1.3 versicolor
 ## 55           6.5         2.8          4.6         1.5 versicolor
 ## 56           5.7         2.8          4.5         1.3 versicolor
 ## 57           6.3         3.3          4.7         1.6 versicolor
-## 58           4.9          NA          3.3         1.0 versicolor
+## 58           4.9         2.4          3.3         1.0 versicolor
 ## 59           6.6         2.9          4.6         1.3 versicolor
 ## 60           5.2         2.7          3.9         1.4 versicolor
 ## 61           5.0         2.0          3.5         1.0 versicolor
@@ -356,7 +406,7 @@ weights</code></pre>
 ## 69           6.2         2.2          4.5         1.5 versicolor
 ## 70           5.6         2.5          3.9         1.1 versicolor
 ## 71           5.9         3.2          4.8         1.8 versicolor
-## 72           6.1         2.8          4.0         1.3 versicolor
+## 72           6.1          NA          4.0         1.3 versicolor
 ## 73           6.3         2.5          4.9         1.5 versicolor
 ## 74           6.1         2.8          4.7         1.2 versicolor
 ## 75           6.4         2.9          4.3         1.3 versicolor
@@ -383,8 +433,58 @@ weights</code></pre>
 ## 96           5.7         3.0          4.2         1.2 versicolor
 ## 97           5.7         2.9          4.2         1.3 versicolor
 ## 98           6.2         2.9          4.3         1.3 versicolor
-## 99           5.1          NA          3.0         1.1 versicolor
-## 100          5.7         2.8          4.1         1.3 versicolor</code></pre>
+## 99           5.1         2.5          3.0         1.1 versicolor
+## 100          5.7         2.8          4.1         1.3 versicolor
+## 101          6.3         3.3          6.0         2.5  virginica
+## 102          5.8         2.7          5.1         1.9  virginica
+## 103          7.1         3.0          5.9         2.1  virginica
+## 104          6.3         2.9          5.6         1.8  virginica
+## 105          6.5         3.0          5.8         2.2  virginica
+## 106          7.6          NA          6.6         2.1  virginica
+## 107          4.9         2.5          4.5         1.7  virginica
+## 108          7.3         2.9          6.3         1.8  virginica
+## 109          6.7         2.5          5.8         1.8  virginica
+## 110          7.2         3.6          6.1         2.5  virginica
+## 111          6.5         3.2          5.1         2.0  virginica
+## 112          6.4         2.7          5.3         1.9  virginica
+## 113          6.8         3.0          5.5         2.1  virginica
+## 114          5.7         2.5          5.0         2.0  virginica
+## 115          5.8         2.8          5.1         2.4  virginica
+## 116          6.4         3.2          5.3         2.3  virginica
+## 117          6.5          NA          5.5         1.8  virginica
+## 118          7.7         3.8          6.7         2.2  virginica
+## 119          7.7         2.6          6.9         2.3  virginica
+## 120          6.0         2.2          5.0         1.5  virginica
+## 121          6.9         3.2          5.7         2.3  virginica
+## 122          5.6         2.8          4.9         2.0  virginica
+## 123          7.7         2.8          6.7         2.0  virginica
+## 124          6.3         2.7          4.9         1.8  virginica
+## 125          6.7         3.3          5.7         2.1  virginica
+## 126          7.2         3.2          6.0         1.8  virginica
+## 127          6.2         2.8          4.8         1.8  virginica
+## 128          6.1          NA          4.9         1.8  virginica
+## 129          6.4         2.8          5.6         2.1  virginica
+## 130          7.2         3.0          5.8         1.6  virginica
+## 131          7.4         2.8          6.1         1.9  virginica
+## 132          7.9         3.8          6.4         2.0  virginica
+## 133          6.4         2.8          5.6         2.2  virginica
+## 134          6.3         2.8          5.1         1.5  virginica
+## 135          6.1         2.6          5.6         1.4  virginica
+## 136          7.7         3.0          6.1         2.3  virginica
+## 137          6.3         3.4          5.6         2.4  virginica
+## 138          6.4         3.1          5.5         1.8  virginica
+## 139          6.0         3.0          4.8         1.8  virginica
+## 140          6.9         3.1          5.4         2.1  virginica
+## 141          6.7         3.1          5.6         2.4  virginica
+## 142          6.9         3.1          5.1         2.3  virginica
+## 143          5.8         2.7          5.1         1.9  virginica
+## 144          6.8         3.2          5.9         2.3  virginica
+## 145          6.7         3.3          5.7         2.5  virginica
+## 146          6.7         3.0          5.2         2.3  virginica
+## 147          6.3         2.5          5.0         1.9  virginica
+## 148          6.5         3.0          5.2         2.0  virginica
+## 149          6.2         3.4          5.4         2.3  virginica
+## 150          5.9         3.0          5.1         1.8  virginica</code></pre>
 <p>It’s important to note that anything we do with <code>dat</code> here will not affect the original <code>csv</code> file. This is an important concept of reproducibility - don’t touch your original data!</p>
 <p>For large data sets it is convenient to use the <code>head()</code> to display the first few rows of data, or <code>tail()</code> to see the end</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(dat)</code></pre>
@@ -396,13 +496,13 @@ weights</code></pre>
 ## 5          5.0         3.6          1.4         0.2  setosa
 ## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tail</span>(dat)</code></pre>
-<pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
-## 95           5.6         2.7          4.2         1.3 versicolor
-## 96           5.7         3.0          4.2         1.2 versicolor
-## 97           5.7         2.9          4.2         1.3 versicolor
-## 98           6.2         2.9          4.3         1.3 versicolor
-## 99           5.1          NA          3.0         1.1 versicolor
-## 100          5.7         2.8          4.1         1.3 versicolor</code></pre>
+<pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+## 145          6.7         3.3          5.7         2.5 virginica
+## 146          6.7         3.0          5.2         2.3 virginica
+## 147          6.3         2.5          5.0         1.9 virginica
+## 148          6.5         3.0          5.2         2.0 virginica
+## 149          6.2         3.4          5.4         2.3 virginica
+## 150          5.9         3.0          5.1         1.8 virginica</code></pre>
 <p>In RStudio’s environment pane, you can also click on the little table icon next to the data frame name.</p>
 <p><strong>BREAK</strong></p>
 <ul>
@@ -419,25 +519,25 @@ weights</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(dat)</code></pre>
 <pre><code>## [1] &quot;data.frame&quot;</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(dat)</code></pre>
-<pre><code>## &#39;data.frame&#39;:    100 obs. of  5 variables:
+<pre><code>## &#39;data.frame&#39;:    150 obs. of  5 variables:
 ##  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
-##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 NA ...
+##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
 ##  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
 ##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
-##  $ Species     : Factor w/ 2 levels &quot;setosa&quot;,&quot;versicolor&quot;: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+##  $ Species     : Factor w/ 3 levels &quot;setosa&quot;,&quot;versicolor&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(dat)</code></pre>
-<pre><code>##   Sepal.Length   Sepal.Width    Petal.Length   Petal.Width   
-##  Min.   :4.30   Min.   :2.00   Min.   :1.00   Min.   :0.100  
-##  1st Qu.:5.00   1st Qu.:2.80   1st Qu.:1.50   1st Qu.:0.200  
-##  Median :5.40   Median :3.05   Median :2.45   Median :0.800  
-##  Mean   :5.47   Mean   :3.11   Mean   :2.86   Mean   :0.786  
-##  3rd Qu.:5.90   3rd Qu.:3.40   3rd Qu.:4.33   3rd Qu.:1.300  
-##  Max.   :7.00   Max.   :4.40   Max.   :5.10   Max.   :1.800  
-##                 NA&#39;s   :4                                    
+<pre><code>##   Sepal.Length   Sepal.Width    Petal.Length   Petal.Width 
+##  Min.   :4.30   Min.   :2.00   Min.   :1.00   Min.   :0.1  
+##  1st Qu.:5.10   1st Qu.:2.80   1st Qu.:1.60   1st Qu.:0.3  
+##  Median :5.80   Median :3.00   Median :4.35   Median :1.3  
+##  Mean   :5.84   Mean   :3.06   Mean   :3.76   Mean   :1.2  
+##  3rd Qu.:6.40   3rd Qu.:3.40   3rd Qu.:5.10   3rd Qu.:1.8  
+##  Max.   :7.90   Max.   :4.40   Max.   :6.90   Max.   :2.5  
+##                 NA&#39;s   :5                                  
 ##        Species  
 ##  setosa    :50  
 ##  versicolor:50  
-##                 
+##  virginica :50  
 ##                 
 ##                 
 ##                 
@@ -469,12 +569,12 @@ weights</code></pre>
 <p><code>str</code> output tells us the dimensions and the data types (int is integer) of each column.</p>
 <p>We can see what its shape is like this:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(dat)</code></pre>
-<pre><code>## [1] 100   5</code></pre>
+<pre><code>## [1] 150   5</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nrow</span>(dat)</code></pre>
-<pre><code>## [1] 100</code></pre>
+<pre><code>## [1] 150</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ncol</span>(dat)</code></pre>
 <pre><code>## [1] 5</code></pre>
-<p>This tells us that <code>dat</code> has 100 rows and 5 columns.</p>
+<p>This tells us that <code>dat</code> has 150 rows and 5 columns.</p>
 </div>
 </div>
 <div id="referencing-columns" class="section level3">
@@ -486,20 +586,26 @@ weights</code></pre>
 ##  [35] 0.2 0.2 0.2 0.1 0.2 0.2 0.3 0.3 0.2 0.6 0.4 0.3 0.2 0.2 0.2 0.2 1.4
 ##  [52] 1.5 1.5 1.3 1.5 1.3 1.6 1.0 1.3 1.4 1.0 1.5 1.0 1.4 1.3 1.4 1.5 1.0
 ##  [69] 1.5 1.1 1.8 1.3 1.5 1.2 1.3 1.4 1.4 1.7 1.5 1.0 1.1 1.0 1.2 1.6 1.5
-##  [86] 1.6 1.5 1.3 1.3 1.3 1.2 1.4 1.2 1.0 1.3 1.2 1.3 1.3 1.1 1.3</code></pre>
+##  [86] 1.6 1.5 1.3 1.3 1.3 1.2 1.4 1.2 1.0 1.3 1.2 1.3 1.3 1.1 1.3 2.5 1.9
+## [103] 2.1 1.8 2.2 2.1 1.7 1.8 1.8 2.5 2.0 1.9 2.1 2.0 2.4 2.3 1.8 2.2 2.3
+## [120] 1.5 2.3 2.0 2.0 1.8 2.1 1.8 1.8 1.8 2.1 1.6 1.9 2.0 2.2 1.5 1.4 2.3
+## [137] 2.4 1.8 1.8 2.1 2.4 2.3 1.9 2.3 2.5 2.3 1.9 2.0 2.3 1.8</code></pre>
 <p>Now say we want to get the mean of the petal widths, or the maximum of the sepal widths:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(dat$Petal.Width)</code></pre>
-<pre><code>## [1] 0.786</code></pre>
+<pre><code>## [1] 1.199</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">max</span>(dat$Sepal.Width)</code></pre>
 <pre><code>## [1] NA</code></pre>
 <p>Wait, what happened there? Why is the max of sepal width <code>NA</code>? Let’s have a look:</p>
 <pre class="sourceCode r"><code class="sourceCode r">dat$Sepal.Width <span class="co"># First look at the data - there are some values that are NA.</span></code></pre>
-<pre><code>##   [1] 3.5 3.0 3.2 3.1 3.6 3.9 3.4 3.4 2.9  NA 3.7 3.4 3.0 3.0 4.0 4.4 3.9
-##  [18] 3.5 3.8 3.8 3.4 3.7 3.6 3.3 3.4 3.0 3.4 3.5 3.4 3.2  NA 3.4 4.1 4.2
+<pre><code>##   [1] 3.5 3.0 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 3.7 3.4 3.0 3.0 4.0 4.4 3.9
+##  [18] 3.5 3.8 3.8 3.4 3.7 3.6 3.3 3.4 3.0 3.4 3.5 3.4 3.2 3.1 3.4 4.1 4.2
 ##  [35] 3.1 3.2 3.5 3.6 3.0 3.4 3.5 2.3 3.2 3.5 3.8 3.0 3.8 3.2 3.7 3.3 3.2
-##  [52] 3.2 3.1 2.3 2.8 2.8 3.3  NA 2.9 2.7 2.0 3.0 2.2 2.9 2.9 3.1 3.0 2.7
-##  [69] 2.2 2.5 3.2 2.8 2.5 2.8 2.9 3.0 2.8 3.0 2.9 2.6 2.4 2.4 2.7 2.7 3.0
-##  [86] 3.4 3.1 2.3 3.0 2.5 2.6 3.0 2.6 2.3 2.7 3.0 2.9 2.9  NA 2.8</code></pre>
+##  [52] 3.2  NA 2.3 2.8 2.8 3.3 2.4 2.9 2.7 2.0 3.0 2.2 2.9 2.9 3.1 3.0 2.7
+##  [69] 2.2 2.5 3.2  NA 2.5 2.8 2.9 3.0 2.8 3.0 2.9 2.6 2.4 2.4 2.7 2.7 3.0
+##  [86] 3.4 3.1 2.3 3.0 2.5 2.6 3.0 2.6 2.3 2.7 3.0 2.9 2.9 2.5 2.8 3.3 2.7
+## [103] 3.0 2.9 3.0  NA 2.5 2.9 2.5 3.6 3.2 2.7 3.0 2.5 2.8 3.2  NA 3.8 2.6
+## [120] 2.2 3.2 2.8 2.8 2.7 3.3 3.2 2.8  NA 2.8 3.0 2.8 3.8 2.8 2.8 2.6 3.0
+## [137] 3.4 3.1 3.0 3.1 3.1 3.1 2.7 3.2 3.3 3.0 2.5 3.0 3.4 3.0</code></pre>
 <p><code>NA</code> is a special encoding for a missing value in a vector… look at help file for <code>max()</code>: <code>?max</code>. You’ll see there’s an argument called <code>na.rm</code>, where the default is <code>FALSE</code>. If we change it to true, <code>max</code> ignores the <code>NA</code> values:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">max</span>(dat$Sepal.Width, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</code></pre>
 <pre><code>## [1] 4.4</code></pre>
@@ -551,7 +657,7 @@ dat[<span class="dv">1</span>, <span class="dv">1</span>]</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># third value in fifth column in dat</span>
 dat[<span class="dv">3</span>, <span class="dv">5</span>]</code></pre>
 <pre><code>## [1] setosa
-## Levels: setosa versicolor</code></pre>
+## Levels: setosa versicolor virginica</code></pre>
 <p>An index like <code>dat[30, 3]</code> selects a single element of data frame, but we can select sections as well. Entering nothing in either the rows or columns spot selects all. For example, we can select the first ten rows across all columns, like this. :</p>
 <pre class="sourceCode r"><code class="sourceCode r">dat[<span class="dv">1</span>:<span class="dv">10</span>,]</code></pre>
 <pre><code>##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
@@ -564,7 +670,7 @@ dat[<span class="dv">3</span>, <span class="dv">5</span>]</code></pre>
 ## 7           4.6         3.4          1.4         0.3  setosa
 ## 8           5.0         3.4          1.5         0.2  setosa
 ## 9           4.4         2.9          1.4         0.2  setosa
-## 10          4.9          NA          1.5         0.1  setosa</code></pre>
+## 10          4.9         3.1          1.5         0.1  setosa</code></pre>
 <p>The notation <code>1:10</code> means, “Start at index 1 and go to index 10.”</p>
 <p>We don’t have to take consecutive values, we can use <code>c()</code> to select certain values or groups of values:</p>
 <pre class="sourceCode r"><code class="sourceCode r">dat[<span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">10</span>, <span class="dv">20</span>:<span class="dv">30</span>),]</code></pre>
@@ -578,7 +684,7 @@ dat[<span class="dv">3</span>, <span class="dv">5</span>]</code></pre>
 ## 7           4.6         3.4          1.4         0.3  setosa
 ## 8           5.0         3.4          1.5         0.2  setosa
 ## 9           4.4         2.9          1.4         0.2  setosa
-## 10          4.9          NA          1.5         0.1  setosa
+## 10          4.9         3.1          1.5         0.1  setosa
 ## 20          5.1         3.8          1.5         0.3  setosa
 ## 21          5.4         3.4          1.7         0.2  setosa
 ## 22          5.1         3.7          1.5         0.4  setosa
@@ -598,7 +704,10 @@ dat[<span class="dv">3</span>, <span class="dv">5</span>]</code></pre>
 ##  [35] 1.5 1.2 1.3 1.4 1.3 1.5 1.3 1.3 1.3 1.6 1.9 1.4 1.6 1.4 1.5 1.4 4.7
 ##  [52] 4.5 4.9 4.0 4.6 4.5 4.7 3.3 4.6 3.9 3.5 4.2 4.0 4.7 3.6 4.4 4.5 4.1
 ##  [69] 4.5 3.9 4.8 4.0 4.9 4.7 4.3 4.4 4.8 5.0 4.5 3.5 3.8 3.7 3.9 5.1 4.5
-##  [86] 4.5 4.7 4.4 4.1 4.0 4.4 4.6 4.0 3.3 4.2 4.2 4.2 4.3 3.0 4.1</code></pre>
+##  [86] 4.5 4.7 4.4 4.1 4.0 4.4 4.6 4.0 3.3 4.2 4.2 4.2 4.3 3.0 4.1 6.0 5.1
+## [103] 5.9 5.6 5.8 6.6 4.5 6.3 5.8 6.1 5.1 5.3 5.5 5.0 5.1 5.3 5.5 6.7 6.9
+## [120] 5.0 5.7 4.9 6.7 4.9 5.7 6.0 4.8 4.9 5.6 5.8 6.1 6.4 5.6 5.1 5.6 6.1
+## [137] 5.6 5.5 4.8 5.4 5.6 5.1 5.1 5.9 5.7 5.2 5.0 5.2 5.4 5.1</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">dat[, <span class="kw">c</span>(<span class="st">&quot;Petal.Length&quot;</span>, <span class="st">&quot;Species&quot;</span>)]  <span class="co"># Can specify more than one column by using a character vector</span></code></pre>
 <pre><code>##     Petal.Length    Species
 ## 1            1.4     setosa
@@ -700,39 +809,78 @@ dat[<span class="dv">3</span>, <span class="dv">5</span>]</code></pre>
 ## 97           4.2 versicolor
 ## 98           4.3 versicolor
 ## 99           3.0 versicolor
-## 100          4.1 versicolor</code></pre>
+## 100          4.1 versicolor
+## 101          6.0  virginica
+## 102          5.1  virginica
+## 103          5.9  virginica
+## 104          5.6  virginica
+## 105          5.8  virginica
+## 106          6.6  virginica
+## 107          4.5  virginica
+## 108          6.3  virginica
+## 109          5.8  virginica
+## 110          6.1  virginica
+## 111          5.1  virginica
+## 112          5.3  virginica
+## 113          5.5  virginica
+## 114          5.0  virginica
+## 115          5.1  virginica
+## 116          5.3  virginica
+## 117          5.5  virginica
+## 118          6.7  virginica
+## 119          6.9  virginica
+## 120          5.0  virginica
+## 121          5.7  virginica
+## 122          4.9  virginica
+## 123          6.7  virginica
+## 124          4.9  virginica
+## 125          5.7  virginica
+## 126          6.0  virginica
+## 127          4.8  virginica
+## 128          4.9  virginica
+## 129          5.6  virginica
+## 130          5.8  virginica
+## 131          6.1  virginica
+## 132          6.4  virginica
+## 133          5.6  virginica
+## 134          5.1  virginica
+## 135          5.6  virginica
+## 136          6.1  virginica
+## 137          5.6  virginica
+## 138          5.5  virginica
+## 139          4.8  virginica
+## 140          5.4  virginica
+## 141          5.6  virginica
+## 142          5.1  virginica
+## 143          5.1  virginica
+## 144          5.9  virginica
+## 145          5.7  virginica
+## 146          5.2  virginica
+## 147          5.0  virginica
+## 148          5.2  virginica
+## 149          5.4  virginica
+## 150          5.1  virginica</code></pre>
 <div id="indexing-using-conditionals" class="section level4">
 <h4>Indexing using conditionals</h4>
 <p>Sometimes we are interested in extracting data based on something else. Lets say we want to look at all of the flowers measured that had really long sepals:</p>
 <pre class="sourceCode r"><code class="sourceCode r">mean.sl &lt;-<span class="st"> </span><span class="kw">mean</span>(dat$Sepal.Length) <span class="co"># First find the average sepal length</span>
 mean.sl</code></pre>
-<pre><code>## [1] 5.471</code></pre>
+<pre><code>## [1] 5.843</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">dat[dat$Sepal.Length &gt;<span class="st"> </span>mean.sl, ]</code></pre>
 <pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
-## 15           5.8         4.0          1.2         0.2     setosa
-## 16           5.7         4.4          1.5         0.4     setosa
-## 19           5.7         3.8          1.7         0.3     setosa
-## 34           5.5         4.2          1.4         0.2     setosa
-## 37           5.5         3.5          1.3         0.2     setosa
 ## 51           7.0         3.2          4.7         1.4 versicolor
 ## 52           6.4         3.2          4.5         1.5 versicolor
-## 53           6.9         3.1          4.9         1.5 versicolor
-## 54           5.5         2.3          4.0         1.3 versicolor
+## 53           6.9          NA          4.9         1.5 versicolor
 ## 55           6.5         2.8          4.6         1.5 versicolor
-## 56           5.7         2.8          4.5         1.3 versicolor
 ## 57           6.3         3.3          4.7         1.6 versicolor
 ## 59           6.6         2.9          4.6         1.3 versicolor
 ## 62           5.9         3.0          4.2         1.5 versicolor
 ## 63           6.0         2.2          4.0         1.0 versicolor
 ## 64           6.1         2.9          4.7         1.4 versicolor
-## 65           5.6         2.9          3.6         1.3 versicolor
 ## 66           6.7         3.1          4.4         1.4 versicolor
-## 67           5.6         3.0          4.5         1.5 versicolor
-## 68           5.8         2.7          4.1         1.0 versicolor
 ## 69           6.2         2.2          4.5         1.5 versicolor
-## 70           5.6         2.5          3.9         1.1 versicolor
 ## 71           5.9         3.2          4.8         1.8 versicolor
-## 72           6.1         2.8          4.0         1.3 versicolor
+## 72           6.1          NA          4.0         1.3 versicolor
 ## 73           6.3         2.5          4.9         1.5 versicolor
 ## 74           6.1         2.8          4.7         1.2 versicolor
 ## 75           6.4         2.9          4.3         1.3 versicolor
@@ -740,36 +888,72 @@ mean.sl</code></pre>
 ## 77           6.8         2.8          4.8         1.4 versicolor
 ## 78           6.7         3.0          5.0         1.7 versicolor
 ## 79           6.0         2.9          4.5         1.5 versicolor
-## 80           5.7         2.6          3.5         1.0 versicolor
-## 81           5.5         2.4          3.8         1.1 versicolor
-## 82           5.5         2.4          3.7         1.0 versicolor
-## 83           5.8         2.7          3.9         1.2 versicolor
 ## 84           6.0         2.7          5.1         1.6 versicolor
 ## 86           6.0         3.4          4.5         1.6 versicolor
 ## 87           6.7         3.1          4.7         1.5 versicolor
 ## 88           6.3         2.3          4.4         1.3 versicolor
-## 89           5.6         3.0          4.1         1.3 versicolor
-## 90           5.5         2.5          4.0         1.3 versicolor
-## 91           5.5         2.6          4.4         1.2 versicolor
 ## 92           6.1         3.0          4.6         1.4 versicolor
-## 93           5.8         2.6          4.0         1.2 versicolor
-## 95           5.6         2.7          4.2         1.3 versicolor
-## 96           5.7         3.0          4.2         1.2 versicolor
-## 97           5.7         2.9          4.2         1.3 versicolor
 ## 98           6.2         2.9          4.3         1.3 versicolor
-## 100          5.7         2.8          4.1         1.3 versicolor</code></pre>
+## 101          6.3         3.3          6.0         2.5  virginica
+## 103          7.1         3.0          5.9         2.1  virginica
+## 104          6.3         2.9          5.6         1.8  virginica
+## 105          6.5         3.0          5.8         2.2  virginica
+## 106          7.6          NA          6.6         2.1  virginica
+## 108          7.3         2.9          6.3         1.8  virginica
+## 109          6.7         2.5          5.8         1.8  virginica
+## 110          7.2         3.6          6.1         2.5  virginica
+## 111          6.5         3.2          5.1         2.0  virginica
+## 112          6.4         2.7          5.3         1.9  virginica
+## 113          6.8         3.0          5.5         2.1  virginica
+## 116          6.4         3.2          5.3         2.3  virginica
+## 117          6.5          NA          5.5         1.8  virginica
+## 118          7.7         3.8          6.7         2.2  virginica
+## 119          7.7         2.6          6.9         2.3  virginica
+## 120          6.0         2.2          5.0         1.5  virginica
+## 121          6.9         3.2          5.7         2.3  virginica
+## 123          7.7         2.8          6.7         2.0  virginica
+## 124          6.3         2.7          4.9         1.8  virginica
+## 125          6.7         3.3          5.7         2.1  virginica
+## 126          7.2         3.2          6.0         1.8  virginica
+## 127          6.2         2.8          4.8         1.8  virginica
+## 128          6.1          NA          4.9         1.8  virginica
+## 129          6.4         2.8          5.6         2.1  virginica
+## 130          7.2         3.0          5.8         1.6  virginica
+## 131          7.4         2.8          6.1         1.9  virginica
+## 132          7.9         3.8          6.4         2.0  virginica
+## 133          6.4         2.8          5.6         2.2  virginica
+## 134          6.3         2.8          5.1         1.5  virginica
+## 135          6.1         2.6          5.6         1.4  virginica
+## 136          7.7         3.0          6.1         2.3  virginica
+## 137          6.3         3.4          5.6         2.4  virginica
+## 138          6.4         3.1          5.5         1.8  virginica
+## 139          6.0         3.0          4.8         1.8  virginica
+## 140          6.9         3.1          5.4         2.1  virginica
+## 141          6.7         3.1          5.6         2.4  virginica
+## 142          6.9         3.1          5.1         2.3  virginica
+## 144          6.8         3.2          5.9         2.3  virginica
+## 145          6.7         3.3          5.7         2.5  virginica
+## 146          6.7         3.0          5.2         2.3  virginica
+## 147          6.3         2.5          5.0         1.9  virginica
+## 148          6.5         3.0          5.2         2.0  virginica
+## 149          6.2         3.4          5.4         2.3  virginica
+## 150          5.9         3.0          5.1         1.8  virginica</code></pre>
 <p>Let’s break that down a little. <code>dat$Sepal.Length &gt; mean.sl</code> returns a <em>Logical</em> vector of the same length as <code>dat$Sepal.Length</code>; that is a vector of <code>TRUE</code> and <code>FALSE</code> based on testing each element of <code>dat$Sepal.Length</code> to see if it is greater than <code>mean.sl</code>.</p>
 <pre class="sourceCode r"><code class="sourceCode r">dat$Sepal.Length &gt;<span class="st"> </span>mean.sl</code></pre>
 <pre><code>##   [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-##  [12] FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE
+##  [12] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 ##  [23] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-##  [34]  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-##  [45] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE
-##  [56]  TRUE  TRUE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE
-##  [67]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
-##  [78]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE
-##  [89]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE FALSE
-## [100]  TRUE</code></pre>
+##  [34] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  [45] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE  TRUE
+##  [56] FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE FALSE  TRUE
+##  [67] FALSE FALSE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+##  [78]  TRUE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE  TRUE  TRUE
+##  [89] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE
+## [100] FALSE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE
+## [111]  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+## [122] FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+## [133]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE
+## [144]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
 <p>When you put that logical vector inside the row index, just the rows which are <code>TRUE</code> are returned. This type of conditional indexing is very powerful:</p>
 <pre class="sourceCode r"><code class="sourceCode r">dat[dat$Species ==<span class="st"> &quot;setosa&quot;</span>,]</code></pre>
 <pre><code>##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
@@ -782,7 +966,7 @@ mean.sl</code></pre>
 ## 7           4.6         3.4          1.4         0.3  setosa
 ## 8           5.0         3.4          1.5         0.2  setosa
 ## 9           4.4         2.9          1.4         0.2  setosa
-## 10          4.9          NA          1.5         0.1  setosa
+## 10          4.9         3.1          1.5         0.1  setosa
 ## 11          5.4         3.7          1.5         0.2  setosa
 ## 12          4.8         3.4          1.6         0.2  setosa
 ## 13          4.8         3.0          1.4         0.1  setosa
@@ -803,7 +987,7 @@ mean.sl</code></pre>
 ## 28          5.2         3.5          1.5         0.2  setosa
 ## 29          5.2         3.4          1.4         0.2  setosa
 ## 30          4.7         3.2          1.6         0.2  setosa
-## 31          4.8          NA          1.6         0.2  setosa
+## 31          4.8         3.1          1.6         0.2  setosa
 ## 32          5.4         3.4          1.5         0.4  setosa
 ## 33          5.2         4.1          1.5         0.1  setosa
 ## 34          5.5         4.2          1.4         0.2  setosa

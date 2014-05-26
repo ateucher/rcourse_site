@@ -70,8 +70,6 @@ code > span.er { font-weight: bold; }
 <li>We edit each others manuscripts, but we don’t edit each other’s code.</li>
 <li>If you write your code with “future you” in mind, you will save yourself and others a lot of time.</li>
 </ul>
-<div id="very-basics-of-r" class="section level1">
-<h1>Very basics of R</h1>
 <p>R is a versatile, open source programming language that was specifically designed for data analysis. As such R is extremely useful both for statistics and data science. Inspired by the programming language S.</p>
 <ul>
 <li>Open source software under GPL.<br /></li>
@@ -81,10 +79,9 @@ code > span.er { font-weight: bold; }
 <li>Is (sort of) object oriented and functional.<br /></li>
 <li>Large and growing community of peers.</li>
 </ul>
-<div id="introduction-to-r" class="section level2">
-<h2>Introduction to R</h2>
+<div id="introduction-to-r-and-rstudio" class="section level2">
+<h2>Introduction to R and RStudio</h2>
 <p>Let’s start by learning about our tool.</p>
-
 <p><em>Point out the different windows in RStudio.</em></p>
 <ul>
 <li>Console, Scripts, Environments, Plots</li>
@@ -92,7 +89,6 @@ code > span.er { font-weight: bold; }
 <li>Code and workflow is more reproducible if we can document everything that we do.</li>
 <li>Our end goal is not just to “do stuff” but to do it in a way that anyone can easily and exactly replicate our workflow and results.</li>
 </ul>
-
 <p>You can get output from R simply by typing in math</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span> +<span class="st"> </span><span class="dv">5</span></code></pre>
 <pre><code>## [1] 8</code></pre>
@@ -161,7 +157,7 @@ hrs_per_week</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">max</span>(<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">2</span>,<span class="dv">6</span>,<span class="dv">9</span>)</code></pre>
 <pre><code>## [1] 9</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">date</span>() <span class="co"># Not all functions require arguments</span></code></pre>
-<pre><code>## [1] &quot;Fri May 23 21:48:29 2014&quot;</code></pre>
+<pre><code>## [1] &quot;Mon May 26 11:34:55 2014&quot;</code></pre>
 <div id="specifying-arguments" class="section level4">
 <h4>Specifying arguments</h4>
 <p>Arguments can be specified using <em>positional</em> and/or <em>named</em> matching. Some arguments have default values.</p>
@@ -206,9 +202,15 @@ hrs_per_week</code></pre>
 ## attached base packages:
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
+## other attached packages:
+## [1] rmarkdown_0.2.15 dplyr_0.2        ggplot2_1.0.0   
+## 
 ## loaded via a namespace (and not attached):
-## [1] evaluate_0.5.5   formatR_0.10     knitr_1.5        rmarkdown_0.2.15
-## [5] stringr_0.6.2    tools_3.1.0      yaml_2.1.11</code></pre>
+##  [1] assertthat_0.1   colorspace_1.2-4 digest_0.6.4     evaluate_0.5.5  
+##  [5] formatR_0.10     grid_3.1.0       gtable_0.1.2     knitr_1.5       
+##  [9] labeling_0.2     MASS_7.3-33      munsell_0.4.2    parallel_3.1.0  
+## [13] plyr_1.8.1       proto_0.3-10     Rcpp_0.11.1      reshape2_1.4    
+## [17] scales_0.2.4     stringr_0.6.2    tools_3.1.0      yaml_2.1.11</code></pre>
 </div>
 </div>
 <div id="workspace" class="section level3">
@@ -237,16 +239,11 @@ hrs_per_week</code></pre>
 <p>Everything in R is an object.</p>
 <p>R has 6 (although we will not discuss the raw class for this workshop) data types.</p>
 <ul>
-<li>character</li>
-<li>numeric</li>
-<li>integer</li>
-<li>logical</li>
-<li><p>complex</p></li>
 <li><strong>character</strong>: <code>&quot;a&quot;</code>, <code>&quot;swc&quot;</code></li>
 <li><strong>numeric</strong>: <code>2</code>, <code>15.5</code></li>
 <li><strong>integer</strong>: <code>2L</code> (the <code>L</code> tells R to store this as an integer)</li>
 <li><strong>logical</strong>: <code>TRUE</code>, <code>FALSE</code></li>
-<li><p><strong>complex</strong>: <code>1+4i</code> (complex numbers with real and imaginary parts)</p></li>
+<li><strong>complex</strong>: <code>1+4i</code> (complex numbers with real and imaginary parts)</li>
 </ul>
 <p><code>class()</code> - what is it?</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Example</span>
@@ -581,7 +578,6 @@ dat</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)  ## install the ggplot2 package</code></pre>
 <p>You can’t ever learn all of R, but you can learn how to build a program and how to find help to do the things that you want to do.</p>
 <p>Let’s get hands-on.</p>
-</div>
 </div>
 </div>
 
