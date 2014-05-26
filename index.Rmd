@@ -13,7 +13,7 @@ On this page you will find links to the data we need for the course, as well as 
 
 [03 - Plotting](03-plotting.html)
 
-[04 - Basic statistics](04-basic-stats.html)
+[04 - Basic statistics](04-basic_stats.html)
 
 [Getting help](getting_help.html)
 

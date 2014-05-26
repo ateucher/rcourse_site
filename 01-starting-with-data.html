@@ -153,7 +153,7 @@ code > span.er { font-weight: bold; }
 ## 38           4.9         3.6          1.4         0.1     setosa
 ## 39           4.4         3.0          1.3         0.2     setosa
 ## 40           5.1         3.4          1.5         0.2     setosa
-## 41           5.0         3.5          1.3         0.3     setosa
+## 41           5.0          NA          1.3         0.3     setosa
 ## 42           4.5         2.3          1.3         0.3     setosa
 ## 43           4.4         3.2          1.3         0.2     setosa
 ## 44           5.0         3.5          1.6         0.6     setosa
@@ -161,11 +161,11 @@ code > span.er { font-weight: bold; }
 ## 46           4.8         3.0          1.4         0.3     setosa
 ## 47           5.1         3.8          1.6         0.2     setosa
 ## 48           4.6         3.2          1.4         0.2     setosa
-## 49           5.3         3.7          1.5         0.2     setosa
+## 49           5.3          NA          1.5         0.2     setosa
 ## 50           5.0         3.3          1.4         0.2     setosa
 ## 51           7.0         3.2          4.7         1.4 versicolor
 ## 52           6.4         3.2          4.5         1.5 versicolor
-## 53           6.9          NA          4.9         1.5 versicolor
+## 53           6.9         3.1          4.9         1.5 versicolor
 ## 54           5.5         2.3          4.0         1.3 versicolor
 ## 55           6.5         2.8          4.6         1.5 versicolor
 ## 56           5.7         2.8          4.5         1.3 versicolor
@@ -183,8 +183,8 @@ code > span.er { font-weight: bold; }
 ## 68           5.8         2.7          4.1         1.0 versicolor
 ## 69           6.2         2.2          4.5         1.5 versicolor
 ## 70           5.6         2.5          3.9         1.1 versicolor
-## 71           5.9         3.2          4.8         1.8 versicolor
-## 72           6.1          NA          4.0         1.3 versicolor
+## 71           5.9          NA          4.8         1.8 versicolor
+## 72           6.1         2.8          4.0         1.3 versicolor
 ## 73           6.3         2.5          4.9         1.5 versicolor
 ## 74           6.1         2.8          4.7         1.2 versicolor
 ## 75           6.4         2.9          4.3         1.3 versicolor
@@ -218,18 +218,18 @@ code > span.er { font-weight: bold; }
 ## 103          7.1         3.0          5.9         2.1  virginica
 ## 104          6.3         2.9          5.6         1.8  virginica
 ## 105          6.5         3.0          5.8         2.2  virginica
-## 106          7.6          NA          6.6         2.1  virginica
+## 106          7.6         3.0          6.6         2.1  virginica
 ## 107          4.9         2.5          4.5         1.7  virginica
 ## 108          7.3         2.9          6.3         1.8  virginica
 ## 109          6.7         2.5          5.8         1.8  virginica
-## 110          7.2         3.6          6.1         2.5  virginica
+## 110          7.2          NA          6.1         2.5  virginica
 ## 111          6.5         3.2          5.1         2.0  virginica
 ## 112          6.4         2.7          5.3         1.9  virginica
 ## 113          6.8         3.0          5.5         2.1  virginica
 ## 114          5.7         2.5          5.0         2.0  virginica
 ## 115          5.8         2.8          5.1         2.4  virginica
 ## 116          6.4         3.2          5.3         2.3  virginica
-## 117          6.5          NA          5.5         1.8  virginica
+## 117          6.5         3.0          5.5         1.8  virginica
 ## 118          7.7         3.8          6.7         2.2  virginica
 ## 119          7.7         2.6          6.9         2.3  virginica
 ## 120          6.0         2.2          5.0         1.5  virginica
@@ -240,7 +240,7 @@ code > span.er { font-weight: bold; }
 ## 125          6.7         3.3          5.7         2.1  virginica
 ## 126          7.2         3.2          6.0         1.8  virginica
 ## 127          6.2         2.8          4.8         1.8  virginica
-## 128          6.1          NA          4.9         1.8  virginica
+## 128          6.1         3.0          4.9         1.8  virginica
 ## 129          6.4         2.8          5.6         2.1  virginica
 ## 130          7.2         3.0          5.8         1.6  virginica
 ## 131          7.4         2.8          6.1         1.9  virginica
@@ -260,7 +260,7 @@ code > span.er { font-weight: bold; }
 ## 145          6.7         3.3          5.7         2.5  virginica
 ## 146          6.7         3.0          5.2         2.3  virginica
 ## 147          6.3         2.5          5.0         1.9  virginica
-## 148          6.5         3.0          5.2         2.0  virginica
+## 148          6.5          NA          5.2         2.0  virginica
 ## 149          6.2         3.4          5.4         2.3  virginica
 ## 150          5.9         3.0          5.1         1.8  virginica</code></pre>
 <p>The expression <code>read.csv()</code> is a function that asks R to load a <code>.csv</code> file into R’s workspace as a data frame.</p>
@@ -375,7 +375,7 @@ weights</code></pre>
 ## 38           4.9         3.6          1.4         0.1     setosa
 ## 39           4.4         3.0          1.3         0.2     setosa
 ## 40           5.1         3.4          1.5         0.2     setosa
-## 41           5.0         3.5          1.3         0.3     setosa
+## 41           5.0          NA          1.3         0.3     setosa
 ## 42           4.5         2.3          1.3         0.3     setosa
 ## 43           4.4         3.2          1.3         0.2     setosa
 ## 44           5.0         3.5          1.6         0.6     setosa
@@ -383,11 +383,11 @@ weights</code></pre>
 ## 46           4.8         3.0          1.4         0.3     setosa
 ## 47           5.1         3.8          1.6         0.2     setosa
 ## 48           4.6         3.2          1.4         0.2     setosa
-## 49           5.3         3.7          1.5         0.2     setosa
+## 49           5.3          NA          1.5         0.2     setosa
 ## 50           5.0         3.3          1.4         0.2     setosa
 ## 51           7.0         3.2          4.7         1.4 versicolor
 ## 52           6.4         3.2          4.5         1.5 versicolor
-## 53           6.9          NA          4.9         1.5 versicolor
+## 53           6.9         3.1          4.9         1.5 versicolor
 ## 54           5.5         2.3          4.0         1.3 versicolor
 ## 55           6.5         2.8          4.6         1.5 versicolor
 ## 56           5.7         2.8          4.5         1.3 versicolor
@@ -405,8 +405,8 @@ weights</code></pre>
 ## 68           5.8         2.7          4.1         1.0 versicolor
 ## 69           6.2         2.2          4.5         1.5 versicolor
 ## 70           5.6         2.5          3.9         1.1 versicolor
-## 71           5.9         3.2          4.8         1.8 versicolor
-## 72           6.1          NA          4.0         1.3 versicolor
+## 71           5.9          NA          4.8         1.8 versicolor
+## 72           6.1         2.8          4.0         1.3 versicolor
 ## 73           6.3         2.5          4.9         1.5 versicolor
 ## 74           6.1         2.8          4.7         1.2 versicolor
 ## 75           6.4         2.9          4.3         1.3 versicolor
@@ -440,18 +440,18 @@ weights</code></pre>
 ## 103          7.1         3.0          5.9         2.1  virginica
 ## 104          6.3         2.9          5.6         1.8  virginica
 ## 105          6.5         3.0          5.8         2.2  virginica
-## 106          7.6          NA          6.6         2.1  virginica
+## 106          7.6         3.0          6.6         2.1  virginica
 ## 107          4.9         2.5          4.5         1.7  virginica
 ## 108          7.3         2.9          6.3         1.8  virginica
 ## 109          6.7         2.5          5.8         1.8  virginica
-## 110          7.2         3.6          6.1         2.5  virginica
+## 110          7.2          NA          6.1         2.5  virginica
 ## 111          6.5         3.2          5.1         2.0  virginica
 ## 112          6.4         2.7          5.3         1.9  virginica
 ## 113          6.8         3.0          5.5         2.1  virginica
 ## 114          5.7         2.5          5.0         2.0  virginica
 ## 115          5.8         2.8          5.1         2.4  virginica
 ## 116          6.4         3.2          5.3         2.3  virginica
-## 117          6.5          NA          5.5         1.8  virginica
+## 117          6.5         3.0          5.5         1.8  virginica
 ## 118          7.7         3.8          6.7         2.2  virginica
 ## 119          7.7         2.6          6.9         2.3  virginica
 ## 120          6.0         2.2          5.0         1.5  virginica
@@ -462,7 +462,7 @@ weights</code></pre>
 ## 125          6.7         3.3          5.7         2.1  virginica
 ## 126          7.2         3.2          6.0         1.8  virginica
 ## 127          6.2         2.8          4.8         1.8  virginica
-## 128          6.1          NA          4.9         1.8  virginica
+## 128          6.1         3.0          4.9         1.8  virginica
 ## 129          6.4         2.8          5.6         2.1  virginica
 ## 130          7.2         3.0          5.8         1.6  virginica
 ## 131          7.4         2.8          6.1         1.9  virginica
@@ -482,7 +482,7 @@ weights</code></pre>
 ## 145          6.7         3.3          5.7         2.5  virginica
 ## 146          6.7         3.0          5.2         2.3  virginica
 ## 147          6.3         2.5          5.0         1.9  virginica
-## 148          6.5         3.0          5.2         2.0  virginica
+## 148          6.5          NA          5.2         2.0  virginica
 ## 149          6.2         3.4          5.4         2.3  virginica
 ## 150          5.9         3.0          5.1         1.8  virginica</code></pre>
 <p>It’s important to note that anything we do with <code>dat</code> here will not affect the original <code>csv</code> file. This is an important concept of reproducibility - don’t touch your original data!</p>
@@ -500,7 +500,7 @@ weights</code></pre>
 ## 145          6.7         3.3          5.7         2.5 virginica
 ## 146          6.7         3.0          5.2         2.3 virginica
 ## 147          6.3         2.5          5.0         1.9 virginica
-## 148          6.5         3.0          5.2         2.0 virginica
+## 148          6.5          NA          5.2         2.0 virginica
 ## 149          6.2         3.4          5.4         2.3 virginica
 ## 150          5.9         3.0          5.1         1.8 virginica</code></pre>
 <p>In RStudio’s environment pane, you can also click on the little table icon next to the data frame name.</p>
@@ -530,8 +530,8 @@ weights</code></pre>
 ##  Min.   :4.30   Min.   :2.00   Min.   :1.00   Min.   :0.1  
 ##  1st Qu.:5.10   1st Qu.:2.80   1st Qu.:1.60   1st Qu.:0.3  
 ##  Median :5.80   Median :3.00   Median :4.35   Median :1.3  
-##  Mean   :5.84   Mean   :3.06   Mean   :3.76   Mean   :1.2  
-##  3rd Qu.:6.40   3rd Qu.:3.40   3rd Qu.:5.10   3rd Qu.:1.8  
+##  Mean   :5.84   Mean   :3.05   Mean   :3.76   Mean   :1.2  
+##  3rd Qu.:6.40   3rd Qu.:3.30   3rd Qu.:5.10   3rd Qu.:1.8  
 ##  Max.   :7.90   Max.   :4.40   Max.   :6.90   Max.   :2.5  
 ##                 NA&#39;s   :5                                  
 ##        Species  
@@ -599,13 +599,13 @@ weights</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">dat$Sepal.Width <span class="co"># First look at the data - there are some values that are NA.</span></code></pre>
 <pre><code>##   [1] 3.5 3.0 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 3.7 3.4 3.0 3.0 4.0 4.4 3.9
 ##  [18] 3.5 3.8 3.8 3.4 3.7 3.6 3.3 3.4 3.0 3.4 3.5 3.4 3.2 3.1 3.4 4.1 4.2
-##  [35] 3.1 3.2 3.5 3.6 3.0 3.4 3.5 2.3 3.2 3.5 3.8 3.0 3.8 3.2 3.7 3.3 3.2
-##  [52] 3.2  NA 2.3 2.8 2.8 3.3 2.4 2.9 2.7 2.0 3.0 2.2 2.9 2.9 3.1 3.0 2.7
-##  [69] 2.2 2.5 3.2  NA 2.5 2.8 2.9 3.0 2.8 3.0 2.9 2.6 2.4 2.4 2.7 2.7 3.0
+##  [35] 3.1 3.2 3.5 3.6 3.0 3.4  NA 2.3 3.2 3.5 3.8 3.0 3.8 3.2  NA 3.3 3.2
+##  [52] 3.2 3.1 2.3 2.8 2.8 3.3 2.4 2.9 2.7 2.0 3.0 2.2 2.9 2.9 3.1 3.0 2.7
+##  [69] 2.2 2.5  NA 2.8 2.5 2.8 2.9 3.0 2.8 3.0 2.9 2.6 2.4 2.4 2.7 2.7 3.0
 ##  [86] 3.4 3.1 2.3 3.0 2.5 2.6 3.0 2.6 2.3 2.7 3.0 2.9 2.9 2.5 2.8 3.3 2.7
-## [103] 3.0 2.9 3.0  NA 2.5 2.9 2.5 3.6 3.2 2.7 3.0 2.5 2.8 3.2  NA 3.8 2.6
-## [120] 2.2 3.2 2.8 2.8 2.7 3.3 3.2 2.8  NA 2.8 3.0 2.8 3.8 2.8 2.8 2.6 3.0
-## [137] 3.4 3.1 3.0 3.1 3.1 3.1 2.7 3.2 3.3 3.0 2.5 3.0 3.4 3.0</code></pre>
+## [103] 3.0 2.9 3.0 3.0 2.5 2.9 2.5  NA 3.2 2.7 3.0 2.5 2.8 3.2 3.0 3.8 2.6
+## [120] 2.2 3.2 2.8 2.8 2.7 3.3 3.2 2.8 3.0 2.8 3.0 2.8 3.8 2.8 2.8 2.6 3.0
+## [137] 3.4 3.1 3.0 3.1 3.1 3.1 2.7 3.2 3.3 3.0 2.5  NA 3.4 3.0</code></pre>
 <p><code>NA</code> is a special encoding for a missing value in a vector… look at help file for <code>max()</code>: <code>?max</code>. You’ll see there’s an argument called <code>na.rm</code>, where the default is <code>FALSE</code>. If we change it to true, <code>max</code> ignores the <code>NA</code> values:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">max</span>(dat$Sepal.Width, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</code></pre>
 <pre><code>## [1] 4.4</code></pre>
@@ -870,7 +870,7 @@ mean.sl</code></pre>
 <pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
 ## 51           7.0         3.2          4.7         1.4 versicolor
 ## 52           6.4         3.2          4.5         1.5 versicolor
-## 53           6.9          NA          4.9         1.5 versicolor
+## 53           6.9         3.1          4.9         1.5 versicolor
 ## 55           6.5         2.8          4.6         1.5 versicolor
 ## 57           6.3         3.3          4.7         1.6 versicolor
 ## 59           6.6         2.9          4.6         1.3 versicolor
@@ -879,8 +879,8 @@ mean.sl</code></pre>
 ## 64           6.1         2.9          4.7         1.4 versicolor
 ## 66           6.7         3.1          4.4         1.4 versicolor
 ## 69           6.2         2.2          4.5         1.5 versicolor
-## 71           5.9         3.2          4.8         1.8 versicolor
-## 72           6.1          NA          4.0         1.3 versicolor
+## 71           5.9          NA          4.8         1.8 versicolor
+## 72           6.1         2.8          4.0         1.3 versicolor
 ## 73           6.3         2.5          4.9         1.5 versicolor
 ## 74           6.1         2.8          4.7         1.2 versicolor
 ## 75           6.4         2.9          4.3         1.3 versicolor
@@ -898,15 +898,15 @@ mean.sl</code></pre>
 ## 103          7.1         3.0          5.9         2.1  virginica
 ## 104          6.3         2.9          5.6         1.8  virginica
 ## 105          6.5         3.0          5.8         2.2  virginica
-## 106          7.6          NA          6.6         2.1  virginica
+## 106          7.6         3.0          6.6         2.1  virginica
 ## 108          7.3         2.9          6.3         1.8  virginica
 ## 109          6.7         2.5          5.8         1.8  virginica
-## 110          7.2         3.6          6.1         2.5  virginica
+## 110          7.2          NA          6.1         2.5  virginica
 ## 111          6.5         3.2          5.1         2.0  virginica
 ## 112          6.4         2.7          5.3         1.9  virginica
 ## 113          6.8         3.0          5.5         2.1  virginica
 ## 116          6.4         3.2          5.3         2.3  virginica
-## 117          6.5          NA          5.5         1.8  virginica
+## 117          6.5         3.0          5.5         1.8  virginica
 ## 118          7.7         3.8          6.7         2.2  virginica
 ## 119          7.7         2.6          6.9         2.3  virginica
 ## 120          6.0         2.2          5.0         1.5  virginica
@@ -916,7 +916,7 @@ mean.sl</code></pre>
 ## 125          6.7         3.3          5.7         2.1  virginica
 ## 126          7.2         3.2          6.0         1.8  virginica
 ## 127          6.2         2.8          4.8         1.8  virginica
-## 128          6.1          NA          4.9         1.8  virginica
+## 128          6.1         3.0          4.9         1.8  virginica
 ## 129          6.4         2.8          5.6         2.1  virginica
 ## 130          7.2         3.0          5.8         1.6  virginica
 ## 131          7.4         2.8          6.1         1.9  virginica
@@ -935,7 +935,7 @@ mean.sl</code></pre>
 ## 145          6.7         3.3          5.7         2.5  virginica
 ## 146          6.7         3.0          5.2         2.3  virginica
 ## 147          6.3         2.5          5.0         1.9  virginica
-## 148          6.5         3.0          5.2         2.0  virginica
+## 148          6.5          NA          5.2         2.0  virginica
 ## 149          6.2         3.4          5.4         2.3  virginica
 ## 150          5.9         3.0          5.1         1.8  virginica</code></pre>
 <p>Let’s break that down a little. <code>dat$Sepal.Length &gt; mean.sl</code> returns a <em>Logical</em> vector of the same length as <code>dat$Sepal.Length</code>; that is a vector of <code>TRUE</code> and <code>FALSE</code> based on testing each element of <code>dat$Sepal.Length</code> to see if it is greater than <code>mean.sl</code>.</p>
@@ -997,7 +997,7 @@ mean.sl</code></pre>
 ## 38          4.9         3.6          1.4         0.1  setosa
 ## 39          4.4         3.0          1.3         0.2  setosa
 ## 40          5.1         3.4          1.5         0.2  setosa
-## 41          5.0         3.5          1.3         0.3  setosa
+## 41          5.0          NA          1.3         0.3  setosa
 ## 42          4.5         2.3          1.3         0.3  setosa
 ## 43          4.4         3.2          1.3         0.2  setosa
 ## 44          5.0         3.5          1.6         0.6  setosa
@@ -1005,7 +1005,7 @@ mean.sl</code></pre>
 ## 46          4.8         3.0          1.4         0.3  setosa
 ## 47          5.1         3.8          1.6         0.2  setosa
 ## 48          4.6         3.2          1.4         0.2  setosa
-## 49          5.3         3.7          1.5         0.2  setosa
+## 49          5.3          NA          1.5         0.2  setosa
 ## 50          5.0         3.3          1.4         0.2  setosa</code></pre>
 <p>what if you want to find the mean of the petal lengths of just <em>Iris setosa</em>?</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(dat[dat$Species ==<span class="st"> &quot;setosa&quot;</span>, <span class="st">&quot;Petal.Length&quot;</span>])</code></pre>
