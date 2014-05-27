@@ -5,6 +5,7 @@ title: Getting started with data
 ```{r, echo=FALSE, message=FALSE}
 require(knitr)
 opts_chunk$set(results="markup")
+# options(max.print = "50")
 ```
 
 ## Analyzing Iris Data

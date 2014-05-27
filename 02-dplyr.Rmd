@@ -188,7 +188,8 @@ sum_dat <- dat %>%
 
 Note that the NA in Sepal.Width crept back in.  We can specify na.rm by using 
 the `.` operator; this specifies where the values from preceding operation go 
-(the default; i.e., without using the `.`, is the first position).
+(the default is the first position, if it should go somewhere else, use the `.` 
+to specify the position).
 
 ```{r}
 sum_dat <- dat %>%
@@ -196,11 +197,6 @@ sum_dat <- dat %>%
   filter(Sepal.Length > 5) %>%
   mutate(n = n()) %>%
   summarise_each(funs(mean(., na.rm=TRUE)))
-```
-
-Let's check if we got the same answer:
-```{r}
-all.equal(sum_dat, summary_dat)
 ```
 
 Now let's clean up a bit. See all objects in your workspace with `ls()`.  You 
