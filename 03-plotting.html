@@ -203,18 +203,20 @@ g</code></pre>
 ## stat_bin: binwidth defaulted to range/30. Use &#39;binwidth = x&#39; to adjust this.
 ## stat_bin: binwidth defaulted to range/30. Use &#39;binwidth = x&#39; to adjust this.</code></pre>
 <p><img src="03-plotting_files/figure-html/irisexamples2.png" alt="plot of chunk irisexamples" /></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(<span class="dt">x=</span>Petal.Length, <span class="dt">fill=</span>Species)) +<span class="st"> </span><span class="kw">geom_histogram</span>()</code></pre>
-<pre><code>## stat_bin: binwidth defaulted to range/30. Use &#39;binwidth = x&#39; to adjust this.</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(<span class="dt">x=</span>Petal.Length, <span class="dt">fill=</span>Species)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">position=</span><span class="st">&quot;dodge&quot;</span>, <span class="dt">binwidth=</span><span class="fl">0.1</span>)</code></pre>
 <p><img src="03-plotting_files/figure-html/irisexamples3.png" alt="plot of chunk irisexamples" /></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(<span class="dt">x=</span>Species, <span class="dt">y=</span>Sepal.Length)) +<span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(<span class="dt">x=</span>Petal.Length, <span class="dt">fill=</span>Species)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">alpha=</span><span class="fl">0.5</span>)</code></pre>
 <p><img src="03-plotting_files/figure-html/irisexamples4.png" alt="plot of chunk irisexamples" /></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(<span class="dt">x=</span>Species, <span class="dt">y=</span>Sepal.Length)) +<span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre>
+<p><img src="03-plotting_files/figure-html/irisexamples5.png" alt="plot of chunk irisexamples" /></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(<span class="dt">x=</span>Species, <span class="dt">y=</span>Sepal.Width, <span class="dt">fill=</span>Species)) +<span class="st"> </span><span class="kw">geom_violin</span>()</code></pre>
 <pre><code>## Warning: Removed 5 rows containing non-finite values (stat_ydensity).</code></pre>
-<p><img src="03-plotting_files/figure-html/irisexamples5.png" alt="plot of chunk irisexamples" /></p>
+<p><img src="03-plotting_files/figure-html/irisexamples6.png" alt="plot of chunk irisexamples" /></p>
 <p>What if we want to split up the measurements and compare them all? We need the type of measurement (<code>Petal.length</code>, <code>Petal.Width</code>) as a variable rather than each as a column heading. There is another package by Hadley Wickham (see a trend here?) that helps us restructure, or reshape our data: It’s called <code>reshape2</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(reshape2)</code></pre>
-<pre><code>## Loading required package: reshape2</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">dat_long &lt;-<span class="st"> </span><span class="kw">melt</span>(dat)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(reshape2)
+dat_long &lt;-<span class="st"> </span><span class="kw">melt</span>(dat)</code></pre>
 <pre><code>## Using Species as id variables</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(dat_long)</code></pre>
 <pre><code>##   Species     variable value

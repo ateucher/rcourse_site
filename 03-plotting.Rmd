@@ -317,7 +317,11 @@ ggplot(dat, aes(x=Petal.Length, y=Petal.Width, col=Sepal.Width, size=Sepal.Lengt
 
 ggplot(dat, aes(x=Petal.Length)) + geom_histogram() + facet_wrap(~Species)
 
-ggplot(dat, aes(x=Petal.Length, fill=Species)) + geom_histogram()
+ggplot(dat, aes(x=Petal.Length, fill=Species)) + 
+  geom_histogram(position="dodge", binwidth=0.1)
+
+ggplot(dat, aes(x=Petal.Length, fill=Species)) + 
+  geom_density(alpha=0.5)
 
 ggplot(dat, aes(x=Species, y=Sepal.Length)) + geom_boxplot()
 
