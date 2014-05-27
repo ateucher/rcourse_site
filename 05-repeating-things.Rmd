@@ -2,10 +2,6 @@
 title: Repeating Things
 ---
 
-```{r echo=FALSE, results='hide', message=FALSE}
-dat <- read.csv("data/iris.csv")
-```
-
 One of the big advantages of working with data in an environment like R is that 
 we can repeat and automate things really easily.
 

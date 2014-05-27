@@ -2,11 +2,6 @@
 title: Functions
 ---
 
-```{r, echo=FALSE}
-require(knitr)
-opts_chunk$set(results="markup")
-```
-
 ## Objectives
 
 * Define a function that takes arguments (parameters).

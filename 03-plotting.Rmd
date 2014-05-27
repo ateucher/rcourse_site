@@ -1,11 +1,5 @@
 # Data visualization with ggplot2
 
-```{r, echo=FALSE, message=FALSE}
-library(knitr)
-opts_chunk$set(message=FALSE, results="markup")
-dat <- read.csv("data/iris.csv")
-```
-
 ## Basic plotting
 
 R's base (built-in) plotting functions are powerful and very flexible, but not 

@@ -2,12 +2,6 @@
 title: Data munging with dplyr
 ---
 
-```{r, echo=FALSE, message=FALSE}
-require(knitr)
-opts_chunk$set(results="markup")
-dat <- read.csv("data/iris.csv")
-```
-
 While a lot of powerful tools are built into R, its greatest power comes from 
 its massive base of users and developers, and the tools they create.  These 
 tools come in the form of packages that we download, then load - they give us 
@@ -202,7 +196,7 @@ sum_dat <- dat %>%
 Now let's clean up a bit. See all objects in your workspace with `ls()`.  You 
 also see these things in your environment pane in RStudio.
 
-```{r}
+```{r eval=FALSE}
 ls()
 ```
 

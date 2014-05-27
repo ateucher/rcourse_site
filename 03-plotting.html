@@ -138,6 +138,7 @@ code > span.er { font-weight: bold; }
 <p><img src="03-plotting_files/figure-html/gghexbin2.png" alt="plot of chunk gghexbin2" /></p>
 <p>We can easily add more layers to the plot. For instance, we could add another layer displaying a smoothed conditional mean using the <code>geom_smooth()</code> function.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(carat, price)) +<span class="st"> </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">geom_smooth</span>()</code></pre>
+<pre><code>## geom_smooth: method=&quot;auto&quot; and size of largest group is &gt;=1000, so using gam with formula: y ~ s(x, bs = &quot;cs&quot;). Use &#39;method = x&#39; to change the smoothing method.</code></pre>
 <p><img src="03-plotting_files/figure-html/smoothgam.png" alt="plot of chunk smoothgam" /></p>
 <p>We’ll get a message telling us that because we have &gt;1,000 observations we will default to using a generalized additive model. We could easily plot a straight line by specifying that we want a linear model (<code>method=&quot;lm&quot;</code>) instead of a generalized additive model, the default for large datasets.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(carat, price)) +<span class="st"> </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)</code></pre>
@@ -198,8 +199,12 @@ g</code></pre>
 <span class="st">  </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>Species)</code></pre>
 <p><img src="03-plotting_files/figure-html/irisexamples1.png" alt="plot of chunk irisexamples" /></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(<span class="dt">x=</span>Petal.Length)) +<span class="st"> </span><span class="kw">geom_histogram</span>() +<span class="st"> </span><span class="kw">facet_wrap</span>(~Species)</code></pre>
+<pre><code>## stat_bin: binwidth defaulted to range/30. Use &#39;binwidth = x&#39; to adjust this.
+## stat_bin: binwidth defaulted to range/30. Use &#39;binwidth = x&#39; to adjust this.
+## stat_bin: binwidth defaulted to range/30. Use &#39;binwidth = x&#39; to adjust this.</code></pre>
 <p><img src="03-plotting_files/figure-html/irisexamples2.png" alt="plot of chunk irisexamples" /></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(<span class="dt">x=</span>Petal.Length, <span class="dt">fill=</span>Species)) +<span class="st"> </span><span class="kw">geom_histogram</span>()</code></pre>
+<pre><code>## stat_bin: binwidth defaulted to range/30. Use &#39;binwidth = x&#39; to adjust this.</code></pre>
 <p><img src="03-plotting_files/figure-html/irisexamples3.png" alt="plot of chunk irisexamples" /></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(<span class="dt">x=</span>Species, <span class="dt">y=</span>Sepal.Length)) +<span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre>
 <p><img src="03-plotting_files/figure-html/irisexamples4.png" alt="plot of chunk irisexamples" /></p>
@@ -207,9 +212,11 @@ g</code></pre>
 <pre><code>## Warning: Removed 5 rows containing non-finite values (stat_ydensity).</code></pre>
 <p><img src="03-plotting_files/figure-html/irisexamples5.png" alt="plot of chunk irisexamples" /></p>
 <p>What if we want to split up the measurements and compare them all? We need the type of measurement (<code>Petal.length</code>, <code>Petal.Width</code>) as a variable rather than each as a column heading. There is another package by Hadley Wickham (see a trend here?) that helps us restructure, or reshape our data: It’s called <code>reshape2</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(reshape2)
-dat_long &lt;-<span class="st"> </span><span class="kw">melt</span>(dat)
-<span class="kw">head</span>(dat_long)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(reshape2)</code></pre>
+<pre><code>## Loading required package: reshape2</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">dat_long &lt;-<span class="st"> </span><span class="kw">melt</span>(dat)</code></pre>
+<pre><code>## Using Species as id variables</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(dat_long)</code></pre>
 <pre><code>##   Species     variable value
 ## 1  setosa Sepal.Length   5.1
 ## 2  setosa Sepal.Length   4.9
