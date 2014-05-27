@@ -303,7 +303,7 @@ options at the links below.
 
 #### Exercise
 
-Now, plot a graphs using the iris dataset using **ggplot2**. You don't have to 
+Now, plot a graph using the iris dataset using **ggplot2**. You don't have to 
 use points; other geoms include: `gemo_bar`, `geom_area`, `geom_boxplot`, 
 and many more.  Try to incorporate at least one extra aesthetic (over `x` and 
 `y`). Some examples of aesthetics are `col`, `fill`,  `size`, `shape`, `alpha`, 

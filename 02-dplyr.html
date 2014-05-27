@@ -65,7 +65,7 @@ code > span.er { font-weight: bold; }
 <p>While a lot of powerful tools are built into R, its greatest power comes from its massive base of users and developers, and the tools they create. These tools come in the form of packages that we download, then load - they give us access to many more functions. Loading a package into R is like getting a piece of lab equipment out of a storage locker and setting it up on the bench. Once it’s done, we can ask the package to do things for us.</p>
 <p>We’re going to start by using a package called “dplyr”, built by Hadley Wickham.<br />dplyr provides a set of simple functions that correspond to the most common data manipulation verbs, so that you can easily translate your thoughts into code. Most of the this functionality is available in base <strong>R</strong>, but this package makes this kind of work much easier.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>) <span class="co"># Install the package</span></code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(dplyr) <span class="co">#Load the package into memory</span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(dplyr) <span class="co"># Load the package into memory</span></code></pre>
 <p><code>dplyr</code> implements the following verbs useful for data manipulation:</p>
 <ul>
 <li><code>group_by()</code>: set the grouping variable(s)</li>
@@ -391,12 +391,27 @@ dat[dat$Sepal.Length &gt;<span class="st"> </span><span class="dv">5</span> |<sp
 <li><p>The subsequent arguments describe what to do with it, and you can refer to columns in the data frame directly without using <code>$</code>.</p></li>
 <li><p>The result is a new data frame</p></li>
 </ul>
-<p>These five functions provide the basis of a language of data manipulation. At the most basic level, you can only alter a tidy data frame in five useful ways: you can reorder the rows (<code>arrange()</code>), pick observations and variables of interest (<code>filter()</code> and <code>select()</code>), add new variables that are functions of existing variables (<code>mutate()</code>) or collapse many values to a summary (<code>summarise()</code>). The remainder of the language comes from applying the five functions to different types of data, like to grouped data, as described next.</p>
+<p>These five functions provide the basis of a language of data manipulation. At the most basic level, you can only alter a tidy data frame in five useful ways: you can reorder the rows (<code>arrange()</code>), pick observations and variables of interest (<code>filter()</code> and <code>select()</code>), add new variables that are functions of existing variables (<code>mutate()</code>) or collapse many values to a summary (<code>summarise()</code>). The remainder of the language comes from applying the five functions to different types of data, especially to grouped data using the <code>group_by()</code> function.</p>
 <p>It’s used for the <strong>split, apply, combine</strong> approach to data manipulation: You <strong>split</strong> a dataset by some variable, <strong>apply</strong> some operation(s) to each piece, and <strong>combine</strong> the pieces back together.</p>
-<p>We’ll use this to generate some <em>per-species</em> statistics, because the mean of some measurement across all species isn’t that meaningful.</p>
+<p>We’ll use this to generate some <em>per-species</em> statistics, because the mean of some measurement across all species probably isn’t that helpful - like getting the average length of tails of lions and house cats.</p>
 <pre class="sourceCode r"><code class="sourceCode r">grp_spp &lt;-<span class="st"> </span><span class="kw">group_by</span>(dat, Species)
-
-<span class="kw">summarise</span>(grp_spp, 
+grp_spp</code></pre>
+<pre><code>## Source: local data frame [150 x 5]
+## Groups: Species
+## 
+##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1           5.1         3.5          1.4         0.2  setosa
+## 2           4.9         3.0          1.4         0.2  setosa
+## 3           4.7         3.2          1.3         0.2  setosa
+## 4           4.6         3.1          1.5         0.2  setosa
+## 5           5.0         3.6          1.4         0.2  setosa
+## 6           5.4         3.9          1.7         0.4  setosa
+## 7           4.6         3.4          1.4         0.3  setosa
+## 8           5.0         3.4          1.5         0.2  setosa
+## 9           4.4         2.9          1.4         0.2  setosa
+## 10          4.9         3.1          1.5         0.1  setosa
+## ..          ...         ...          ...         ...     ...</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise</span>(grp_spp, 
           <span class="dt">mean.Petal.Length =</span> <span class="kw">mean</span>(Petal.Length), 
           <span class="dt">sd.Petal.Length =</span> <span class="kw">sd</span>(Petal.Length))</code></pre>
 <pre><code>## Source: local data frame [3 x 3]
@@ -421,9 +436,9 @@ dat[dat$Sepal.Length &gt;<span class="st"> </span><span class="dv">5</span> |<sp
 ## 9           4.4         2.9          1.4         0.2  setosa        0.8789
 ## 10          4.9         3.1          1.5         0.1  setosa        0.9788
 ## ..          ...         ...          ...         ...     ...           ...</code></pre>
-<p>This is nice and handy, but what if we want to do several operations that depend on the result of a previous operation? We want to group by species, use only the individuals that have a Sepal Length longer than 5cm, calculate the number of each species that meet those criteria, then calculate the mean and standard deviation of petal length for each species.</p>
+<p>This is nice and handy, but what if we want to do several operations that depend on the result of a previous operation? We want to group by species, use only the individuals that have a long Sepal Length (greater than the mean for that species), calculate the number of each species that meet those criteria, then calculate the mean and standard deviation of petal length for each species.</p>
 <pre class="sourceCode r"><code class="sourceCode r">grp_spp &lt;-<span class="st"> </span><span class="kw">group_by</span>(dat, Species)
-temp1 &lt;-<span class="st"> </span><span class="kw">filter</span>(grp_spp, Sepal.Length &gt;<span class="dv">5</span>)
+temp1 &lt;-<span class="st"> </span><span class="kw">filter</span>(grp_spp, Sepal.Length &gt;<span class="st"> </span><span class="kw">mean</span>(Sepal.Length))
 temp2 &lt;-<span class="st"> </span><span class="kw">mutate</span>(temp1, <span class="dt">n=</span><span class="kw">n</span>()) <span class="co"># n(): number of observations in the current group</span>
 summary_dat &lt;-<span class="st"> </span><span class="kw">summarise</span>(temp2, 
                         <span class="dt">mean.Petal.Length =</span> <span class="kw">mean</span>(Petal.Length), 
@@ -432,27 +447,20 @@ summary_dat &lt;-<span class="st"> </span><span class="kw">summarise</span>(temp
 <p><code>x %&gt;% f(y)</code> turns into <code>f(x, y)</code> so you can use it to write multiple operations so you can read from left-to-right, top-to-bottom:</p>
 <pre class="sourceCode r"><code class="sourceCode r">sum_dat &lt;-<span class="st"> </span>dat %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(Species) %&gt;%
-<span class="st">  </span><span class="kw">filter</span>(Sepal.Length &gt;<span class="st"> </span><span class="dv">5</span>) %&gt;%
+<span class="st">  </span><span class="kw">filter</span>(Sepal.Length &gt;<span class="st"> </span><span class="kw">mean</span>(Sepal.Length)) %&gt;%
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">n =</span> <span class="kw">n</span>()) %&gt;%<span class="st">           </span><span class="co"># n(): number of observations in the current group</span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean.Petal.Length =</span> <span class="kw">mean</span>(Petal.Length), 
             <span class="dt">sd.Petal.Length =</span> <span class="kw">sd</span>(Petal.Length))</code></pre>
-<p>Note that the NA in Sepal.Width crept back in. We can specify na.rm by using the <code>.</code> operator; this specifies where the values from preceding operation go (the default is the first position, if it should go somewhere else, use the <code>.</code> to specify the position).</p>
-<pre class="sourceCode r"><code class="sourceCode r">sum_dat &lt;-<span class="st"> </span>dat %&gt;%
+</div>
+<div id="exercise" class="section level4">
+<h4>Exercise</h4>
+<p>Summarise <code>dat</code> by species, returning a data frame that calculates the median ratio of sepal length and sepal width.</p>
+<pre class="sourceCode r"><code class="sourceCode r">sep_ratio &lt;-<span class="st"> </span>dat %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(Species) %&gt;%
-<span class="st">  </span><span class="kw">filter</span>(Sepal.Length &gt;<span class="st"> </span><span class="dv">5</span>) %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">n =</span> <span class="kw">n</span>()) %&gt;%
-<span class="st">  </span><span class="kw">summarise_each</span>(<span class="kw">funs</span>(<span class="kw">mean</span>(., <span class="dt">na.rm=</span><span class="ot">TRUE</span>)))</code></pre>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sep_diff =</span> Sepal.Length /<span class="st"> </span>Sepal.Width) %&gt;%
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">med_sep_diff =</span> <span class="kw">median</span>(sep_diff, <span class="dt">na.rm=</span><span class="ot">TRUE</span>))</code></pre>
 <p>Now let’s clean up a bit. See all objects in your workspace with <code>ls()</code>. You also see these things in your environment pane in RStudio.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls</span>()</code></pre>
-<pre><code>##  [1] &quot;a&quot;             &quot;age&quot;           &quot;Andy&quot;          &quot;b&quot;            
-##  [5] &quot;dat&quot;           &quot;days_per_week&quot; &quot;f&quot;             &quot;files&quot;        
-##  [9] &quot;first.names&quot;   &quot;fname&quot;         &quot;grp_spp&quot;       &quot;hrs_per_day&quot;  
-## [13] &quot;hrs_per_week&quot;  &quot;m&quot;             &quot;mass&quot;          &quot;maxprint&quot;     
-## [17] &quot;mean.sl&quot;       &quot;metadata&quot;      &quot;p&quot;             &quot;projDir&quot;      
-## [21] &quot;q&quot;             &quot;RmdDocs&quot;       &quot;series&quot;        &quot;sum_dat&quot;      
-## [25] &quot;summary_dat&quot;   &quot;T&quot;             &quot;temp1&quot;         &quot;temp2&quot;        
-## [29] &quot;weight_kg&quot;     &quot;weight_lb&quot;     &quot;weights&quot;       &quot;x&quot;            
-## [33] &quot;x1&quot;            &quot;xx&quot;            &quot;y&quot;             &quot;z&quot;</code></pre>
 <p>Remove them with <code>rm</code>:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(temp1)
 <span class="co"># Or remove a list of objects:</span>

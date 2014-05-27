@@ -192,7 +192,7 @@ g</code></pre>
 </div>
 <div id="exercise" class="section level4">
 <h4>Exercise</h4>
-<p>Now, plot a graphs using the iris dataset using <strong>ggplot2</strong>. You don’t have to use points; other geoms include: <code>gemo_bar</code>, <code>geom_area</code>, <code>geom_boxplot</code>, and many more. Try to incorporate at least one extra aesthetic (over <code>x</code> and <code>y</code>). Some examples of aesthetics are <code>col</code>, <code>fill</code>, <code>size</code>, <code>shape</code>, <code>alpha</code>, <code>linetype</code>.</p>
+<p>Now, plot a graph using the iris dataset using <strong>ggplot2</strong>. You don’t have to use points; other geoms include: <code>gemo_bar</code>, <code>geom_area</code>, <code>geom_boxplot</code>, and many more. Try to incorporate at least one extra aesthetic (over <code>x</code> and <code>y</code>). Some examples of aesthetics are <code>col</code>, <code>fill</code>, <code>size</code>, <code>shape</code>, <code>alpha</code>, <code>linetype</code>.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(<span class="dt">x=</span>Petal.Length, <span class="dt">y=</span>Petal.Width, <span class="dt">col=</span>Sepal.Width, <span class="dt">size=</span>Sepal.Length)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>() +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>) +<span class="st"> </span>

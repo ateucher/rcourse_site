@@ -6,15 +6,15 @@ Of course, R was written by statisticians, for statisticians.  We're not going
 to go deep into stats - partly because I'm not really that qualified to teach it, 
 and because we don't have time to cover all of the potential needs that people 
 in the course will have.  But we can cover a few of the basics, and introduce 
-common **R** way of fitting statistical models.
+the common **R** way of fitting statistical models.
 
 ### t-test
 
 We'll keep going with our Iris data; we want to test if petal lengths are 
-significantly different between Iris setosa and Iris virginica; so we can use a 
+significantly different between _Iris setosa_ and _Iris virginica_; so we can use a 
 basic two-sample t-test.
 
-First, let's search the help to find out what functions are avaible: `??"t-test"`"
+First, let's search the help to find out what functions are avaible: `??"t-test"`
 .  Student's t-test is the one we want.  There are a few variations of the 
 t-test available.  If we are testing a single sample against a known value (for 
 example, find out if something is different from 0), we would use the 
@@ -32,8 +32,8 @@ For the iris data, we want to use a two-sample t-test.  I like using the formula
 specification because it's similar to how many other statistical tests are 
 specified: ` t.test(Value ~ factor, data=)`
 
-Since we're only interested in setosa and virginica, we need to get rid of 
-versicolor.
+Since we're only interested in _setosa_ and _virginica_, we need to get rid of 
+_versicolor_.
 
 ```{r dropfort-test}
 require(dplyr)

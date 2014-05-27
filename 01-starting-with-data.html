@@ -62,6 +62,35 @@ code > span.er { font-weight: bold; }
 </div>
 
 
+<div id="introduction-to-r-and-rstudio" class="section level2">
+<h2>Introduction to R and RStudio</h2>
+<p>Let’s start by learning about our tool.</p>
+<p><em>Point out the different windows in RStudio.</em></p>
+<ul>
+<li>Console, Scripts, Environments, Plots</li>
+<li>Avoid using shortcuts.</li>
+<li>Code and workflow is more reproducible if we can document everything that we do.</li>
+<li>Our end goal is not just to “do stuff” but to do it in a way that anyone can easily and exactly replicate our workflow and results.</li>
+</ul>
+<p>You can get output from R simply by typing in math into the console</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span> +<span class="st"> </span><span class="dv">5</span></code></pre>
+<pre><code>## [1] 8</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">12</span> /<span class="st"> </span><span class="dv">7</span></code></pre>
+<pre><code>## [1] 1.714</code></pre>
+<p>or by typing words</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="st">&quot;Hello World&quot;</span></code></pre>
+<pre><code>## [1] &quot;Hello World&quot;</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>What is the result of <code>3 * 4 + 5</code>? And <code>5 + 3 * 4</code>? What does this indicate?</li>
+</ol>
+<div id="r-respects-standard-order-of-operations-in-math" class="section level4">
+<h4>R Respects standard order of operations in math:</h4>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span> *<span class="st"> </span><span class="dv">4</span> +<span class="st"> </span><span class="dv">5</span></code></pre>
+<pre><code>## [1] 17</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span> *<span class="st"> </span>(<span class="dv">4</span> +<span class="st"> </span><span class="dv">5</span>)</code></pre>
+<pre><code>## [1] 27</code></pre>
+</div>
+</div>
 <div id="analyzing-iris-data" class="section level2">
 <h2>Analyzing Iris Data</h2>
 <p>We are studying differences in morphology in two species of Iris: <em>Iris setosa</em> and <em>Iris versicolor</em>.</p>
@@ -72,7 +101,7 @@ code > span.er { font-weight: bold; }
 <li>Explore the data,</li>
 <li>Calculate some summary statistics,</li>
 <li>Explore the dataset visually,</li>
-<li>plot the result.</li>
+<li>plot the results</li>
 </ul>
 <p>To do all that, we’ll have to learn a little bit about programming.</p>
 </div>
@@ -95,17 +124,43 @@ code > span.er { font-weight: bold; }
 <li>Projects in RStudio help us keep our code, data, and outputs well organized</li>
 <li>when we quit RStudio, it will help us remember where we left off</li>
 <li>Open a new project -&gt; New Directory -&gt; Empty Project</li>
-<li>Look around - you’ll see where we are</li>
-<li>Create a directory to hold the data</li>
 </ul>
+<div id="example-project-directory-structure" class="section level4">
+<h4>Example project directory structure:</h4>
+<pre><code>project
+├── R
+│   └── functions.R
+├── data
+│   ├── data1.csv
+│   └── data2.csv
+├── doc
+│   └── manuscript.doc
+├── out
+│   └── summaries.csv
+├── plots
+│   ├── plot1.png
+│   └── plot2.png
+├── 01-load_clean_data.R
+├── 02-analysis.R
+├── 03-plotting.R
+└── my_project.Rproj</code></pre>
+<p>First, look in the files pane of RStudio, then see where we are in R.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getwd</span>()</code></pre>
-<pre><code>## [1] &quot;/Users/ateucher/dev/rcourse/course_notes&quot;</code></pre>
+<p>The working directory is the place where you’re working, and where R looks for things in input/output operations.</p>
+</div>
+</div>
+<div id="scripts" class="section level2">
+<h2>Scripts</h2>
+<ul>
+<li>Record your code in scripts, rather than typing directly into the console</li>
+<li>Comment your code liberally using <code>#</code>. Your future self will thank you.</li>
+<li>Break your code into chunks - by file, and within a file using lines of <code>#</code></li>
+</ul>
 </div>
 <div id="loading-data" class="section level2">
 <h2>Loading Data</h2>
-<p>To load our iris data, we need to download our data to a place we can use it We will use <code>dir.create()</code> and <code>read.csv()</code>. These are built-in functions in R. Let’s check out the help screen.</p>
+<p>To load our iris data, we need to download our data to a place we can use it. We will use <code>dir.create()</code> to create a <code>data</code> directory in our project directory, and <code>read.csv()</code> to load the file. These are built-in functions in R. Let’s check out the help screen.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dir.create</span>(<span class="st">&quot;data&quot;</span>)</code></pre>
-<pre><code>## Warning: &#39;data&#39; already exists</code></pre>
 <ul>
 <li>download the iris file</li>
 <li>put it in your data directory for these exercises</li>
@@ -145,7 +200,7 @@ code > span.er { font-weight: bold; }
 <p>and do arithmetic with it:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="fl">2.2</span> *<span class="st"> </span>weight_kg</code></pre>
 <pre><code>## [1] 121</code></pre>
-<p>We can use the function <code>paste()</code> to strings made up from different objects, if we separate them with commas.</p>
+<p>We can use the function <code>paste()</code> to create strings made up from different objects, if we separate them with commas.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">paste</span>(<span class="st">&quot;weight in pounds:&quot;</span>, <span class="fl">2.2</span> *<span class="st"> </span>weight_kg)</code></pre>
 <pre><code>## [1] &quot;weight in pounds: 121&quot;</code></pre>
 <p>We can also change an object’s value by assigning it a new value:</p>
@@ -178,9 +233,10 @@ weight_lb</code></pre>
 age  &lt;-<span class="st"> </span><span class="dv">122</span>
 mass &lt;-<span class="st"> </span>mass *<span class="st"> </span><span class="fl">2.0</span>
 age  &lt;-<span class="st"> </span>age -<span class="st"> </span><span class="dv">20</span></code></pre>
+<p><strong>Question:</strong> Why is there a little <code>[1]</code> beside everything that gets printed to the console?</p>
 <div id="vectors" class="section level3">
 <h3>Vectors</h3>
-<p>So far all of our objects have been single numbers… but they are acually vectors of length1. A vector is the most common and basic data structure in <code>R</code> and is pretty much the workhorse of R. It is a one-dimensional object with a series of values, all of the same type.</p>
+<p>So far all of our objects have been single numbers… but they are acually all vectors of length 1. A vector is the most common and basic data structure in <code>R</code> and is pretty much the workhorse of R. It is a one-dimensional object with a series of values, all of the same type.</p>
 <p>You can create, or add to vectors using the function <code>c()</code>. <code>c()</code> takes any number of vectors as arguments, and combines or <em>concatenates</em> them, in the order supplied, into a single vector. For example, if we are creating a vector of patient weights, we could create and then update that vector using <code>c()</code>.</p>
 <pre class="sourceCode r"><code class="sourceCode r">weights &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">100</span>, <span class="dv">70</span>, <span class="dv">45</span>, <span class="dv">62</span>, <span class="dv">81</span>)
 weights &lt;-<span class="st"> </span><span class="kw">c</span>(weights, <span class="dv">80</span>)
@@ -201,6 +257,10 @@ weights</code></pre>
 <li>Try to be consistent.</li>
 <li>Avoid giving things names that already exist (like <code>mean</code>, <code>sum</code>, <code>log</code>)</li>
 </ul>
+</div>
+</div>
+<div id="back-to-the-irises" class="section level3">
+<h3>Back to the irises</h3>
 <p>Now that we know how to assign things to variables, let’s re-run <code>read.csv</code> and save its result:</p>
 <pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;data/iris.csv&#39;</span>)</code></pre>
 <p>This statement doesn’t produce any output because assignment doesn’t display anything. If we want to check that our data has been loaded, we can print the variable’s value:</p>
@@ -228,7 +288,7 @@ weights</code></pre>
 ## 20           5.1         3.8          1.5         0.3     setosa
 ##  [ reached getOption(&quot;max.print&quot;) -- omitted 130 rows ]</code></pre>
 <p>It’s important to note that anything we do with <code>dat</code> here will not affect the original <code>csv</code> file. This is an important concept of reproducibility - don’t touch your original data!</p>
-<p>For large data sets it is convenient to use the <code>head()</code> to display the first few rows of data, or <code>tail()</code> to see the end</p>
+<p>For large data sets it is convenient to use the <code>head()</code> to display the first few rows of data, or <code>tail()</code> to see the end:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(dat)</code></pre>
 <pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
 ## 1          5.1         3.5          1.4         0.2  setosa
@@ -252,7 +312,6 @@ weights</code></pre>
 <li>How many rows and columns there are</li>
 <li>What kind of data type is it?</li>
 </ul>
-</div>
 </div>
 </div>
 <div id="manipulating-data" class="section level2">
@@ -497,6 +556,7 @@ dat[<span class="dv">3</span>, <span class="dv">5</span>]</code></pre>
 ## 49           1.5     setosa
 ## 50           1.4     setosa
 ##  [ reached getOption(&quot;max.print&quot;) -- omitted 100 rows ]</code></pre>
+<p><strong>Question:</strong> Given what we learned about how to access a single column, and indexing vectors, what is the 19th value in the Sepal Length column? How did you find it?</p>
 <div id="indexing-using-conditionals" class="section level4">
 <h4>Indexing using conditionals</h4>
 <p>Sometimes we are interested in extracting data based on something else. Lets say we want to look at all of the flowers measured that had really long sepals:</p>

@@ -2,6 +2,40 @@
 title: Getting started with data
 ---
 
+## Introduction to R and RStudio
+
+Let's start by learning about our tool.
+
+_Point out the different windows in RStudio._
+
+* Console, Scripts, Environments, Plots
+* Avoid using shortcuts. 
+* Code and workflow is more reproducible if we can document everything that we do.
+* Our end goal is not just to "do stuff" but to do it in a way that anyone can 
+  easily and exactly replicate our workflow and results.
+
+You can get output from R simply by typing in math into the console
+  
+```{r}
+3 + 5
+12 / 7
+```
+
+or by typing words
+
+```{r}
+"Hello World"
+```
+
+3.  What is the result of `3 * 4 + 5`? And `5 + 3 * 4`? What does this indicate?
+
+#### R Respects standard order of operations in math:
+
+```{r}
+3 * 4 + 5
+3 * (4 + 5)
+```
+
 ## Analyzing Iris Data
 
 We are studying differences in morphology in two species of Iris: _Iris setosa_ 
@@ -13,11 +47,12 @@ and _Iris versicolor_.
 * Explore the data, 
 * Calculate some summary statistics, 
 * Explore the dataset visually, 
-* plot the result.
+* plot the results
 
 To do all that, we'll have to learn a little bit about programming.
 
 ### Objectives
+
 * Read tabular data from a file into **R**.
 * Assign values to variables.
 * Learn about data types and structures
@@ -27,26 +62,57 @@ To do all that, we'll have to learn a little bit about programming.
 * Load an R package and use the things it contains
 
 ## RStudio Projects
+
 * Projects in RStudio help us keep our code, data, and outputs well organized
 * when we quit RStudio, it will help us remember where we left off
 * Open a new project -> New Directory -> Empty Project
-* Look around  - you'll see where we are
-* Create a directory to hold the data
 
-```{r}
-getwd()
+#### Example project directory structure:
 
 ```
+project
+├── R
+│   └── functions.R
+├── data
+│   ├── data1.csv
+│   └── data2.csv
+├── doc
+│   └── manuscript.doc
+├── out
+│   └── summaries.csv
+├── plots
+│   ├── plot1.png
+│   └── plot2.png
+├── 01-load_clean_data.R
+├── 02-analysis.R
+├── 03-plotting.R
+└── my_project.Rproj
+```
+
+First, look in the files pane of RStudio, then see where we are in R.
+
+```{r eval=FALSE}
+getwd()
+```
+
+The working directory is the place where you're working, and where R looks for 
+things in input/output operations.
+
+## Scripts
+
+* Record your code in scripts, rather than typing directly into the console
+* Comment your code liberally using `#`.  Your future self will thank you.
+* Break your code into chunks - by file, and within a file using lines of `#`
 
 ## Loading Data
 
-To load our iris data, we need to download our data to a place we can use it
-We will use `dir.create()` and `read.csv()`. These are built-in functions in R. 
-Let's check out the help screen.
+To load our iris data, we need to download our data to a place we can use it. 
+We will use `dir.create()` to create a `data` directory in our project directory, 
+and `read.csv()` to load the file. These are built-in functions in R. Let's 
+check out the help screen.
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 dir.create("data")
-
 ```
 
 * download the iris file
@@ -92,8 +158,8 @@ and do arithmetic with it:
 2.2 * weight_kg
 ```
 
-We can use the function `paste()` to strings made up from different objects, if 
-we separate them with commas.
+We can use the function `paste()` to create strings made up from different 
+objects, if we separate them with commas.
 
 ```{r}
 paste("weight in pounds:", 2.2 * weight_kg)
@@ -140,7 +206,8 @@ spreadsheets work.
 
 __Challenges__
 
-Draw diagrams showing what variables refer to what values after each statement in the following program:
+Draw diagrams showing what variables refer to what values after each statement 
+in the following program:
 
 ```{r}	
 mass <- 47.5
@@ -149,10 +216,13 @@ mass <- mass * 2.0
 age  <- age - 20
 ```
 
+**Question:** Why is there a little `[1]` beside everything that gets printed 
+to the console?
+
 ### Vectors
 
-So far all of our objects have been single numbers... but they are acually 
-vectors of length1. A vector is the most common and basic data structure in `R` 
+So far all of our objects have been single numbers... but they are acually all
+vectors of length 1. A vector is the most common and basic data structure in `R` 
 and is pretty much the workhorse of R. It is a one-dimensional object with a 
 series of values, all of the same type.
 
@@ -190,6 +260,8 @@ clarity. `x` is easy to type, but may not mean much.
 * Try to be consistent.
 * Avoid giving things names that already exist (like `mean`, `sum`, `log`)
 
+### Back to the irises
+
 Now that we know how to assign things to variables, let's re-run `read.csv` and 
 save its result:
 
@@ -210,7 +282,7 @@ original `csv` file. This is an important concept of reproducibility - don't
 touch your original data!
 
 For large data sets it is convenient to use the `head()` to display the first 
-few rows of data, or `tail()` to see the end
+few rows of data, or `tail()` to see the end:
 
 ```{r}
 head(dat)
@@ -379,6 +451,10 @@ dat[, "Petal.Length"] # Returns all rows
 dat[, c("Petal.Length", "Species")]  # Can specify more than one column by using a character vector
 
 ```
+
+**Question:** Given what we learned about how to access a single column, and 
+indexing vectors, what is the 19th value in the Sepal Length column? How did you 
+find it?
 
 #### Indexing using conditionals
 

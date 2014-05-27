@@ -62,11 +62,11 @@ code > span.er { font-weight: bold; }
 </div>
 
 
-<p>Of course, R was written by statisticians, for statisticians. We’re not going to go deep into stats - partly because I’m not really that qualified to teach it, and because we don’t have time to cover all of the potential needs that people in the course will have. But we can cover a few of the basics, and introduce common <strong>R</strong> way of fitting statistical models.</p>
+<p>Of course, R was written by statisticians, for statisticians. We’re not going to go deep into stats - partly because I’m not really that qualified to teach it, and because we don’t have time to cover all of the potential needs that people in the course will have. But we can cover a few of the basics, and introduce the common <strong>R</strong> way of fitting statistical models.</p>
 <div id="t-test" class="section level3">
 <h3>t-test</h3>
-<p>We’ll keep going with our Iris data; we want to test if petal lengths are significantly different between Iris setosa and Iris virginica; so we can use a basic two-sample t-test.</p>
-<p>First, let’s search the help to find out what functions are avaible: <code>??&quot;t-test&quot;</code>&quot; . Student’s t-test is the one we want. There are a few variations of the t-test available. If we are testing a single sample against a known value (for example, find out if something is different from 0), we would use the single-sample t-test like so:</p>
+<p>We’ll keep going with our Iris data; we want to test if petal lengths are significantly different between <em>Iris setosa</em> and <em>Iris virginica</em>; so we can use a basic two-sample t-test.</p>
+<p>First, let’s search the help to find out what functions are avaible: <code>??&quot;t-test&quot;</code> . Student’s t-test is the one we want. There are a few variations of the t-test available. If we are testing a single sample against a known value (for example, find out if something is different from 0), we would use the single-sample t-test like so:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Simulate some data with a normal distribution, a mean of 0, and sd of 1.</span>
 data &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>)
 <span class="kw">mean</span>(data)</code></pre>
@@ -85,7 +85,7 @@ data &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv
 ##    0.0136</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">## Unsurprisingly, not significant.</code></pre>
 <p>For the iris data, we want to use a two-sample t-test. I like using the formula specification because it’s similar to how many other statistical tests are specified: <code>t.test(Value ~ factor, data=)</code></p>
-<p>Since we’re only interested in setosa and virginica, we need to get rid of versicolor.</p>
+<p>Since we’re only interested in <em>setosa</em> and <em>virginica</em>, we need to get rid of <em>versicolor</em>.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(dplyr)
 setosa.virginica &lt;-<span class="st"> </span><span class="kw">filter</span>(dat, Species !=<span class="st"> &quot;versicolor&quot;</span>)
 <span class="kw">summary</span>(setosa.virginica)</code></pre>

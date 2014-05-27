@@ -20,7 +20,7 @@ install.packages("dplyr") # Install the package
 ```
 
 ```{r}
-require(dplyr) #Load the package into memory
+require(dplyr) # Load the package into memory
 ```
 
 `dplyr` implements the following verbs useful for data manipulation:
@@ -129,17 +129,20 @@ you can reorder the rows (`arrange()`), pick observations and variables of
 interest (`filter()` and `select()`), add new variables that are functions of 
 existing variables (`mutate()`) or collapse many values to a summary 
 (`summarise()`). The remainder of the language comes from applying the five 
-functions to different types of data, like to grouped data, as described next.
+functions to different types of data, especially to grouped data using the 
+`group_by()` function.
 
 It's used for the **split, apply, combine** approach to data manipulation: You 
 **split** a dataset by some variable, **apply** some operation(s) to each piece, 
 and **combine** the pieces back together.
 
 We'll use this to generate some _per-species_ statistics, because the mean of 
-some measurement across all species isn't that meaningful.
+some measurement across all species probably isn't that helpful - like getting 
+the average length of tails of lions and house cats.
 
 ```{r}
 grp_spp <- group_by(dat, Species)
+grp_spp
 
 summarise(grp_spp, 
           mean.Petal.Length = mean(Petal.Length), 
@@ -150,13 +153,13 @@ mutate(grp_spp, SL.mean.ratio = Sepal.Length / mean(Sepal.Length))
 
 This is nice and handy, but what if we want to do several operations that depend 
 on the result of a previous operation? We want to group by species, use only the 
-individuals that have a Sepal Length longer than 5cm, calculate the number of 
-each species that meet those criteria, then calculate the mean and standard
-deviation of petal length for each species.
+individuals that have a long Sepal Length (greater than the mean for that 
+species), calculate the number of each species that meet those criteria, then 
+calculate the mean and standard deviation of petal length for each species.
 
 ```{r}
 grp_spp <- group_by(dat, Species)
-temp1 <- filter(grp_spp, Sepal.Length >5)
+temp1 <- filter(grp_spp, Sepal.Length > mean(Sepal.Length))
 temp2 <- mutate(temp1, n=n()) # n(): number of observations in the current group
 summary_dat <- summarise(temp2, 
                         mean.Petal.Length = mean(Petal.Length), 
@@ -174,24 +177,24 @@ operations so you can read from left-to-right, top-to-bottom:
 ```{r}
 sum_dat <- dat %>%
   group_by(Species) %>%
-  filter(Sepal.Length > 5) %>%
+  filter(Sepal.Length > mean(Sepal.Length)) %>%
   mutate(n = n()) %>%           # n(): number of observations in the current group
   summarise(mean.Petal.Length = mean(Petal.Length), 
             sd.Petal.Length = sd(Petal.Length))
 ```
 
-Note that the NA in Sepal.Width crept back in.  We can specify na.rm by using 
-the `.` operator; this specifies where the values from preceding operation go 
-(the default is the first position, if it should go somewhere else, use the `.` 
-to specify the position).
+#### Exercise
+
+Summarise `dat` by species, returning a data frame that calculates the median 
+ratio of sepal length and sepal width.
 
 ```{r}
-sum_dat <- dat %>%
+sep_ratio <- dat %>%
   group_by(Species) %>%
-  filter(Sepal.Length > 5) %>%
-  mutate(n = n()) %>%
-  summarise_each(funs(mean(., na.rm=TRUE)))
+  mutate(sep_diff = Sepal.Length / Sepal.Width) %>%
+  summarise(med_sep_diff = median(sep_diff, na.rm=TRUE))
 ```
+
 
 Now let's clean up a bit. See all objects in your workspace with `ls()`.  You 
 also see these things in your environment pane in RStudio.
