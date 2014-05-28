@@ -19,6 +19,10 @@ On this page you will find links to the data we need for the course, as well as 
 
 [06 - Functions](06-functions.html)
 
+[07 - Putting it all together](07-all-together.html)
+
+[08 - Best Practices](08-best-practices.html)
+
 [Getting help](getting_help.html)
 
 #### Data

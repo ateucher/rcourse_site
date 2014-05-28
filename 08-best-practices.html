@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="generator" content="pandoc" />
+
+
+
+<title>Best Practices</title>
+
+<script src="libs/jquery-1.11.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="libs/bootstrap-2.3.2/css/flatly.min.css" rel="stylesheet" />
+<link href="libs/bootstrap-2.3.2/css/bootstrap-responsive.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-2.3.2/js/bootstrap.min.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; }
+code > span.dt { color: #204a87; }
+code > span.dv { color: #0000cf; }
+code > span.bn { color: #0000cf; }
+code > span.fl { color: #0000cf; }
+code > span.ch { color: #4e9a06; }
+code > span.st { color: #4e9a06; }
+code > span.co { color: #8f5902; font-style: italic; }
+code > span.ot { color: #8f5902; }
+code > span.al { color: #ef2929; }
+code > span.fu { color: #000000; }
+code > span.er { font-weight: bold; }
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+</head>
+
+<body>
+
+<div class="container">
+
+<a href="index.html">Home</a>
+
+<div id="header">
+<h1 class="title">Best Practices</h1>
+</div>
+
+
+<div id="some-best-practices-for-using-r-and-designing-programs" class="section level2">
+<h2>Some best practices for using R and designing programs</h2>
+<ol style="list-style-type: decimal">
+<li>Start your code with a description of what it is:</li>
+</ol>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># This is code to replicate the analyses and figures from my 2014 Science paper.</span>
+<span class="co"># Code developed by Andy Teucher and friends</span></code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Run all of your import statments (<code>library</code> or <code>require</code>):</li>
+</ol>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(reshape)
+<span class="kw">library</span>(vegan)</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Set your working directory. Avoid changing the working directory once a script is underway. Use <code>setwd()</code> first . Do it at the beginning of a R session. Better yet, start R inside a project folder.</p></li>
+<li><p>Use <code>#</code> or <code>#-</code> to set off sections of your code so you can easily scroll through it and find things.</p></li>
+<li><p>If you have only one or a few functions, put them at the top of your code, so they are among the first things run. If you written many functions, put them all in their own .R file, and <code>source</code> them. Source will run all of these functions so that you can use them as you need them.</p></li>
+</ol>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&quot;my_genius_fxns.R&quot;</span>)</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li><p>Use consistent style within your code.</p></li>
+<li><p>Keep your code modular. If a single function or loop gets too long, consider breaking it into smaller pieces.</p></li>
+<li><p>Don’t repeat yourself. Automate! If you are repeating the same piece of code on multiple objects or files, use a loop or a function to do the same thing. The more you repeat yourself, the more likely you are to make a mistake.</p></li>
+<li><p>Manage all of your source files for a project in the same directory. Then use relative paths as necessary. For example, use</p></li>
+</ol>
+<pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file =</span> <span class="st">&quot;/files/dataset-2013-01.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)</code></pre>
+<p>rather than:</p>
+<pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file =</span> <span class="st">&quot;/Users/ateucher/Documents/sannic-project/files/dataset-2013-01.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)</code></pre>
+<ol start="10" style="list-style-type: decimal">
+<li><p>Don’t save a session history (the default option in R, when it asks if you want an <code>RData</code> file). Instead, start in a clean environment so that older objects don’t contaminate your current environment. This can lead to unexpected results, especially if the code were to be run on someone else’s machine.</p></li>
+<li><p>Where possible keep track of <code>sessionInfo()</code> somewhere in your project folder. Session information is invaluable since it captures all of the packages used in the current project. If a newer version of a project changes the way a function behaves, you can always go back and reinstall the version that worked (Note: At least on CRAN all older versions of packages are permanently archived).</p></li>
+<li><p>Collaborate. Grab a buddy and practice “code review”. We do it for methods and papers, why not code? Our code is a major scientific product and the result of a lot of hard work!</p></li>
+<li><p>Develop your code using version control and frequent updates!</p></li>
+</ol>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with --self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

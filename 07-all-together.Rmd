@@ -1,0 +1,60 @@
+---
+title: Putting it all together
+---
+
+```{r eval=FALSE}
+require(dplyr)
+require(ggplot2)
+
+# A function to calculate the mean and standard deviatiaon
+mean_sd_iris <- function(x) {
+  select(x, Petal.Length, Petal.Width) %>%
+  summarise(mean.Petal.Length = mean(Petal.Length), 
+            sd.Petal.Length = sd(Petal.Length), 
+            mean.Petal.Width = mean(Petal.Width), 
+            mean.Petal.Width = mean(Petal.Width))
+}
+
+# Create directories for our outputs
+dir.create("out")
+dir.create("plots")
+
+# List our files in the data directory
+iris_files <- list.files("data", pattern = "iris_", full.names=TRUE)
+
+# Read each of the files in to a list of a data frames
+iris_list <- lapply(iris_files, read.csv)
+
+# Loop to summarise, do a regression, plot, and output all these things for 
+# each data frame
+for (sp_dat in iris_list) {
+  
+  # Get the species name and store it
+  spp <- sp_dat$Species[1]
+  
+  # Use our custom function to create a summary data frame
+  sp_summary <- mean_sd_iris(sp_dat)
+  
+  # Write the summary data frame to a csv file
+  write.csv(sp_summary, paste("out/", spp, "_summary.csv", sep = "")
+            , row.names=FALSE)
+  
+  # run a simple linear regression
+  sp_lm <- lm(Petal.Length ~ Petal.Width, data = sp_dat)
+  
+  # write the results of the regression to a file
+  capture.output(summary(sp_lm), 
+                 file = paste("out/lm_", spp, ".txt", sep = ""))
+  
+  # plot the data with the regression line
+  ggplot(sp_dat, aes(x = Petal.Width, y = Petal.Length)) + 
+    geom_point() + 
+    geom_smooth(method = "lm") + 
+    ggtitle(paste("linear regression of Petal Width on Petal Length for Iris ", spp, sep=""))
+  
+  # save the plot
+  ggsave(paste("plots/", spp, "_plot.jpeg", sep = ""))
+  
+}
+```
+
