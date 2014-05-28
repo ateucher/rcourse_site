@@ -11,7 +11,7 @@ To get help help for a particular function, type ? and then the function name:
 
 General help:
 
-* [Cookbook for R](http://www.cookbook-r.com/)
+* [Cookbook for R](http://www.cookbook-r.com/) - lots of plotting help here, including ggplot2
 * Google (It actually knows what "R" is now)
 * Stackoverflow.com (use the `[r]` tag)
 * http://www.rdocumentation.org/
@@ -19,4 +19,9 @@ General help:
 
 ggplot2:
 
-* http://docs.ggplot2.org/current/
+* [ggplot2 official documentation](http://docs.ggplot2.org/current/)
+* [Color Brewer](http://colorbrewer2.org/): A great general resource for choosing colour palettes
+
+Books:
+* [The Art of R Programming]()
+* [Hadley Wickham's online book: Advanced R Programming](http://adv-r.had.co.nz/)
