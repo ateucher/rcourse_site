@@ -35,14 +35,18 @@ On this page you will find links to the data we need for the course, as well as 
 #### Credits
 Most of the material here was borrowed and adapted from 
 [Software Carpentry](http://www.softwarecarpentry.org)'s
-[novice R Bootcamp material](https://github.com/swcarpentry/bc/tree/master/novice/r)
+[novice R Bootcamp material](https://github.com/swcarpentry/bc/tree/master/novice/r). 
+These are amazing people, doing amazing things to help the scientific world be 
+more productive with thier code and data. Check them out, and if you get the chance 
+to attend a bootcamp, do it.
 
-and 
+The [R course notes](http://www.poissonconsulting.ca/courses/2012/06/05/an-introduction-to-r-course-12.html) from [Poisson Consulting](http://www.poissonconsulting.ca/)'s 
+R Course were also very helpful in putting this material together.
 
-[Poisson Consulting](http://www.poissonconsulting.ca/)'s 
-[R course notes](http://www.poissonconsulting.ca/courses/2012/06/05/an-introduction-to-r-course-12.html).
+Much of the `dplyr` material came from the dplyr [package vignette](http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html).
 
-Much of the `dplyr` material came from the dplyr [package vignette](http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html)
+When we went off-roading to play with the reshape2 package, we used material from 
+[this website](http://seananderson.ca/2013/10/19/reshape.html).
 
-##### Source
+#### Source
 Source material for the website can be found here: https://github.com/ateucher/rcourse_site

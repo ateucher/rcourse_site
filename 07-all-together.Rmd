@@ -2,6 +2,11 @@
 title: Putting it all together
 ---
 
+This is small script that pulls together almost all of the concepts we learned: 
+Reading in data, repeating things using `lapply` and a `for` loop, custom functions, 
+manipulating data using `dplyr`, running a linear regression model using `lm`, 
+plotting using `ggplot`, and exporting content.
+
 ```{r eval=FALSE}
 require(dplyr)
 require(ggplot2)

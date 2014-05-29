@@ -2,6 +2,10 @@
 title: Repeating Things
 ---
 
+** The structure and much of the content in this module was borrowed from 
+[Software Carpentry](http://www.softwarecarpentry.org)'s
+[novice R Bootcamp material](https://github.com/swcarpentry/bc/tree/master/novice/r)
+
 One of the big advantages of working with data in an environment like R is that 
 we can repeat and automate things really easily.
 
@@ -43,7 +47,7 @@ Andy
 
 1. What is the length of this object? What about its structure?
 
-Lists can be extremely useful inside functions. You can “staple” together lots 
+Lists can be extremely useful inside functions. You can "staple" together lots 
 of different kinds of results into a single object that a function can return.
 
 A list does not print to the console like a vector. Instead, each element of 
