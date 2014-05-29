@@ -2,6 +2,13 @@
 title: Getting started with R
 ---
 
+** The structure and content in this module was largely borrowed from 
+[Software Carpentry](http://www.softwarecarpentry.org)'s
+[novice R Bootcamp material](https://github.com/swcarpentry/bc/tree/master/novice/r) 
+and [Poisson Consulting](http://www.poissonconsulting.ca/)'s 
+[R course notes](http://www.poissonconsulting.ca/courses/2012/06/05/an-introduction-to-r-course-12.html).
+
+
 * Draw concept map of where we are headed towards best scientific practices, and reproducibility.
 * Its really important that you know what you did. More journals/grants/etc. are also making it important for them to know what you did.
 * A lot of scientific code is *not* reproducible.
@@ -492,7 +499,7 @@ Andy
 
 1. What is the length of this object? What about its structure?
 
-Lists can be extremely useful inside functions. You can “staple” together lots 
+Lists can be extremely useful inside functions. You can "staple" together lots 
 of different kinds of results into a single object that a function can return.
 
 A list does not print to the console like a vector. Instead, each element of 

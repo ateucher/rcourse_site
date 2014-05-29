@@ -2,6 +2,9 @@
 title: Data munging with dplyr
 ---
 
+** Most of the content in this module came from the dplyr 
+[package vignette](http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html)
+
 While a lot of powerful tools are built into R, its greatest power comes from 
 its massive base of users and developers, and the tools they create.  These 
 tools come in the form of packages that we download, then load - they give us 

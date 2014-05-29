@@ -2,6 +2,10 @@
 title: Best Practices
 ---
 
+** This module was borrowed (largely verbatim) from 
+[Software Carpentry](http://www.softwarecarpentry.org)'s
+[novice R Bootcamp material](https://github.com/swcarpentry/bc/tree/master/novice/r)
+
 ## Some best practices for using R and designing programs
 
 1. Start your code with a description of what it is:

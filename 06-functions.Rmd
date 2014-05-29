@@ -2,6 +2,10 @@
 title: Functions
 ---
 
+** This module was borrowed (largely verbatim) from 
+[Software Carpentry](http://www.softwarecarpentry.org)'s
+[novice R Bootcamp material](https://github.com/swcarpentry/bc/tree/master/novice/r)
+
 ## Objectives
 
 * Define a function that takes arguments (parameters).
@@ -101,12 +105,12 @@ strsplit(pangram, " ")
 ```
                 
 The output from strsplit is in a list. 
-Notice that the unusual first line of `strsplit()`’s output consists of `[[1]]`. 
+Notice that the unusual first line of `strsplit()`'s output consists of `[[1]]`. 
 Similar to the way that R displays vectors, `[[1]]` means that R is showing the first element of a list. 
 Lists are extremely important concepts in R; they allow you to combine all kinds of variables.
 For example, a list can be made up of many elements, and elements could be vectors, data frames, matrices, or further lists. 
 
-In this example, this list has only a single element. Yes, that’s right: The list has one element, but that element is a vector.
+In this example, this list has only a single element. Yes, that's right: The list has one element, but that element is a vector.
 
 To extract an element from a list, you have to use double square brackets: `[[`. 
 Split your pangram into words, and assign the first element to a new variable called words, using double-square-brackets `[[]]` subsetting, as follows:

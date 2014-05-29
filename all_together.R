@@ -1,15 +1,6 @@
 require(dplyr)
 require(ggplot2)
 
-# A function to calculate the mean and standard deviatiaon
-mean_sd_iris <- function(x) {
-  select(x, Petal.Length, Petal.Width) %>%
-  summarise(mean.Petal.Length = mean(Petal.Length), 
-            sd.Petal.Length = sd(Petal.Length), 
-            mean.Petal.Width = mean(Petal.Width), 
-            mean.Petal.Width = mean(Petal.Width))
-}
-
 # Create directories for our outputs
 dir.create("out")
 dir.create("plots")
@@ -28,7 +19,11 @@ for (sp_dat in iris_list) {
   spp <- sp_dat$Species[1]
   
   # Use our custom function to create a summary data frame
-  sp_summary <- mean_sd_iris(sp_dat)
+  sp_summary <- select(sp_dat, Petal.Length, Petal.Width) %>%
+                summarise(mean.Petal.Length = mean(Petal.Length), 
+                          sd.Petal.Length = sd(Petal.Length), 
+                          mean.Petal.Width = mean(Petal.Width), 
+                          sd.Petal.Width = sd(Petal.Width))
   
   # Write the summary data frame to a csv file
   write.csv(sp_summary, paste("out/", spp, "_summary.csv", sep = "")

@@ -121,9 +121,6 @@ setosa.virginica &lt;-<span class="st"> </span><span class="kw">filter</span>(da
 </div>
 <div id="simple-linear-regression" class="section level3">
 <h3>Simple linear regression</h3>
-<p>The basic linear regression model can be expressd as</p>
-<p><span class="math">\[ y_i = \alpha + \beta x_i + \epsilon_i \]</span></p>
-<p>where <span class="math">\(\alpha\)</span> is the intercept and <span class="math">\(\beta\)</span> is the slope of the line and the error terms (<span class="math">\(\epsilon_i\)</span>) are independent and normally distributed with equal variance.</p>
 <p>Let’s see if petal length can be used to predict petal width for a single species; <em>Iris setosa</em>. (Note; this is a bit of a misuse of regression, as regression usually implies causation, but as an example it will suffice).</p>
 <p>The following code fits the basic linear regression model where <code>Petal.Length</code> is the response variable and <code>Petal.Width</code> is the predictor variable, then prints a summary of the model.</p>
 <pre class="sourceCode r"><code class="sourceCode r">setosa.dat &lt;-<span class="st"> </span><span class="kw">filter</span>(dat, Species ==<span class="st"> &quot;setosa&quot;</span>)
@@ -169,14 +166,14 @@ p +<span class="st"> </span><span class="kw">geom_line</span>(<span class="dt">d
 </div>
 <div id="checking-assumptions" class="section level4">
 <h4>Checking Assumptions</h4>
-<p>A linear regression model is only valid if its residuals are consistent with the assumed error structure. We can check these assumptions by plotting the residuals vs the fitted values.</p>
+<p>We can check these assumptions of the model by plotting the residuals vs the fitted values.</p>
 <pre class="sourceCode r"><code class="sourceCode r">fitted &lt;-<span class="st"> </span><span class="kw">fitted</span>(petal.reg)
 residuals &lt;-<span class="st"> </span><span class="kw">resid</span>(petal.reg)
 
 <span class="kw">ggplot</span>(<span class="dt">data=</span><span class="ot">NULL</span>, <span class="kw">aes</span>(<span class="dt">x =</span> fitted, <span class="dt">y =</span> residuals)) +<span class="st"> </span><span class="kw">geom_point</span>() +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>)</code></pre>
 <p><img src="04-basic_stats_files/figure-html/ggplot-resids.png" alt="plot of chunk ggplot-resids" /></p>
-<p>We can check also assumptions using <code>plot()</code>. There are actually a bunch of different <code>plot</code> methods in R, which are dispatched depending on the type of object you call them on. When you call plot on an <code>lm</code> object, a series of diagnostic plots is created to help us check the assumptions of <code>lm()</code>.</p>
+<p>We can check also assumptions using <code>plot()</code>. There are actually a bunch of different <code>plot</code> methods in R, which are dispatched depending on the type of object you call them on. When you call plot on an <code>lm</code> object, a series of diagnostic plots is created to help us check the assumptions of the <code>lm</code> object.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(petal.reg)</code></pre>
 <p><img src="04-basic_stats_files/figure-html/olsreg-check1.png" alt="plot of chunk olsreg-check" /> <img src="04-basic_stats_files/figure-html/olsreg-check2.png" alt="plot of chunk olsreg-check" /> <img src="04-basic_stats_files/figure-html/olsreg-check3.png" alt="plot of chunk olsreg-check" /> <img src="04-basic_stats_files/figure-html/olsreg-check4.png" alt="plot of chunk olsreg-check" /></p>
 <p>Get more information on these plots by checking <code>?plot.lm</code>.</p>

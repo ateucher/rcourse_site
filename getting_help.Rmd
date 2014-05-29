@@ -2,20 +2,28 @@
 title: Getting R Help
 ---
 
-To get help help for a particular function, type ? and then the function name:
+To get help for a particular function in R, type `?` and then the function name:
 
-```
+```{r eval=FALSE}
 ?mean
+```
 
+To get help for a topic in R, do a "fuzzy"" search with `??` (wrap the phrase in 
+quotes if more than one word):
+
+```{r eval=FALSE}
+??"t-test"
 ```
 
 General help:
 
-* [Cookbook for R](http://www.cookbook-r.com/) - lots of plotting help here, including ggplot2
+* [Cookbook for R](http://www.cookbook-r.com/) - lots of plotting help here, 
+  including ggplot2
 * Google (It actually knows what "R" is now)
-* Stackoverflow.com (use the `[r]` tag)
+* [Stackoverflow](http://stackoverflow.com/questions/tagged/r) (use the `[r]` tag - also `[ggplot2]`, `[dplyr]`, etc.)
 * http://www.rdocumentation.org/
 * Each other! (Talk it out)
+* [Tell it to the duck](http://blog.codinghorror.com/rubber-duck-problem-solving/)
 
 ggplot2:
 
@@ -23,5 +31,8 @@ ggplot2:
 * [Color Brewer](http://colorbrewer2.org/): A great general resource for choosing colour palettes
 
 Books:
+
 * [The Art of R Programming]()
 * [Hadley Wickham's online book: Advanced R Programming](http://adv-r.had.co.nz/)
+* [The R Graphics Cookbook](http://www.amazon.com/gp/product/1449316956) by 
+  Winston Change - The paper version of the Cookbook for R website mentioned above

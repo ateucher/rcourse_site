@@ -48,14 +48,6 @@ t.test(Sepal.Length ~ Species, data=setosa.virginica)
 
 ### Simple linear regression
 
-The basic linear regression model can be expressd as
-
-$$ y_i = \alpha + \beta x_i + \epsilon_i $$
-
-where $\alpha$ is the intercept and $\beta$ is the slope of the line and the 
-error terms ($\epsilon_i$) are independent and normally distributed with equal 
-variance.
-
 Let's see if petal length can be used to predict petal width for a single species; _Iris setosa_. (Note; this is a bit of a misuse of regression, as regression 
 usually implies causation, but as an example it will suffice).
 
@@ -100,9 +92,8 @@ p + geom_smooth(method="lm")
 
 #### Checking Assumptions
 
-A linear regression model is only valid if its residuals are consistent with the 
-assumed error structure. We can check these assumptions by plotting the residuals 
-vs the fitted values.
+We can check these assumptions of the model by plotting the residuals vs the 
+fitted values.
 
 ```{r ggplot-resids}
 fitted <- fitted(petal.reg)
@@ -115,7 +106,7 @@ ggplot(data=NULL, aes(x = fitted, y = residuals)) + geom_point() +
 We can check also assumptions using `plot()`.  There are actually a bunch of 
 different `plot` methods in R, which are dispatched depending on the type of 
 object you call them on.  When you call plot on an `lm` object, a series of 
-diagnostic plots is created to help us check the assumptions of `lm()`.
+diagnostic plots is created to help us check the assumptions of the `lm` object.
 
 ```{r olsreg-check}
 plot(petal.reg)
