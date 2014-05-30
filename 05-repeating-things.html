@@ -151,8 +151,8 @@ my_list</code></pre>
 <p>Now lets’ see where this might actually be useful.</p>
 <p>Say instead of all of our iris data in one nice file, we have it in separate files; we could read them in one by one, but what if we had 50 files? It would get really tedious. First, we can list the files with the <code>list.files()</code> function:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list.files</span>(<span class="st">&quot;data&quot;</span>)</code></pre>
-<pre><code>## [1] &quot;iris.csv&quot;            &quot;iris.zip&quot;            &quot;iris_setosa.csv&quot;    
-## [4] &quot;iris_versicolor.csv&quot; &quot;iris_virginica.csv&quot;  &quot;toothgrowth.csv&quot;</code></pre>
+<pre><code>## [1] &quot;iris_setosa.csv&quot;     &quot;iris_versicolor.csv&quot; &quot;iris_virginica.csv&quot; 
+## [4] &quot;iris.csv&quot;            &quot;iris.zip&quot;            &quot;toothgrowth.csv&quot;</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list.files</span>(<span class="st">&quot;data&quot;</span>, <span class="dt">pattern =</span> <span class="st">&quot;iris_&quot;</span>, <span class="dt">full.names=</span><span class="ot">TRUE</span>)</code></pre>
 <pre><code>## [1] &quot;data/iris_setosa.csv&quot;     &quot;data/iris_versicolor.csv&quot;
 ## [3] &quot;data/iris_virginica.csv&quot;</code></pre>
