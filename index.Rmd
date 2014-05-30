@@ -48,5 +48,5 @@ Much of the `dplyr` material came from the dplyr [package vignette](http://cran.
 When we went off-roading to play with the reshape2 package, we used material from 
 [this website](http://seananderson.ca/2013/10/19/reshape.html).
 
-#### Source
+##### Source
 Source material for the website can be found here: https://github.com/ateucher/rcourse_site

@@ -129,22 +129,22 @@ code > span.er { font-weight: bold; }
 <div id="example-project-directory-structure" class="section level4">
 <h4>Example project directory structure:</h4>
 <pre><code>project
-â”œâ”€â”€ R
-â”‚   â””â”€â”€ functions.R
-â”œâ”€â”€ data
-â”‚   â”œâ”€â”€ data1.csv
-â”‚   â””â”€â”€ data2.csv
-â”œâ”€â”€ doc
-â”‚   â””â”€â”€ manuscript.doc
-â”œâ”€â”€ out
-â”‚   â””â”€â”€ summaries.csv
-â”œâ”€â”€ plots
-â”‚   â”œâ”€â”€ plot1.png
-â”‚   â””â”€â”€ plot2.png
-â”œâ”€â”€ 01-load_clean_data.R
-â”œâ”€â”€ 02-analysis.R
-â”œâ”€â”€ 03-plotting.R
-â””â”€â”€ my_project.Rproj</code></pre>
+├── R
+│   └── functions.R
+├── data
+│   ├── data1.csv
+│   └── data2.csv
+├── doc
+│   └── manuscript.doc
+├── out
+│   └── summaries.csv
+├── plots
+│   ├── plot1.png
+│   └── plot2.png
+├── 01-load_clean_data.R
+├── 02-analysis.R
+├── 03-plotting.R
+└── my_project.Rproj</code></pre>
 <p>First, look in the files pane of RStudio, then see where we are in R.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getwd</span>()</code></pre>
 <p>The working directory is the place where you’re working, and where R looks for things in input/output operations.</p>
