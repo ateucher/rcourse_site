@@ -4,7 +4,10 @@ title: Getting started with data
 
 ** The structure and much of the content in this module was borrowed from 
 [Software Carpentry](http://www.softwarecarpentry.org)'s
-[novice R Bootcamp material](https://github.com/swcarpentry/bc/tree/master/novice/r)
+[novice R Bootcamp material](https://github.com/swcarpentry/bc/tree/master/novice/r) 
+(Copyright (c) Software Carpentry), which they make available for reuse under the 
+Creative Commons Attribution [(CC_BY)](http://creativecommons.org/licenses/by/3.0/) 
+license.
 
 ## Introduction to R and RStudio
 

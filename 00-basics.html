@@ -62,7 +62,7 @@ code > span.er { font-weight: bold; }
 </div>
 
 
-<p>** The structure and content in this module was largely borrowed from <a href="http://www.softwarecarpentry.org">Software Carpentry</a>’s <a href="https://github.com/swcarpentry/bc/tree/master/novice/r">novice R Bootcamp material</a> and <a href="http://www.poissonconsulting.ca/">Poisson Consulting</a>’s <a href="http://www.poissonconsulting.ca/courses/2012/06/05/an-introduction-to-r-course-12.html">R course notes</a>.</p>
+<p>** The structure and much of the content in this module was borrowed from <a href="http://www.softwarecarpentry.org">Software Carpentry</a>’s <a href="https://github.com/swcarpentry/bc/tree/master/novice/r">novice R Bootcamp material</a> (Copyright (c) Software Carpentry), which they make available for reuse under the Creative Commons Attribution <a href="http://creativecommons.org/licenses/by/3.0/">(CC_BY)</a> license.</p>
 <ul>
 <li>Draw concept map of where we are headed towards best scientific practices, and reproducibility.</li>
 <li>Its really important that you know what you did. More journals/grants/etc. are also making it important for them to know what you did.</li>
@@ -109,11 +109,6 @@ code > span.er { font-weight: bold; }
 <pre><code>## [1] 30</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span> ^<span class="st"> </span><span class="dv">4</span></code></pre>
 <pre><code>## [1] 81</code></pre>
-<ol style="list-style-type: decimal">
-<li>What is nine raised to the power of three?</li>
-<li>Nine raised to the power of 0.5?</li>
-<li>What is the result of <code>3 * 4 + 5</code>? And <code>5 + 3 * 4</code>? What does this indicate?</li>
-</ol>
 <div id="r-respects-standard-order-of-operations-in-math" class="section level4">
 <h4>R Respects standard order of operations in math:</h4>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span> *<span class="st"> </span><span class="dv">4</span> +<span class="st"> </span><span class="dv">5</span></code></pre>
@@ -158,7 +153,7 @@ hrs_per_week</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">max</span>(<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">2</span>,<span class="dv">6</span>,<span class="dv">9</span>)</code></pre>
 <pre><code>## [1] 9</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">date</span>() <span class="co"># Not all functions require arguments</span></code></pre>
-<pre><code>## [1] &quot;Thu May 29 23:18:32 2014&quot;</code></pre>
+<pre><code>## [1] &quot;Fri May 30 19:11:55 2014&quot;</code></pre>
 <div id="specifying-arguments" class="section level4">
 <h4>Specifying arguments</h4>
 <p>Arguments can be specified using <em>positional</em> and/or <em>named</em> matching. Some arguments have default values.</p>
@@ -182,10 +177,6 @@ hrs_per_week</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">?log</code></pre>
 <p>If you don’t know the name of a function, you can find functions associated with a topic by typing <code>??topic_name</code> (one word) or <code>??&quot;topic phrase&quot;</code> (multiple words). Sometimes Google is just as (or more) effective.</p>
 <p>It is important that you learn to read the help screens since they provide important information on what the function does, how it works, and usually sample examples at the very bottom.</p>
-<ol style="list-style-type: decimal">
-<li>Which function calculates cumulative sums? And what arguments does it take?</li>
-<li>What arguments does the function <code>sqrt</code> take?</li>
-</ol>
 </div>
 <div id="some-other-useful-functions-for-navigating" class="section level4">
 <h4>Some other useful functions for navigating</h4>
@@ -201,25 +192,21 @@ hrs_per_week</code></pre>
 ## [1] en_CA.UTF-8/en_CA.UTF-8/en_CA.UTF-8/C/en_CA.UTF-8/en_CA.UTF-8
 ## 
 ## attached base packages:
-## [1] grid      stats     graphics  grDevices utils     datasets  methods  
-## [8] base     
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] reshape2_1.4     mgcv_1.7-29      nlme_3.1-117     hexbin_1.26.3   
-## [5] lattice_0.20-29  knitr_1.5        ggplot2_1.0.0    dplyr_0.2       
-## [9] rmarkdown_0.2.15
+## [1] knitr_1.5        ggplot2_1.0.0    dplyr_0.2        rmarkdown_0.2.15
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] assertthat_0.1   colorspace_1.2-4 digest_0.6.4     evaluate_0.5.5  
-##  [5] formatR_0.10     gtable_0.1.2     labeling_0.2     magrittr_1.0.1  
-##  [9] MASS_7.3-33      Matrix_1.1-3     munsell_0.4.2    parallel_3.1.0  
-## [13] plyr_1.8.1       proto_0.3-10     Rcpp_0.11.1      scales_0.2.4    
-## [17] stringr_0.6.2    tools_3.1.0      yaml_2.1.11</code></pre>
+##  [5] formatR_0.10     grid_3.1.0       gtable_0.1.2     MASS_7.3-33     
+##  [9] munsell_0.4.2    parallel_3.1.0   plyr_1.8.1       proto_0.3-10    
+## [13] Rcpp_0.11.1      reshape2_1.4     scales_0.2.4     stringr_0.6.2   
+## [17] tools_3.1.0      yaml_2.1.11</code></pre>
 </div>
 </div>
 <div id="workspace" class="section level3">
 <h3>Workspace</h3>
-<p>When a value is assigned to an object, the object can be used in subsequent calculations because it is stored in your <em>workspace</em>. The workspace is an area of memory associated with the current session</p>
 <p>List objects in your workspace with <code>ls()</code> function.</p>
 <pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">5</span>
 <span class="kw">ls</span>()</code></pre>
@@ -262,7 +249,7 @@ x &lt;-<span class="st"> &quot;Hello World&quot;</span>
 <pre class="sourceCode r"><code class="sourceCode r">q &lt;-<span class="st"> </span><span class="ot">TRUE</span>
 <span class="kw">class</span>(q)</code></pre>
 <pre><code>## [1] &quot;logical&quot;</code></pre>
-<p>Logicals (<code>TRUE, FALSE</code>) merit a bit more exploration, derived with <code>&gt;, &lt;, &gt;=, &lt;=, ==, !=</code></p>
+<p>Logicals (<code>TRUE, FALSE</code>) merit a bit more exploration, usually derived with <code>&gt;, &lt;, &gt;=, &lt;=, ==, !=</code></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="dv">5</span> &gt;<span class="st"> </span><span class="dv">3</span></code></pre>
 <pre><code>## [1] TRUE</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span> &gt;=<span class="st"> </span><span class="dv">3</span></code></pre>
@@ -580,7 +567,6 @@ dat</code></pre>
 <p>To install any package use <code>install.packages()</code></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)  ## install the ggplot2 package</code></pre>
 <p>You can’t ever learn all of R, but you can learn how to build a program and how to find help to do the things that you want to do.</p>
-<p>Let’s get hands-on.</p>
 </div>
 </div>
 

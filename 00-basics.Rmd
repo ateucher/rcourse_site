@@ -2,11 +2,12 @@
 title: Getting started with R
 ---
 
-** The structure and content in this module was largely borrowed from 
+** The structure and much of the content in this module was borrowed from 
 [Software Carpentry](http://www.softwarecarpentry.org)'s
 [novice R Bootcamp material](https://github.com/swcarpentry/bc/tree/master/novice/r) 
-and [Poisson Consulting](http://www.poissonconsulting.ca/)'s 
-[R course notes](http://www.poissonconsulting.ca/courses/2012/06/05/an-introduction-to-r-course-12.html).
+(Copyright (c) Software Carpentry), which they make available for reuse under the 
+Creative Commons Attribution [(CC_BY)](http://creativecommons.org/licenses/by/3.0/) 
+license.
 
 
 * Draw concept map of where we are headed towards best scientific practices, and reproducibility.
@@ -60,10 +61,6 @@ R can be used just like a calculator (as shown before).
 6 * 5
 3 ^ 4
 ```
-
-1.  What is nine raised to the power of three?
-2.  Nine raised to the power of 0.5?
-3.  What is the result of `3 * 4 + 5`? And `5 + 3 * 4`? What does this indicate?
 
 #### R Respects standard order of operations in math:
 
@@ -156,9 +153,6 @@ It is important that you learn to read the help screens since they provide
 important information on what the function does, how it works, and usually 
 sample examples at the very bottom.
 
-1.  Which function calculates cumulative sums? And what arguments does it take?
-2.  What arguments does the function `sqrt` take?
-
 #### Some other useful functions for navigating
 
 Get / set your working directory:
@@ -175,10 +169,6 @@ sessionInfo()
 ```
 
 ### Workspace
-When a value is assigned to an object, the object can be used in subsequent 
-calculations because it is stored in your _workspace_. The workspace is an area 
-of memory associated with the current session
-
 List objects in your workspace with `ls()` function.
 
 ```{r}
@@ -241,7 +231,7 @@ q <- TRUE
 class(q)
 ```
 
-Logicals (`TRUE, FALSE`) merit a bit more exploration, derived with 
+Logicals (`TRUE, FALSE`) merit a bit more exploration, usually derived with 
 `>, <, >=, <=, ==, !=`
 
 ```{r}
@@ -620,5 +610,3 @@ install.packages("ggplot2")  ## install the ggplot2 package
 
 You can't ever learn all of R, but you can learn how to build a program and how 
 to find help to do the things that you want to do.
-
-Let's get hands-on.
