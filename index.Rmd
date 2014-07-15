@@ -51,3 +51,6 @@ When we went off-roading to play with the reshape2 package, we used material fro
 
 #### Source
 Source material for the website can be found here: https://github.com/ateucher/rcourse_site
+
+#### License
+Notes: [CC-BY](http://creativecommons.org/licenses/by/3.0/). Code: [MIT](http://opensource.org/licenses/mit-license.html)
