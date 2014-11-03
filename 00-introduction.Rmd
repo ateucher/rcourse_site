@@ -37,7 +37,6 @@ exercise("97 out of 284 eggs survive. What is the mortality expressed as a perce
 exercise("What is the result of `3 * 4 + 5`? And `5 + 3 * 4`? What does this indicate?")
 ```
 
-
 #### R Respects standard order of operations in math:
 
 ```{r}
@@ -56,7 +55,11 @@ max(4,8,2,6,9)
 date() # Not all functions require arguments
 ```
 
+<<<<<<< HEAD
 To find out more about a function called `function_name` type `?function_name`. To search for the functions associated with a topic type `??topic` or use quotes for `??"multi-word topics"`.
+=======
+To find out more about a function called `function_name` type `?function_name`. To search for the functions associated with a topic type `??topic` or `??"multiple topics"`.
+>>>>>>> 8327c95c2bed6d42290f7317e1bef86bdc1e2efe
 
 ```{r, echo = FALSE, results = 'asis'}
 exercise("Which function calculates cumulative sums? And what arguments does it take?")
@@ -84,7 +87,11 @@ exercise("What arguments does the function `sqrt` take?")
 
 ### Assignment
 
+<<<<<<< HEAD
 We can save our results to an _object_, if we give it a name. The result of an expression can be *assigned* to an object using the `<-` operator. The object can then be used in subsequent expressions. To save finger strokes type "alt-".
+=======
+We can save our results to an _object_, if we give it a name. The result of an expression can be *assigned* to an object using the `<-` operator. The object can then be used in subsequent expressions. To save finger strokes type alt-.
+>>>>>>> 8327c95c2bed6d42290f7317e1bef86bdc1e2efe
 
 `<-` is the assignment operator.  The *result* of the operation on the right hand 
 side of `<-` is *assigned* to an object with the name specified on the left 
@@ -151,7 +158,11 @@ weights[4]
 This is called "indexing" or subsetting.
 
 ```{r, echo=FALSE, results='asis'}
+<<<<<<< HEAD
 exercise("Using the `sort` function and indexing, find the weight of the third heaviest person")
+=======
+exercise("Using the function `sort` and indexing, find the weight of the third heaviest person")
+>>>>>>> 8327c95c2bed6d42290f7317e1bef86bdc1e2efe
 ```
 
 `weights` is a numeric vector, but there are other kinds as well: `character` 
@@ -173,5 +184,9 @@ clarity. `x` is easy to type, but may not mean much.
 * Avoid using shortcuts. 
 * Code and workflow is more reproducible if we can document everything that we do.
 * Our end goal is not just to "do stuff" but to do it in a way that anyone can 
+<<<<<<< HEAD
   easily and exactly replicate our workflow and results.
 
+=======
+  easily and exactly replicate our workflow and results.
+>>>>>>> 8327c95c2bed6d42290f7317e1bef86bdc1e2efe
