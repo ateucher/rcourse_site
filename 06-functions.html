@@ -6,7 +6,6 @@
 
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="Content-Style-Type" content="text/css" />
 <meta name="generator" content="pandoc" />
 
 
@@ -53,7 +52,14 @@ code > span.er { font-weight: bold; }
 
 <body>
 
-<div class="container">
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+<div class="container-fluid main-container">
 
 <a href="index.html">Home</a>
 
@@ -80,7 +86,7 @@ code > span.er { font-weight: bold; }
 <p>The definition opens with the name of your new function, which is followed by the call to make it a <code>function()</code> and a parenthesized list of arguments. You can have as many input parameters as you would like (but too many might be bad style). The body, or implementation, is surrounded by curly braces <code>{ }</code>. In many languages, the body of the function - the statements that are executed when it runs - must be indented, typically using 4 spaces. While this is not a mandatory requirement in R coding, we strongly recommend you to adopt this as good practice.</p>
 <p>When we call the function, the values we pass to it are assigned to those variables so that we can use them inside the function. The last line within the function is what R will evaluate as a returning value. Remember that the last line has to be a command that will print to the screen, and not an object definition, otherwise the function will return nothing - it will work, but will provide no output. For example, let’s try running our function. Calling our own function is no different from calling any other function:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fahr_to_kelvin</span>(<span class="dv">32</span>)</code></pre>
-<pre><code>## [1] 273.1</code></pre>
+<pre><code>## [1] 273.15</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">paste</span>(<span class="st">&#39;boiling point of water:&#39;</span>, <span class="kw">fahr_to_kelvin</span>(<span class="dv">212</span>))</code></pre>
 <pre><code>## [1] &quot;boiling point of water: 373.15&quot;</code></pre>
 <p>We’ve successfully called the function that we defined, and we have access to the value that we returned. However, it the function was redefined as follows</p>
@@ -227,12 +233,12 @@ $(document).ready(function () {
 
 </script>
 
-<!-- dynamically load mathjax for compatibility with --self-contained -->
+<!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

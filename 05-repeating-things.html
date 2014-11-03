@@ -6,7 +6,6 @@
 
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="Content-Style-Type" content="text/css" />
 <meta name="generator" content="pandoc" />
 
 
@@ -53,7 +52,14 @@ code > span.er { font-weight: bold; }
 
 <body>
 
-<div class="container">
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+<div class="container-fluid main-container">
 
 <a href="index.html">Home</a>
 
@@ -151,8 +157,8 @@ my_list</code></pre>
 <p>Now lets’ see where this might actually be useful.</p>
 <p>Say instead of all of our iris data in one nice file, we have it in separate files; we could read them in one by one, but what if we had 50 files? It would get really tedious. First, we can list the files with the <code>list.files()</code> function:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list.files</span>(<span class="st">&quot;data&quot;</span>)</code></pre>
-<pre><code>## [1] &quot;iris_setosa.csv&quot;     &quot;iris_versicolor.csv&quot; &quot;iris_virginica.csv&quot; 
-## [4] &quot;iris.csv&quot;            &quot;iris.zip&quot;            &quot;toothgrowth.csv&quot;</code></pre>
+<pre><code>## [1] &quot;iris.csv&quot;            &quot;iris.zip&quot;            &quot;iris_setosa.csv&quot;    
+## [4] &quot;iris_versicolor.csv&quot; &quot;iris_virginica.csv&quot;  &quot;toothgrowth.csv&quot;</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list.files</span>(<span class="st">&quot;data&quot;</span>, <span class="dt">pattern =</span> <span class="st">&quot;iris_&quot;</span>, <span class="dt">full.names=</span><span class="ot">TRUE</span>)</code></pre>
 <pre><code>## [1] &quot;data/iris_setosa.csv&quot;     &quot;data/iris_versicolor.csv&quot;
 ## [3] &quot;data/iris_virginica.csv&quot;</code></pre>
@@ -207,12 +213,12 @@ $(document).ready(function () {
 
 </script>
 
-<!-- dynamically load mathjax for compatibility with --self-contained -->
+<!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

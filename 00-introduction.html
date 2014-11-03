@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+<title>Introduction</title>
+
+<script src="libs/jquery-1.11.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="libs/bootstrap-2.3.2/css/flatly.min.css" rel="stylesheet" />
+<link href="libs/bootstrap-2.3.2/css/bootstrap-responsive.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-2.3.2/js/bootstrap.min.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; }
+code > span.dt { color: #204a87; }
+code > span.dv { color: #0000cf; }
+code > span.bn { color: #0000cf; }
+code > span.fl { color: #0000cf; }
+code > span.ch { color: #4e9a06; }
+code > span.st { color: #4e9a06; }
+code > span.co { color: #8f5902; font-style: italic; }
+code > span.ot { color: #8f5902; }
+code > span.al { color: #ef2929; }
+code > span.fu { color: #000000; }
+code > span.er { font-weight: bold; }
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+<div class="container-fluid main-container">
+
+<a href="index.html">Home</a>
+
+<div id="header">
+<h1 class="title">Introduction</h1>
+</div>
+
+
+<p>** The structure and much of the content in this module was borrowed from <a href="http://www.poissonconsulting.ca">Poisson Consulting</a>’s <a href="http://www.poissonconsulting.ca/course/2014/09/12/an-introduction-to-r-course.html">Introductory course notes</a>, which they make available for reuse under the Creative Commons Attribution <a href="http://creativecommons.org/licenses/by/3.0/">(CC_BY)</a> license.</p>
+<div id="introduction-to-r-and-rstudio" class="section level2">
+<h2>Introduction to R and RStudio</h2>
+<p>Let’s start by learning about our tool.</p>
+</div>
+<div id="rstudio" class="section level2">
+<h2>RStudio</h2>
+<p>A number of third-party programs provide powerful interfaces to R. I recommend RStudio - the desktop version of which can be downloaded from <a href="http://rstudio.org/download/desktop" class="uri">http://rstudio.org/download/desktop</a>. Like R, RStudio is free and open source. This course is taught assuming you are using RStudio.</p>
+</div>
+<div id="console" class="section level2">
+<h2>Console</h2>
+<p>By default the pane in the bottom left of RStudio is the R console. This is were we type commands (expressions) for R to run (execute).</p>
+<p>R can be used just like a calculator. An expression is entered at the <code>&gt;</code> prompt and the result printed</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span> +<span class="st"> </span><span class="dv">5</span></code></pre>
+<pre><code>## [1] 8</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">12</span> /<span class="st"> </span><span class="dv">7</span></code></pre>
+<pre><code>## [1] 1.714286</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span>*<span class="dv">4</span></code></pre>
+<pre><code>## [1] 12</code></pre>
+<p>To faciliate cutting and pasting, the R code in this document is not preceded by the <code>&gt;</code> prompt and any output is preceded by two comment characters <code>##</code> (comments are introduced below).</p>
+<p><strong>Exercise 1:</strong> <em>What is nine raised to the power of three?</em></p>
+<p><strong>Exercise 2:</strong> <em>And nine raised to the power of 0.5?</em></p>
+<p><strong>Exercise 3:</strong> <em>97 out of 284 eggs survive. What is the mortality expressed as a percentage?</em></p>
+<p><strong>Exercise 4:</strong> <em>What is the result of <code>3 * 4 + 5</code>? And <code>5 + 3 * 4</code>? What does this indicate?</em></p>
+<p>or by typing words</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="st">&quot;Hello World&quot;</span></code></pre>
+<pre><code>## [1] &quot;Hello World&quot;</code></pre>
+<div id="r-respects-standard-order-of-operations-in-math" class="section level4">
+<h4>R Respects standard order of operations in math:</h4>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span> *<span class="st"> </span><span class="dv">4</span> +<span class="st"> </span><span class="dv">5</span></code></pre>
+<pre><code>## [1] 17</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span> *<span class="st"> </span>(<span class="dv">4</span> +<span class="st"> </span><span class="dv">5</span>)</code></pre>
+<pre><code>## [1] 27</code></pre>
+</div>
+<div id="functions" class="section level3">
+<h3>Functions</h3>
+<p>Most of R’s functionality comes from its <em>functions</em>. A function takes zero, one or multiple <em>arguments</em>, depending on the function, and returns a value. To call a function enter it’s name followed by a pair of brackets - include any arguments in the brackets.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(<span class="dv">10</span>)</code></pre>
+<pre><code>## [1] 2.302585</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt</span>(<span class="dv">4</span>)</code></pre>
+<pre><code>## [1] 2</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">max</span>(<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">2</span>,<span class="dv">6</span>,<span class="dv">9</span>)</code></pre>
+<pre><code>## [1] 9</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">date</span>() <span class="co"># Not all functions require arguments</span></code></pre>
+<pre><code>## [1] &quot;Mon Nov 03 14:36:29 2014&quot;</code></pre>
+<p>To find out more about a function called <code>function_name</code> type <code>?function_name</code>. To search for the functions associated with a topic type <code>??topic</code> or <code>??&quot;multiple topics&quot;</code>.</p>
+<p><strong>Exercise 5:</strong> <em>Which function calculates cumulative sums? And what arguments does it take?</em></p>
+<div id="arguments" class="section level4">
+<h4>Arguments</h4>
+<p>The R Documentation for <code>log</code> indicates that the function requires an argument <code>x</code> that is a vector of <em>numeric</em> (real) or <em>complex</em> numbers and an argument <code>base</code> which is the base of the logarithm. If undefined the value of <code>base</code> is set to be <code>exp(1)</code>, i.e., <code>log</code> calculates natural logarithms by default.</p>
+<p>When calling a function its arguments can be specified using <em>positional</em> and/or <em>named</em> matching.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(<span class="dt">x =</span> <span class="dv">10</span>, <span class="dt">base =</span> <span class="dv">2</span>)</code></pre>
+<pre><code>## [1] 3.321928</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(<span class="dt">base =</span> <span class="dv">2</span>, <span class="dt">x =</span> <span class="dv">10</span>)</code></pre>
+<pre><code>## [1] 3.321928</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(<span class="dv">10</span>, <span class="dv">2</span>)</code></pre>
+<pre><code>## [1] 3.321928</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(<span class="dv">2</span>, <span class="dv">10</span>)</code></pre>
+<pre><code>## [1] 0.30103</code></pre>
+<p><strong>Exercise 6:</strong> <em>What arguments does the function <code>sqrt</code> take?</em></p>
+</div>
+</div>
+<div id="assignment" class="section level3">
+<h3>Assignment</h3>
+<p>We can save our results to an <em>object</em>, if we give it a name. The result of an expression can be <em>assigned</em> to an object using the <code>&lt;-</code> operator. The object can then be used in subsequent expressions. To save finger strokes type alt-.</p>
+<p><code>&lt;-</code> is the assignment operator. The <em>result</em> of the operation on the right hand side of <code>&lt;-</code> is <em>assigned</em> to an object with the name specified on the left hand side of <code>&lt;-</code>. Put spaces around <code>&lt;-</code> (and all other operators).</p>
+<pre class="sourceCode r"><code class="sourceCode r">hrs_per_day &lt;-<span class="st"> </span><span class="dv">24</span>
+days_per_week &lt;-<span class="st"> </span><span class="dv">7</span>
+hrs_per_day *<span class="st"> </span>days_per_week</code></pre>
+<pre><code>## [1] 168</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">hrs_per_week &lt;-<span class="st"> </span>hrs_per_day *<span class="st"> </span>days_per_week
+hrs_per_week</code></pre>
+<pre><code>## [1] 168</code></pre>
+<p><strong>Exercise 7:</strong> <em>Create an object called <code>x</code> with the value <code>7</code>. What is the value of <code>x^x</code>. Save the value in a object called <code>i</code>. If you assign the value <code>20</code> to the object <code>x</code> does the value of <code>i</code> change? What does this indicate about how R assigns values to objects?</em></p>
+</div>
+<div id="workspace" class="section level3">
+<h3>Workspace</h3>
+<p>When a value is assigned to an object, the object can be used in subsequent calculations because it is stored in the <em>workspace</em>. The workspace is an area of memory associated with the current session.</p>
+<p>The <code>ls()</code> function lists the objects in the workspace. Calling <code>rm(x)</code> deletes object <code>x</code> from the workspace. Typing <code>rm(list = ls())</code> removes all objects.</p>
+<p><strong>Exercise 8:</strong> <em>Using the <code>rm</code> function and the assignment operator arrange your workspace so that it contains three objects <code>x</code>, <code>y</code> and <code>z</code> with values of <code>3</code>, <code>5</code> and <code>7</code>, respectively.</em></p>
+<p><strong>Question:</strong> Why is there a little <code>[1]</code> beside everything that gets printed to the console?</p>
+</div>
+<div id="vectors" class="section level3">
+<h3>Vectors</h3>
+<p>A vector is a string of values, and is the most common and basic data structure in <code>R</code> and is pretty much the workhorse of R. It is an object with a series of values, all of the same type.</p>
+<p>So far all of our objects have been single numbers… but they are acually all vectors of length 1.</p>
+<p>You can create, or add to vectors using the function <code>c()</code>. <code>c()</code> takes any number of vectors as arguments, and combines or <em>concatenates</em> them, in the order supplied, into a single vector. For example, if we are creating a vector of patient weights, we could create and then update that vector using <code>c()</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r">weights &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">100</span>, <span class="dv">70</span>, <span class="dv">45</span>, <span class="dv">62</span>, <span class="dv">81</span>)
+weights &lt;-<span class="st"> </span><span class="kw">c</span>(weights, <span class="dv">80</span>)
+weights</code></pre>
+<pre><code>## [1] 100  70  45  62  81  80</code></pre>
+<p>What happens here is that we take the original vector weights, and we are adding the second item to the end of the first one. We can do this over and over again to build a vector or a dataset. As we program, this may be useful to update results that we are collecting or calculating.</p>
+<p>You think of a vector as a train, with each car carrying the same kind of thing. Each train car is an <code>element</code>, and they are numbered sequentially. To get the <code>i</code>th element of a vector, we put <code>i</code> in square brackets behind the name of the vector:</p>
+<pre class="sourceCode r"><code class="sourceCode r">weights[<span class="dv">4</span>]</code></pre>
+<pre><code>## [1] 62</code></pre>
+<p>This is called “indexing” or subsetting.</p>
+<p><strong>Exercise 9:</strong> <em>Using the function <code>sort</code> and indexing, find the weight of the third heaviest person</em></p>
+<p><code>weights</code> is a numeric vector, but there are other kinds as well: <code>character</code> (letters and words) and <code>logical</code> (<code>TRUE</code>or <code>FALSE</code>) are the other most common.</p>
+</div>
+<div id="a-note-about-naming-things" class="section level3">
+<h3>A note about naming things:</h3>
+<p>Name things so that you can understand them later, try to balance brevity with clarity. <code>x</code> is easy to type, but may not mean much.</p>
+<ul>
+<li>Only begin names with letters.</li>
+<li>Separate words with a dot (<code>my.var</code>) or an underscore (<code>my_var</code>), or use <code>camelCase</code>.</li>
+<li>Try to be consistent.</li>
+<li>Avoid giving things names that already exist (like <code>mean</code>, <code>sum</code>, <code>log</code>)</li>
+</ul>
+</div>
+<div id="some-tips-and-best-practices" class="section level3">
+<h3>Some tips and best practices:</h3>
+<ul>
+<li>Avoid using shortcuts.</li>
+<li>Code and workflow is more reproducible if we can document everything that we do.</li>
+<li>Our end goal is not just to “do stuff” but to do it in a way that anyone can easily and exactly replicate our workflow and results.</li>
+</ul>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

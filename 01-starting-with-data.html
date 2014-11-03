@@ -6,7 +6,6 @@
 
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="Content-Style-Type" content="text/css" />
 <meta name="generator" content="pandoc" />
 
 
@@ -53,7 +52,14 @@ code > span.er { font-weight: bold; }
 
 <body>
 
-<div class="container">
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+<div class="container-fluid main-container">
 
 <a href="index.html">Home</a>
 
@@ -63,53 +69,24 @@ code > span.er { font-weight: bold; }
 
 
 <p>** The structure and much of the content in this module was borrowed from <a href="http://www.softwarecarpentry.org">Software Carpentry</a>’s <a href="https://github.com/swcarpentry/bc/tree/master/novice/r">novice R Bootcamp material</a> (Copyright (c) Software Carpentry), which they make available for reuse under the Creative Commons Attribution <a href="http://creativecommons.org/licenses/by/3.0/">(CC_BY)</a> license.</p>
-<div id="introduction-to-r-and-rstudio" class="section level2">
-<h2>Introduction to R and RStudio</h2>
-<p>Let’s start by learning about our tool.</p>
-<p><em>Point out the different windows in RStudio.</em></p>
-<ul>
-<li>Console, Scripts, Environments, Plots</li>
-<li>Avoid using shortcuts.</li>
-<li>Code and workflow is more reproducible if we can document everything that we do.</li>
-<li>Our end goal is not just to “do stuff” but to do it in a way that anyone can easily and exactly replicate our workflow and results.</li>
-</ul>
-<p>You can get output from R simply by typing in math into the console</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span> +<span class="st"> </span><span class="dv">5</span></code></pre>
-<pre><code>## [1] 8</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">12</span> /<span class="st"> </span><span class="dv">7</span></code></pre>
-<pre><code>## [1] 1.714</code></pre>
-<p>or by typing words</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="st">&quot;Hello World&quot;</span></code></pre>
-<pre><code>## [1] &quot;Hello World&quot;</code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li>What is the result of <code>3 * 4 + 5</code>? And <code>5 + 3 * 4</code>? What does this indicate?</li>
-</ol>
-<div id="r-respects-standard-order-of-operations-in-math" class="section level4">
-<h4>R Respects standard order of operations in math:</h4>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span> *<span class="st"> </span><span class="dv">4</span> +<span class="st"> </span><span class="dv">5</span></code></pre>
-<pre><code>## [1] 17</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span> *<span class="st"> </span>(<span class="dv">4</span> +<span class="st"> </span><span class="dv">5</span>)</code></pre>
-<pre><code>## [1] 27</code></pre>
-</div>
-</div>
 <div id="analyzing-iris-data" class="section level2">
 <h2>Analyzing Iris Data</h2>
 <p>We are studying differences in morphology in two species of Iris: <em>Iris setosa</em> and <em>Iris versicolor</em>.</p>
 <div id="we-want-to" class="section level3">
 <h3>We want to:</h3>
 <ul>
-<li>load that data into memory,</li>
+<li>load that data into R,</li>
 <li>Explore the data,</li>
 <li>Calculate some summary statistics,</li>
 <li>Explore the dataset visually,</li>
 <li>plot the results</li>
 </ul>
-<p>To do all that, we’ll have to learn a little bit about programming.</p>
+<p>To do all that, we’ll have to learn a little bit about programming in R.</p>
 </div>
 <div id="objectives" class="section level3">
 <h3>Objectives</h3>
 <ul>
-<li>Read tabular data from a file into <strong>R</strong>.</li>
+<li>Read tabular data from a spreadsheet file into <strong>R</strong>.</li>
 <li>Assign values to variables.</li>
 <li>Learn about data types and structures</li>
 <li>Select individual values and subsections from data</li>
@@ -118,54 +95,40 @@ code > span.er { font-weight: bold; }
 <li>Load an R package and use the things it contains</li>
 </ul>
 </div>
+<div id="working-directory" class="section level3">
+<h3>Working Directory</h3>
+<p>Each R session is associated with a folder on your computer that is referred to as the working directory. To view the contents of the working directory go to the Files window in the bottom right pane. To change the working directory use the</p>
+<p><strong>Exercise 10:</strong> <em>Create a new folder on your home drive called RCourse and make this folder the working directory. To ensure you have been successful confirm that the output of <code>getwd()</code> refers to your RCourse folder.</em></p>
 </div>
-<div id="rstudio-projects" class="section level2">
-<h2>RStudio Projects</h2>
-<ul>
-<li>Projects in RStudio help us keep our code, data, and outputs well organized</li>
-<li>when we quit RStudio, it will help us remember where we left off</li>
-<li>Open a new project -&gt; New Directory -&gt; Empty Project</li>
-</ul>
-<div id="example-project-directory-structure" class="section level4">
-<h4>Example project directory structure:</h4>
-<pre><code>project
-├── R
-│   └── functions.R
-├── data
-│   ├── data1.csv
-│   └── data2.csv
-├── doc
-│   └── manuscript.doc
-├── out
-│   └── summaries.csv
-├── plots
-│   ├── plot1.png
-│   └── plot2.png
-├── 01-load_clean_data.R
-├── 02-analysis.R
-├── 03-plotting.R
-└── my_project.Rproj</code></pre>
-<p>First, look in the files pane of RStudio, then see where we are in R.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getwd</span>()</code></pre>
-<p>The working directory is the place where you’re working, and where R looks for things in input/output operations.</p>
+<div id="rstudio-projects" class="section level3">
+<h3>RStudio Projects</h3>
+<p>Instead of setting the working directory each time you restart RStudio you can associate the contents of a folder with a <em>project</em> - then all you have to do is to open that project. Projects in RStudio help us keep our code, data, and outputs well organized</p>
+<p>To create a new project use the <strong>New Project</strong> command (available on the <strong>File</strong> menu of the global toolbar).</p>
+<p><strong>Exercise 11:</strong> <em>Create a new project called RCourse in the RCourse folder on your desktop. As the folder already exists choose the <strong>Create project from: Existing Directory</strong> option. To confirm you were successful quit RStudio and double-click the RCourse.Rproj file in the RCourse folder - RStudio should restart with RCourse as the working directory.</em></p>
 </div>
 </div>
 <div id="scripts" class="section level2">
 <h2>Scripts</h2>
+<p>Rather than entering expressions into R one by one in the console, a more efficient method is to type the expressions into a text file called a <em>script</em> and then send all (or a subset) of them to R at the same time. R scripts are indicated by the suffix <code>.R</code>.</p>
+<p>Open a new script using the “R Script”&quot; option of the New option in the File menu.</p>
+<p>Now save the script in your working directory as <code>iris.R</code>.</p>
 <ul>
-<li>Record your code in scripts, rather than typing directly into the console</li>
-<li>Comment your code liberally using <code>#</code>. Your future self will thank you.</li>
-<li>Break your code into chunks - by file, and within a file using lines of <code>#</code></li>
+<li>Lines beginning with <code>#</code> are ignored by R. Comment your code liberally using <code>#</code>. Your future self will thank you.</li>
+<li>Start by typing the following at the top of your script:</li>
 </ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># This is my first script.  We are going to learn about irises.</span></code></pre>
 </div>
 <div id="loading-data" class="section level2">
 <h2>Loading Data</h2>
-<p>To load our iris data, we need to download our data to a place we can use it. We will use <code>dir.create()</code> to create a <code>data</code> directory in our project directory, and <code>read.csv()</code> to load the file. These are built-in functions in R. Let’s check out the help screen.</p>
+<p>To load our iris data, we need to download our data to a place we can use it. We will use the function <code>dir.create()</code> to create a <code>data</code> directory in our project directory, and <code>read.csv()</code> to load the data file. These are built-in functions in R. Let’s check out the help screen.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dir.create</span>(<span class="st">&quot;data&quot;</span>)</code></pre>
 <ul>
 <li>download the iris file</li>
 <li>put it in your data directory for these exercises</li>
 </ul>
+<div id="comma-separated-files" class="section level3">
+<h3>Comma Separated Files</h3>
+<p>The simplest way to input and output data is in the form of comma separated files. Comma separated files, which have the suffix <strong>.csv</strong>, are recognised by almost all statistical and spreadsheet programs including R and Excel.</p>
 <p>Load the data into R:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">read.csv</span>(<span class="st">&#39;data/iris.csv&#39;</span>)</code></pre>
 <pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
@@ -193,75 +156,7 @@ code > span.er { font-weight: bold; }
 <p>The expression <code>read.csv()</code> is a function that asks R to load a <code>.csv</code> file into R’s workspace as a data frame.</p>
 <p><code>read.csv()</code> has many arguments including the name of the file we want to read, and the delimiter that separates values on a line.</p>
 <p>When we are finished typing and press <code>Control+Enter</code> on Windows or <code>Cmd + Return</code> on Mac, the console runs our command. Since we haven’t told it to do anything else with the function’s output, the console displays it. In this case, that output is the data we just loaded.</p>
-<p>Our call to <code>read.csv()</code> read the file, but didn’t save the data as an object. To do that, we need to assign the data frame to a variable. A variable is just a name for a value, such as <code>x</code>, <code>current_temperature</code>, or <code>subject_id</code>. We can create a new variable simply by assigning a value to it using <code>&lt;-</code></p>
-<pre class="sourceCode r"><code class="sourceCode r">weight_kg &lt;-<span class="st"> </span><span class="dv">55</span></code></pre>
-<p>Once a variable has a value, we can print it:</p>
-<pre class="sourceCode r"><code class="sourceCode r">weight_kg</code></pre>
-<pre><code>## [1] 55</code></pre>
-<p>and do arithmetic with it:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="fl">2.2</span> *<span class="st"> </span>weight_kg</code></pre>
-<pre><code>## [1] 121</code></pre>
-<p>We can use the function <code>paste()</code> to create strings made up from different objects, if we separate them with commas.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">paste</span>(<span class="st">&quot;weight in pounds:&quot;</span>, <span class="fl">2.2</span> *<span class="st"> </span>weight_kg)</code></pre>
-<pre><code>## [1] &quot;weight in pounds: 121&quot;</code></pre>
-<p>We can also change an object’s value by assigning it a new value:</p>
-<pre class="sourceCode r"><code class="sourceCode r">weight_kg &lt;-<span class="st"> </span><span class="fl">57.5</span>
-<span class="co"># weight in kilograms is now</span>
-weight_kg</code></pre>
-<pre><code>## [1] 57.5</code></pre>
-<p>If we imagine the variable as a sticky note with a name written on it, assignment is like putting the sticky note on a particular value This means that assigning a value to one object does not change the values of other variables.</p>
-<p>For example, let’s store the subject’s weight in pounds in a variable</p>
-<pre class="sourceCode r"><code class="sourceCode r">weight_lb &lt;-<span class="st"> </span><span class="fl">2.2</span> *<span class="st"> </span>weight_kg
-<span class="co"># weight in kg...</span>
-weight_kg</code></pre>
-<pre><code>## [1] 57.5</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ...and in pounds</span>
-weight_lb</code></pre>
-<pre><code>## [1] 126.5</code></pre>
-<p>and then change <code>weight_kg</code>:</p>
-<pre class="sourceCode r"><code class="sourceCode r">weight_kg &lt;-<span class="st"> </span><span class="fl">100.0</span>
-<span class="co"># weight in kg now...</span>
-weight_kg</code></pre>
-<pre><code>## [1] 100</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ...and in weight pounds still</span>
-weight_lb</code></pre>
-<pre><code>## [1] 126.5</code></pre>
-<p><strong>Updating a Variable</strong></p>
-<p>Since <code>weight_lb</code> doesn’t “remember” where its value came from, it isn’t automatically updated when <code>weight_kg</code> changes. This is different from the way spreadsheets work.</p>
-<p><strong>Challenges</strong></p>
-<p>Draw diagrams showing what variables refer to what values after each statement in the following program:</p>
-<pre class="sourceCode r"><code class="sourceCode r">mass &lt;-<span class="st"> </span><span class="fl">47.5</span>
-age  &lt;-<span class="st"> </span><span class="dv">122</span>
-mass &lt;-<span class="st"> </span>mass *<span class="st"> </span><span class="fl">2.0</span>
-age  &lt;-<span class="st"> </span>age -<span class="st"> </span><span class="dv">20</span></code></pre>
-<p><strong>Question:</strong> Why is there a little <code>[1]</code> beside everything that gets printed to the console?</p>
-<div id="vectors" class="section level3">
-<h3>Vectors</h3>
-<p>So far all of our objects have been single numbers… but they are acually all vectors of length 1. A vector is the most common and basic data structure in <code>R</code> and is pretty much the workhorse of R. It is a one-dimensional object with a series of values, all of the same type.</p>
-<p>You can create, or add to vectors using the function <code>c()</code>. <code>c()</code> takes any number of vectors as arguments, and combines or <em>concatenates</em> them, in the order supplied, into a single vector. For example, if we are creating a vector of patient weights, we could create and then update that vector using <code>c()</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r">weights &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">100</span>, <span class="dv">70</span>, <span class="dv">45</span>, <span class="dv">62</span>, <span class="dv">81</span>)
-weights &lt;-<span class="st"> </span><span class="kw">c</span>(weights, <span class="dv">80</span>)
-weights</code></pre>
-<pre><code>## [1] 100  70  45  62  81  80</code></pre>
-<p>What happens here is that we take the original vector weights, and we are adding the second item to the end of the first one. We can do this over and over again to build a vector or a dataset. As we program, this may be useful to autoupdate results that we are collecting or calculating.</p>
-<p><code>weights</code> is a numeric vector, but there are other kinds as well: <code>character</code> (letters and words) and <code>logical</code> (<code>TRUE</code>or <code>FALSE</code>) are the other most common.</p>
-<div id="a-note-about-naming-things" class="section level4">
-<h4>A note about naming things:</h4>
-<blockquote>
-<p>There are only two hard things in Computer Science: cache invalidation and naming things.</p>
-<p>– Phil Karlton</p>
-</blockquote>
-<p>Name things so that you can understand them later, try to balance brevity with clarity. <code>x</code> is easy to type, but may not mean much.</p>
-<ul>
-<li>Only begin names with letters.</li>
-<li>Separate words with a dot (<code>my.var</code>) or an underscore (<code>my_var</code>), or use <code>camelCase</code>.</li>
-<li>Try to be consistent.</li>
-<li>Avoid giving things names that already exist (like <code>mean</code>, <code>sum</code>, <code>log</code>)</li>
-</ul>
-</div>
-</div>
-<div id="back-to-the-irises" class="section level3">
-<h3>Back to the irises</h3>
+<p>Our call to <code>read.csv()</code> read the file, but didn’t save the data as an object. To do that, we need to assign the data frame to a variable.</p>
 <p>Now that we know how to assign things to variables, let’s re-run <code>read.csv</code> and save its result:</p>
 <pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;data/iris.csv&#39;</span>)</code></pre>
 <p>This statement doesn’t produce any output because assignment doesn’t display anything. If we want to check that our data has been loaded, we can print the variable’s value:</p>
@@ -288,7 +183,7 @@ weights</code></pre>
 ## 19           5.7         3.8          1.7         0.3     setosa
 ## 20           5.1         3.8          1.5         0.3     setosa
 ##  [ reached getOption(&quot;max.print&quot;) -- omitted 130 rows ]</code></pre>
-<p>It’s important to note that anything we do with <code>dat</code> here will not affect the original <code>csv</code> file. This is an important concept of reproducibility - don’t touch your original data!</p>
+<p>It’s important to note that anything we do with <code>dat</code> here will not affect the original <code>csv</code> file. <code>dat</code> is a copy of your data inside R. This is an important concept of reproducibility - don’t touch your original data!</p>
 <p>For large data sets it is convenient to use the <code>head()</code> to display the first few rows of data, or <code>tail()</code> to see the end:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(dat)</code></pre>
 <pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
@@ -320,43 +215,16 @@ weights</code></pre>
 <p>Now that our data is in memory, we can start doing things with it. First, let’s ask what type of thing <code>dat</code> <em>is</em>:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(dat)</code></pre>
 <pre><code>## [1] &quot;data.frame&quot;</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(dat)</code></pre>
-<pre><code>## &#39;data.frame&#39;:    150 obs. of  5 variables:
-##  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
-##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
-##  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
-##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
-##  $ Species     : Factor w/ 3 levels &quot;setosa&quot;,&quot;versicolor&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(dat)</code></pre>
-<pre><code>##   Sepal.Length   Sepal.Width    Petal.Length   Petal.Width 
-##  Min.   :4.30   Min.   :2.00   Min.   :1.00   Min.   :0.1  
-##  1st Qu.:5.10   1st Qu.:2.80   1st Qu.:1.60   1st Qu.:0.3  
-##  Median :5.80   Median :3.00   Median :4.35   Median :1.3  
-##  Mean   :5.84   Mean   :3.06   Mean   :3.76   Mean   :1.2  
-##  3rd Qu.:6.40   3rd Qu.:3.40   3rd Qu.:5.10   3rd Qu.:1.8  
-##  Max.   :7.90   Max.   :4.40   Max.   :6.90   Max.   :2.5  
-##                 NA&#39;s   :5                                  
-##        Species  
-##  setosa    :50  
-##  versicolor:50  
-##  virginica :50  
-##                 
-##                 
-##                 
-## </code></pre>
 <p>The output tells us that data currently is a data frame in R. This is similar to a spreadsheet in MS Excel, that many of us are familiar with using.</p>
 <div id="data-frames" class="section level3">
 <h3>data frames</h3>
 <p>The <em>de facto</em> data structure for most tabular data and what we use for statistics.</p>
-<p>Data frames can have additional attributes such as <code>rownames()</code>, which can be useful for annotating data, like <code>subject_id</code> or <code>sample_id</code>. But most of the time they are not used.</p>
 <p>Some additional information on data frames:</p>
 <ul>
 <li>Usually created by <code>read.csv()</code> and <code>read.table()</code>.</li>
-<li>Can convert to matrix with <code>data.matrix()</code> (preferred) or <code>as.matrix()</code></li>
-<li>Coercion will be forced and not always what you expect.</li>
 <li>Can also create with <code>data.frame()</code> function.</li>
-<li>Find the number of rows and columns with <code>nrow(dat)</code> and <code>ncol(dat)</code>, respectively.</li>
 </ul>
+<p>Lets find out a little bit more about <code>dat</code>:</p>
 <div id="useful-data-frame-functions" class="section level4">
 <h4>Useful data frame functions</h4>
 <ul>
@@ -365,13 +233,35 @@ weights</code></pre>
 <li><code>dim()</code> - returns the dimensions</li>
 <li><code>nrow()</code> - number of rows</li>
 <li><code>ncol()</code> - number of columns</li>
-<li><code>str()</code> - structure of each column</li>
-<li><code>names()</code> - shows the <code>names</code> attribute for a data frame, which gives the column names.</li>
+<li><code>str()</code> - structure of of data frame - number of rows/columns and data type of each column</li>
+<li><code>summary()</code> - summarises each column</li>
+<li><code>names()</code> - gives the column names</li>
 </ul>
-<p><code>str</code> output tells us the dimensions and the data types (int is integer) of each column.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(dat)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    150 obs. of  5 variables:
+##  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+##  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+##  $ Species     : Factor w/ 3 levels &quot;setosa&quot;,&quot;versicolor&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(dat)</code></pre>
+<pre><code>##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
+##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
+##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
+##  Median :5.800   Median :3.000   Median :4.350   Median :1.300  
+##  Mean   :5.843   Mean   :3.063   Mean   :3.758   Mean   :1.199  
+##  3rd Qu.:6.400   3rd Qu.:3.400   3rd Qu.:5.100   3rd Qu.:1.800  
+##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
+##                  NA&#39;s   :5                                      
+##        Species  
+##  setosa    :50  
+##  versicolor:50  
+##  virginica :50  
+##                 
+##                 
+##                 
+## </code></pre>
 <p>We can see what its shape is like this:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(dat)</code></pre>
-<pre><code>## [1] 150   5</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nrow</span>(dat)</code></pre>
 <pre><code>## [1] 150</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ncol</span>(dat)</code></pre>
@@ -381,7 +271,7 @@ weights</code></pre>
 </div>
 <div id="referencing-columns" class="section level3">
 <h3>Referencing Columns</h3>
-<p>When referencing a column, the <code>$</code> operator is used to separate the data frame and the column name. In a data frame, each column is a <em>vector</em> of the same length. Let’s look at the petal widths:</p>
+<p>When referencing a column, the <code>$</code> operator is used to separate the data frame and the column name. Remember how we talked about vectors and how important they are? In a data frame, each column is a <em>vector</em> of the same length. Let’s look at the petal widths:</p>
 <pre class="sourceCode r"><code class="sourceCode r">dat$Petal.Width</code></pre>
 <pre><code>##   [1] 0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 0.2 0.2 0.1 0.1 0.2 0.4 0.4
 ##  [18] 0.3 0.3 0.3 0.2 0.4 0.2 0.5 0.2 0.2 0.4 0.2 0.2 0.2 0.2 0.4 0.1 0.2
@@ -390,12 +280,13 @@ weights</code></pre>
 ##  [69] 1.5 1.1 1.8 1.3 1.5 1.2 1.3 1.4 1.4 1.7 1.5 1.0 1.1 1.0 1.2 1.6 1.5
 ##  [86] 1.6 1.5 1.3 1.3 1.3 1.2 1.4 1.2 1.0 1.3 1.2 1.3 1.3 1.1 1.3
 ##  [ reached getOption(&quot;max.print&quot;) -- omitted 50 entries ]</code></pre>
-<p>Now say we want to get the mean of the petal widths, or the maximum of the sepal widths:</p>
+<p>Now say we want to get the mean of the petal widths:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(dat$Petal.Width)</code></pre>
-<pre><code>## [1] 1.199</code></pre>
+<pre><code>## [1] 1.199333</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">max</span>(dat$Sepal.Width)</code></pre>
 <pre><code>## [1] NA</code></pre>
-<p>Wait, what happened there? Why is the max of sepal width <code>NA</code>? Let’s have a look:</p>
+<p><strong>Exercise 12:</strong> <em>Find the maximum of the sepal widths. Did anything unexpected happen?</em></p>
+<p>Let’s have a look at the <code>Sepal.Width</code> column:</p>
 <pre class="sourceCode r"><code class="sourceCode r">dat$Sepal.Width <span class="co"># First look at the data - there are some values that are NA.</span></code></pre>
 <pre><code>##   [1] 3.5 3.0 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 3.7 3.4 3.0 3.0 4.0 4.4 3.9
 ##  [18] 3.5 3.8 3.8 3.4 3.7 3.6 3.3 3.4 3.0 3.4 3.5 3.4 3.2 3.1 3.4 4.1 4.2
@@ -418,30 +309,14 @@ weights</code></pre>
 ## 5          5.0         3.6          1.4         0.2  setosa
 ## 6          5.4         3.9          1.7         0.4  setosa
 ##   Sepal.Length.in
-## 1           2.008
-## 2           1.929
-## 3           1.850
-## 4           1.811
-## 5           1.969
-## 6           2.126</code></pre>
-<p>Or, perhaps what we are really interested in is the ratio of petal length to petal width:</p>
-<pre class="sourceCode r"><code class="sourceCode r">dat$Petal.LW.Ratio &lt;-<span class="st"> </span>dat$Petal.Length /<span class="st"> </span>dat$Petal.Width
-<span class="kw">head</span>(dat)</code></pre>
-<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
-## 1          5.1         3.5          1.4         0.2  setosa
-## 2          4.9         3.0          1.4         0.2  setosa
-## 3          4.7         3.2          1.3         0.2  setosa
-## 4          4.6         3.1          1.5         0.2  setosa
-## 5          5.0         3.6          1.4         0.2  setosa
-## 6          5.4         3.9          1.7         0.4  setosa
-##   Sepal.Length.in Petal.LW.Ratio
-## 1           2.008           7.00
-## 2           1.929           7.00
-## 3           1.850           6.50
-## 4           1.811           7.50
-## 5           1.969           7.00
-## 6           2.126           4.25</code></pre>
-<p>You can remove columns by assigning <code>NULL</code> to them. Let’s get rid of those two we just created to get back to our original data frame.</p>
+## 1        2.007874
+## 2        1.929134
+## 3        1.850394
+## 4        1.811024
+## 5        1.968504
+## 6        2.125984</code></pre>
+<p><strong>Exercise 13:</strong> <em>Create a new column in <code>dat</code> that contains the ratio of petal length to petal width. Call the column <code>Petal.Ratio</code></em></p>
+<p>You can remove columns by assigning <code>NULL</code> to them. <code>NULL</code> is a special term that means nothing. Let’s get rid of those two we just created to get back to our original data frame.</p>
 <pre class="sourceCode r"><code class="sourceCode r">dat$Petal.LW.Ratio &lt;-<span class="st"> </span><span class="ot">NULL</span>
 dat$Sepal.Length.in &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre>
 </div>
@@ -563,7 +438,7 @@ dat[<span class="dv">3</span>, <span class="dv">5</span>]</code></pre>
 <p>Sometimes we are interested in extracting data based on something else. Lets say we want to look at all of the flowers measured that had really long sepals:</p>
 <pre class="sourceCode r"><code class="sourceCode r">mean.sl &lt;-<span class="st"> </span><span class="kw">mean</span>(dat$Sepal.Length) <span class="co"># First find the average sepal length</span>
 mean.sl</code></pre>
-<pre><code>## [1] 5.843</code></pre>
+<pre><code>## [1] 5.843333</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">dat[dat$Sepal.Length &gt;<span class="st"> </span>mean.sl, ]</code></pre>
 <pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
 ## 51           7.0         3.2          4.7         1.4 versicolor
@@ -633,14 +508,9 @@ mean.sl</code></pre>
 <div id="key-points" class="section level2">
 <h2>Key Points</h2>
 <ul>
-<li>Import a package into your workspace using <code>library(&quot;pkgname&quot;)</code>.</li>
-<li>The key data types in R?</li>
 <li>Use <code>variable &lt;- value</code> to assign a value to a variable in order to record it in memory.</li>
 <li>Objects are created on demand whenever a value is assigned to them.</li>
-<li>Use <code>print(something)</code> (or just <code>something</code>) to display <code>something</code>.</li>
-<li>The expression <code>dim()</code> gives the dimensions of a data frame or matrix.</li>
-<li>Use <code>object[x, y]</code> to select a single element from an array.</li>
-<li>Object indices start at 1.</li>
+<li>Use <code>object[x, y]</code> to select a single element from a data frame.</li>
 <li>Use <code>from:to</code> to specify a sequence that includes the indices from <code>from</code> to <code>to</code>.</li>
 <li>Use <code>#</code> to add comments to programs.</li>
 <li>Use <code>mean()</code>, <code>max()</code>, <code>min()</code> and <code>sd()</code> to calculate simple statistics.</li>
@@ -660,12 +530,12 @@ $(document).ready(function () {
 
 </script>
 
-<!-- dynamically load mathjax for compatibility with --self-contained -->
+<!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>
