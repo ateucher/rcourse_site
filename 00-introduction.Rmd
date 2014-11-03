@@ -1,0 +1,177 @@
+---
+title: "Introduction"
+---
+
+** The structure and much of the content in this module was borrowed from 
+[Poisson Consulting](http://www.poissonconsulting.ca)'s
+[Introductory course notes](http://www.poissonconsulting.ca/course/2014/09/12/an-introduction-to-r-course.html), which they make available for reuse under the 
+Creative Commons Attribution [(CC_BY)](http://creativecommons.org/licenses/by/3.0/) 
+license.
+
+## Introduction to R and RStudio
+
+Let's start by learning about our tool.
+
+## RStudio
+
+A number of third-party programs provide powerful interfaces to R. I recommend RStudio - the desktop version of which can be downloaded from <http://rstudio.org/download/desktop>. Like R, RStudio is free and open source. This course is taught assuming you are using RStudio.
+
+## Console
+
+By default the pane in the bottom left of RStudio is the R console. This is were we type commands (expressions) for R to run (execute).
+
+R can be used just like a calculator. An expression is entered at the `>` prompt and the result printed
+  
+```{r}
+3 + 5
+12 / 7
+3*4
+```
+
+To faciliate cutting and pasting, the R code in this document is not preceded by the `>` prompt and any output is preceded by two comment characters `##` (comments are introduced below).
+
+```{r, echo = FALSE, results = 'asis'}
+exercise("What is nine raised to the power of three?")
+exercise("And nine raised to the power of 0.5?")
+exercise("97 out of 284 eggs survive. What is the mortality expressed as a percentage?")
+exercise("What is the result of `3 * 4 + 5`? And `5 + 3 * 4`? What does this indicate?")
+```
+
+
+#### R Respects standard order of operations in math:
+
+```{r}
+3 * 4 + 5
+3 * (4 + 5)
+```
+
+### Functions
+
+Most of R's functionality comes from its *functions*. A function takes zero, one or multiple *arguments*, depending on the function, and returns a value. To call a function enter it's name followed by a pair of brackets - include any arguments in the brackets.
+
+```{r}
+log(10)
+sqrt(4)
+max(4,8,2,6,9)
+date() # Not all functions require arguments
+```
+
+To find out more about a function called `function_name` type `?function_name`. To search for the functions associated with a topic type `??topic` or use quotes for `??"multi-word topics"`.
+
+```{r, echo = FALSE, results = 'asis'}
+exercise("Which function calculates cumulative sums? And what arguments does it take?")
+```
+
+#### Arguments
+
+The R Documentation for `log` indicates that the function requires an argument `x` that is a vector of
+*numeric* (real) or *complex* numbers and an argument `base` which is the base of the logarithm. 
+If undefined the value of `base` is set to be `exp(1)`, i.e., `log` calculates natural logarithms by default.
+
+When calling a function its arguments can be specified using *positional* and/or 
+*named* matching.
+
+```{r}
+log(x = 10, base = 2)
+log(base = 2, x = 10)
+log(10, 2)
+log(2, 10)
+```
+
+```{r, echo = FALSE, results = 'asis'}
+exercise("What arguments does the function `sqrt` take?")
+```
+
+### Assignment
+
+We can save our results to an _object_, if we give it a name. The result of an expression can be *assigned* to an object using the `<-` operator. The object can then be used in subsequent expressions. To save finger strokes type "alt-".
+
+`<-` is the assignment operator.  The *result* of the operation on the right hand 
+side of `<-` is *assigned* to an object with the name specified on the left 
+hand side of `<-`.  Put spaces around `<-` (and all other operators).
+
+```{r}
+hrs_per_day <- 24
+days_per_week <- 7
+hrs_per_day * days_per_week
+hrs_per_week <- hrs_per_day * days_per_week
+hrs_per_week
+```
+
+```{r, echo = FALSE, results = 'asis'}
+exercise("Create an object called `x` with the value `7`. What is the value of `x^x`. Save the value in a object called `i`. If you assign the value `20` to the object `x` does the value of `i` change? What does this indicate about how R assigns values to objects?")
+```
+
+### Workspace
+
+When a value is assigned to an object, the object can be used in subsequent calculations because it is stored in the *workspace*. The workspace is an area of memory associated with the current session.
+
+The `ls()` function lists the objects in the workspace. Calling `rm(x)` deletes object `x` from the workspace. Typing `rm(list = ls())` removes all objects.
+
+```{r, echo = FALSE, results = 'asis'}
+exercise("Using the `rm` function and the assignment operator arrange your workspace so that 
+it contains three objects `x`, `y` and `z` with values of `3`, `5` and `7`, respectively.")
+```
+
+**Question:** Why is there a little `[1]` beside everything that gets printed 
+to the console?
+
+### Vectors
+
+A vector is a string of values, and is the most common and basic data structure in `R` 
+and is pretty much the workhorse of R. It is an object with a series of values, all of the same type.
+
+So far all of our objects have been single numbers... but they are acually all
+vectors of length 1.
+
+You can create, or add to vectors using the function `c()`. `c()` takes any 
+number of vectors as arguments, and combines or *concatenates* them, in the 
+order supplied, into a single vector. For example, if we are creating a vector 
+of patient weights, we could create and then update that vector using `c()`.
+
+```{r}
+weights <- c(100, 70, 45, 62, 81)
+weights <- c(weights, 80)
+weights
+```
+
+What happens here is that we take the original vector weights, and we are adding 
+the second item to the end of the first one. We can do this over and over again 
+to build a vector or a dataset. As we program, this may be useful to update 
+results that we are collecting or calculating.
+
+You think of a vector as a train, with each car carrying the same kind of thing. 
+Each train car is an `element`, and they are numbered sequentially. To get the `i`th 
+element of a vector, we put `i` in square brackets behind the name of the vector:
+
+```{r}
+weights[4]
+```
+
+This is called "indexing" or subsetting.
+
+```{r, echo=FALSE, results='asis'}
+exercise("Using the `sort` function and indexing, find the weight of the third heaviest person")
+```
+
+`weights` is a numeric vector, but there are other kinds as well: `character` 
+(letters and words) and `logical` (`TRUE`or `FALSE`) are the other most common.
+
+### A note about naming things:
+
+Name things so that you can understand them later, try to balance brevity with 
+clarity. `x` is easy to type, but may not mean much.
+
+* Only begin names with letters.
+* Separate words with a dot (`my.var`) or an underscore (`my_var`), or use 
+`camelCase`.
+* Try to be consistent.
+* Avoid giving things names that already exist (like `mean`, `sum`, `log`)
+
+### Some tips and best practices:
+
+* Avoid using shortcuts. 
+* Code and workflow is more reproducible if we can document everything that we do.
+* Our end goal is not just to "do stuff" but to do it in a way that anyone can 
+  easily and exactly replicate our workflow and results.
+

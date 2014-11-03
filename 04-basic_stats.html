@@ -6,7 +6,6 @@
 
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="Content-Style-Type" content="text/css" />
 <meta name="generator" content="pandoc" />
 
 
@@ -53,7 +52,14 @@ code > span.er { font-weight: bold; }
 
 <body>
 
-<div class="container">
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+<div class="container-fluid main-container">
 
 <a href="index.html">Home</a>
 
@@ -70,7 +76,7 @@ code > span.er { font-weight: bold; }
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Simulate some data with a normal distribution, a mean of 0, and sd of 1.</span>
 data &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>)
 <span class="kw">mean</span>(data)</code></pre>
-<pre><code>## [1] 0.0136</code></pre>
+<pre><code>## [1] 0.01360315</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(data, <span class="dt">mu=</span><span class="dv">0</span>)</code></pre>
 <pre><code>## 
 ##  One Sample t-test
@@ -79,24 +85,24 @@ data &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv
 ## t = 0.1308, df = 99, p-value = 0.8962
 ## alternative hypothesis: true mean is not equal to 0
 ## 95 percent confidence interval:
-##  -0.1928  0.2200
+##  -0.1927919  0.2199982
 ## sample estimates:
-## mean of x 
-##    0.0136</code></pre>
+##  mean of x 
+## 0.01360315</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">## Unsurprisingly, not significant.</code></pre>
 <p>For the iris data, we want to use a two-sample t-test. I like using the formula specification because it’s similar to how many other statistical tests are specified: <code>t.test(Value ~ factor, data=)</code></p>
 <p>Since we’re only interested in <em>setosa</em> and <em>virginica</em>, we need to get rid of <em>versicolor</em>.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(dplyr)
 setosa.virginica &lt;-<span class="st"> </span><span class="kw">filter</span>(dat, Species !=<span class="st"> &quot;versicolor&quot;</span>)
 <span class="kw">summary</span>(setosa.virginica)</code></pre>
-<pre><code>##   Sepal.Length  Sepal.Width    Petal.Length   Petal.Width  
-##  Min.   :4.3   Min.   :2.20   Min.   :1.00   Min.   :0.10  
-##  1st Qu.:5.0   1st Qu.:3.00   1st Qu.:1.50   1st Qu.:0.20  
-##  Median :5.7   Median :3.20   Median :3.20   Median :1.00  
-##  Mean   :5.8   Mean   :3.21   Mean   :3.51   Mean   :1.14  
-##  3rd Qu.:6.5   3rd Qu.:3.50   3rd Qu.:5.53   3rd Qu.:2.00  
-##  Max.   :7.9   Max.   :4.40   Max.   :6.90   Max.   :2.50  
-##                NA&#39;s   :4                                   
+<pre><code>##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
+##  Min.   :4.300   Min.   :2.200   Min.   :1.000   Min.   :0.100  
+##  1st Qu.:5.000   1st Qu.:3.000   1st Qu.:1.500   1st Qu.:0.200  
+##  Median :5.700   Median :3.200   Median :3.200   Median :1.000  
+##  Mean   :5.797   Mean   :3.207   Mean   :3.507   Mean   :1.136  
+##  3rd Qu.:6.500   3rd Qu.:3.500   3rd Qu.:5.525   3rd Qu.:2.000  
+##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
+##                  NA&#39;s   :4                                      
 ##        Species  
 ##  setosa    :50  
 ##  versicolor: 0  
@@ -111,10 +117,10 @@ setosa.virginica &lt;-<span class="st"> </span><span class="kw">filter</span>(da
 ##  Welch Two Sample t-test
 ## 
 ## data:  Sepal.Length by Species
-## t = -15.39, df = 76.52, p-value &lt; 2.2e-16
+## t = -15.3862, df = 76.516, p-value &lt; 2.2e-16
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -1.787 -1.377
+##  -1.78676 -1.37724
 ## sample estimates:
 ##    mean in group setosa mean in group virginica 
 ##                   5.006                   6.588</code></pre>
@@ -131,19 +137,19 @@ petal.reg &lt;-<span class="st"> </span><span class="kw">lm</span>(Petal.Length 
 ## lm(formula = Petal.Length ~ Petal.Width, data = setosa.dat)
 ## 
 ## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -0.4369 -0.0915 -0.0369  0.0902  0.4631 
+##      Min       1Q   Median       3Q      Max 
+## -0.43686 -0.09151 -0.03686  0.09018  0.46314 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)    1.328      0.060   22.14   &lt;2e-16 ***
-## Petal.Width    0.546      0.224    2.44    0.019 *  
+## (Intercept)  1.32756    0.05996  22.141   &lt;2e-16 ***
+## Petal.Width  0.54649    0.22439   2.435   0.0186 *  
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.166 on 48 degrees of freedom
-## Multiple R-squared:  0.11,   Adjusted R-squared:  0.0914 
-## F-statistic: 5.93 on 1 and 48 DF,  p-value: 0.0186</code></pre>
+## Residual standard error: 0.1655 on 48 degrees of freedom
+## Multiple R-squared:   0.11,  Adjusted R-squared:  0.09144 
+## F-statistic: 5.931 on 1 and 48 DF,  p-value: 0.01864</code></pre>
 <div id="plot-the-data-with-the-regression-line-along-with-confidence-limits" class="section level4">
 <h4>Plot the data with the regression line, along with confidence limits</h4>
 <pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(setosa.dat, <span class="kw">aes</span>(<span class="dt">x =</span> Petal.Width, <span class="dt">y =</span> Petal.Length)) +<span class="st"> </span><span class="kw">geom_point</span>()
@@ -159,10 +165,10 @@ dummy &lt;-<span class="st"> </span><span class="kw">cbind</span>(dummy, pred)
 p +<span class="st"> </span><span class="kw">geom_line</span>(<span class="dt">data =</span> dummy, <span class="kw">aes</span>(<span class="dt">y =</span> fit)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> dummy, <span class="kw">aes</span>(<span class="dt">y =</span> lwr), <span class="dt">linetype =</span> <span class="st">&#39;dashed&#39;</span>) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> dummy, <span class="kw">aes</span>(<span class="dt">y =</span> upr), <span class="dt">linetype =</span> <span class="st">&#39;dashed&#39;</span>)</code></pre>
-<p><img src="04-basic_stats_files/figure-html/olsreg-plot.png" alt="plot of chunk olsreg-plot" /></p>
+<p><img src="04-basic_stats_files/figure-html/olsreg-plot-1.png" title="" alt="" width="672" /></p>
 <p>ggplot2 will also generate a fitted line and confidence intervals for you - which is useful, but only works for a univariate relationship … it’s also nice to do it yourself as above so you <em>know</em> that the fit is coming directly from regression model you ran.</p>
 <pre class="sourceCode r"><code class="sourceCode r">p +<span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)</code></pre>
-<p><img src="04-basic_stats_files/figure-html/olsreg-ggplot-lm.png" alt="plot of chunk olsreg-ggplot-lm" /></p>
+<p><img src="04-basic_stats_files/figure-html/olsreg-ggplot-lm-1.png" title="" alt="" width="672" /></p>
 </div>
 <div id="checking-assumptions" class="section level4">
 <h4>Checking Assumptions</h4>
@@ -172,10 +178,10 @@ residuals &lt;-<span class="st"> </span><span class="kw">resid</span>(petal.reg)
 
 <span class="kw">ggplot</span>(<span class="dt">data=</span><span class="ot">NULL</span>, <span class="kw">aes</span>(<span class="dt">x =</span> fitted, <span class="dt">y =</span> residuals)) +<span class="st"> </span><span class="kw">geom_point</span>() +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>)</code></pre>
-<p><img src="04-basic_stats_files/figure-html/ggplot-resids.png" alt="plot of chunk ggplot-resids" /></p>
+<p><img src="04-basic_stats_files/figure-html/ggplot-resids-1.png" title="" alt="" width="672" /></p>
 <p>We can check also assumptions using <code>plot()</code>. There are actually a bunch of different <code>plot</code> methods in R, which are dispatched depending on the type of object you call them on. When you call plot on an <code>lm</code> object, a series of diagnostic plots is created to help us check the assumptions of the <code>lm</code> object.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(petal.reg)</code></pre>
-<p><img src="04-basic_stats_files/figure-html/olsreg-check1.png" alt="plot of chunk olsreg-check" /> <img src="04-basic_stats_files/figure-html/olsreg-check2.png" alt="plot of chunk olsreg-check" /> <img src="04-basic_stats_files/figure-html/olsreg-check3.png" alt="plot of chunk olsreg-check" /> <img src="04-basic_stats_files/figure-html/olsreg-check4.png" alt="plot of chunk olsreg-check" /></p>
+<p><img src="04-basic_stats_files/figure-html/olsreg-check-1.png" title="" alt="" width="672" /><img src="04-basic_stats_files/figure-html/olsreg-check-2.png" title="" alt="" width="672" /><img src="04-basic_stats_files/figure-html/olsreg-check-3.png" title="" alt="" width="672" /><img src="04-basic_stats_files/figure-html/olsreg-check-4.png" title="" alt="" width="672" /></p>
 <p>Get more information on these plots by checking <code>?plot.lm</code>.</p>
 </div>
 </div>
@@ -194,32 +200,32 @@ residuals &lt;-<span class="st"> </span><span class="kw">resid</span>(petal.reg)
 ## 
 ## Coefficients:
 ##                   Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)         1.4620     0.0609    24.0   &lt;2e-16 ***
-## Speciesversicolor   2.7980     0.0861    32.5   &lt;2e-16 ***
-## Speciesvirginica    4.0900     0.0861    47.5   &lt;2e-16 ***
+## (Intercept)        1.46200    0.06086   24.02   &lt;2e-16 ***
+## Speciesversicolor  2.79800    0.08607   32.51   &lt;2e-16 ***
+## Speciesvirginica   4.09000    0.08607   47.52   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.43 on 147 degrees of freedom
-## Multiple R-squared:  0.941,  Adjusted R-squared:  0.941 
-## F-statistic: 1.18e+03 on 2 and 147 DF,  p-value: &lt;2e-16</code></pre>
+## Residual standard error: 0.4303 on 147 degrees of freedom
+## Multiple R-squared:  0.9414, Adjusted R-squared:  0.9406 
+## F-statistic:  1180 on 2 and 147 DF,  p-value: &lt; 2.2e-16</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(petal_length.aov)</code></pre>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: Petal.Length
-##            Df Sum Sq Mean Sq F value Pr(&gt;F)    
-## Species     2    437   218.6    1180 &lt;2e-16 ***
-## Residuals 147     27     0.2                   
+##            Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+## Species     2 437.10 218.551  1180.2 &lt; 2.2e-16 ***
+## Residuals 147  27.22   0.185                      
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <div id="plot" class="section level4">
 <h4>Plot</h4>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> Species, <span class="dt">y =</span> Petal.Length)) +<span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre>
-<p><img src="04-basic_stats_files/figure-html/petal-box-plot1.png" alt="plot of chunk petal-box-plot" /></p>
+<p><img src="04-basic_stats_files/figure-html/petal-box-plot-1.png" title="" alt="" width="672" /></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> Species, <span class="dt">y =</span> Petal.Length)) +<span class="st"> </span><span class="kw">geom_point</span>()</code></pre>
-<p><img src="04-basic_stats_files/figure-html/petal-box-plot2.png" alt="plot of chunk petal-box-plot" /></p>
+<p><img src="04-basic_stats_files/figure-html/petal-box-plot-2.png" title="" alt="" width="672" /></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> Species, <span class="dt">y =</span> Petal.Length)) +<span class="st"> </span><span class="kw">geom_jitter</span>()</code></pre>
-<p><img src="04-basic_stats_files/figure-html/petal-box-plot3.png" alt="plot of chunk petal-box-plot" /></p>
+<p><img src="04-basic_stats_files/figure-html/petal-box-plot-3.png" title="" alt="" width="672" /></p>
 </div>
 <div id="check-assumptions" class="section level4">
 <h4>Check assumptions</h4>
@@ -228,7 +234,7 @@ residuals &lt;-<span class="st"> </span><span class="kw">resid</span>(petal_leng
 
 <span class="kw">ggplot</span>(<span class="dt">data=</span><span class="ot">NULL</span>, <span class="kw">aes</span>(<span class="dt">x =</span> fitted, <span class="dt">y =</span> residuals)) +<span class="st"> </span><span class="kw">geom_point</span>() +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>)</code></pre>
-<p><img src="04-basic_stats_files/figure-html/ggplot-aov-resids.png" alt="plot of chunk ggplot-aov-resids" /></p>
+<p><img src="04-basic_stats_files/figure-html/ggplot-aov-resids-1.png" title="" alt="" width="672" /></p>
 </div>
 </div>
 <div id="generalized-linear-models-logistic-regression" class="section level3">
@@ -251,7 +257,7 @@ elev_pres.data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
 
 ## Plot the data
 <span class="kw">ggplot</span>(elev_pres.data, <span class="kw">aes</span>(<span class="dt">x =</span> elev, <span class="dt">y =</span> pres)) +<span class="st"> </span><span class="kw">geom_point</span>()</code></pre>
-<p><img src="04-basic_stats_files/figure-html/glm-binom-sim.png" alt="plot of chunk glm-binom-sim" /></p>
+<p><img src="04-basic_stats_files/figure-html/glm-binom-sim-1.png" title="" alt="" width="672" /></p>
 <p>Presence / absence data is a classic example of where to use logistic regression; the outcome is binary (0 or 1), and the predictor variable is continuous (elevation, in this case). Logisitic regression is a particular type of model in the family of <em>Generalized Linear Models</em>. Where ordinary least squares regression assumes a normal disribution of the response variable, <em>Generalized linear models</em> assume a different distribution. Logistic regression assumes a binomial distribution (outcome will be in one of two states). Another common example is the poisson distribution, which is often useful for count data.<br />Implementing GLMs is relatively straightforward using the <code>glm()</code> function. You specify the model formula in the same way as in <code>lm()</code>, and specify the distribution you want in the <em>family</em> parameter.</p>
 <pre class="sourceCode r"><code class="sourceCode r">lr1 &lt;-<span class="st"> </span><span class="kw">glm</span>(pres ~<span class="st"> </span>elev, <span class="dt">data=</span>elev_pres.data, <span class="dt">family=</span>binomial)
 <span class="kw">summary</span>(lr1)</code></pre>
@@ -260,13 +266,13 @@ elev_pres.data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
 ## glm(formula = pres ~ elev, family = binomial, data = elev_pres.data)
 ## 
 ## Deviance Residuals: 
-##    Min      1Q  Median      3Q     Max  
-## -2.077  -0.805  -0.423   0.832   1.911  
+##     Min       1Q   Median       3Q      Max  
+## -2.0769  -0.8052  -0.4233   0.8323   1.9113  
 ## 
 ## Coefficients:
-##             Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept) -3.03296    0.68754   -4.41  1.0e-05 ***
-## elev         0.00512    0.00112    4.58  4.7e-06 ***
+##              Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -3.032963   0.687539  -4.411 1.03e-05 ***
+## elev         0.005118   0.001118   4.579 4.67e-06 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
@@ -274,14 +280,14 @@ elev_pres.data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
 ## 
 ##     Null deviance: 125.61  on 90  degrees of freedom
 ## Residual deviance:  96.42  on 89  degrees of freedom
-## AIC: 100.4
+## AIC: 100.42
 ## 
 ## Number of Fisher Scoring iterations: 4</code></pre>
 <p>So let’s add the curve generated by the logistic regression to the plot:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(elev_pres.data, <span class="kw">aes</span>(<span class="dt">x =</span> elev, <span class="dt">y =</span> pres)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>() +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> <span class="kw">predict</span>(lr1, <span class="dt">type=</span><span class="st">&quot;response&quot;</span>)))</code></pre>
-<p><img src="04-basic_stats_files/figure-html/lr-plot.png" alt="plot of chunk lr-plot" /></p>
+<p><img src="04-basic_stats_files/figure-html/lr-plot-1.png" title="" alt="" width="672" /></p>
 </div>
 <div id="more-advanced-linear-models-and-model-selection-using-aic" class="section level3">
 <h3>More advanced linear models and model selection using AIC</h3>
@@ -291,16 +297,16 @@ mod3 &lt;-<span class="st"> </span><span class="kw">lm</span>(Sepal.Length ~<spa
 mod4 &lt;-<span class="st"> </span><span class="kw">lm</span>(Sepal.Length ~<span class="st"> </span>Species, <span class="dt">data=</span>iris)
 
 <span class="kw">AIC</span>(mod1, mod2, mod3, mod4)</code></pre>
-<pre><code>##      df   AIC
-## mod1  7 187.1
-## mod2  5 183.9
-## mod3  3 372.0
-## mod4  4 231.5</code></pre>
+<pre><code>##      df      AIC
+## mod1  7 187.0922
+## mod2  5 183.9366
+## mod3  3 371.9917
+## mod4  4 231.4520</code></pre>
 <p>Let’s plot the data:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(<span class="dt">x=</span>Sepal.Width, <span class="dt">y=</span>Sepal.Length, <span class="dt">colour=</span>Species, <span class="dt">group=</span>Species)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>() +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">formula =</span> y ~<span class="st"> </span>x)</code></pre>
-<p><img src="04-basic_stats_files/figure-html/ggplot-adv-lm.png" alt="plot of chunk ggplot-adv-lm" /></p>
+<p><img src="04-basic_stats_files/figure-html/ggplot-adv-lm-1.png" title="" alt="" width="672" /></p>
 </div>
 
 
@@ -315,12 +321,12 @@ $(document).ready(function () {
 
 </script>
 
-<!-- dynamically load mathjax for compatibility with --self-contained -->
+<!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

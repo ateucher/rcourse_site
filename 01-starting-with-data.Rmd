@@ -9,40 +9,6 @@ title: Getting started with data
 Creative Commons Attribution [(CC_BY)](http://creativecommons.org/licenses/by/3.0/) 
 license.
 
-## Introduction to R and RStudio
-
-Let's start by learning about our tool.
-
-_Point out the different windows in RStudio._
-
-* Console, Scripts, Environments, Plots
-* Avoid using shortcuts. 
-* Code and workflow is more reproducible if we can document everything that we do.
-* Our end goal is not just to "do stuff" but to do it in a way that anyone can 
-  easily and exactly replicate our workflow and results.
-
-You can get output from R simply by typing in math into the console
-  
-```{r}
-3 + 5
-12 / 7
-```
-
-or by typing words
-
-```{r}
-"Hello World"
-```
-
-3.  What is the result of `3 * 4 + 5`? And `5 + 3 * 4`? What does this indicate?
-
-#### R Respects standard order of operations in math:
-
-```{r}
-3 * 4 + 5
-3 * (4 + 5)
-```
-
 ## Analyzing Iris Data
 
 We are studying differences in morphology in two species of Iris: _Iris setosa_ 
@@ -50,17 +16,17 @@ and _Iris versicolor_.
 
 ### We want to:
 
-* load that data into memory,
+* load that data into R,
 * Explore the data, 
 * Calculate some summary statistics, 
 * Explore the dataset visually, 
 * plot the results
 
-To do all that, we'll have to learn a little bit about programming.
+To do all that, we'll have to learn a little bit about programming in R.
 
 ### Objectives
 
-* Read tabular data from a file into **R**.
+* Read tabular data from a spreadsheet file into **R**.
 * Assign values to variables.
 * Learn about data types and structures
 * Select individual values and subsections from data
@@ -68,62 +34,62 @@ To do all that, we'll have to learn a little bit about programming.
 * Explain what a package is, and what packages are used for.
 * Load an R package and use the things it contains
 
-## RStudio Projects
+### Working Directory
 
-* Projects in RStudio help us keep our code, data, and outputs well organized
-* when we quit RStudio, it will help us remember where we left off
-* Open a new project -> New Directory -> Empty Project
-
-#### Example project directory structure:
-
-```
-project
-├── R
-│   └── functions.R
-├── data
-│   ├── data1.csv
-│   └── data2.csv
-├── doc
-│   └── manuscript.doc
-├── out
-│   └── summaries.csv
-├── plots
-│   ├── plot1.png
-│   └── plot2.png
-├── 01-load_clean_data.R
-├── 02-analysis.R
-├── 03-plotting.R
-└── my_project.Rproj
+Each R session is associated with a folder on your computer that is referred to as the working directory. To view the contents of the working directory go to the Files window in the bottom right pane. To change the working directory use the 
+```{r, echo = FALSE, results = 'asis'}
+exercise("Create a new folder on your home drive called RCourse and make this folder the working directory. To ensure you have been successful confirm that the output of `getwd()` refers to your RCourse folder.")
 ```
 
-First, look in the files pane of RStudio, then see where we are in R.
+### RStudio Projects
 
-```{r eval=FALSE}
-getwd()
+Instead of setting the working directory each time you restart RStudio you can associate
+the contents of a folder with a *project* - then all you have to do is to open that project. 
+Projects in RStudio help us keep our code, data, and outputs well organized
+
+To create a new project use the **New Project** command (available on the **File** menu of the global toolbar).
+```{r, echo = FALSE, results = 'asis'}
+exercise("Create a new project called RCourse in the RCourse folder on your desktop. As the folder already exists choose the **Create project from: Existing Directory** option.
+  To confirm you were successful quit RStudio and double-click the RCourse.Rproj file
+  in the RCourse folder - RStudio should restart with RCourse as the working directory.")
 ```
-
-The working directory is the place where you're working, and where R looks for 
-things in input/output operations.
 
 ## Scripts
 
-* Record your code in scripts, rather than typing directly into the console
-* Comment your code liberally using `#`.  Your future self will thank you.
-* Break your code into chunks - by file, and within a file using lines of `#`
+Rather than entering expressions into R one by one in the console, 
+a more efficient method is to type the expressions into a text file 
+called a *script* and then send all (or a subset) of them to R at the same time. 
+R scripts are indicated by the suffix `.R`.
+
+Open a new script using the "R Script"" option of the New option in the File menu.
+
+Now save the script in your working directory as `iris.R`.
+
+* Lines beginning with `#` are ignored by R. Comment your code liberally using `#`.  Your future self will thank you.
+* Start by typing the following at the top of your script:
+
+```{r, eval=FALSE}
+# This is my first script.  We are going to learn about irises.
+```
 
 ## Loading Data
 
 To load our iris data, we need to download our data to a place we can use it. 
-We will use `dir.create()` to create a `data` directory in our project directory, 
-and `read.csv()` to load the file. These are built-in functions in R. Let's 
+We will use the function `dir.create()` to create a `data` directory in our project directory, 
+and `read.csv()` to load the data file. These are built-in functions in R. Let's 
 check out the help screen.
 
-```{r message=FALSE, warning=FALSE}
+```{r, message=FALSE, warning=FALSE}
 dir.create("data")
 ```
 
 * download the iris file
 * put it in your data directory for these exercises
+
+### Comma Separated Files
+
+The simplest way to input and output data is in the form of comma separated files. Comma separated files, which have the suffix **.csv**, are recognised by almost all
+statistical and spreadsheet programs including R and Excel.
 
 Load the data into R:
 
@@ -144,130 +110,7 @@ console displays it.
 In this case, that output is the data we just loaded. 
 
 Our call to `read.csv()` read the file, but didn't save the data as an object. 
-To do that, we need to assign the data frame to a variable. 
-A variable is just a name for a value, such as `x`, `current_temperature`, or 
-`subject_id`. 
-We can create a new variable simply by assigning a value to it using `<-`
-
-```{r}
-weight_kg <- 55
-```
-
-Once a variable has a value, we can print it:
-
-```{r}
-weight_kg
-```
-
-and do arithmetic with it:
-
-```{r}
-2.2 * weight_kg
-```
-
-We can use the function `paste()` to create strings made up from different 
-objects, if we separate them with commas.
-
-```{r}
-paste("weight in pounds:", 2.2 * weight_kg)
-```
-
-We can also change an object's value by assigning it a new value:
-
-```{r}
-weight_kg <- 57.5
-# weight in kilograms is now
-weight_kg
-```
-
-If we imagine the variable as a sticky note with a name written on it, 
-assignment is like putting the sticky note on a particular value
-This means that assigning a value to one object does not change the values of 
-other variables.
-
-For example, let's store the subject's weight in pounds in a variable
-
-```{r}
-weight_lb <- 2.2 * weight_kg
-# weight in kg...
-weight_kg
-# ...and in pounds
-weight_lb
-```
-
-and then change `weight_kg`:
-
-```{r}
-weight_kg <- 100.0
-# weight in kg now...
-weight_kg
-# ...and in weight pounds still
-weight_lb
-```
-
-__Updating a Variable__
-
-Since `weight_lb` doesn't "remember" where its value came from, it isn't 
-automatically updated when `weight_kg` changes. This is different from the way 
-spreadsheets work.
-
-__Challenges__
-
-Draw diagrams showing what variables refer to what values after each statement 
-in the following program:
-
-```{r}	
-mass <- 47.5
-age  <- 122
-mass <- mass * 2.0
-age  <- age - 20
-```
-
-**Question:** Why is there a little `[1]` beside everything that gets printed 
-to the console?
-
-### Vectors
-
-So far all of our objects have been single numbers... but they are acually all
-vectors of length 1. A vector is the most common and basic data structure in `R` 
-and is pretty much the workhorse of R. It is a one-dimensional object with a 
-series of values, all of the same type.
-
-You can create, or add to vectors using the function `c()`. `c()` takes any 
-number of vectors as arguments, and combines or *concatenates* them, in the 
-order supplied, into a single vector. For example, if we are creating a vector 
-of patient weights, we could create and then update that vector using `c()`.
-
-```{r}
-weights <- c(100, 70, 45, 62, 81)
-weights <- c(weights, 80)
-weights
-```
-
-What happens here is that we take the original vector weights, and we are adding 
-the second item to the end of the first one. We can do this over and over again 
-to build a vector or a dataset. As we program, this may be useful to autoupdate 
-results that we are collecting or calculating.
-
-`weights` is a numeric vector, but there are other kinds as well: `character` 
-(letters and words) and `logical` (`TRUE`or `FALSE`) are the other most common.
-
-#### A note about naming things:
-
-> There are only two hard things in Computer Science: cache invalidation and naming things.
-> 
-> -- Phil Karlton
-
-Name things so that you can understand them later, try to balance brevity with 
-clarity. `x` is easy to type, but may not mean much.
-
-* Only begin names with letters.
-* Separate words with a dot (`my.var`) or an underscore (`my_var`), or use 
-`camelCase`.
-* Try to be consistent.
-* Avoid giving things names that already exist (like `mean`, `sum`, `log`)
-
-### Back to the irises
+To do that, we need to assign the data frame to a variable.
 
 Now that we know how to assign things to variables, let's re-run `read.csv` and 
 save its result:
@@ -285,8 +128,8 @@ dat
 ```
 
 It's important to note that anything we do with `dat` here will not affect the 
-original `csv` file. This is an important concept of reproducibility - don't 
-touch your original data!
+original `csv` file. `dat` is a copy of your data inside R. This is an important 
+concept of reproducibility - don't touch your original data!
 
 For large data sets it is convenient to use the `head()` to display the first 
 few rows of data, or `tail()` to see the end:
@@ -312,8 +155,6 @@ First, let's ask what type of thing `dat` *is*:
 
 ```{r}
 class(dat)
-str(dat)
-summary(dat)
 ```
 
 The output tells us that data currently is a data frame in R. 
@@ -323,18 +164,12 @@ using.
 ### data frames
 The *de facto* data structure for most tabular data and what we use for statistics.
 
-Data frames can have additional attributes such as `rownames()`, which can be 
-useful for annotating data, like `subject_id` or `sample_id`. But most of the 
-time they are not used.
-
 Some additional information on data frames:
 
 * Usually created by `read.csv()` and `read.table()`.
-* Can convert to matrix with `data.matrix()` (preferred) or `as.matrix()`
-* Coercion will be forced and not always what you expect.
 * Can also create with `data.frame()` function.
-* Find the number of rows and columns with `nrow(dat)` and `ncol(dat)`, 
-respectively.
+
+Lets find out a little bit more about `dat`:
 
 #### Useful data frame functions
 
@@ -343,15 +178,19 @@ respectively.
 * `dim()` - returns the dimensions
 * `nrow()` - number of rows
 * `ncol()` - number of columns
-* `str()` - structure of each column
-* `names()` - shows the `names` attribute for a data frame, which gives the column names.
+* `str()` - structure of of data frame - number of rows/columns and data type of each column
+* `summary()` - summarises each column
+* `names()` - gives the column names
 
-`str` output tells us the dimensions and the data types (int is integer) of each column.
+
+```{r}
+str(dat)
+summary(dat)
+```
 
 We can see what its shape is like this:
 
 ```{r}
-dim(dat)
 nrow(dat)
 ncol(dat)
 ```
@@ -361,22 +200,25 @@ This tells us that `dat` has `r nrow(dat)` rows and `r ncol(dat)` columns.
 ### Referencing Columns
 
 When referencing a column, the `$` operator is used to separate the data frame 
-and the column name. In a data frame, each column is a _vector_ of the same 
-length. Let's look at the petal widths:
+and the column name. Remember how we talked about vectors and how important they are? 
+In a data frame, each column is a _vector_ of the same length. Let's look at the petal widths:
 
 ```{r}
 dat$Petal.Width
 ```
 
-Now say we want to get the mean of the petal widths, or the maximum of the sepal 
-widths:
+Now say we want to get the mean of the petal widths:
 
 ```{r}
 mean(dat$Petal.Width)
 max(dat$Sepal.Width)
 ```
 
-Wait, what happened there? Why is the max of sepal width `NA`?  Let's have a look:
+```{r, echo=FALSE, results='asis'}
+exercise("Find the maximum of the sepal widths. Did anything unexpected happen?")
+```
+
+Let's have a look at the `Sepal.Width` column:
 
 ```{r}
 dat$Sepal.Width # First look at the data - there are some values that are NA.
@@ -400,16 +242,12 @@ dat$Sepal.Length.in <- dat$Sepal.Length / 2.54
 head(dat)
 ```
 
-Or, perhaps what we are really interested in is the ratio of petal length to 
-petal width:
-
-```{r}
-dat$Petal.LW.Ratio <- dat$Petal.Length / dat$Petal.Width
-head(dat)
+```{r, echo=FALSE, results='asis'}
+exercise("Create a new column in `dat` that contains the ratio of petal length to petal width. Call the column `Petal.Ratio`")
 ```
 
-You can remove columns by assigning `NULL` to them. Let's get rid of those two 
-we just created to get back to our original data frame.
+You can remove columns by assigning `NULL` to them. `NULL` is a special term that means nothing. 
+Let's get rid of those two we just created to get back to our original data frame.
 
 ```{r}
 dat$Petal.LW.Ratio <- NULL
@@ -494,20 +332,14 @@ what if you want to find the mean of the petal lengths of just _Iris setosa_?
 
 ```{r}
 mean(dat[dat$Species == "setosa", "Petal.Length"])
-
 ```
 
 ## Key Points
 
-* Import a package into your workspace using `library("pkgname")`.
-* The key data types in R?
 * Use `variable <- value` to assign a value to a variable in order to record it 
   in memory.
 * Objects are created on demand whenever a value is assigned to them.
-* Use `print(something)` (or just `something`) to display `something`.
-* The expression `dim()` gives the dimensions of a data frame or matrix.
-* Use `object[x, y]` to select a single element from an array.
-* Object indices start at 1.
+* Use `object[x, y]` to select a single element from a data frame.
 * Use `from:to` to specify a sequence that includes the indices from `from` to `to`.
 * Use `#` to add comments to programs.
 * Use `mean()`, `max()`, `min()` and `sd()` to calculate simple statistics.

@@ -6,7 +6,6 @@
 
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="Content-Style-Type" content="text/css" />
 <meta name="generator" content="pandoc" />
 
 
@@ -53,7 +52,14 @@ code > span.er { font-weight: bold; }
 
 <body>
 
-<div class="container">
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+<div class="container-fluid main-container">
 
 <a href="index.html">Home</a>
 
@@ -363,20 +369,20 @@ dat[dat$Sepal.Length &gt;<span class="st"> </span><span class="dv">5</span> |<sp
 ## 13           4.8         3.0          1.4         0.1     setosa
 ## 14           4.3         3.0          1.1         0.1     setosa
 ##     Petal.Ratio Sepal.Ratio
-## 1         7.000       1.457
-## 2         7.000       1.633
-## 3         6.500       1.469
-## 4         7.500       1.484
-## 5         7.000       1.389
-## 6         4.250       1.385
-## 7         4.667       1.353
-## 8         7.500       1.471
-## 9         7.000       1.517
-## 10       15.000       1.581
-## 11        7.500       1.459
-## 12        8.000       1.412
-## 13       14.000       1.600
-## 14       11.000       1.433
+## 1      7.000000    1.457143
+## 2      7.000000    1.633333
+## 3      6.500000    1.468750
+## 4      7.500000    1.483871
+## 5      7.000000    1.388889
+## 6      4.250000    1.384615
+## 7      4.666667    1.352941
+## 8      7.500000    1.470588
+## 9      7.000000    1.517241
+## 10    15.000000    1.580645
+## 11     7.500000    1.459459
+## 12     8.000000    1.411765
+## 13    14.000000    1.600000
+## 14    11.000000    1.433333
 ##  [ reached getOption(&quot;max.print&quot;) -- omitted 136 rows ]</code></pre>
 </div>
 <div id="summarise-values-with-summarise" class="section level4">
@@ -418,24 +424,24 @@ grp_spp</code></pre>
 <pre><code>## Source: local data frame [3 x 3]
 ## 
 ##      Species mean.Petal.Length sd.Petal.Length
-## 1     setosa             1.462          0.1737
-## 2 versicolor             4.260          0.4699
-## 3  virginica             5.552          0.5519</code></pre>
+## 1     setosa             1.462       0.1736640
+## 2 versicolor             4.260       0.4699110
+## 3  virginica             5.552       0.5518947</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mutate</span>(grp_spp, <span class="dt">SL.mean.ratio =</span> Sepal.Length /<span class="st"> </span><span class="kw">mean</span>(Sepal.Length))</code></pre>
 <pre><code>## Source: local data frame [150 x 6]
 ## Groups: Species
 ## 
 ##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species SL.mean.ratio
-## 1           5.1         3.5          1.4         0.2  setosa        1.0188
-## 2           4.9         3.0          1.4         0.2  setosa        0.9788
-## 3           4.7         3.2          1.3         0.2  setosa        0.9389
-## 4           4.6         3.1          1.5         0.2  setosa        0.9189
-## 5           5.0         3.6          1.4         0.2  setosa        0.9988
-## 6           5.4         3.9          1.7         0.4  setosa        1.0787
-## 7           4.6         3.4          1.4         0.3  setosa        0.9189
-## 8           5.0         3.4          1.5         0.2  setosa        0.9988
-## 9           4.4         2.9          1.4         0.2  setosa        0.8789
-## 10          4.9         3.1          1.5         0.1  setosa        0.9788
+## 1           5.1         3.5          1.4         0.2  setosa     1.0187775
+## 2           4.9         3.0          1.4         0.2  setosa     0.9788254
+## 3           4.7         3.2          1.3         0.2  setosa     0.9388734
+## 4           4.6         3.1          1.5         0.2  setosa     0.9188973
+## 5           5.0         3.6          1.4         0.2  setosa     0.9988014
+## 6           5.4         3.9          1.7         0.4  setosa     1.0787056
+## 7           4.6         3.4          1.4         0.3  setosa     0.9188973
+## 8           5.0         3.4          1.5         0.2  setosa     0.9988014
+## 9           4.4         2.9          1.4         0.2  setosa     0.8789453
+## 10          4.9         3.1          1.5         0.1  setosa     0.9788254
 ## ..          ...         ...          ...         ...     ...           ...</code></pre>
 <p>This is nice and handy, but what if we want to do several operations that depend on the result of a previous operation? We want to group by species, use only the individuals that have a long Sepal Length (greater than the mean for that species), calculate the number of each species that meet those criteria, then calculate the mean and standard deviation of petal length for each species.</p>
 <pre class="sourceCode r"><code class="sourceCode r">grp_spp &lt;-<span class="st"> </span><span class="kw">group_by</span>(dat, Species)
@@ -485,12 +491,12 @@ $(document).ready(function () {
 
 </script>
 
-<!-- dynamically load mathjax for compatibility with --self-contained -->
+<!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>
