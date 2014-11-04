@@ -165,23 +165,7 @@ code > span.er { font-weight: bold; }
 ## 2            5.7         3.8          1.7         0.3     setosa
 ## 3            5.4         3.4          1.7         0.2     setosa
 ## 4            5.1         3.3          1.7         0.5     setosa
-## 5            5.1         3.8          1.9         0.4     setosa
-## 6            5.1         3.8          1.6         0.2     setosa
-## 7            7.0         3.2          4.7         1.4 versicolor
-## 8            6.4         3.2          4.5         1.5 versicolor
-## 9            6.9         3.1          4.9         1.5 versicolor
-## 10           5.5         2.3          4.0         1.3 versicolor
-## 11           6.5         2.8          4.6         1.5 versicolor
-## 12           5.7         2.8          4.5         1.3 versicolor
-## 13           6.3         3.3          4.7         1.6 versicolor
-## 14           6.6         2.9          4.6         1.3 versicolor
-## 15           5.2         2.7          3.9         1.4 versicolor
-## 16           5.9         3.0          4.2         1.5 versicolor
-## 17           6.0         2.2          4.0         1.0 versicolor
-## 18           6.1         2.9          4.7         1.4 versicolor
-## 19           5.6         2.9          3.6         1.3 versicolor
-## 20           6.7         3.1          4.4         1.4 versicolor
-##  [ reached getOption(&quot;max.print&quot;) -- omitted 82 rows ]</code></pre>
+##  [ reached getOption(&quot;max.print&quot;) -- omitted 98 rows ]</code></pre>
 <p>Remember we talked about indexing to select rows… the equivalent would be:</p>
 <pre class="sourceCode r"><code class="sourceCode r">dat[dat$Sepal.Length &gt;<span class="st"> </span><span class="dv">5</span> &amp;<span class="st"> </span>dat$Petal.Length &gt;<span class="st"> </span><span class="fl">1.5</span>,]</code></pre>
 <pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
@@ -189,23 +173,7 @@ code > span.er { font-weight: bold; }
 ## 19           5.7         3.8          1.7         0.3     setosa
 ## 21           5.4         3.4          1.7         0.2     setosa
 ## 24           5.1         3.3          1.7         0.5     setosa
-## 45           5.1         3.8          1.9         0.4     setosa
-## 47           5.1         3.8          1.6         0.2     setosa
-## 51           7.0         3.2          4.7         1.4 versicolor
-## 52           6.4         3.2          4.5         1.5 versicolor
-## 53           6.9         3.1          4.9         1.5 versicolor
-## 54           5.5         2.3          4.0         1.3 versicolor
-## 55           6.5         2.8          4.6         1.5 versicolor
-## 56           5.7         2.8          4.5         1.3 versicolor
-## 57           6.3         3.3          4.7         1.6 versicolor
-## 59           6.6         2.9          4.6         1.3 versicolor
-## 60           5.2         2.7          3.9         1.4 versicolor
-## 62           5.9         3.0          4.2         1.5 versicolor
-## 63           6.0         2.2          4.0         1.0 versicolor
-## 64           6.1         2.9          4.7         1.4 versicolor
-## 65           5.6         2.9          3.6         1.3 versicolor
-## 66           6.7         3.1          4.4         1.4 versicolor
-##  [ reached getOption(&quot;max.print&quot;) -- omitted 82 rows ]</code></pre>
+##  [ reached getOption(&quot;max.print&quot;) -- omitted 98 rows ]</code></pre>
 <p>What if we want to select flowers with Sepal Length &gt; 5 <strong>OR</strong> Petal Length &gt; 1.5? (The above uses <strong>AND</strong>). In <strong>R</strong>, the <code>|</code> (pipe) character means <strong>OR</strong></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(dat, Sepal.Length &gt;<span class="st"> </span><span class="dv">5</span> |<span class="st"> </span>Petal.Length &gt;<span class="st"> </span><span class="fl">1.5</span>)</code></pre>
 <pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
@@ -213,23 +181,7 @@ code > span.er { font-weight: bold; }
 ## 2            5.4         3.9          1.7         0.4     setosa
 ## 3            5.4         3.7          1.5         0.2     setosa
 ## 4            4.8         3.4          1.6         0.2     setosa
-## 5            5.8         4.0          1.2         0.2     setosa
-## 6            5.7         4.4          1.5         0.4     setosa
-## 7            5.4         3.9          1.3         0.4     setosa
-## 8            5.1         3.5          1.4         0.3     setosa
-## 9            5.7         3.8          1.7         0.3     setosa
-## 10           5.1         3.8          1.5         0.3     setosa
-## 11           5.4         3.4          1.7         0.2     setosa
-## 12           5.1         3.7          1.5         0.4     setosa
-## 13           5.1         3.3          1.7         0.5     setosa
-## 14           4.8         3.4          1.9         0.2     setosa
-## 15           5.0         3.0          1.6         0.2     setosa
-## 16           5.0         3.4          1.6         0.4     setosa
-## 17           5.2         3.5          1.5         0.2     setosa
-## 18           5.2         3.4          1.4         0.2     setosa
-## 19           4.7         3.2          1.6         0.2     setosa
-## 20           4.8         3.1          1.6         0.2     setosa
-##  [ reached getOption(&quot;max.print&quot;) -- omitted 109 rows ]</code></pre>
+##  [ reached getOption(&quot;max.print&quot;) -- omitted 125 rows ]</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">## Works with indexing as well:
 dat[dat$Sepal.Length &gt;<span class="st"> </span><span class="dv">5</span> |<span class="st"> </span>dat$Petal.Length &gt;<span class="st"> </span><span class="fl">1.5</span>,]</code></pre>
 <pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
@@ -237,23 +189,7 @@ dat[dat$Sepal.Length &gt;<span class="st"> </span><span class="dv">5</span> |<sp
 ## 6            5.4         3.9          1.7         0.4     setosa
 ## 11           5.4         3.7          1.5         0.2     setosa
 ## 12           4.8         3.4          1.6         0.2     setosa
-## 15           5.8         4.0          1.2         0.2     setosa
-## 16           5.7         4.4          1.5         0.4     setosa
-## 17           5.4         3.9          1.3         0.4     setosa
-## 18           5.1         3.5          1.4         0.3     setosa
-## 19           5.7         3.8          1.7         0.3     setosa
-## 20           5.1         3.8          1.5         0.3     setosa
-## 21           5.4         3.4          1.7         0.2     setosa
-## 22           5.1         3.7          1.5         0.4     setosa
-## 24           5.1         3.3          1.7         0.5     setosa
-## 25           4.8         3.4          1.9         0.2     setosa
-## 26           5.0         3.0          1.6         0.2     setosa
-## 27           5.0         3.4          1.6         0.4     setosa
-## 28           5.2         3.5          1.5         0.2     setosa
-## 29           5.2         3.4          1.4         0.2     setosa
-## 30           4.7         3.2          1.6         0.2     setosa
-## 31           4.8         3.1          1.6         0.2     setosa
-##  [ reached getOption(&quot;max.print&quot;) -- omitted 109 rows ]</code></pre>
+##  [ reached getOption(&quot;max.print&quot;) -- omitted 125 rows ]</code></pre>
 </div>
 <div id="arrange-rows-with-arrange" class="section level4">
 <h4>Arrange rows with <code>arrange()</code></h4>
@@ -264,23 +200,7 @@ dat[dat$Sepal.Length &gt;<span class="st"> </span><span class="dv">5</span> |<sp
 ## 2            4.4         2.9          1.4         0.2     setosa
 ## 3            4.4         3.0          1.3         0.2     setosa
 ## 4            4.4          NA          1.3         0.2     setosa
-## 5            4.5         2.3          1.3         0.3     setosa
-## 6            4.6         3.1          1.5         0.2     setosa
-## 7            4.6         3.2          1.4         0.2     setosa
-## 8            4.6         3.4          1.4         0.3     setosa
-## 9            4.6         3.6          1.0         0.2     setosa
-## 10           4.7         3.2          1.3         0.2     setosa
-## 11           4.7         3.2          1.6         0.2     setosa
-## 12           4.8         3.0          1.4         0.1     setosa
-## 13           4.8         3.0          1.4         0.3     setosa
-## 14           4.8         3.1          1.6         0.2     setosa
-## 15           4.8         3.4          1.6         0.2     setosa
-## 16           4.8         3.4          1.9         0.2     setosa
-## 17           4.9         2.4          3.3         1.0 versicolor
-## 18           4.9         2.5          4.5         1.7  virginica
-## 19           4.9         3.0          1.4         0.2     setosa
-## 20           4.9         3.1          1.5         0.1     setosa
-##  [ reached getOption(&quot;max.print&quot;) -- omitted 130 rows ]</code></pre>
+##  [ reached getOption(&quot;max.print&quot;) -- omitted 146 rows ]</code></pre>
 <p>Use <code>desc()</code> to order a column in descending order:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">arrange</span>(dat, <span class="kw">desc</span>(Petal.Length))</code></pre>
 <pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
@@ -288,23 +208,7 @@ dat[dat$Sepal.Length &gt;<span class="st"> </span><span class="dv">5</span> |<sp
 ## 2            7.7         3.8          6.7         2.2  virginica
 ## 3            7.7          NA          6.7         2.0  virginica
 ## 4            7.6         3.0          6.6         2.1  virginica
-## 5            7.9         3.8          6.4         2.0  virginica
-## 6            7.3         2.9          6.3         1.8  virginica
-## 7            7.2         3.6          6.1         2.5  virginica
-## 8            7.4         2.8          6.1         1.9  virginica
-## 9            7.7         3.0          6.1         2.3  virginica
-## 10           6.3         3.3          6.0         2.5  virginica
-## 11           7.2         3.2          6.0         1.8  virginica
-## 12           7.1         3.0          5.9         2.1  virginica
-## 13           6.8         3.2          5.9         2.3  virginica
-## 14           6.5         3.0          5.8         2.2  virginica
-## 15           6.7         2.5          5.8         1.8  virginica
-## 16           7.2         3.0          5.8         1.6  virginica
-## 17           6.9         3.2          5.7         2.3  virginica
-## 18           6.7         3.3          5.7         2.1  virginica
-## 19           6.7         3.3          5.7         2.5  virginica
-## 20           6.3         2.9          5.6         1.8  virginica
-##  [ reached getOption(&quot;max.print&quot;) -- omitted 130 rows ]</code></pre>
+##  [ reached getOption(&quot;max.print&quot;) -- omitted 146 rows ]</code></pre>
 </div>
 <div id="select-columns-with-select" class="section level4">
 <h4>Select columns with <code>select()</code></h4>
@@ -318,34 +222,7 @@ dat[dat$Sepal.Length &gt;<span class="st"> </span><span class="dv">5</span> |<sp
 ## 4            4.6         3.1     setosa
 ## 5            5.0         3.6     setosa
 ## 6            5.4         3.9     setosa
-## 7            4.6         3.4     setosa
-## 8            5.0         3.4     setosa
-## 9            4.4         2.9     setosa
-## 10           4.9         3.1     setosa
-## 11           5.4         3.7     setosa
-## 12           4.8         3.4     setosa
-## 13           4.8         3.0     setosa
-## 14           4.3         3.0     setosa
-## 15           5.8         4.0     setosa
-## 16           5.7         4.4     setosa
-## 17           5.4         3.9     setosa
-## 18           5.1         3.5     setosa
-## 19           5.7         3.8     setosa
-## 20           5.1         3.8     setosa
-## 21           5.4         3.4     setosa
-## 22           5.1         3.7     setosa
-## 23           4.6         3.6     setosa
-## 24           5.1         3.3     setosa
-## 25           4.8         3.4     setosa
-## 26           5.0         3.0     setosa
-## 27           5.0         3.4     setosa
-## 28           5.2         3.5     setosa
-## 29           5.2         3.4     setosa
-## 30           4.7         3.2     setosa
-## 31           4.8         3.1     setosa
-## 32           5.4         3.4     setosa
-## 33           5.2         4.1     setosa
-##  [ reached getOption(&quot;max.print&quot;) -- omitted 117 rows ]</code></pre>
+##  [ reached getOption(&quot;max.print&quot;) -- omitted 144 rows ]</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Select all columns between Petal.Length and Species (inclusive)</span>
 <span class="kw">select</span>(dat, Petal.Length:Species)</code></pre>
 <pre><code>##     Petal.Length Petal.Width    Species
@@ -355,34 +232,7 @@ dat[dat$Sepal.Length &gt;<span class="st"> </span><span class="dv">5</span> |<sp
 ## 4            1.5         0.2     setosa
 ## 5            1.4         0.2     setosa
 ## 6            1.7         0.4     setosa
-## 7            1.4         0.3     setosa
-## 8            1.5         0.2     setosa
-## 9            1.4         0.2     setosa
-## 10           1.5         0.1     setosa
-## 11           1.5         0.2     setosa
-## 12           1.6         0.2     setosa
-## 13           1.4         0.1     setosa
-## 14           1.1         0.1     setosa
-## 15           1.2         0.2     setosa
-## 16           1.5         0.4     setosa
-## 17           1.3         0.4     setosa
-## 18           1.4         0.3     setosa
-## 19           1.7         0.3     setosa
-## 20           1.5         0.3     setosa
-## 21           1.7         0.2     setosa
-## 22           1.5         0.4     setosa
-## 23           1.0         0.2     setosa
-## 24           1.7         0.5     setosa
-## 25           1.9         0.2     setosa
-## 26           1.6         0.2     setosa
-## 27           1.6         0.4     setosa
-## 28           1.5         0.2     setosa
-## 29           1.4         0.2     setosa
-## 30           1.6         0.2     setosa
-## 31           1.6         0.2     setosa
-## 32           1.5         0.4     setosa
-## 33           1.5         0.1     setosa
-##  [ reached getOption(&quot;max.print&quot;) -- omitted 117 rows ]</code></pre>
+##  [ reached getOption(&quot;max.print&quot;) -- omitted 144 rows ]</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Select all columns except the last two (inclusive)</span>
 <span class="kw">select</span>(dat, -(Sepal.Length:Sepal.Width))</code></pre>
 <pre><code>##     Petal.Length Petal.Width    Species
@@ -392,34 +242,7 @@ dat[dat$Sepal.Length &gt;<span class="st"> </span><span class="dv">5</span> |<sp
 ## 4            1.5         0.2     setosa
 ## 5            1.4         0.2     setosa
 ## 6            1.7         0.4     setosa
-## 7            1.4         0.3     setosa
-## 8            1.5         0.2     setosa
-## 9            1.4         0.2     setosa
-## 10           1.5         0.1     setosa
-## 11           1.5         0.2     setosa
-## 12           1.6         0.2     setosa
-## 13           1.4         0.1     setosa
-## 14           1.1         0.1     setosa
-## 15           1.2         0.2     setosa
-## 16           1.5         0.4     setosa
-## 17           1.3         0.4     setosa
-## 18           1.4         0.3     setosa
-## 19           1.7         0.3     setosa
-## 20           1.5         0.3     setosa
-## 21           1.7         0.2     setosa
-## 22           1.5         0.4     setosa
-## 23           1.0         0.2     setosa
-## 24           1.7         0.5     setosa
-## 25           1.9         0.2     setosa
-## 26           1.6         0.2     setosa
-## 27           1.6         0.4     setosa
-## 28           1.5         0.2     setosa
-## 29           1.4         0.2     setosa
-## 30           1.6         0.2     setosa
-## 31           1.6         0.2     setosa
-## 32           1.5         0.4     setosa
-## 33           1.5         0.1     setosa
-##  [ reached getOption(&quot;max.print&quot;) -- omitted 117 rows ]</code></pre>
+##  [ reached getOption(&quot;max.print&quot;) -- omitted 144 rows ]</code></pre>
 </div>
 <div id="add-new-columns-with-mutate" class="section level4">
 <h4>Add new columns with <code>mutate()</code></h4>
@@ -430,34 +253,10 @@ dat[dat$Sepal.Length &gt;<span class="st"> </span><span class="dv">5</span> |<sp
 <pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
 ## 1            5.1         3.5          1.4         0.2     setosa
 ## 2            4.9         3.0          1.4         0.2     setosa
-## 3            4.7         3.2          1.3         0.2     setosa
-## 4            4.6         3.1          1.5         0.2     setosa
-## 5            5.0         3.6          1.4         0.2     setosa
-## 6            5.4         3.9          1.7         0.4     setosa
-## 7            4.6         3.4          1.4         0.3     setosa
-## 8            5.0         3.4          1.5         0.2     setosa
-## 9            4.4         2.9          1.4         0.2     setosa
-## 10           4.9         3.1          1.5         0.1     setosa
-## 11           5.4         3.7          1.5         0.2     setosa
-## 12           4.8         3.4          1.6         0.2     setosa
-## 13           4.8         3.0          1.4         0.1     setosa
-## 14           4.3         3.0          1.1         0.1     setosa
 ##     Petal.Ratio Sepal.Ratio
 ## 1      7.000000    1.457143
 ## 2      7.000000    1.633333
-## 3      6.500000    1.468750
-## 4      7.500000    1.483871
-## 5      7.000000    1.388889
-## 6      4.250000    1.384615
-## 7      4.666667    1.352941
-## 8      7.500000    1.470588
-## 9      7.000000    1.517241
-## 10    15.000000    1.580645
-## 11     7.500000    1.459459
-## 12     8.000000    1.411765
-## 13    14.000000    1.600000
-## 14    11.000000    1.433333
-##  [ reached getOption(&quot;max.print&quot;) -- omitted 136 rows ]</code></pre>
+##  [ reached getOption(&quot;max.print&quot;) -- omitted 148 rows ]</code></pre>
 </div>
 <div id="summarise-values-with-summarise" class="section level4">
 <h4>Summarise values with <code>summarise()</code></h4>
@@ -485,13 +284,7 @@ grp_spp</code></pre>
 ## 2           4.9         3.0          1.4         0.2  setosa
 ## 3           4.7         3.2          1.3         0.2  setosa
 ## 4           4.6         3.1          1.5         0.2  setosa
-## 5           5.0         3.6          1.4         0.2  setosa
-## 6           5.4         3.9          1.7         0.4  setosa
-## 7           4.6         3.4          1.4         0.3  setosa
-## 8           5.0         3.4          1.5         0.2  setosa
-## 9           4.4         2.9          1.4         0.2  setosa
-## 10          4.9         3.1          1.5         0.1  setosa
-## ..          ...         ...          ...         ...     ...</code></pre>
+##  [ reached getOption(&quot;max.print&quot;) -- omitted 7 rows ]</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise</span>(grp_spp, 
           <span class="dt">mean.Petal.Length =</span> <span class="kw">mean</span>(Petal.Length), 
           <span class="dt">sd.Petal.Length =</span> <span class="kw">sd</span>(Petal.Length))</code></pre>
@@ -509,14 +302,7 @@ grp_spp</code></pre>
 ## 1           5.1         3.5          1.4         0.2  setosa     1.0187775
 ## 2           4.9         3.0          1.4         0.2  setosa     0.9788254
 ## 3           4.7         3.2          1.3         0.2  setosa     0.9388734
-## 4           4.6         3.1          1.5         0.2  setosa     0.9188973
-## 5           5.0         3.6          1.4         0.2  setosa     0.9988014
-## 6           5.4         3.9          1.7         0.4  setosa     1.0787056
-## 7           4.6         3.4          1.4         0.3  setosa     0.9188973
-## 8           5.0         3.4          1.5         0.2  setosa     0.9988014
-## 9           4.4         2.9          1.4         0.2  setosa     0.8789453
-## 10          4.9         3.1          1.5         0.1  setosa     0.9788254
-## ..          ...         ...          ...         ...     ...           ...</code></pre>
+##  [ reached getOption(&quot;max.print&quot;) -- omitted 8 rows ]</code></pre>
 <p>This is nice and handy, but what if we want to do several operations that depend on the result of a previous operation? We want to group by species, use only the individuals that have a long Sepal Length (greater than the mean for that species), calculate the number of each species that meet those criteria, then calculate the mean and standard deviation of petal length for each species.</p>
 <pre class="sourceCode r"><code class="sourceCode r">grp_spp &lt;-<span class="st"> </span><span class="kw">group_by</span>(dat, Species)
 temp1 &lt;-<span class="st"> </span><span class="kw">filter</span>(grp_spp, Sepal.Length &gt;<span class="st"> </span><span class="kw">mean</span>(Sepal.Length))

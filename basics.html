@@ -233,7 +233,7 @@ hrs_per_week</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">max</span>(<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">2</span>,<span class="dv">6</span>,<span class="dv">9</span>)</code></pre>
 <pre><code>## [1] 9</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">date</span>() <span class="co"># Not all functions require arguments</span></code></pre>
-<pre><code>## [1] &quot;Tue Nov 04 13:52:14 2014&quot;</code></pre>
+<pre><code>## [1] &quot;Tue Nov 04 14:35:17 2014&quot;</code></pre>
 <div id="specifying-arguments" class="section level4">
 <h4>Specifying arguments</h4>
 <p>Arguments can be specified using <em>positional</em> and/or <em>named</em> matching. Some arguments have default values.</p>
@@ -282,13 +282,12 @@ hrs_per_week</code></pre>
 ## [9] beepr_1.1       
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] assertthat_0.1   audio_0.1-5      bitops_1.0-6     caTools_1.17.1  
-##  [5] colorspace_1.2-4 DBI_0.3.1        digest_0.6.4     evaluate_0.5.5  
-##  [9] formatR_1.0      grid_3.1.1       gtable_0.1.2     htmltools_0.2.6 
-## [13] labeling_0.3     lattice_0.20-29  lazyeval_0.1.9   magrittr_1.0.1  
-## [17] MASS_7.3-33      Matrix_1.1-4     munsell_0.4.2    parallel_3.1.1  
-## [21] plyr_1.8.1       proto_0.3-10     Rcpp_0.11.3      scales_0.2.4    
-## [25] stringr_0.6.2    tools_3.1.1      yaml_2.1.13</code></pre>
+##  [1] assertthat_0.1   audio_0.1-5      colorspace_1.2-4 DBI_0.3.1       
+##  [5] digest_0.6.4     evaluate_0.5.5   formatR_1.0      grid_3.1.1      
+##  [9] gtable_0.1.2     htmltools_0.2.6  labeling_0.3     lattice_0.20-29 
+## [13] lazyeval_0.1.9   magrittr_1.0.1   MASS_7.3-33      Matrix_1.1-4    
+## [17] munsell_0.4.2    parallel_3.1.1   plyr_1.8.1       proto_0.3-10    
+##  [ reached getOption(&quot;max.print&quot;) -- omitted 5 entries ]</code></pre>
 </div>
 </div>
 <div id="workspace" class="section level3">
@@ -296,25 +295,14 @@ hrs_per_week</code></pre>
 <p>List objects in your workspace with <code>ls()</code> function.</p>
 <pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">5</span>
 <span class="kw">ls</span>()</code></pre>
-<pre><code>##  [1] &quot;a&quot;                 &quot;Andy&quot;              &quot;dat&quot;              
-##  [4] &quot;dat_long&quot;          &quot;dat2&quot;              &quot;data&quot;             
-##  [7] &quot;days_per_week&quot;     &quot;diamonds&quot;          &quot;diff&quot;             
-## [10] &quot;dummy&quot;             &quot;elev_pres.data&quot;    &quot;exercise&quot;         
-## [13] &quot;exercise_number&quot;   &quot;f&quot;                 &quot;fahr_to_celsius&quot;  
-## [16] &quot;fahr_to_kelvin&quot;    &quot;fence&quot;             &quot;files&quot;            
-## [19] &quot;final&quot;             &quot;fitted&quot;            &quot;fname&quot;            
-## [22] &quot;g&quot;                 &quot;grp_spp&quot;           &quot;hrs_per_day&quot;      
-## [25] &quot;hrs_per_week&quot;      &quot;i&quot;                 &quot;iris_files&quot;       
-## [28] &quot;iris_list&quot;         &quot;kelvin_to_celsius&quot; &quot;lr1&quot;              
-## [31] &quot;maxprint&quot;          &quot;mean.sl&quot;           &quot;mod1&quot;             
-## [34] &quot;mod2&quot;              &quot;mod3&quot;              &quot;mod4&quot;             
-## [37] &quot;my_list&quot;           &quot;original&quot;          &quot;out&quot;              
-## [40] &quot;p&quot;                 &quot;pangram&quot;           &quot;petal.reg&quot;        
-## [43] &quot;petal_length.aov&quot;  &quot;pred&quot;              &quot;probs&quot;            
-## [46] &quot;projDir&quot;           &quot;residuals&quot;         &quot;RmdDocs&quot;          
-## [49] &quot;sep_ratio&quot;         &quot;setosa.dat&quot;        &quot;setosa.virginica&quot; 
-## [52] &quot;span&quot;              &quot;sum_dat&quot;           &quot;weights&quot;          
-## [55] &quot;words&quot;             &quot;x&quot;</code></pre>
+<pre><code>##  [1] &quot;a&quot;               &quot;Andy&quot;            &quot;dat&quot;            
+##  [4] &quot;dat_long&quot;        &quot;dat2&quot;            &quot;data&quot;           
+##  [7] &quot;days_per_week&quot;   &quot;diamonds&quot;        &quot;diff&quot;           
+## [10] &quot;dummy&quot;           &quot;elev_pres.data&quot;  &quot;exercise&quot;       
+## [13] &quot;exercise_number&quot; &quot;f&quot;               &quot;fahr_to_celsius&quot;
+## [16] &quot;fahr_to_kelvin&quot;  &quot;fence&quot;           &quot;files&quot;          
+## [19] &quot;final&quot;           &quot;fitted&quot;         
+##  [ reached getOption(&quot;max.print&quot;) -- omitted 36 entries ]</code></pre>
 <p>Remove objects from your workspace with the <code>rm()</code> function.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(x)</code></pre>
 <p>Remove all objects from your workspace.</p>
@@ -427,13 +415,9 @@ first.names</code></pre>
 <span class="kw">seq</span>(<span class="dv">10</span>)</code></pre>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dt">by =</span> <span class="fl">0.1</span>)</code></pre>
-<pre><code>##  [1]  1.0  1.1  1.2  1.3  1.4  1.5  1.6  1.7  1.8  1.9  2.0  2.1  2.2  2.3
-## [15]  2.4  2.5  2.6  2.7  2.8  2.9  3.0  3.1  3.2  3.3  3.4  3.5  3.6  3.7
-## [29]  3.8  3.9  4.0  4.1  4.2  4.3  4.4  4.5  4.6  4.7  4.8  4.9  5.0  5.1
-## [43]  5.2  5.3  5.4  5.5  5.6  5.7  5.8  5.9  6.0  6.1  6.2  6.3  6.4  6.5
-## [57]  6.6  6.7  6.8  6.9  7.0  7.1  7.2  7.3  7.4  7.5  7.6  7.7  7.8  7.9
-## [71]  8.0  8.1  8.2  8.3  8.4  8.5  8.6  8.7  8.8  8.9  9.0  9.1  9.2  9.3
-## [85]  9.4  9.5  9.6  9.7  9.8  9.9 10.0</code></pre>
+<pre><code>##  [1] 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0 2.1 2.2 2.3 2.4 2.5 2.6
+## [18] 2.7 2.8 2.9
+##  [ reached getOption(&quot;max.print&quot;) -- omitted 71 entries ]</code></pre>
 <p><code>NaN</code> means Not a Number. It’s an undefined value.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="dv">0</span>/<span class="dv">0</span></code></pre>
 <pre><code>## [1] NaN</code></pre>
@@ -557,8 +541,7 @@ Andy</code></pre>
 ## 2          4.9         3.0          1.4         0.2  setosa
 ## 3          4.7         3.2          1.3         0.2  setosa
 ## 4          4.6         3.1          1.5         0.2  setosa
-## 5          5.0         3.6          1.4         0.2  setosa
-## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+##  [ reached getOption(&quot;max.print&quot;) -- omitted 2 rows ]</code></pre>
 <ol style="list-style-type: decimal">
 <li>What is the length of this object? What about its structure?</li>
 </ol>
@@ -622,10 +605,7 @@ dat</code></pre>
 ## 4   d  4 14
 ## 5   e  5 15
 ## 6   f  6 16
-## 7   g  7 17
-## 8   h  8 18
-## 9   i  9 19
-## 10  j 10 20</code></pre>
+##  [ reached getOption(&quot;max.print&quot;) -- omitted 4 rows ]</code></pre>
 </div>
 <div id="useful-functions" class="section level4">
 <h4>Useful functions</h4>
