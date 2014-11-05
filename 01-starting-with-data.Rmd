@@ -269,7 +269,7 @@ is a vector, and can be indexed as such.
 dat$Petal.Width[10]
 ```
 
-If we want to get a single value from the data frame, we must provide an row and 
+If we want to get a single value from the data frame, we must provide row and 
 column indices for the value we want in square brackets: `dataframe[rows,columns]`
 
 ```{r}
@@ -307,14 +307,21 @@ dat[, c("Petal.Length", "Species")]  # Can specify more than one column by using
 
 ```
 
-**Question:** Given what we learned about how to access a single column, and 
-indexing vectors, what is the 19th value in the Sepal Length column? How did you 
-find it?
+```{r, echo=FALSE, results='asis'}
+exercise("Given what we learned about how to access a single column, and indexing vectors, what is the 19th value in the Sepal Length column? How did you find it?")
+```
+
 
 #### Indexing using conditionals
 
 Sometimes we are interested in extracting data based on something else.  Lets 
-say we want to look at all of the flowers measured that had really long sepals:
+say we want to look at all of the flowers measured that had really long sepals. If we look at `iris$Sepal.Length`, we can see that they tend to range from around 4-7.  So let's select the rows where `Sepal.Length` is greater than 5:
+
+```{r}
+dat[dat$Sepal.Length > 5,]
+```
+
+But let's say we want to be more sophisticated than that, and find flowers that have above average Sepal Length.
 
 ```{r}
 mean.sl <- mean(dat$Sepal.Length) # First find the average sepal length
@@ -341,7 +348,8 @@ dat[dat$Species == "setosa",]
 what if you want to find the mean of the petal lengths of just _Iris setosa_?
 
 ```{r}
-mean(dat[dat$Species == "setosa", "Petal.Length"])
+mean(dat[dat$Species == "setosa", "Petal.Length"]) #or
+mean(dat$Petal.Length[dat$Species == "setosa"])
 ```
 
 ## Key Points
@@ -349,6 +357,7 @@ mean(dat[dat$Species == "setosa", "Petal.Length"])
 * Use `variable <- value` to assign a value to a variable in order to record it 
   in memory.
 * Objects are created on demand whenever a value is assigned to them.
+* Use `read.csv()` to read in a comma-delimited file (likely from a spreadsheet) to a data frame.
 * Use `object[x, y]` to select a single element from a data frame.
 * Use `from:to` to specify a sequence that includes the indices from `from` to `to`.
 * Use `#` to add comments to programs.

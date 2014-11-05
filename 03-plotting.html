@@ -297,8 +297,9 @@ g</code></pre>
 <pre><code>## Warning: Removed 5 rows containing non-finite values (stat_ydensity).</code></pre>
 <p><img src="03-plotting_files/figure-html/irisexamples-6.png" title="" alt="" width="672" /></p>
 <p>What if we want to split up the measurements and compare them all? We need the type of measurement (<code>Petal.length</code>, <code>Petal.Width</code>) as a variable rather than each as a column heading. There is another package by Hadley Wickham (see a trend here?) that helps us restructure, or reshape our data: It’s called <code>reshape2</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(reshape2)
-dat_long &lt;-<span class="st"> </span><span class="kw">melt</span>(dat)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(reshape2)</code></pre>
+<pre><code>## Loading required package: reshape2</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">dat_long &lt;-<span class="st"> </span><span class="kw">melt</span>(dat)</code></pre>
 <pre><code>## Using Species as id variables</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(dat_long)</code></pre>
 <pre><code>##   Species     variable value
