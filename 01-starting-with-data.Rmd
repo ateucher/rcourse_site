@@ -80,11 +80,15 @@ and `read.csv()` to load the data file. These are built-in functions in R. Let's
 check out the help screen.
 
 ```{r, message=FALSE, warning=FALSE}
+?dir.create
 dir.create("data")
 ```
 
-* download the iris file
-* put it in your data directory for these exercises
+Next download the iris file to your data directory for these exercises
+
+```{r, message=FALSE, warning=FALSE}
+download.file("http://ateucher.github.io/rcourse_site/data/iris.csv", destfile = "data/iris.csv")
+```
 
 ### Comma Separated Files
 
@@ -97,8 +101,8 @@ Load the data into R:
 read.csv('data/iris.csv')
 ```
 
-The expression `read.csv()` is a function that asks R to load a `.csv` file 
-into R's workspace as a data frame.
+The expression `read.csv()` is a function that asks R to load the contents of a `.csv` file 
+into R's workspace.
 
 `read.csv()` has many arguments including the name of the file we want to read, 
 and the delimiter that separates values on a line. 

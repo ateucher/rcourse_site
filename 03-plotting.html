@@ -171,7 +171,10 @@ code > span.er { font-weight: bold; }
 <pre><code>##   carat       cut color clarity depth table price    x    y    z
 ## 1  0.23     Ideal     E     SI2  61.5    55   326 3.95 3.98 2.43
 ## 2  0.21   Premium     E     SI1  59.8    61   326 3.89 3.84 2.31
-##  [ reached getOption(&quot;max.print&quot;) -- omitted 4 rows ]</code></pre>
+## 3  0.23      Good     E     VS1  56.9    65   327 4.05 4.07 2.31
+## 4  0.29   Premium     I     VS2  62.4    58   334 4.20 4.23 2.63
+## 5  0.31      Good     J     SI2  63.3    58   335 4.34 4.35 2.75
+##  [ reached getOption(&quot;max.print&quot;) -- omitted 1 row ]</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(diamonds)</code></pre>
 <pre><code>## &#39;data.frame&#39;:    53940 obs. of  10 variables:
 ##  $ carat  : num  0.23 0.21 0.23 0.29 0.31 0.24 0.24 0.26 0.22 0.23 ...
@@ -294,8 +297,9 @@ g</code></pre>
 <pre><code>## Warning: Removed 5 rows containing non-finite values (stat_ydensity).</code></pre>
 <p><img src="03-plotting_files/figure-html/irisexamples-6.png" title="" alt="" width="672" /></p>
 <p>What if we want to split up the measurements and compare them all? We need the type of measurement (<code>Petal.length</code>, <code>Petal.Width</code>) as a variable rather than each as a column heading. There is another package by Hadley Wickham (see a trend here?) that helps us restructure, or reshape our data: It’s called <code>reshape2</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(reshape2)
-dat_long &lt;-<span class="st"> </span><span class="kw">melt</span>(dat)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(reshape2)</code></pre>
+<pre><code>## Loading required package: reshape2</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">dat_long &lt;-<span class="st"> </span><span class="kw">melt</span>(dat)</code></pre>
 <pre><code>## Using Species as id variables</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(dat_long)</code></pre>
 <pre><code>##   Species     variable value
