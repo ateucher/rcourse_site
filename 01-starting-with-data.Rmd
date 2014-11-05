@@ -135,7 +135,7 @@ It's important to note that anything we do with `dat` here will not affect the
 original `csv` file. `dat` is a copy of your data inside R. This is an important 
 concept of reproducibility - don't touch your original data!
 
-For large data sets it is convenient to use the `head()` to display the first 
+For large data sets it is convenient to use the `head()` function to display the first 
 few rows of data, or `tail()` to see the end:
 
 ```{r}
@@ -155,13 +155,14 @@ __BREAK__
 ## Manipulating Data
 
 Now that our data is in memory, we can start doing things with it. 
-First, let's ask what type of thing `dat` *is*:
+First, let's ask what type of thing `dat` *is*. We can do this using the `class()` 
+function, which tells us what kind of *object* something is:
 
 ```{r}
 class(dat)
 ```
 
-The output tells us that data currently is a data frame in R. 
+The output tells us that `dat` is a data frame in R. 
 This is similar to a spreadsheet in MS Excel, that many of us are familiar with 
 using.
 
@@ -173,7 +174,7 @@ Some additional information on data frames:
 * Usually created by `read.csv()` and `read.table()`.
 * Can also create with `data.frame()` function.
 
-Lets find out a little bit more about `dat`:
+Let's find out a little bit more about `dat`:
 
 #### Useful data frame functions
 
@@ -215,7 +216,6 @@ Now say we want to get the mean of the petal widths:
 
 ```{r}
 mean(dat$Petal.Width)
-max(dat$Sepal.Width)
 ```
 
 ```{r, echo=FALSE, results='asis'}
@@ -227,6 +227,8 @@ Let's have a look at the `Sepal.Width` column:
 ```{r}
 dat$Sepal.Width # First look at the data - there are some values that are NA.
 ```
+
+### Missing Values
 
 `NA` is a special encoding for a missing value in a vector... look at help file 
 for `max()`: `?max`.  You'll see there's an argument called `na.rm`, where the 
@@ -254,14 +256,18 @@ You can remove columns by assigning `NULL` to them. `NULL` is a special term tha
 Let's get rid of those two we just created to get back to our original data frame.
 
 ```{r}
-dat$Petal.LW.Ratio <- NULL
+dat$Petal.Ratio <- NULL
 dat$Sepal.Length.in <- NULL
 ```
 
 ### Indexing
 
-We talked about vectors before, and indexing them.  Each column in a data frame 
+We talked about vectors before, and indexing them. Each column in a data frame 
 is a vector, and can be indexed as such.
+
+```{r}
+dat$Petal.Width[10]
+```
 
 If we want to get a single value from the data frame, we must provide an row and 
 column indices for the value we want in square brackets: `dataframe[rows,columns]`

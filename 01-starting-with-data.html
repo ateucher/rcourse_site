@@ -237,7 +237,7 @@ code > span.er { font-weight: bold; }
 ## 10           4.9         3.1          1.5         0.1     setosa
 ##  [ reached getOption(&quot;max.print&quot;) -- omitted 140 rows ]</code></pre>
 <p>It’s important to note that anything we do with <code>dat</code> here will not affect the original <code>csv</code> file. <code>dat</code> is a copy of your data inside R. This is an important concept of reproducibility - don’t touch your original data!</p>
-<p>For large data sets it is convenient to use the <code>head()</code> to display the first few rows of data, or <code>tail()</code> to see the end:</p>
+<p>For large data sets it is convenient to use the <code>head()</code> function to display the first few rows of data, or <code>tail()</code> to see the end:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(dat)</code></pre>
 <pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
 ## 1          5.1         3.5          1.4         0.2  setosa
@@ -265,10 +265,10 @@ code > span.er { font-weight: bold; }
 </div>
 <div id="manipulating-data" class="section level2">
 <h2>Manipulating Data</h2>
-<p>Now that our data is in memory, we can start doing things with it. First, let’s ask what type of thing <code>dat</code> <em>is</em>:</p>
+<p>Now that our data is in memory, we can start doing things with it. First, let’s ask what type of thing <code>dat</code> <em>is</em>. We can do this using the <code>class()</code> function, which tells us what kind of <em>object</em> something is:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(dat)</code></pre>
 <pre><code>## [1] &quot;data.frame&quot;</code></pre>
-<p>The output tells us that data currently is a data frame in R. This is similar to a spreadsheet in MS Excel, that many of us are familiar with using.</p>
+<p>The output tells us that <code>dat</code> is a data frame in R. This is similar to a spreadsheet in MS Excel, that many of us are familiar with using.</p>
 <div id="data-frames" class="section level3">
 <h3>data frames</h3>
 <p>The <em>de facto</em> data structure for most tabular data and what we use for statistics.</p>
@@ -277,7 +277,7 @@ code > span.er { font-weight: bold; }
 <li>Usually created by <code>read.csv()</code> and <code>read.table()</code>.</li>
 <li>Can also create with <code>data.frame()</code> function.</li>
 </ul>
-<p>Lets find out a little bit more about <code>dat</code>:</p>
+<p>Let’s find out a little bit more about <code>dat</code>:</p>
 <div id="useful-data-frame-functions" class="section level4">
 <h4>Useful data frame functions</h4>
 <ul>
@@ -333,8 +333,6 @@ code > span.er { font-weight: bold; }
 <p>Now say we want to get the mean of the petal widths:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(dat$Petal.Width)</code></pre>
 <pre><code>## [1] 1.199333</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">max</span>(dat$Sepal.Width)</code></pre>
-<pre><code>## [1] NA</code></pre>
 <p><strong>Exercise 12:</strong> <em>Find the maximum of the sepal widths. Did anything unexpected happen?</em></p>
 <p>Let’s have a look at the <code>Sepal.Width</code> column:</p>
 <pre class="sourceCode r"><code class="sourceCode r">dat$Sepal.Width <span class="co"># First look at the data - there are some values that are NA.</span></code></pre>
@@ -342,6 +340,9 @@ code > span.er { font-weight: bold; }
 ## [18] 3.5 3.8 3.8 3.4 3.7 3.6 3.3 3.4 3.0 3.4 3.5 3.4 3.2 3.1 3.4 4.1 4.2
 ## [35] 3.1 3.2 3.5 3.6 3.0 3.4 3.5 2.3  NA 3.5 3.8 3.0 3.8 3.2 3.7 3.3
 ##  [ reached getOption(&quot;max.print&quot;) -- omitted 100 entries ]</code></pre>
+</div>
+<div id="missing-values" class="section level3">
+<h3>Missing Values</h3>
 <p><code>NA</code> is a special encoding for a missing value in a vector… look at help file for <code>max()</code>: <code>?max</code>. You’ll see there’s an argument called <code>na.rm</code>, where the default is <code>FALSE</code>. If we change it to true, <code>max</code> ignores the <code>NA</code> values:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">max</span>(dat$Sepal.Width, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</code></pre>
 <pre><code>## [1] 4.4</code></pre>
@@ -364,12 +365,14 @@ code > span.er { font-weight: bold; }
 ## 6        2.125984</code></pre>
 <p><strong>Exercise 13:</strong> <em>Create a new column in <code>dat</code> that contains the ratio of petal length to petal width. Call the column <code>Petal.Ratio</code></em></p>
 <p>You can remove columns by assigning <code>NULL</code> to them. <code>NULL</code> is a special term that means nothing. Let’s get rid of those two we just created to get back to our original data frame.</p>
-<pre class="sourceCode r"><code class="sourceCode r">dat$Petal.LW.Ratio &lt;-<span class="st"> </span><span class="ot">NULL</span>
+<pre class="sourceCode r"><code class="sourceCode r">dat$Petal.Ratio &lt;-<span class="st"> </span><span class="ot">NULL</span>
 dat$Sepal.Length.in &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre>
 </div>
 <div id="indexing" class="section level3">
 <h3>Indexing</h3>
 <p>We talked about vectors before, and indexing them. Each column in a data frame is a vector, and can be indexed as such.</p>
+<pre class="sourceCode r"><code class="sourceCode r">dat$Petal.Width[<span class="dv">10</span>]</code></pre>
+<pre><code>## [1] 0.1</code></pre>
 <p>If we want to get a single value from the data frame, we must provide an row and column indices for the value we want in square brackets: <code>dataframe[rows,columns]</code></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># first value in first column in dat</span>
 dat[<span class="dv">1</span>, <span class="dv">1</span>]</code></pre>
