@@ -1,0 +1,5 @@
+---
+output: html_document
+---
+
+<div class="center">![](img/walkby-cat-high-five.gif)</div>
