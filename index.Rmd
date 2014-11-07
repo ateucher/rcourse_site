@@ -48,7 +48,7 @@ The [Introductory course notes](http://www.poissonconsulting.ca/course/2014/09/1
 
 Much of the `dplyr` material came from the dplyr [package vignette](http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html).
 
-[Spring course only]: When we went off-roading to play with the reshape2 package, we used material from 
+(Spring 2014 course only): When we went off-roading to play with the reshape2 package, we used material from 
 [this website](http://seananderson.ca/2013/10/19/reshape.html).
 
 #### Source
