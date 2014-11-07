@@ -1,0 +1,9 @@
+---
+output: html_document
+---
+
+<div class="center">
+# Nice Job!
+
+![](img/walkby-cat-high-five.gif)
+</div>

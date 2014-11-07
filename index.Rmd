@@ -43,12 +43,12 @@ These are amazing people, doing amazing things to help the scientific world be
 more productive with their code and data. Check them out, and if you get the chance 
 to attend a bootcamp, do it.
 
-The [course notes](http://www.poissonconsulting.ca/courses/2012/06/05/an-introduction-to-r-course-12.html) from [Poisson Consulting](http://www.poissonconsulting.ca/)'s 
-2012 R Course were also very helpful in putting this material together.
+The [Introductory course notes](http://www.poissonconsulting.ca/course/2014/09/12/an-introduction-to-r-course.html) from [Poisson Consulting](http://www.poissonconsulting.ca/)'s 
+2014 R Course were also very helpful in putting this material together.
 
 Much of the `dplyr` material came from the dplyr [package vignette](http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html).
 
-When we went off-roading to play with the reshape2 package, we used material from 
+[Spring course only]: When we went off-roading to play with the reshape2 package, we used material from 
 [this website](http://seananderson.ca/2013/10/19/reshape.html).
 
 #### Source
