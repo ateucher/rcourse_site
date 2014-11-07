@@ -9,19 +9,22 @@ title: Data visualization with ggplot2
 Creative Commons Attribution [(CC_BY)](http://creativecommons.org/licenses/by/3.0/) 
 license.
 
-## Basic plotting
+## Base plotting
 
 R's base (built-in) plotting functions are powerful and very flexible, but not 
 overly user friendly. For simple exploratory plots that don't need to look nice, 
 they are useful. They are generally specified  as `plot(x, y, ...)`
 
 ```{r baseplot1}
-plot(dat$Sepal.Width, dat$Sepal.Length, type="p", col=dat$Species)
+# Load the data if you haven't already:
+dat <- read.csv("data/iris.csv", stringsAsFactors = FALSE)
+
+plot(dat$Sepal.Width, dat$Sepal.Length, type="p", col=factor(dat$Species))
 ```
 
 You can also specify them in a formula format `plot(y ~ x, data='', ...)`
 ```{r baseplot2}
-plot(Sepal.Length ~ Sepal.Width, data=dat, col=Species)
+plot(Sepal.Length ~ Sepal.Width, data=dat, col=factor(Species))
 boxplot(Sepal.Length ~ Species, data=dat)
 ```
 
@@ -343,7 +346,7 @@ type of measurement (`Petal.length`, `Petal.Width`) as a variable rather than ea
 as a column heading. There is another package by Hadley Wickham (see a trend 
 here?) that helps us restructure, or reshape our data: It's called `reshape2`.
 
-```{r irisreshapebox, warning=FALSE}
+```{r irisreshapeviolin, warning=FALSE}
 require(reshape2)
 dat_long <- melt(dat)
 head(dat_long)
@@ -357,6 +360,32 @@ ggplot(dat_long, aes(x=Species, y=value, fill=Species)) +
   facet_wrap(~ variable) + 
   ylab("Measurement (cm)")
 ```
+
+
+In the fall 2014 course, we used the function `gather` in the package `tidyr`, 
+which is similar to `reshape2` but does fewer things so is generally a bit simpler: 
+
+```{r irisreshapebox, warning=FALSE}
+library("tidyr")
+
+# You can either tell it what columns to *not* gather by preceding it by a 
+# minus sign (e.g., -Species):
+long_dat <- gather(data = dat, key = measurement_type, 
+                   value = measurement, -Species)
+
+# Or specify which columns to gather by giving it a range of columns (e.g., 1:4):
+long_dat <- gather(data = dat, key = measurement_type, 
+                   value = measurement, 1:4)
+
+ggplot(long_dat, aes(x = measurement_type, y = measurement)) + 
+  geom_boxplot(aes(colour = measurement_type)) + 
+  facet_wrap(~Species)
+
+ggplot(long_dat, aes(x = Species, y = measurement)) + 
+  geom_boxplot(aes(fill = Species)) + 
+  facet_wrap(~measurement_type)
+```
+
 
 ## Further **ggplot2** resources
 
