@@ -43,6 +43,16 @@ margin-top: -52px;
 .dropdown-menu>li>a {
 color: white;
 }
+
+.center {
+  text-align: center;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
+}
+
+
 </style>
 
 <link rel="stylesheet" href="libs/font-awesome-4.2.0/css/font-awesome.min.css"/>
@@ -150,23 +160,36 @@ code > span.er { font-weight: bold; }
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Simulate some data with a normal distribution, a mean of 0, and sd of 1.</span>
 data &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>)
 <span class="kw">mean</span>(data)</code></pre>
-<pre><code>## [1] 0.01360315</code></pre>
+<pre><code>## [1] 0.07433022</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(data, <span class="dt">mu=</span><span class="dv">0</span>)</code></pre>
 <pre><code>## 
 ##  One Sample t-test
 ## 
 ## data:  data
-## t = 0.1308, df = 99, p-value = 0.8962
+## t = 0.8009, df = 99, p-value = 0.4251
 ## alternative hypothesis: true mean is not equal to 0
 ## 95 percent confidence interval:
-##  -0.1927919  0.2199982
+##  -0.1098168  0.2584772
 ## sample estimates:
 ##  mean of x 
-## 0.01360315</code></pre>
+## 0.07433022</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">## Unsurprisingly, not significant.</code></pre>
 <p>For the iris data, we want to use a two-sample t-test. I like using the formula specification because it’s similar to how many other statistical tests are specified: <code>t.test(Value ~ factor, data=)</code></p>
 <p>Since we’re only interested in <em>setosa</em> and <em>virginica</em>, we need to get rid of <em>versicolor</em>.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(dplyr)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;
+## 
+## The following object is masked from &#39;package:stats&#39;:
+## 
+##     filter
+## 
+## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load the data if you haven&#39;t already:</span>
+dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/iris.csv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
+
 setosa.virginica &lt;-<span class="st"> </span><span class="kw">filter</span>(dat, Species !=<span class="st"> &quot;versicolor&quot;</span>)
 <span class="kw">summary</span>(setosa.virginica)</code></pre>
 <pre><code>##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
@@ -177,13 +200,13 @@ setosa.virginica &lt;-<span class="st"> </span><span class="kw">filter</span>(da
 ##  3rd Qu.:6.500   3rd Qu.:3.500   3rd Qu.:5.525   3rd Qu.:2.000  
 ##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
 ##                  NA&#39;s   :4                                      
-##        Species  
-##  setosa    :50  
-##  versicolor: 0  
-##  virginica :50  
-##                 
-##                 
-##                 
+##    Species         
+##  Length:100        
+##  Class :character  
+##  Mode  :character  
+##                    
+##                    
+##                    
 ## </code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">setosa.virginica &lt;-<span class="st"> </span><span class="kw">droplevels</span>(setosa.virginica)</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(Sepal.Length ~<span class="st"> </span>Species, <span class="dt">data=</span>setosa.virginica)</code></pre>
@@ -226,7 +249,9 @@ petal.reg &lt;-<span class="st"> </span><span class="kw">lm</span>(Petal.Length 
 ## F-statistic: 5.931 on 1 and 48 DF,  p-value: 0.01864</code></pre>
 <div id="plot-the-data-with-the-regression-line-along-with-confidence-limits" class="section level4">
 <h4>Plot the data with the regression line, along with confidence limits</h4>
-<pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(setosa.dat, <span class="kw">aes</span>(<span class="dt">x =</span> Petal.Width, <span class="dt">y =</span> Petal.Length)) +<span class="st"> </span><span class="kw">geom_point</span>()
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;ggplot2&quot;</span>)
+
+p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(setosa.dat, <span class="kw">aes</span>(<span class="dt">x =</span> Petal.Width, <span class="dt">y =</span> Petal.Length)) +<span class="st"> </span><span class="kw">geom_point</span>()
 
 dummy &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Petal.Width =</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="kw">min</span>(setosa.dat$Petal.Width), 
                                      <span class="dt">to =</span> <span class="kw">max</span>(setosa.dat$Petal.Width), 
@@ -341,20 +366,20 @@ elev_pres.data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
 ## 
 ## Deviance Residuals: 
 ##     Min       1Q   Median       3Q      Max  
-## -2.0769  -0.8052  -0.4233   0.8323   1.9113  
+## -2.2286  -0.6871   0.3279   0.7135   1.8634  
 ## 
 ## Coefficients:
 ##              Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept) -3.032963   0.687539  -4.411 1.03e-05 ***
-## elev         0.005118   0.001118   4.579 4.67e-06 ***
+## (Intercept) -2.980213   0.694871  -4.289 1.80e-05 ***
+## elev         0.006252   0.001280   4.884 1.04e-06 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## (Dispersion parameter for binomial family taken to be 1)
 ## 
-##     Null deviance: 125.61  on 90  degrees of freedom
-## Residual deviance:  96.42  on 89  degrees of freedom
-## AIC: 100.42
+##     Null deviance: 124.289  on 90  degrees of freedom
+## Residual deviance:  86.629  on 89  degrees of freedom
+## AIC: 90.629
 ## 
 ## Number of Fisher Scoring iterations: 4</code></pre>
 <p>So let’s add the curve generated by the logistic regression to the plot:</p>

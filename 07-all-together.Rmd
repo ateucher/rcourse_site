@@ -8,8 +8,8 @@ manipulating data using `dplyr`, running a linear regression model using `lm`,
 plotting using `ggplot`, and exporting content.
 
 ```{r eval=FALSE}
-require(dplyr)
-require(ggplot2)
+library(dplyr)
+library(ggplot2)
 
 # A function to calculate the mean and standard deviatiaon
 mean_sd_iris <- function(x) {

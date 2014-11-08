@@ -1,5 +1,5 @@
-require(dplyr)
-require(ggplot2)
+library(dplyr)
+library(ggplot2)
 
 # Create directories for our outputs
 dir.create("out")

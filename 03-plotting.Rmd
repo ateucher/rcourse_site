@@ -347,7 +347,8 @@ as a column heading. There is another package by Hadley Wickham (see a trend
 here?) that helps us restructure, or reshape our data: It's called `reshape2`.
 
 ```{r irisreshapeviolin, warning=FALSE}
-require(reshape2)
+library(reshape2)
+
 dat_long <- melt(dat)
 head(dat_long)
 

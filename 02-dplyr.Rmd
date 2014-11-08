@@ -24,7 +24,7 @@ install.packages("dplyr") # Install the package
 ```
 
 ```{r}
-require(dplyr) # Load the package into memory
+library(dplyr) # Load the package into memory
 ```
 
 `dplyr` implements the following verbs useful for data manipulation:
@@ -44,6 +44,9 @@ argument is the name of the data frame, and the second and subsequent are
 filtering expressions evaluated in the context of that data frame
 
 ```{r}
+# Load the data if you haven't already:
+dat <- read.csv("data/iris.csv", stringsAsFactors = FALSE)
+
 filter(dat, Sepal.Length > 5, Petal.Length > 1.5)
 ```
 

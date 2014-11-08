@@ -43,6 +43,16 @@ margin-top: -52px;
 .dropdown-menu>li>a {
 color: white;
 }
+
+.center {
+  text-align: center;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
+}
+
+
 </style>
 
 <link rel="stylesheet" href="libs/font-awesome-4.2.0/css/font-awesome.min.css"/>
@@ -143,8 +153,8 @@ code > span.er { font-weight: bold; }
 
 
 <p>This is small script that pulls together almost all of the concepts we learned: Reading in data, repeating things using <code>lapply</code> and a <code>for</code> loop, custom functions, manipulating data using <code>dplyr</code>, running a linear regression model using <code>lm</code>, plotting using <code>ggplot</code>, and exporting content.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(dplyr)
-<span class="kw">require</span>(ggplot2)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(ggplot2)
 
 <span class="co"># A function to calculate the mean and standard deviatiaon</span>
 mean_sd_iris &lt;-<span class="st"> </span>function(x) {
