@@ -33,8 +33,9 @@ write.csv(dat, "data/iris.csv", row.names=FALSE)
 write.csv(setosa, "data/iris_setosa.csv", row.names=FALSE)
 write.csv(versicolor, "data/iris_versicolor.csv", row.names=FALSE)
 write.csv(virginica, "data/iris_virginica.csv", row.names=FALSE)
-zip("data/iris.zip", paste0("data/", c("iris_setosa.csv", "iris_versicolor.csv", 
-                                       "iris_virginica.csv")))
+setwd("data")
+zip("iris.zip", c("iris_setosa.csv", "iris_versicolor.csv", "iris_virginica.csv"))
+setwd("..")
 
 # Knit Rmd files to html
 RmdDocs <- list.files(".", pattern="*\\.Rmd", full.names = TRUE)
