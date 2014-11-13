@@ -50,10 +50,6 @@ setwd("pdf")
 render("Intro_R_ATeucher.Rmd")
 setwd("..")
 
-## Copy newly generated site to the site repo, then go over there, commit and
-## push to gh-pages branch
-file.copy(".", to = "../../rcourse_site/", overwrite = TRUE, recursive = TRUE)
-
 # Reset options and get rid of stuff
 options(max.print = maxprint)
 rm(list = ls())
