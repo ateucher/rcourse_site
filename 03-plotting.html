@@ -10,7 +10,7 @@
 
 
 
-<title>Data visualization with ggplot2</title>
+<title></title>
 
 <script src="libs/jquery-1.11.0/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -43,16 +43,6 @@ margin-top: -52px;
 .dropdown-menu>li>a {
 color: white;
 }
-
-.center {
-  text-align: center;
-  margin-top: 100px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 400px;
-}
-
-
 </style>
 
 <link rel="stylesheet" href="libs/font-awesome-4.2.0/css/font-awesome.min.css"/>
@@ -147,22 +137,18 @@ code > span.er { font-weight: bold; }
   </div>
 </div>
 
-<div id="header">
-<h1 class="title">Data visualization with ggplot2</h1>
-</div>
 
 
+<div id="data-visualization-with-ggplot2" class="section level1">
+<h1>Data visualization with ggplot2</h1>
 <p>** The structure and much of the content in this module was borrowed from <a href="http://www.softwarecarpentry.org">Software Carpentry</a>’s <a href="https://github.com/swcarpentry/bc/tree/master/novice/r">novice R Bootcamp material</a> (Copyright (c) Software Carpentry), which they make available for reuse under the Creative Commons Attribution <a href="http://creativecommons.org/licenses/by/3.0/">(CC_BY)</a> license.</p>
-<div id="base-plotting" class="section level2">
-<h2>Base plotting</h2>
+<div id="basic-plotting" class="section level2">
+<h2>Basic plotting</h2>
 <p>R’s base (built-in) plotting functions are powerful and very flexible, but not overly user friendly. For simple exploratory plots that don’t need to look nice, they are useful. They are generally specified as <code>plot(x, y, ...)</code></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load the data if you haven&#39;t already:</span>
-dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/iris.csv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
-
-<span class="kw">plot</span>(dat$Sepal.Width, dat$Sepal.Length, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>, <span class="dt">col=</span><span class="kw">factor</span>(dat$Species))</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(dat$Sepal.Width, dat$Sepal.Length, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>, <span class="dt">col=</span>dat$Species)</code></pre>
 <p><img src="03-plotting_files/figure-html/baseplot1-1.png" title="" alt="" width="672" /></p>
 <p>You can also specify them in a formula format <code>plot(y ~ x, data='', ...)</code></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(Sepal.Length ~<span class="st"> </span>Sepal.Width, <span class="dt">data=</span>dat, <span class="dt">col=</span><span class="kw">factor</span>(Species))</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(Sepal.Length ~<span class="st"> </span>Sepal.Width, <span class="dt">data=</span>dat, <span class="dt">col=</span>Species)</code></pre>
 <p><img src="03-plotting_files/figure-html/baseplot2-1.png" title="" alt="" width="672" /></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">boxplot</span>(Sepal.Length ~<span class="st"> </span>Species, <span class="dt">data=</span>dat)</code></pre>
 <p><img src="03-plotting_files/figure-html/baseplot2-2.png" title="" alt="" width="672" /></p>
@@ -187,7 +173,7 @@ dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="
 ## 3  0.23      Good     E     VS1  56.9    65   327 4.05 4.07 2.31
 ## 4  0.29   Premium     I     VS2  62.4    58   334 4.20 4.23 2.63
 ## 5  0.31      Good     J     SI2  63.3    58   335 4.34 4.35 2.75
-## 6  0.24 Very Good     J    VVS2  62.8    57   336 3.94 3.96 2.48</code></pre>
+##  [ reached getOption(&quot;max.print&quot;) -- omitted 1 row ]</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(diamonds)</code></pre>
 <pre><code>## &#39;data.frame&#39;:    53940 obs. of  10 variables:
 ##  $ carat  : num  0.23 0.21 0.23 0.29 0.31 0.24 0.24 0.26 0.22 0.23 ...
@@ -239,8 +225,9 @@ dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(carat, price)) +<span class="st"> </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)</code></pre>
 <p><img src="03-plotting_files/figure-html/smoothlinear-1.png" title="" alt="" width="672" /></p>
 <p>We see again the strong relationship between the size of the diamond and its price, but the relationship doesn’t appear linear. How does the diamond’s clarity affect the weight-price relationship?</p>
-<div id="faceting-and-scaling" class="section level4">
-<h4>Faceting and scaling</h4>
+</div>
+<div id="faceting-and-scaling" class="section level3">
+<h3>Faceting and scaling</h3>
 <p>One option we could use is to color-code the points by their clarity. Here, we add another <em>aesthetic</em>, colour (<code>col</code>) and map it to the variable we want it to represent: clarity</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(<span class="dt">x=</span>carat, <span class="dt">y=</span>price, <span class="dt">col=</span>clarity)) +<span class="st"> </span><span class="kw">geom_point</span>()</code></pre>
 <p><img src="03-plotting_files/figure-html/ggcolclarity-1.png" title="" alt="" width="672" /></p>
@@ -284,7 +271,6 @@ g</code></pre>
 <p>Finally, we can save the plot created using the <code>ggsave</code> function:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggsave</span>(<span class="dt">filename=</span><span class="st">&quot;table-depth-density.png&quot;</span>, <span class="dt">plot=</span>g)</code></pre>
 <p>There are endless ways to combine aesthetic mappings with different geoms and multiple layers. Read about other <strong>geom</strong>s, mappings, scales, and other layer options at the links below.</p>
-</div>
 <div id="exercise" class="section level4">
 <h4>Exercise</h4>
 <p>Now, plot a graph using the iris dataset using <strong>ggplot2</strong>. You don’t have to use points; other geoms include: <code>gemo_bar</code>, <code>geom_area</code>, <code>geom_boxplot</code>, and many more. Try to incorporate at least one extra aesthetic (over <code>x</code> and <code>y</code>). Some examples of aesthetics are <code>col</code>, <code>fill</code>, <code>size</code>, <code>shape</code>, <code>alpha</code>, <code>linetype</code>.</p>
@@ -310,9 +296,9 @@ g</code></pre>
 <pre><code>## Warning: Removed 5 rows containing non-finite values (stat_ydensity).</code></pre>
 <p><img src="03-plotting_files/figure-html/irisexamples-6.png" title="" alt="" width="672" /></p>
 <p>What if we want to split up the measurements and compare them all? We need the type of measurement (<code>Petal.length</code>, <code>Petal.Width</code>) as a variable rather than each as a column heading. There is another package by Hadley Wickham (see a trend here?) that helps us restructure, or reshape our data: It’s called <code>reshape2</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(reshape2)
-
-dat_long &lt;-<span class="st"> </span><span class="kw">melt</span>(dat)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(reshape2)</code></pre>
+<pre><code>## Loading required package: reshape2</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">dat_long &lt;-<span class="st"> </span><span class="kw">melt</span>(dat)</code></pre>
 <pre><code>## Using Species as id variables</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(dat_long)</code></pre>
 <pre><code>##   Species     variable value
@@ -323,39 +309,18 @@ dat_long &lt;-<span class="st"> </span><span class="kw">melt</span>(dat)</code><
 ## 5  setosa Sepal.Length   5.0
 ## 6  setosa Sepal.Length   5.4</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(dat_long, <span class="kw">aes</span>(<span class="dt">x=</span>variable, <span class="dt">y=</span>value, <span class="dt">fill=</span>Species)) +<span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre>
-<p><img src="03-plotting_files/figure-html/irisreshapeviolin-1.png" title="" alt="" width="672" /></p>
+<p><img src="03-plotting_files/figure-html/irisreshapebox-1.png" title="" alt="" width="672" /></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(dat_long, <span class="kw">aes</span>(<span class="dt">x=</span>variable, <span class="dt">y=</span>value, <span class="dt">fill=</span>Species)) +<span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre>
-<p><img src="03-plotting_files/figure-html/irisreshapeviolin-2.png" title="" alt="" width="672" /></p>
+<p><img src="03-plotting_files/figure-html/irisreshapebox-2.png" title="" alt="" width="672" /></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(dat_long, <span class="kw">aes</span>(<span class="dt">x=</span>Species, <span class="dt">y=</span>value, <span class="dt">fill=</span>Species)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_violin</span>() +<span class="st"> </span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>variable) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Measurement (cm)&quot;</span>)</code></pre>
-<p><img src="03-plotting_files/figure-html/irisreshapeviolin-3.png" title="" alt="" width="672" /></p>
-<p>In the fall 2014 course, we used the function <code>gather</code> in the package <code>tidyr</code>, which is similar to <code>reshape2</code> but does fewer things so is generally a bit simpler:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;tidyr&quot;</span>)
-
-<span class="co"># You can either tell it what columns to *not* gather by preceding it by a </span>
-<span class="co"># minus sign (e.g., -Species):</span>
-long_dat &lt;-<span class="st"> </span><span class="kw">gather</span>(<span class="dt">data =</span> dat, <span class="dt">key =</span> measurement_type, 
-                   <span class="dt">value =</span> measurement, -Species)
-
-<span class="co"># Or specify which columns to gather by giving it a range of columns (e.g., 1:4):</span>
-long_dat &lt;-<span class="st"> </span><span class="kw">gather</span>(<span class="dt">data =</span> dat, <span class="dt">key =</span> measurement_type, 
-                   <span class="dt">value =</span> measurement, <span class="dv">1</span>:<span class="dv">4</span>)
-
-<span class="kw">ggplot</span>(long_dat, <span class="kw">aes</span>(<span class="dt">x =</span> measurement_type, <span class="dt">y =</span> measurement)) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> measurement_type)) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">facet_wrap</span>(~Species)</code></pre>
-<p><img src="03-plotting_files/figure-html/irisreshapebox-1.png" title="" alt="" width="672" /></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(long_dat, <span class="kw">aes</span>(<span class="dt">x =</span> Species, <span class="dt">y =</span> measurement)) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> Species)) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">facet_wrap</span>(~measurement_type)</code></pre>
-<p><img src="03-plotting_files/figure-html/irisreshapebox-2.png" title="" alt="" width="672" /></p>
+<p><img src="03-plotting_files/figure-html/irisreshapebox-3.png" title="" alt="" width="672" /></p>
 </div>
 </div>
-</div>
-<div id="further-ggplot2-resources" class="section level2">
-<h2>Further <strong>ggplot2</strong> resources</h2>
+<div id="further-ggplot2-resources" class="section level3">
+<h3>Further <strong>ggplot2</strong> resources</h3>
 <ul>
 <li><a href="http://docs.ggplot2.org/current/">The official <strong>ggplot2</strong> documentation</a></li>
 <li><a href="http://www.amazon.com/o/ASIN/0387981403/ref=nosim/gettgenedone-20">The <strong>ggplot2</strong> book, by the developer, Hadley Wickham</a></li>
@@ -364,6 +329,8 @@ long_dat &lt;-<span class="st"> </span><span class="kw">gather</span>(<span clas
 <li><a href="http://learnr.wordpress.com/">A blog with a good number of posts describing how to reproduce various kind of plots using <strong>ggplot2</strong></a>.</li>
 <li><a href="http://stackoverflow.com/questions/tagged/ggplot2">Thousands of questions and answers tagged with “ggplot2” on Stack Overflow, a programming Q&amp;A site</a>.</li>
 </ul>
+</div>
+</div>
 </div>
 
 

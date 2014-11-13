@@ -1,6 +1,7 @@
 ---
-title: Functions
 ---
+
+# Functions
 
 ** The structure and content in this module was borrowed (largely verbatim) 
 from [Software Carpentry](http://www.softwarecarpentry.org)'s
@@ -9,7 +10,7 @@ from [Software Carpentry](http://www.softwarecarpentry.org)'s
 Creative Commons Attribution [(CC_BY)](http://creativecommons.org/licenses/by/3.0/) 
 license.
 
-## Objectives
+### Objectives
 
 * Define a function that takes arguments (parameters).
 * Return a value from a function.
@@ -50,7 +51,6 @@ fahr_to_kelvin(32)
 ```
 
 Will return nothing. Why?
-
 
 
 ## Composing Functions
@@ -98,7 +98,7 @@ fence  <-  function(original, wrapper) {
 fence("name", "*")
 ```
 
-## String splits
+### String splits
 
 If the variable s refers to a string, then we can parse the string into its separate components - each of the characters. Base R has a function called `strsplit` that can be used to break up strings, into smaller chunks. 
 

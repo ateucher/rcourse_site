@@ -1,6 +1,7 @@
 ---
-title: Repeating Things
 ---
+
+# Repeating Things
 
 ** The structure and much of the content in this module was borrowed from 
 [Software Carpentry](http://www.softwarecarpentry.org)'s
@@ -12,12 +13,12 @@ license.
 One of the big advantages of working with data in an environment like R is that 
 we can repeat and automate things really easily.
 
-### *apply family of functions: `sapply()` and `lapply()`
+## *apply family of functions: `sapply()` and `lapply()`
 
 These functions _apply_ an arbitrary function over a list (or vector).  They can 
 be a little tough to master, but they can be really useful.
 
-#### Lists
+### Lists
 
 In R lists are a lot like vectors. Unlike vectors however, the contents of a 
 list are not restricted to a single data type and can encompass any mixture of 
@@ -59,7 +60,7 @@ the list starts on a new line.
 * A data frame is a special type of list where every element of the list is a 
 vector of the same length.
 
-#### lapply
+### lapply
 
 What it does: Returns a list of same length as the input. 
 Each element of the output is a result of applying a function to the 
@@ -71,7 +72,7 @@ my_list
 lapply(my_list, mean)
 ```
 
-#### sapply
+### sapply
 
 `sapply` is a more user friendly version of `lapply` and will simplify its 
 output to a vector if it can.
@@ -104,7 +105,7 @@ iris_list <- lapply(iris_files, read.csv, stringsAsFactors=FALSE)
 dat2 <- rbind_all(iris_list)
 ```
 
-### For loops
+## For loops
 
 ```{r}
 x <- c("apples", "oranges", "bananas", "strawberries")

@@ -10,7 +10,7 @@
 
 
 
-<title>Repeating Things</title>
+<title></title>
 
 <script src="libs/jquery-1.11.0/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -137,18 +137,17 @@ code > span.er { font-weight: bold; }
   </div>
 </div>
 
-<div id="header">
-<h1 class="title">Repeating Things</h1>
-</div>
 
 
+<div id="repeating-things" class="section level1">
+<h1>Repeating Things</h1>
 <p>** The structure and much of the content in this module was borrowed from <a href="http://www.softwarecarpentry.org">Software Carpentry</a>’s <a href="https://github.com/swcarpentry/bc/tree/master/novice/r">novice R Bootcamp material</a> (Copyright (c) Software Carpentry), which they make available for reuse under the Creative Commons Attribution <a href="http://creativecommons.org/licenses/by/3.0/">(CC_BY)</a> license.</p>
 <p>One of the big advantages of working with data in an environment like R is that we can repeat and automate things really easily.</p>
-<div id="apply-family-of-functions-sapply-and-lapply" class="section level3">
-<h3>*apply family of functions: <code>sapply()</code> and <code>lapply()</code></h3>
+<div id="apply-family-of-functions-sapply-and-lapply" class="section level2">
+<h2>*apply family of functions: <code>sapply()</code> and <code>lapply()</code></h2>
 <p>These functions <em>apply</em> an arbitrary function over a list (or vector). They can be a little tough to master, but they can be really useful.</p>
-<div id="lists" class="section level4">
-<h4>Lists</h4>
+<div id="lists" class="section level3">
+<h3>Lists</h3>
 <p>In R lists are a lot like vectors. Unlike vectors however, the contents of a list are not restricted to a single data type and can encompass any mixture of data types (even other lists!). This makes them fundamentally different from vectors.</p>
 <p>Create lists using <code>list()</code> or coerce other objects using <code>as.list()</code></p>
 <pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span>, <span class="st">&quot;a&quot;</span>, <span class="ot">TRUE</span>, <span class="dv">1</span>+4i)
@@ -198,8 +197,8 @@ Andy</code></pre>
 <li>A data frame is a special type of list where every element of the list is a vector of the same length.</li>
 </ul>
 </div>
-<div id="lapply" class="section level4">
-<h4>lapply</h4>
+<div id="lapply" class="section level3">
+<h3>lapply</h3>
 <p>What it does: Returns a list of same length as the input. Each element of the output is a result of applying a function to the corresponding element.</p>
 <pre class="sourceCode r"><code class="sourceCode r">my_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">a =</span> <span class="dv">1</span>:<span class="dv">10</span>, <span class="dt">b =</span> <span class="dv">2</span>:<span class="dv">20</span>)
 my_list</code></pre>
@@ -215,8 +214,8 @@ my_list</code></pre>
 ## $b
 ## [1] 11</code></pre>
 </div>
-<div id="sapply" class="section level4">
-<h4>sapply</h4>
+<div id="sapply" class="section level3">
+<h3>sapply</h3>
 <p><code>sapply</code> is a more user friendly version of <code>lapply</code> and will simplify its output to a vector if it can.</p>
 <p>Let’s work with the same list we just created.</p>
 <pre class="sourceCode r"><code class="sourceCode r">my_list</code></pre>
@@ -232,7 +231,7 @@ my_list</code></pre>
 <p>Say instead of all of our iris data in one nice file, we have it in separate files; we could read them in one by one, but what if we had 50 files? It would get really tedious. First, we can list the files with the <code>list.files()</code> function:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list.files</span>(<span class="st">&quot;data&quot;</span>)</code></pre>
 <pre><code>## [1] &quot;iris.csv&quot;            &quot;iris.zip&quot;            &quot;iris_setosa.csv&quot;    
-## [4] &quot;iris_versicolor.csv&quot; &quot;iris_virginica.csv&quot;  &quot;toothgrowth.csv&quot;</code></pre>
+## [4] &quot;iris_versicolor.csv&quot; &quot;iris_virginica.csv&quot;</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list.files</span>(<span class="st">&quot;data&quot;</span>, <span class="dt">pattern =</span> <span class="st">&quot;iris_&quot;</span>, <span class="dt">full.names=</span><span class="ot">TRUE</span>)</code></pre>
 <pre><code>## [1] &quot;data/iris_setosa.csv&quot;     &quot;data/iris_versicolor.csv&quot;
 ## [3] &quot;data/iris_virginica.csv&quot;</code></pre>
@@ -242,8 +241,8 @@ my_list</code></pre>
 dat2 &lt;-<span class="st"> </span><span class="kw">rbind_all</span>(iris_list)</code></pre>
 </div>
 </div>
-<div id="for-loops" class="section level3">
-<h3>For loops</h3>
+<div id="for-loops" class="section level2">
+<h2>For loops</h2>
 <pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;apples&quot;</span>, <span class="st">&quot;oranges&quot;</span>, <span class="st">&quot;bananas&quot;</span>, <span class="st">&quot;strawberries&quot;</span>)
 
 for(i in x) {
@@ -273,6 +272,7 @@ for(i in x) {
   <span class="kw">write.csv</span>(subdat, <span class="kw">paste</span>(<span class="st">&quot;data/iris_&quot;</span>, name, <span class="st">&quot;.csv&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>), 
             <span class="dt">row.names =</span> <span class="ot">FALSE</span>)
 }</code></pre>
+</div>
 </div>
 
 

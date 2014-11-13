@@ -1,6 +1,7 @@
 ---
-title: Getting R Help
 ---
+
+# Getting R Help
 
 To get help for a particular function in R, type `?` and then the function name:
 
@@ -37,12 +38,12 @@ quotes if more than one word):
 * [The R Graphics Cookbook](http://www.amazon.com/gp/product/1449316956) by 
   Winston Change - The paper version of the Cookbook for R website mentioned above
   
-### Other learning resources - online courses, etc
+### Other learning resources - onlince courses, etc
 
 * [R for cats](http://rforcats.net/)
 * [Try R - codeschool](http://tryr.codeschool.com/)
 * [swirl](http://swirlstats.com/) - Learn statistics and R simultaneously - within R itself!
-* [R Programming (Coursera)](https://www.coursera.org/course/rprog)
+* [R Programming (Coursera)](https://www.coursera.org/course/rprog) - starts June 2!
     * There are a number of R and/or statistics courses on Coursera.  It's a free 
       online learning platform, and the courses are taught by high calibre 
       professors from good universities.

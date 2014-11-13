@@ -10,7 +10,7 @@
 
 
 
-<title>Introduction</title>
+<title></title>
 
 <script src="libs/jquery-1.11.0/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -137,22 +137,20 @@ code > span.er { font-weight: bold; }
   </div>
 </div>
 
-<div id="header">
-<h1 class="title">Introduction</h1>
-</div>
 
 
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
 <p>** The structure and much of the content in this module was borrowed from <a href="http://www.poissonconsulting.ca">Poisson Consulting</a>’s <a href="http://www.poissonconsulting.ca/course/2014/09/12/an-introduction-to-r-course.html">Introductory course notes</a>, which they make available for reuse under the Creative Commons Attribution <a href="http://creativecommons.org/licenses/by/3.0/">(CC_BY)</a> license.</p>
 <div id="introduction-to-r-and-rstudio" class="section level2">
 <h2>Introduction to R and RStudio</h2>
 <p>Let’s start by learning about our tool.</p>
-</div>
-<div id="rstudio" class="section level2">
-<h2>RStudio</h2>
+<div id="rstudio" class="section level3">
+<h3>RStudio</h3>
 <p>A number of third-party programs provide powerful interfaces to R. I recommend RStudio - the desktop version of which can be downloaded from <a href="http://rstudio.org/download/desktop" class="uri">http://rstudio.org/download/desktop</a>. Like R, RStudio is free and open source. This course is taught assuming you are using RStudio.</p>
 </div>
-<div id="console" class="section level2">
-<h2>Console</h2>
+<div id="console" class="section level3">
+<h3>Console</h3>
 <p>By default the pane in the bottom left of RStudio is the R console. This is were we type commands (expressions) for R to run (execute).</p>
 <p>R can be used just like a calculator. An expression is entered at the <code>&gt;</code> prompt and the result printed</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span> +<span class="st"> </span><span class="dv">5</span></code></pre>
@@ -173,6 +171,7 @@ code > span.er { font-weight: bold; }
 <pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span> *<span class="st"> </span>(<span class="dv">4</span> +<span class="st"> </span><span class="dv">5</span>)</code></pre>
 <pre><code>## [1] 27</code></pre>
 </div>
+</div>
 <div id="functions" class="section level3">
 <h3>Functions</h3>
 <p>Most of R’s functionality comes from its <em>functions</em>. A function takes zero, one or multiple <em>arguments</em>, depending on the function, and returns a value. To call a function enter it’s name followed by a pair of brackets - include any arguments in the brackets.</p>
@@ -183,7 +182,7 @@ code > span.er { font-weight: bold; }
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">max</span>(<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">2</span>,<span class="dv">6</span>,<span class="dv">9</span>)</code></pre>
 <pre><code>## [1] 9</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">date</span>() <span class="co"># Not all functions require arguments</span></code></pre>
-<pre><code>## [1] &quot;Tue Nov 04 22:23:47 2014&quot;</code></pre>
+<pre><code>## [1] &quot;Thu Nov 13 12:34:32 2014&quot;</code></pre>
 <p>To find out more about a function called <code>function_name</code> type <code>?function_name</code>. To search for the functions associated with a topic type <code>??topic</code> or use quotes for <code>??&quot;multi-word topics&quot;</code>.</p>
 <p><strong>Exercise 5:</strong> <em>Which function calculates cumulative sums? And what arguments does it take?</em></p>
 <div id="arguments" class="section level4">
@@ -255,6 +254,7 @@ weights</code></pre>
 <li>Code and workflow is more reproducible if we can document everything that we do.</li>
 <li>Our end goal is not just to “do stuff” but to do it in a way that anyone can easily and exactly replicate our workflow and results.</li>
 </ul>
+</div>
 </div>
 </div>
 

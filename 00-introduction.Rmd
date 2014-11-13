@@ -1,6 +1,7 @@
 ---
-title: "Introduction"
 ---
+
+# Introduction
 
 ** The structure and much of the content in this module was borrowed from 
 [Poisson Consulting](http://www.poissonconsulting.ca)'s
@@ -12,11 +13,11 @@ license.
 
 Let's start by learning about our tool.
 
-## RStudio
+### RStudio
 
 A number of third-party programs provide powerful interfaces to R. I recommend RStudio - the desktop version of which can be downloaded from <http://rstudio.org/download/desktop>. Like R, RStudio is free and open source. This course is taught assuming you are using RStudio.
 
-## Console
+### Console
 
 By default the pane in the bottom left of RStudio is the R console. This is were we type commands (expressions) for R to run (execute).
 

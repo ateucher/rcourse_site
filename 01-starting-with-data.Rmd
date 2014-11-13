@@ -1,6 +1,7 @@
 ---
-title: Getting started with data
 ---
+
+# Getting started with data
 
 ** The structure and much of the content in this module was borrowed from 
 [Software Carpentry](http://www.softwarecarpentry.org)'s
@@ -79,14 +80,14 @@ We will use the function `dir.create()` to create a `data` directory in our proj
 and `read.csv()` to load the data file. These are built-in functions in R. Let's 
 check out the help screen.
 
-```{r, message=FALSE, warning=FALSE}
+```{r, eval = FALSE, message=FALSE, warning=FALSE}
 ?dir.create
 dir.create("data")
 ```
 
 Next download the iris file to your data directory for these exercises
 
-```{r, message=FALSE, warning=FALSE}
+```{r, message=FALSE, warning=FALSE, eval=FALSE}
 download.file("http://ateucher.github.io/rcourse_site/data/iris.csv", destfile = "data/iris.csv")
 ```
 
@@ -166,7 +167,7 @@ The output tells us that `dat` is a data frame in R.
 This is similar to a spreadsheet in MS Excel, that many of us are familiar with 
 using.
 
-### data frames
+## Data Frames
 The *de facto* data structure for most tabular data and what we use for statistics.
 
 Some additional information on data frames:
@@ -176,7 +177,7 @@ Some additional information on data frames:
 
 Let's find out a little bit more about `dat`:
 
-#### Useful data frame functions
+### Useful data frame functions
 
 * `head()` - shown first 6 rows
 * `tail()` - show last 6 rows
