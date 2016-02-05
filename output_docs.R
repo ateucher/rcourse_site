@@ -18,24 +18,31 @@ options(max.print = 50L)
 clean_files <- list.files(c(".", "./pdf"), pattern = ".\\.html|.\\.pdf", 
                           full.names = TRUE)
 dirs <- list.dirs(recursive = FALSE)
-clean_dirs <- dirs[grep("_files|^\\./data$", dirs)]
+clean_dirs <- dirs[grep("_files$", dirs)]
 unlink(c(clean_files, clean_dirs), recursive = TRUE)
 
 # Create data sets
-set.seed(42)
-dat <- iris
-dat$Sepal.Width[sample(nrow(dat), 5)] <- NA
-setosa <- dat[dat$Species == "setosa",]
-versicolor <- dat[dat$Species == "versicolor",]
-virginica <- dat[dat$Species == "virginica",]
-dir.create("data", showWarnings = FALSE)
-write.csv(dat, "data/iris.csv", row.names=FALSE)
-write.csv(setosa, "data/iris_setosa.csv", row.names=FALSE)
-write.csv(versicolor, "data/iris_versicolor.csv", row.names=FALSE)
-write.csv(virginica, "data/iris_virginica.csv", row.names=FALSE)
-setwd("data")
-zip("iris.zip", c("iris_setosa.csv", "iris_versicolor.csv", "iris_virginica.csv"))
-setwd("..")
+if (!file.exists("data/iris.zip")) {
+  set.seed(42)
+  dat <- iris
+  dat$Sepal.Width[sample(nrow(dat), 5)] <- NA
+  setosa <- dat[dat$Species == "setosa",]
+  versicolor <- dat[dat$Species == "versicolor",]
+  virginica <- dat[dat$Species == "virginica",]
+  dir.create("data", showWarnings = FALSE)
+  write.csv(dat, "data/iris.csv", row.names=FALSE)
+  write.csv(setosa, "data/iris_setosa.csv", row.names=FALSE)
+  write.csv(versicolor, "data/iris_versicolor.csv", row.names=FALSE)
+  write.csv(virginica, "data/iris_virginica.csv", row.names=FALSE)
+  setwd("data")
+  zip("iris.zip", c("iris_setosa.csv", "iris_versicolor.csv", "iris_virginica.csv"))
+  setwd("..")
+}
+
+gapdata <- "data/gapminder-FiveYearData.csv"
+if (!file.exists(gapdata)) {
+  download.file("https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv", destfile = gapdata)
+}
 
 # Knit Rmd files to html
 RmdDocs <- list.files(".", pattern="*\\.Rmd", full.names = TRUE)
