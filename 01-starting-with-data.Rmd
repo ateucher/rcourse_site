@@ -3,6 +3,16 @@
 
 # Getting started with data
 
+```{r, echo = FALSE}
+
+exercise_number <- 0
+exercise <- function(txt) {
+  exercise_number <<- exercise_number + 1
+  cat(paste0("\n**Exercise** ", exercise_number), paste0("*", txt, "*\n"))
+}
+
+```
+
 ** The structure and much of the content in this module was borrowed from 
 [Software Carpentry](http://www.softwarecarpentry.org)'s
 [novice R Bootcamp material](https://github.com/swcarpentry/bc/tree/master/novice/r) 
