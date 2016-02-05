@@ -480,8 +480,11 @@ network). R and RStudio have functionality for managing packages:
 > Install the following packages: `ggplot2`, `plyr`, `gapminder`
 > 
 
-** The structure and much of the content in this module was borrowed from 
-[Software Carpentry's](http://www.swcarpentry.org)'s
-[R Gapminder lesson](http://swcarpentry.github.io/r-novice-gapminder/index.html), which they make available for reuse under the 
-Creative Commons Attribution [(CC_BY)](http://creativecommons.org/licenses/by/3.0/) 
+** The structure and much of the content in this module was borrowed from: 
+- [Software Carpentry's](http://www.swcarpentry.org)'s [R Gapminder lesson](http://swcarpentry.github.io/r-novice-gapminder/index.html), and
+- [Poisson Consulting](http://www.poissonconsulting.ca)'s
+[Introductory course notes](http://www.poissonconsulting.ca/course/2014/09/12/an-introduction-to-r-course.html), 
+- Both are available for reuse under the Creative Commons Attribution 
+[(CC_BY)](http://creativecommons.org/licenses/by/3.0/) 
 license.
+
