@@ -411,21 +411,6 @@ In this case we've specified that the results of `ls` should be used for the
 > how to fix a problem.
 >
 
-## R Packages
-
-It is possible to add functions to R by writing a package, or by
-obtaining a package written by someone else. As of this writing, there
-are over 7,000 packages available on CRAN (the comprehensive R archive
-network). R and RStudio have functionality for managing packages:
-
-* You can see what packages are installed by typing
-  `installed.packages()`
-* You can install packages by typing `install.packages("packagename")`,
-  where `packagename` is the package name, in quotes.
-* You can update installed packages by typing `update.packages()`
-* You can remove a package with `remove.packages("packagename")`
-* You can make a package available for use with `library(packagename)`
-
 > ## Challenge 1 {.challenge}
 > Which of the following are valid R variable names?
 > ```{r, eval=FALSE}
@@ -463,11 +448,6 @@ network). R and RStudio have functionality for managing packages:
 > Clean up your working environment by deleting the mass and age
 > variables.
 >
-
-> ## Challenge 5 {.challenge}
-> 
-> Install the following packages: `ggplot2`, `plyr`, `gapminder`
-> 
 
 ** The structure and much of the content in this module was borrowed from: 
 - [Software Carpentry's](http://www.swcarpentry.org)'s [R Gapminder lesson](http://swcarpentry.github.io/r-novice-gapminder/index.html), and
