@@ -179,7 +179,10 @@ Most of R's functionality comes from its *functions*. A function takes zero, one
 log(10)
 ```
 
-To find out more about a function called `function_name` type `?function_name`. To search for the functions associated with a topic type `??topic` or `??"multiple topics"`.
+To find out more about a function called `function_name` type `?function_name`. To search for the functions associated with a topic type `??topic` or `??"multiple topics"`. As well as providing a detailed description of
+the command and how it works, scrolling ot the bottom of the
+help page will usually show a collection of code examples which
+illustrate command usage. 
 
 ```{r, echo = FALSE, results = 'asis'}
 exercise("Which function calculates sums? And what arguments does it take?")
@@ -231,12 +234,6 @@ has autocompletion abilities that allow you to more easily
 look up functions, their arguments, and the values that they
 take.
 
-Typing a `?` before the name of a command will open the help page
-for that command. As well as providing a detailed description of
-the command and how it works, scrolling ot the bottom of the
-help page will usually show a collection of code examples which
-illustrate command usage. We'll go through an example later.
-
 ## Comparing things
 
 We can also do comparison in R:
@@ -286,7 +283,7 @@ We can also do comparison in R:
 
 ## Variables and assignment
 
-We can store values in variables using the assignment operator `<-`, like this:
+We can store values in variables by giving them a name, and using the assignment operator `<-` (To save finger strokes, type `Alt-`):
 
 ```{r}
 x <- 1 / 40
@@ -298,9 +295,6 @@ in something called a **variable**. `x` now contains the **value** `0.025`:
 ```{r}
 x
 ```
-
-More precisely, the stored value is a *decimal approximation* of
-this fraction called a [floating point number](http://en.wikipedia.org/wiki/Floating_point).
 
 Look for the `Environment` tab in one of the panes of RStudio, and you will see that `x` and its value
 have appeared. Our variable `x` can be used in place of a number in any calculation that expects a number:
@@ -325,6 +319,10 @@ x <- x + 1 #notice how RStudio updates its description of x on the top right tab
 
 The right hand side of the assignment can be any valid R expression.
 The right hand side is *fully evaluated* before the assignment occurs.
+
+```{r, echo = FALSE, results = 'asis'}
+exercise("Create an object called `x` with the value `7`. What is the value of `x^x`. Save the value in a object called `i`. If you assign the value `20` to the object `x` does the value of `i` change? What does this indicate about how R assigns values to objects?")
+```
 
 Variable names can contain letters, numbers, underscores and periods. They
 cannot start with a number nor contain spaces at all. Different people use
@@ -400,15 +398,7 @@ In this case we've combined the two. Just like the order of operations, anything
 inside the innermost parentheses is evaluated first, and so on.
 
 In this case we've specified that the results of `ls` should be used for the
-`list` argument in `rm`. When assigning values to arguments by name, you *must*
-use the `=` operator!!
-
-If instead we use `<-`, there will be unintended side effects, or you may just
-get an error message:
-
-```{r, error=TRUE}
-rm(list <- ls())
-```
+`list` argument in `rm`.
 
 > ## Tip: Warnings vs. Errors {.callout}
 >
@@ -420,7 +410,6 @@ rm(list <- ls())
 > In both cases, the message that R prints out usually give you clues
 > how to fix a problem.
 >
-
 
 ## R Packages
 
