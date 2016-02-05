@@ -1,6 +1,17 @@
 ---
 ---
 
+```{r, echo = FALSE}
+
+exercise_number <- 0
+exercise <- function(txt) {
+  exercise_number <<- exercise_number + 1
+  cat(paste0("\n**Exercise** ", exercise_number), paste0("*", txt, "*\n"))
+}
+
+```
+
+
 # Introduction
 
 > ## Learning Objectives {.objectives}
@@ -162,12 +173,38 @@ You can write numbers in scientific notation too:
 5e3  # Note the lack of minus here
 ```
 
+## Functions
+Most of R's functionality comes from its *functions*. A function takes zero, one or multiple *arguments*, depending on the function, and returns a value. To call a function enter it's name followed by a pair of brackets - include any arguments in the brackets.
+```{r}
+log(10)
+```
+
+To find out more about a function called `function_name` type `?function_name`. To search for the functions associated with a topic type `??topic` or `??"multiple topics"`.
+
+```{r, echo = FALSE, results = 'asis'}
+exercise("Which function calculates sums? And what arguments does it take?")
+```
+
+## Arguments
+The documentation for `log` indicates that the function requires an argument `x` that is a vector of
+*numeric* (real) or *complex* numbers and an argument `base` which is the base of the logarithm. 
+
+```{r, echo = FALSE, results = 'asis'}
+exercise("What kind of logarithm does the `log` function take by default?")
+```
+
+When calling a function its arguments can be specified using *positional* and/or 
+*named* matching.
+
+```{r}
+log(x = 10, base = 2)
+log(10, 2)
+log(2, 10)
+```
+
 ## Mathematical functions
 
-R has many built in mathematical functions. To call a function,
-we simply type its name, followed by open and closing parentheses.
-Anything we type inside the parentheses is called the function's
-arguments:
+R has many built in mathematical functions.
 
 ```{r}
 sin(1)  # trigonometry functions
