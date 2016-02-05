@@ -70,10 +70,8 @@ useful environment to try out ideas before adding them to an R script
 file. This console in RStudio is the same as the one when you open up the basic R GUI.
 
 The first thing you will see in the R interactive session is a bunch
-of information, followed by a ">" and a blinking cursor. In many ways
-this is similar to the shell environment you learned about during the
-shell lessons: it operates on the same idea of a "Read, evaluate,
-print loop": you type in commands, R tries to execute them, and then
+of information, followed by a ">" and a blinking cursor. It operates on the idea 
+of a "Read, Evaluate, Print loop" (REPL): you type in commands, R tries to execute them, and then
 returns a result.
 
 ## Using R as a calculator
@@ -87,7 +85,7 @@ The simplest thing you could do with R is do arithmetic:
 And R will print out the answer, with a preceding "[1]". Don't worry about this
 for now, we'll explain that later. For now think of it as indicating ouput.
 
-Just like bash, if you type in an incomplete command, R will wait for you to
+If you type in an incomplete command, R will wait for you to
 complete it:
 
 ~~~ {.r}
@@ -105,10 +103,6 @@ prompt.
 
 > ## Tip: Cancelling commands {.callout}
 >
-> If you're using R from the commandline instead of from within RStudio,
-> you need to use `Ctrl+C` instead of `Esc` to cancel the command. This
-> applies to Mac users as well!
->
 > Cancelling a command isn't just useful for killing incomplete commands:
 > you can also use it to tell R to stop running code (for example if its
 > taking much longer than you expect), or to get rid of the code you're
@@ -121,7 +115,7 @@ would have learnt back in school.
 From highest to lowest precedence:
 
  * Parentheses: `(`, `)`
- * Exponents: `^` or `**`
+ * Exponents: `^` or `*`*
  * Divide: `/`
  * Multiply: `*`
  * Add: `+`
@@ -156,7 +150,7 @@ The text after each line of code is called a
 Really small or large numbers get a scientific notation:
 
 ```{r}
-2/10000
+2 / 10000
 ```
 
 Which is shorthand for "multiplied by `10^XX`". So `2e-4`
@@ -171,7 +165,7 @@ You can write numbers in scientific notation too:
 ## Mathematical functions
 
 R has many built in mathematical functions. To call a function,
-we simply type its name, followed by  open and closing parentheses.
+we simply type its name, followed by open and closing parentheses.
 Anything we type inside the parentheses is called the function's
 arguments:
 
@@ -342,13 +336,6 @@ There are a few useful commands you can use to interact with the R session.
 ```{r}
 ls()
 ```
-
-> ## Tip: hidden objects {.callout}
->
-> Just like in the shell, `ls` will hide any variables or functions starting
-> with a "." by default. To list all objects, type `ls(all.names=TRUE)`
-> instead
->
 
 Note here that we didn't given any arguments to `ls`, but we still
 needed to give the parentheses to tell R to call the function.
