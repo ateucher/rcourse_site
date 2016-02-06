@@ -28,6 +28,8 @@ On this page you will find links to the data we need for the course, as well as 
 [Getting help](getting_help.html)
 
 #### Data
+[Gapminder dataset](data/gapminder-FiveYearData.csv)
+
 [Iris dataset (csv)](data/iris.csv)
 
 [Iris dataset (zip)](data/iris.zip)
