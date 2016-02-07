@@ -12,7 +12,7 @@ exercise <- function (txt) {
 
 opts_chunk$set(results="markup")
 maxprint <- getOption("max.print")
-options(max.print = 50L)
+options(max.print = 15L)
 
 # clean old files
 clean_files <- list.files(c(".", "./pdf"), pattern = ".\\.html|.\\.pdf", 
