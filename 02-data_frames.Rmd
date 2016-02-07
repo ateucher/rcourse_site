@@ -74,10 +74,15 @@ df
 
 ## Adding rows to a data frame 
 
-To add a row we use `rbind`:
+To add rows we use `rbind`:
 
 ```{r}
-df <- rbind(df, data.frame(id = "g", x = 11, y = 42, z = 0, caps = "G"))
+df2 <- data.frame(id = c("g", "h"), 
+                  x = c(11, 12), 
+                  y = c(42, 86), 
+                  z = c(0, -1), 
+                  caps = c("G", "H"))
+df <- rbind(df, df2)
 ```
 
 > ## Challenge 2 {.challenge}
@@ -97,7 +102,8 @@ df <- rbind(df, data.frame(id = "g", x = 11, y = 42, z = 0, caps = "G"))
 
 ## Reading in data
 
-Remember earlier we obtained the gapminder datasetGDP, which contains population and life expentancy for many countries around the world. '[Gapminder](https://youtu.be/BPt8ElTQMIg?t=13)'.
+Remember earlier we obtained the gapminder dataset, which contains GDP ,population, and life expentancy for many countries around the world. '[Gapminder](https://youtu.be/BPt8ElTQMIg?t=13)'.
+
 If you're curious about where this data comes from you might like to
 look at the [Gapminder website](http://www.gapminder.org/data/documentation/).
 
@@ -135,8 +141,7 @@ into a script file so we can come back to it later.
 > ## Challenge 3 {.challenge}
 >
 > Go to file -> new file -> R script, and write an R script
-> to load in the gapminder dataset. Put it in the `scripts/`
-> directory and add it to version control.
+> to load in the gapminder dataset. 
 >
 > Run the script using the `source` function, using the file path
 > as its argument (or by pressing the "source" button in RStudio).
@@ -152,7 +157,6 @@ Remember, there are a few functions we can use to interrogate data structures in
 
 ```{r, eval=FALSE}
 class() # what is the data structure?
-typeof() # what is its atomic type?
 length() # how long is it? What about two dimensional objects?
 attributes() # does it have any metadata?
 str() # A full summary of the entire object
@@ -161,11 +165,6 @@ dim() # Dimensions of the object - also try nrow(), ncol()
 
 Let's use them to explore the gapminder dataset.
 
-```{r}
-typeof(gapminder)
-```
-
-Remember, data frames are lists 'under the hood'.
 
 ```{r}
 class(gapminder)
@@ -190,22 +189,18 @@ Let's look at some of the columns.
 
 
 ```{r}
-typeof(gapminder$year)
-typeof(gapminder$lifeExp)
+class(gapminder$year)
+class(gapminder$lifeExp)
 ```
 
 Can anyone guess what we should expect the type of the continent column to be?
 
 ```{r}
-typeof(gapminder$continent)
+class(gapminder$continent)
 ```
 
 If you were expecting a the answer to be "character", you would rightly be
-surprised by the answer. Let's take a look at the class of this column:
-
-```{r}
-class(gapminder$continent)
-```
+surprised by the answer.
 
 One of the default behaviours of R is to treat any text columns as "factors"
 when reading in data. The reason for this is that text columns often represent
@@ -213,32 +208,12 @@ categorical data, which need to be factors to be handled appropriately by
 the statistical modeling functions in R.
 
 However it's not obvious behaviour, and something that trips many people up. We can
-disable this behaviour and read in the data again.
+disable this behaviour when we read in the data.
 
 ```{r}
-options(stringsAsFactors=FALSE)
-gapminder <- read.table(
-  file="data/gapminder-FiveYearData.csv", header=TRUE, sep=","
-)
+gapminder <- read.csv(file="data/gapminder-FiveYearData.csv", 
+                      stringsAsFactors = FALSE)
 ```
-
-Remember, if you do turn it off automatic conversion to factors you will need to
-explicitly convert the variables into factors when
-running statistical models.
-This can be useful, because it forces you to think about the
-question you're asking, and makes it easier to specify the ordering of the categories.
-
-However there are many in the R community who find it more sensible to
-leave this as the default behaviour.
-
-> ## Tip: Changing options {.callout} 
-> When R starts, it runs any
->code in the file `.Rprofile` in the project directory. You can make
->permanent changes to default behaviour by storing the changes in that
->file. BE CAREFUL, however. If you change R's default options,
->programs written by others may not run correctly in your environment
->and vice versa. For this reason, some argue that most such changes
->should be in your scripts, where they are visible.
 
 The first thing you should do when reading data in, is check that it matches what
 you expect, even if the command ran without warnings or errors. The `str` function,
