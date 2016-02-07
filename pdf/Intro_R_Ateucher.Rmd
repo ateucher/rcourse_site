@@ -8,13 +8,13 @@ output:
     toc_depth: 2
 ---
 
-```{r child = "../basics.Rmd"}
+```{r child = "../00-basics.Rmd"}
 ```
 
-```{r child = "../00-introduction.Rmd"}
+```{r child = "../01-introduction.Rmd"}
 ```
 
-```{r child = "../01-starting-with-data.Rmd"}
+```{r child = "../02-data_frames.Rmd"}
 ```
 
 ```{r child = "../02-dplyr.Rmd"}
