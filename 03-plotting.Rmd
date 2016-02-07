@@ -65,13 +65,15 @@ coordinates or plotting shape or colour, what transformation or statistical
 summary is required, and so on. Specifically, **ggplot2** allows users to build 
 a plot layer-by-layer by specifying:
 
-* The _data_, plus some _aesthetics_ that map variables in the data to axes on 
-  the plot or to size, shape, color, etc.,
-* a _geom_, which specifies how the data are represented on the plot (points, 
-  lines, bars, etc.),
+* The _data_,
+* some _aesthetics_, that map variables in the data to a visual representation 
+  on the plot. This tells ggplot2 how to show each variable, such as axes on the 
+  plot or to size, shape, color, etc.
+* a _geom_, which specifies the geometry of how the data are represented on the 
+  plot (points, lines, bars, etc.),
 * a _stat_, a statistical transformation or summary of the data applied prior to 
   plotting,
-* _facets_, which we've already seen above, that allow the data to be divided 
+* _facets_, that allow the data to be divided 
   into chunks on the basis of other categorical or continuous variables and the 
   same plot drawn for each chunk.
 
