@@ -48,18 +48,37 @@ hist(gapminder$gdpPercap)
 boxplot(gdpPercap ~ continent, data=gapminder)
 ```
 
+## ggplot2
+
 Today we'll be learning about the ggplot2 package developed by Hadley Wickham, because
 it is the most effective for creating publication quality
 graphics.
 
-ggplot2 is built on the grammar of graphics, the idea that any plot can be
-expressed from the same set of components: a **data** set, a
-**coordinate system**, and a set of **geoms**--the visual representation of data
-points.
+### ggplot2 and the *Grammar of Graphics*
 
-The key to understanding ggplot2 is thinking about a figure in layers: just like
-you might do in an image editing program like Photoshop, Illustrator, or
-Inkscape.
+The **ggplot2** package provides an R implementation of Leland Wilkinson's 
+*Grammar of Graphics* (1999). The *Grammar of Graphics* challenges data analysts 
+to think beyond the garden variety plot types (e.g. scatter-plot, barplot) and 
+to consider the components that make up a plot or graphic, such as how data are 
+represented on the plot (as lines, points, etc.), how variables are mapped to 
+coordinates or plotting shape or colour, what transformation or statistical 
+summary is required, and so on. Specifically, **ggplot2** allows users to build 
+a plot layer-by-layer by specifying:
+
+* The _data_, plus some _aesthetics_ that map variables in the data to axes on 
+  the plot or to size, shape, color, etc.,
+* a _geom_, which specifies how the data are represented on the plot (points, 
+  lines, bars, etc.),
+* a _stat_, a statistical transformation or summary of the data applied prior to 
+  plotting,
+* _facets_, which we've already seen above, that allow the data to be divided 
+  into chunks on the basis of other categorical or continuous variables and the 
+  same plot drawn for each chunk.
+
+Because **ggplot2** implements a *layered* grammar of graphics, data points and 
+additional information (scatterplot smoothers, confidence bands, etc.) can be 
+added to the plot via additional layers, each of which utilize further geoms, 
+aesthetics, and stats.
 
 Let's start off with an example:
 
