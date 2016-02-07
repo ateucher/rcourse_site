@@ -3,361 +3,278 @@
 
 # Data visualization with ggplot2
 
-** The structure and much of the content in this module was borrowed from 
-[Software Carpentry](http://www.softwarecarpentry.org)'s
-[novice R Bootcamp material](https://github.com/swcarpentry/bc/tree/master/novice/r) 
-(Copyright (c) Software Carpentry), which they make available for reuse under the 
-Creative Commons Attribution [(CC_BY)](http://creativecommons.org/licenses/by/3.0/) 
-license.
+```{r, include=FALSE}
+# Silently load in the data so the rest of the lesson works
+gapminder <- read.csv("data/gapminder-FiveYearData.csv", header=TRUE)
+```
 
-## Basic plotting
+> ## Learning Objectives {.objectives}
+>
+> * To be able to use ggplot2 to generate publication quality graphics
+> * To understand the basics of the grammar of graphics:
+>   - The aesthetics layer
+>   - The geometry layer
+>   - Adding statistics
+>   - Transforming scales
+>   - Coloring or paneling by groups.
+>
+
+Plotting our data is one of the best ways to
+quickly explore it and the various relationships
+between variables.
+
+There are three main plotting systems in R,
+the [base plotting system][base], the [lattice][lattice]
+package, and the [ggplot2][ggplot2] package.
+
+[base]: http://www.statmethods.net/graphs/
+[lattice]: http://www.statmethods.net/advgraphs/trellis.html
+[ggplot2]: http://www.statmethods.net/advgraphs/ggplot2.html
+
+## Base plotting
 
 R's base (built-in) plotting functions are powerful and very flexible, but not 
 overly user friendly. For simple exploratory plots that don't need to look nice, 
 they are useful. They are generally specified  as `plot(x, y, ...)`
 
 ```{r baseplot1}
-plot(dat$Sepal.Width, dat$Sepal.Length, type="p", col=dat$Species)
+plot(gapminder$lifeExp, gapminder$gdpPercap)
 ```
 
 You can also specify them in a formula format `plot(y ~ x, data='', ...)`
 ```{r baseplot2}
-plot(Sepal.Length ~ Sepal.Width, data=dat, col=Species)
-boxplot(Sepal.Length ~ Species, data=dat)
+plot(gdpPercap ~ lifeExp, data=gapminder)
+hist(gapminder$gdpPercap)
+boxplot(gdpPercap ~ continent, data=gapminder)
 ```
 
-For more advanced (and easier) plotting, we're going to use another package by 
-Hadley Wickham, the same person who developed **dplyr**
+Today we'll be learning about the ggplot2 package developed by Hadley Wickham, because
+it is the most effective for creating publication quality
+graphics.
 
-## ggplot2
+ggplot2 is built on the grammar of graphics, the idea that any plot can be
+expressed from the same set of components: a **data** set, a
+**coordinate system**, and a set of **geoms**--the visual representation of data
+points.
 
-### The Diamonds dataset
+The key to understanding ggplot2 is thinking about a figure in layers: just like
+you might do in an image editing program like Photoshop, Illustrator, or
+Inkscape.
 
-Now let's look at a bigger dataset. We're going to be using a data visualization 
-package called **ggplot2** for drawing the plots, and the **ggplot2** package 
-comes with some data we're going to use for this example.
+Let's start off with an example:
 
-Recall how to install and load packages. Install the package if you haven't already:
-
-```{r installggplot2, eval=FALSE}
-# Only need to do this once
-install.packages("ggplot2")
-```
-
-Then load it:
-
-```{r loadggplot2, message=FALSE}
+```{r lifeExp-vs-gdpPercap-scatter, message=FALSE}
 library(ggplot2)
+ggplot(data = gapminder, aes(x = lifeExp, y = gdpPercap)) +
+  geom_point()
 ```
 
-Now let's load the diamonds dataset and take a look at the first few rows and it's structure with commands we learned previously. To learn more about this dataset you can also run `?diamonds`. 
+So the first thing we do is call the `ggplot` function. This function lets R
+know that we're creating a new plot, and any of the arguments we give the
+`ggplot` function are the *global* options for the plot: they apply to all
+layers on the plot.
 
-```{r diamondshead}
-data(diamonds)
-head(diamonds)
-str(diamonds)
+We've passed in two arguments to `ggplot`. First, we tell `ggplot` what data we
+want to show on our figure, in this example the gapminder data we read in
+earlier. For the second argument we passed in the `aes` function, which
+tells `ggplot` how variables in the **data** map to *aesthetic* properties of
+the figure, in this case the **x** and **y** locations. Here we told `ggplot` we
+want to plot the "lifeExp" column of the gapminder data frame on the x-axis, and
+the "gdpPercap" column on the y-axis. Notice that we didn't need to explicitly
+pass `aes` these columns (e.g. `x = gapminder[, "lifeExp"]`), this is because
+`ggplot` is smart enough to know to look in the **data** for that column!
+
+By itself, the call to `ggplot` isn't enough to draw a figure:
+
+```{r}
+ggplot(data = gapminder, aes(x = lifeExp, y = gdpPercap))
 ```
 
-From this we can see this dataset has prices of nearly 54,000 diamonds along 
-with various features about the diamonds, such as the weight, the quality of 
-the cut, the color, the clarity, and measurements of various dimensions. 
+We need to tell `ggplot` how we want to visually represent the data, which we
+do by adding a new **geom** layer. In our example, we used `geom_point`, which
+tells `ggplot` we want to visually represent the relationship between **x** and
+**y** as a scatterplot of points:
 
-If we wanted to do some exploratory data analysis we might start by plotting the 
-price versus the weight of the diamond using base graphics.
-
-```{r basediamond}
-plot(price ~ carat, data=diamonds)
+```{r lifeExp-vs-gdpPercap-scatter2}
+ggplot(data = gapminder, aes(x = lifeExp, y = gdpPercap)) +
+  geom_point()
 ```
 
-As we would expect there is definitely a relationship between the size of the 
-diamond and its cost, but how do the other variables (cut, color, clarity) 
-affect the price? We could examine the interrelationships of all these variables 
-using base R graphics, but it could become extremely cumbersome. 
+> ## Challenge 1 {.challenge}
+>
+> Modify the example so that the figure visualise how life expectancy has
+> changed over time:
+>
+> ```{r, eval=FALSE}
+> ggplot(data = gapminder, aes(x = lifeExp, y = gdpPercap)) + geom_point()
+> ```
+>
+> Hint: the gapminder dataset has a column called "year", which should appear
+> on the x-axis.
+>
 
-**ggplot2** is a widely used R package that extends R's visualization 
-capabilities. It takes the hassle out of things like creating legends, mapping 
-other variables to scales like color, or faceting plots into small multiples. 
-We'll learn about what all these things mean shortly. To start with, let's 
-produce the same plot as before, but this time using **ggplot2**.
+> ## Challenge 2 {.challenge}
+>
+> In the previous examples and challenge we've used the `aes` function to tell
+> the scatterplot **geom** about the **x** and **y** locations of each point.
+> Another *aesthetic* property we can modify is the point *color*. Modify the
+> code from the previous challenge to **color** the points by the "continent"
+> column. What trends do you see in the data? Are they what you expected?
+>
 
-### ggplot2 and the *Grammar of Graphics*
+## Layers
 
-The **ggplot2** package provides an R implementation of Leland Wilkinson's 
-*Grammar of Graphics* (1999). The *Grammar of Graphics* challenges data analysts 
-to think beyond the garden variety plot types (e.g. scatter-plot, barplot) and 
-to consider the components that make up a plot or graphic, such as how data are 
-represented on the plot (as lines, points, etc.), how variables are mapped to 
-coordinates or plotting shape or colour, what transformation or statistical 
-summary is required, and so on. Specifically, **ggplot2** allows users to build 
-a plot layer-by-layer by specifying:
+Using a scatterplot probably isn't the best for visualising change over time.
+Instead, let's tell `ggplot` to visualise the data as a line plot:
 
-* The _data_, plus some _aesthetics_ that map variables in the data to axes on 
-  the plot or to size, shape, color, etc.,
-* a _geom_, which specifies how the data are represented on the plot (points, 
-  lines, bars, etc.),
-* a _stat_, a statistical transformation or summary of the data applied prior to 
-  plotting,
-* _facets_, which we've already seen above, that allow the data to be divided 
-  into chunks on the basis of other categorical or continuous variables and the 
-  same plot drawn for each chunk.
-
-Because **ggplot2** implements a *layered* grammar of graphics, data points and 
-additional information (scatterplot smoothers, confidence bands, etc.) can be 
-added to the plot via additional layers, each of which utilize further geoms, 
-aesthetics, and stats.
-
-To make the best use of **ggplot2** it helps to understand the grammar and how 
-it affects how plots are produced. In addition, it is important to note that 
-**ggplot2** is not a general-purpose plotting tool-kit; you may not be able to 
-achieve certain plots or additions to a figure of they do not map onto concepts 
-included in the layered grammar.
-
-The `ggplot` function has two required arguments: the *data* used for creating 
-the plot, and an *aesthetic* mapping to describe how variables in said data are 
-mapped to things we can see on the plot. Let's use `ggplot` to recreate some of 
-the same plots we produced above. First, the simple scatterplot:
-
-```{r ggdiamonds}
-ggplot(diamonds, aes(x=carat, y=price)) + geom_point()
+```{r lifeExp-line}
+ggplot(data = gapminder, aes(x=year, y=lifeExp, by=country, color=continent)) +
+  geom_line()
 ```
 
-Here, we've built our plot in layers. First, we create a canvas for plotting 
-layers to come using the `ggplot` function, specifying which **data** to use 
-(here, the *diamonds* data frame), and an **aesthetic mapping** of *carat* to 
-the x-axis and *price* to the y-axis. We next add a layer to the plot, 
-specifying a **geom**, or a way of visually representing the aesthetic mapping. 
-Here we're using a point, and the funtion is `geom_point()`. Parts are layered 
-together using the `+` operator
+Instead of adding a `geom_point` layer, we've added a `geom_line` layer. We've
+added the **by** *aesthetic*, which tells `ggplot` to draw a line for each
+country.
 
-Instead of using a point, we could use a different geom. Here, let's use 
-[hexagonal binning](http://cran.r-project.org/web/packages/hexbin/vignettes/hexagon_binning.pdf) instead of a point.
+But what if we want to visualise both lines and points on the plot? We can
+simply add another layer to the plot:
 
-```{r gghexbin}
-ggplot(diamonds, aes(carat, price)) + geom_hex()
+```{r lifeExp-line-point}
+ggplot(data = gapminder, aes(x=year, y=lifeExp, by=country, color=continent)) +
+  geom_line() + geom_point()
 ```
 
-Here, each bin represents a segment of the plotting surface with lighter blue 
-colors representing more density in that segment. The number of bins can be 
-adjusted as an argument to the `geom_hex()` function. This is one method of 
-solving the overplotting problem we have in this plot.
+It's important to note that each layer is drawn on top of the previous layer. In
+this example, the points have been drawn *on top of* the lines. Here's a
+demonstration:
 
-```{r gghexbin50}
-ggplot(diamonds, aes(carat, price)) + geom_hex(bins=50)
+```{r lifeExp-layer-example-1}
+ggplot(data = gapminder, aes(x=year, y=lifeExp, by=country)) +
+  geom_line(aes(color=continent)) + geom_point()
 ```
 
-Another method, here using points again, is to lower the opacity of each point. 
-Here, `alpha=1/5` sets the opacity of each point to 20%. In other words, 5 
-points would have to overlap to result in a completely solid point. Note that 
-in this case we're not *mapping* the alpha level aesthetic to some other 
-variable as we did above with color -- we're setting it to a static value of 
-0.20 for all points in the layer.
+In this example, the *aesthetic* mapping of **color** has been moved from the
+global plot options in `ggplot` to the `geom_line` layer so it no longer applies
+to the points. Now we can clearly see that the points are drawn on top of the
+lines.
 
-```{r gghexbin2}
-ggplot(diamonds, aes(carat, price)) + geom_point(alpha=1/5)
+> ## Challenge 3 {.challenge}
+>
+> Switch the order of the point and line layers from the previous example. What
+> happened?
+>
+
+## Transformations and statistics
+
+Ggplot also makes it easy to overlay statistical models over the data. To
+demonstrate we'll go back to our first example:
+
+```{r lifeExp-vs-gdpPercap-scatter3, message=FALSE}
+ggplot(data = gapminder, aes(x = lifeExp, y = gdpPercap, color=continent)) +
+  geom_point()
 ```
 
-We can easily add more layers to the plot. For instance, we could add another 
-layer displaying a smoothed conditional mean using the `geom_smooth()` function.
+Currently it's hard to see the relationship between the points due to some strong
+outliers in GDP per capita. We can change the scale of units on the y axis using
+the *scale* functions. These control the mapping between the data values and
+visual values of an aesthetic.
 
-```{r smoothgam}
-ggplot(diamonds, aes(carat, price)) + geom_point() + geom_smooth()
+```{r axis-scale}
+ggplot(data = gapminder, aes(x = lifeExp, y = gdpPercap)) +
+  geom_point() + scale_y_log10()
 ```
 
-We'll get a message telling us that because we have >1,000 observations we will 
-default to using a generalized additive model. We could easily plot a straight 
-line by specifying that we want a linear model (`method="lm"`) instead of a 
-generalized additive model, the default for large datasets.
+The `log10` function applied a transformation to the values of the gdpPercap
+column before rendering them on the plot, so that each multiple of 10 now only
+corresponds to an increase in 1 on the transformed scale, e.g. a GDP per capita
+of 1,000 is now 3 on the y axis, a value of 10,000 corresponds to 4 on the y
+axis and so on. This makes it easier to visualise the spread of data on the
+y-axis.
 
-```{r smoothlinear}
-ggplot(diamonds, aes(carat, price)) + geom_point() + geom_smooth(method="lm")
+We can fit a simple relationship to the data by adding another layer,
+`geom_smooth`:
+
+```{r lm-fit}
+ggplot(data = gapminder, aes(x = lifeExp, y = gdpPercap)) +
+  geom_point() + scale_y_log10() + geom_smooth(method="lm")
 ```
 
-We see again the strong relationship between the size of the diamond and its 
-price, but the relationship doesn't appear linear. How does the diamond's 
-clarity affect the weight-price relationship?
+We can make the line thicker by *setting* the **size** aesthetic in the
+`geom_smooth` layer:
 
-### Faceting and scaling
-
-One option we could use is to color-code the points by their clarity. Here, we 
-add another *aesthetic*, colour (`col`) and map it to the variable we want it 
-to represent: clarity
-
-```{r ggcolclarity}
-ggplot(diamonds, aes(x=carat, y=price, col=clarity)) + geom_point()
+```{r lm-fit2}
+ggplot(data = gapminder, aes(x = lifeExp, y = gdpPercap)) +
+  geom_point() + scale_y_log10() + geom_smooth(method="lm", size=1.5)
 ```
 
-Examining the plot you can see that poor-clarity diamonds (included, small 
-inclusions, etc) fetch a lower price per carat relative to more clear diamonds 
-(very small inclusions, internally flawless, etc). We can see that **ggplot2** 
-color-codes the points using a sensible default color scheme, and automatically 
-draws a legend on the side for us. This requires a good deal of extra 
-error-prone coding using base graphics.
+There are two ways an *aesthetic* can be specified. Here we *set* the **size**
+aesthetic by passing it as an argument to `geom_smooth`. Previously in the
+lesson we've used the `aes` function to define a *mapping* between data
+variables and their visual representation.
 
-However, with 54,000 points on this plot, there is a good deal of overplotting 
-that obscures how clarity affects the nature of the weight-price relationship. 
-How else might we visualize this data? This is where a *series of small multiples* 
-is helpful. The idea of *small multiples* was popularized by data visualization 
-expert Edward Tufte. The idea is that you create a large grid of small plots, 
-where each plot shows a particular *facet* of the data. Here, each plot in the 
-grid might be price vs. carat for each particular clarity level. You explain to 
-your audience the axes and how to interpret each plot only once, and the 
-audience will immediately understand the rest of the plots.
+> ## Challenge 4 {.challenge}
+>
+> Modify the color and size of the points on the point layer in the previous
+> example.
+>
+> Hint: do not use the `aes` function.
+>
 
-This can be accomplished easily using **ggplot2**:
+## Multi-panel figures
 
-```{r facetclar}
-ggplot(diamonds, aes(x=carat, y=price)) + geom_point() + facet_wrap( ~ clarity)
+Earlier we visualised the change in life expectancy over time across all
+countries in one plot. Alternatively, we can split this out over multiple panels
+by adding a layer of **facet** panels:
+
+```{r facet}
+ggplot(data = gapminder, aes(x = year, y = lifeExp, color=continent)) +
+  geom_line() + facet_wrap( ~ country)
 ```
 
-Here, the `facets` argument expects a forumla object that's constructed with 
-the `~` operator. Here, we've plotted the price vs. weight separately for each 
-level of clarity. We can see what we suspected before. With dirty diamonds 
-(included, and perhaps small inclusions), the weight-price relationship is 
-linear or slightly quadratic. Large diamonds can be purchased rather cheaply. 
-But for very clear diamonds (internally flawless), the relationship is quadratic 
-or even exponential.
+The `facet_wrap` layer took a "formula" as its argument, denoted by the tilde
+(~). This tells R to draw a panel for each unique value in the country column
+of the gapminder dataset.
 
-Let's examine the weight-price relationship for various color ratings:
+## Modifying text
 
-```{r facetcol}
-ggplot(diamonds, aes(x=carat, y=price)) + geom_point() + facet_wrap( ~ color)
+To clean this figure up for a publication we need to change some of the text
+elements. The x-axis is way too cluttered, and the y axis should read
+"Life expectancy", rather than the column name in the data frame.
+
+We can do this by adding a couple of different layers. The **theme** layer
+controls the axis text, and overall text size, and there are special layers
+for changing the axis labels. To change the legend title, we need to use the
+**scales** layer.
+
+```{r theme}
+ggplot(data = gapminder, aes(x = year, y = lifeExp, color=continent)) +
+  geom_line() + facet_wrap( ~ country) +
+  xlab("Year") + ylab("Life expectancy") + ggtitle("Figure 1") +
+  scale_fill_discrete(name="Continent") +
+  theme(axis.text.x=element_blank(), axis.ticks.x=element_blank())
 ```
 
-Here we see that for whiter diamonds (D, E, F) the price rises more quickly with 
-increasing weight than for yellower diamonds (H, I, J).
 
-We can further facet the plot across two different categorical variables using 
-the same syntax:
+This is just a taste of what you can do with `ggplot2`. RStudio provides a
+really useful [cheat sheet][cheat] of the different layers available, and more
+extensive documentation is available on the [ggplot2 website][ggplot-doc].
+Finally, if you have no idea how to change something, a quick google search will
+usually send you to a relevant question and answer on Stack Overflow with reusable
+code to modify!
 
-```{r ggfacet, fig.height=10, fig.width=10}
-ggplot(diamonds, aes(carat, price)) + geom_point() + facet_grid(clarity ~ color)
-```
+[cheat]: http://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf
+[ggplot-doc]: http://docs.ggplot2.org/current/
 
-Here we see that the price per carat rises very steeply for very white, very 
-clear diamonds, while the relationship is nearly linear for yellower, more 
-flawed diamonds. We can see that a perfect white diamond averages around $15,000 
-while a yellow included diamond can be had for only around $2,000.
 
-Finally, we can combind both color-coding and faceting in the same plot. Let's 
-use the same faceting scheme as last time, but color the points by the quality 
-of the diamond's cut.
+> ## Challenge 5 {.challenge}
+>
+> Create a density plot of GDP per capita, filled by continent.
+>
+> Advanced:
+>  - Transform the x axis to better visualise the data spread.
+>  - Add a facet layer to panel the density plots by year.
+>
 
-```{r ggfacetclarcol_colcut, fig.height=10, fig.width=10}
-ggplot(diamonds, aes(x=carat, y=price, col=cut)) + 
-  geom_point() + 
-  facet_grid(clarity ~ color)
-```
-
-This color-coding reveals that clearer, whiter diamonds *generally* have higher 
-quality cuts, but the relationship doesn't appear strong, visually. Looking down 
-the plot toward clearer diamonds you start to see more "Ideal" cuts than at the 
-top, which are the more included diamonds.
-
-What we've done here in addition to faceting is map a feature of the data (here, 
-the cut quality) onto a scale (here, color). This behavior will work differently 
-depending on whether you're looking at categorical or continuous variables. We 
-can also map features to other *scales* such as `size=`, `shape=`, `linetype=`, 
-or even transparency using `alpha=`. All of these different scales can be 
-combined with each other or with facets, and give you an extremely powerful and 
-easy-to-use graphical toolbox for exploratory data analysis.
-
-By combining multiple layers with aesthetic mappings to different scales, 
-**ggplot2** provides a foundation for producing a wide range of statistical 
-graphics beyond simple "named" plots like scatter plots, histograms, bar plots, 
-etc.
-
-How about a stacked histogram, mapping the fill color of the stacked histogram 
-to levels of the *clarity* variable:
-
-```{r ggfillhisto}
-ggplot(diamonds, aes(price, fill=clarity)) + 
-  geom_histogram(position="fill", binwidth=200)
-```
-
-Or what about box plots of the price grouped separately by the quality of the 
-cut, color-coded by the color of the diamond, with the price on the y-axis 
-being on the log (base 10) scale? Simple:
-
-```{r ggboxplots, fig.width=12}
-ggplot(diamonds, aes(cut, price)) + geom_boxplot(aes(fill=color)) + scale_y_log10()
-```
-
-Or what about a kernel density plot (think about a smooth histogram) of the 
-diamond's depth in different semitransparent curves with the color fill 
-mapped to each level of *cut*, limited to depths between 55 and 70, with a 
-title and a proper axis labels? This also shows the syntax of 
-building up a plot one step at a time. We first initialize the plot with 
-`ggplot`, giving it the data we're working with, and aesthetic mappings. We 
-then add a `geom_density` layer, limit the x-axis displayed, and finally give 
-it a title and axis labels. The plot is in the **g** object here; we can simply 
-enter `g` and the plot will be displayed.
-
-```{r ggdepthdensity, warning=FALSE}
-g <- ggplot(diamonds, aes(depth, fill=cut)) 
-g <- g + geom_density(alpha=1/4) 
-g <- g + xlim(55, 70)
-g <- g + ggtitle("Depths by Cut Quality")
-g <- g + xlab("Depth") + ylab("Density")
-g
-```
-
-Finally, we can save the plot created using the `ggsave` function:
-
-```{r ggsave, eval=FALSE}
-ggsave(filename="table-depth-density.png", plot=g)
-```
-
-There are endless ways to combine aesthetic mappings with different geoms and 
-multiple layers. Read about other **geom**s, mappings, scales, and other layer 
-options at the links below.
-
-#### Exercise
-
-Now, plot a graph using the iris dataset using **ggplot2**. You don't have to 
-use points; other geoms include: `gemo_bar`, `geom_area`, `geom_boxplot`, 
-and many more.  Try to incorporate at least one extra aesthetic (over `x` and 
-`y`). Some examples of aesthetics are `col`, `fill`,  `size`, `shape`, `alpha`, 
-`linetype`.
-
-```{r irisexamples}
-ggplot(dat, aes(x=Petal.Length, y=Petal.Width, col=Sepal.Width, size=Sepal.Length)) + 
-  geom_point() + 
-  geom_smooth(method="lm") + 
-  facet_wrap(~ Species)
-
-ggplot(dat, aes(x=Petal.Length)) + geom_histogram() + facet_wrap(~Species)
-
-ggplot(dat, aes(x=Petal.Length, fill=Species)) + 
-  geom_histogram(position="dodge", binwidth=0.1)
-
-ggplot(dat, aes(x=Petal.Length, fill=Species)) + 
-  geom_density(alpha=0.5)
-
-ggplot(dat, aes(x=Species, y=Sepal.Length)) + geom_boxplot()
-
-ggplot(dat, aes(x=Species, y=Sepal.Width, fill=Species)) + geom_violin()
-
-```
-
-What if we want to split up the measurements and compare them all?  We need the 
-type of measurement (`Petal.length`, `Petal.Width`) as a variable rather than each 
-as a column heading. There is another package by Hadley Wickham (see a trend 
-here?) that helps us restructure, or reshape our data: It's called `reshape2`.
-
-```{r irisreshapebox, warning=FALSE}
-require(reshape2)
-dat_long <- melt(dat)
-head(dat_long)
-
-ggplot(dat_long, aes(x=variable, y=value, fill=Species)) + geom_boxplot()
-
-ggplot(dat_long, aes(x=variable, y=value, fill=Species)) + geom_boxplot()
-
-ggplot(dat_long, aes(x=Species, y=value, fill=Species)) + 
-  geom_violin() + 
-  facet_wrap(~ variable) + 
-  ylab("Measurement (cm)")
-```
 
 ### Further **ggplot2** resources
 
@@ -367,3 +284,71 @@ ggplot(dat_long, aes(x=Species, y=value, fill=Species)) +
 * [Intermediate Software Carpentry lesson on data visualization with **ggplot2**](https://github.com/swcarpentry/bc/tree/master/intermediate/r/data-visualization).
 * [A blog with a good number of posts describing how to reproduce various kind of plots using **ggplot2**](http://learnr.wordpress.com/).
 * [Thousands of questions and answers tagged with "ggplot2" on Stack Overflow, a programming Q&A site](http://stackoverflow.com/questions/tagged/ggplot2).
+
+## Challenge solutions
+
+> ## Solution to challenge 1 {.challenge}
+>
+> Modify the example so that the figure visualise how life expectancy has
+> changed over time:
+>
+> ```{r ch1-sol}
+> ggplot(data = gapminder, aes(x = year, y = lifeExp)) + geom_point()
+> ```
+>
+
+> ## Solution to challenge 2 {.challenge}
+>
+> In the previous examples and challenge we've used the `aes` function to tell
+> the scatterplot **geom** about the **x** and **y** locations of each point.
+> Another *aesthetic* property we can modify is the point *color*. Modify the
+> code from the previous challenge to **color** the points by the "continent"
+> column. What trends do you see in the data? Are they what you expected?
+>
+> ```{r ch2-sol}
+> ggplot(data = gapminder, aes(x = year, y = lifeExp, color=continent)) +
+>   geom_point()
+> ```
+>
+
+> ## Solution to challenge 3 {.challenge}
+>
+> Switch the order of the point and line layers from the previous example. What
+> happened?
+>
+> ```{r ch3-sol}
+> ggplot(data = gapminder, aes(x=year, y=lifeExp, by=country)) +
+>  geom_point() + geom_line(aes(color=continent))
+> ```
+> 
+> The lines now get drawn over the points!
+>
+
+
+> ## Solution to challenge 4 {.challenge}
+>
+> Modify the color and size of the points on the point layer in the previous
+> example.
+>
+> Hint: do not use the `aes` function.
+>
+> ```{r ch4-sol}
+> ggplot(data = gapminder, aes(x = lifeExp, y = gdpPercap)) +
+>  geom_point(size=3, color="orange") + scale_y_log10() +
+>  geom_smooth(method="lm", size=1.5)
+> ```
+>
+
+> ## Solution to challenge 5 {.challenge}
+>
+> Create a density plot of GDP per capita, filled by continent.
+>
+> Advanced:
+>  - Transform the x axis to better visualise the data spread.
+>  - Add a facet layer to panel the density plots by year.
+>
+> ```{r ch5-sol}
+> ggplot(data = gapminder, aes(x = gdpPercap, fill=continent)) +
+>  geom_density(alpha=0.6) + facet_wrap( ~ year) + scale_x_log10()
+> ```
+>
