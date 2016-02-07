@@ -14,11 +14,11 @@ library(gapminder)
 > * Be able to read regular data into R
 >
 
-## Data frames
+# Data frames
 
-Data frames are similar to matrices, except each column can be a
-different atomic type. A data frames is the standard structure for
-storing and manipulating rectangular data sets.  Underneath the hood,
+A data frame is the standard structure for storing data sets, with rows and columns similar to a table in a spreadsheet. 
+
+Underneath the hood,
 data frames are really lists, where each element is an atomic vector,
 with the added restriction that they're all the same length.  As you
 will see, if we pull out one column of a data frame,we will have a
@@ -62,18 +62,15 @@ Note that R automatically names the column. We may decide to change
 the name by assigning a value using the `names` function:
 
 ```{r}
-names(df)[4] <- 'SixToOne'
+names(df)[4] <- 'z'
 ```
 
 We can also provide a name when we add the column:
 
 ```{r}
-df <- cbind(df, caps=LETTERS[1:6])
+df <- cbind(df, caps=c("A", "B", "C", "D", "E", "F"))
 df
 ```
-
-(`LETTERS` and `letters` are built-in constants.)
-
 
 ## Adding rows to a data frame 
 
