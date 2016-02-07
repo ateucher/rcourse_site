@@ -6,13 +6,13 @@
 gapminder <- read.csv("data/gapminder-FiveYearData.csv", header=TRUE)
 ```
 
+# Data frames
+
 > ## Learning Objectives {.objectives}
 >
 > * Become familiar with data frames
 > * Be able to read regular data into R
 >
-
-# Data frames
 
 A data frame is the standard structure for storing data sets, with rows and columns similar to a table in a spreadsheet. 
 

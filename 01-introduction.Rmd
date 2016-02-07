@@ -13,8 +13,6 @@ exercise <- function(txt) {
 
 # Introduction to R and RStudio
 
-## Introduction
-
 > ## Learning Objectives {.objectives}
 >
 > * To gain familiarity with the various panes in the RStudio IDE
