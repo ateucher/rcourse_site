@@ -215,6 +215,9 @@ gapminder <- read.csv(file="data/gapminder-FiveYearData.csv",
                       stringsAsFactors = FALSE)
 ```
 
+> ## Tip {.callout}
+> I *highly* recommend burning this pattern into your memory, or getting it tattooed onto your arm.
+
 The first thing you should do when reading data in, is check that it matches what
 you expect, even if the command ran without warnings or errors. The `str` function,
 short for "structure", is really useful for this:
