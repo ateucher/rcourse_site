@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+<title></title>
+
+<script src="libs/jquery-1.11.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.1/css/flatly.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/respond.min.js"></script>
+<style type="text/css">
+ /* padding for bootstrap navbar */
+ body { 
+ padding-top: 50px; 
+ padding-bottom: 40px; 
+ } 
+ @media (max-width: 979px) { 
+ body { 
+ padding-top: 0; 
+ } 
+ } 
+ /* offset scroll position for anchor links (for fixed navbar) */
+ @media (min-width: 980px) {
+ .section h2 { 
+ padding-top: 52px; 
+ margin-top: -52px; 
+ } 
+ .section h3 { 
+ padding-top: 52px; 
+ margin-top: -52px; 
+ } 
+ } 
+/* don't use link color in navbar */
+/* .dropdown-menu>li>a { */
+/* color: white; */
+/* }  */
+
+blockquote {
+  background-color: #D7ECF7;
+  border-color: #318FBF;
+  font-size: 1em;
+}
+
+blockquote p {
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+}
+
+blockquote h2 {
+  font-size: 1.2em;
+  font-style: italic;
+}
+</style>
+
+<link rel="stylesheet" href="libs/font-awesome-4.2.0/css/font-awesome.min.css"/>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img { 
+  max-width:100%; 
+  height: auto; 
+}
+</style>
+<div class="container-fluid main-container">
+
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <div class="nav-collapse collapse">
+        <ul class="nav">
+          <li><a href="/rcourse_site/">Home</a></li>
+          <li class="dropdown">
+            <a href="notes" class="dropdown-toggle" data-toggle="dropdown">Course Notes <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+               <li><a href="00basics.html">Basics</a></li>
+               <li><a href="01-introduction.html">Introduction</a></li>
+               <li><a href="02-data_frames.html">Starting With Data</a></li>
+               <li><a href="02-dplyr.html">Data Munging with dplyr</a></li>
+               <li><a href="03-plotting.html">Plotting with ggplot2</a></li>
+               <li><a href="04-basic_stats.html">Basic Statistics</a></li>
+               <li><a href="05-repeating-things.html">Repeating Things</a></li>
+               <li><a href="06-functions.html">Functions</a></li>
+               <li><a href="07-all-together.html">Putting it all Together</a></li>
+               <li><a href="08-best-practices.html">Best Practices</a></li>
+               <li><a href="getting_help.html">Getting Help</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="data" class="dropdown-toggle" data-toggle="dropdown">Data <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+               <li><a href="data/gapminder-FiveYearData.csv">Gapminder Dataset (csv)</a></li>
+               <li><a href="data/iris.csv">Iris Dataset (csv)</a></li>
+               <li><a href="data/iris.zip">Iris Dataset (zip)</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav pull-right">
+          <a class="btn btn-primary" href="https://github.com/ateucher/rcourse_site">
+            <i class="fa fa-github fa-lg"></i>
+            GitHub
+          </a>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>
+
+
+
+<div id="data-frames" class="section level1">
+<h1>Data frames</h1>
+<blockquote>
+<h2 id="learning-objectives" class="objectives">Learning Objectives</h2>
+<ul>
+<li>Become familiar with data frames</li>
+<li>Be able to read regular data into R</li>
+</ul>
+</blockquote>
+<p>A data frame is the standard structure for storing data sets, with rows and columns similar to a table in a spreadsheet.</p>
+<p>Underneath the hood, data frames are really lists, where each element is an atomic vector, with the added restriction that they’re all the same length. As you will see, if we pull out one column of a data frame,we will have a vector. You will probably find that data frames are more complicated than vectors and other data structures we have considered, but they provide powerful capabilities.</p>
+<p>Data frames can be created manually with the <code>data.frame</code> function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id =</span> <span class="kw">c</span>(<span class="st">&#39;a&#39;</span>, <span class="st">&#39;b&#39;</span>, <span class="st">&#39;c&#39;</span>, <span class="st">&#39;d&#39;</span>, <span class="st">&#39;e&#39;</span>, <span class="st">&#39;f&#39;</span>), <span class="dt">x =</span> <span class="dv">1</span>:<span class="dv">6</span>, <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">214</span>:<span class="dv">219</span>))
+df</code></pre></div>
+<pre><code>##   id x   y
+## 1  a 1 214
+## 2  b 2 215
+## 3  c 3 216
+## 4  d 4 217
+## 5  e 5 218
+## 6  f 6 219</code></pre>
+<blockquote>
+<h2 id="challenge-1-data-frames" class="challenge">Challenge 1: Data frames</h2>
+<p>Try using the <code>length</code> function to query your data frame <code>df</code>. Does it give the result you expect?</p>
+</blockquote>
+<p>Each column in the data frame is simply a list element, which is why when you ask for the <code>length</code> of the data frame, it tells you the number of columns. If you actually want the number of rows, you can use the <code>nrow</code> function.</p>
+<p>We can add columns or rows to a data.frame using <code>cbind</code> or <code>rbind</code> (these are the two-dimensional equivalents of the <code>c</code> function):</p>
+<div id="adding-columns-to-a-data-frame" class="section level2">
+<h2>Adding columns to a data frame</h2>
+<p>To add a column we can use <code>cbind</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">cbind</span>(df, <span class="dv">6</span>:<span class="dv">1</span>)
+df</code></pre></div>
+<pre><code>##   id x   y 6:1
+## 1  a 1 214   6
+## 2  b 2 215   5
+## 3  c 3 216   4
+## 4  d 4 217   3
+## 5  e 5 218   2
+## 6  f 6 219   1</code></pre>
+<p>Note that R automatically names the column. We may decide to change the name by assigning a value using the <code>names</code> function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(df)[<span class="dv">4</span>] &lt;-<span class="st"> &#39;z&#39;</span></code></pre></div>
+<p>We can also provide a name when we add the column:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">cbind</span>(df, <span class="dt">caps=</span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>, <span class="st">&quot;E&quot;</span>, <span class="st">&quot;F&quot;</span>))
+df</code></pre></div>
+<pre><code>##   id x   y z caps
+## 1  a 1 214 6    A
+## 2  b 2 215 5    B
+## 3  c 3 216 4    C
+## 4  d 4 217 3    D
+## 5  e 5 218 2    E
+## 6  f 6 219 1    F</code></pre>
+</div>
+<div id="adding-rows-to-a-data-frame" class="section level2">
+<h2>Adding rows to a data frame</h2>
+<p>To add rows we use <code>rbind</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id =</span> <span class="kw">c</span>(<span class="st">&quot;g&quot;</span>, <span class="st">&quot;h&quot;</span>), 
+                  <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">11</span>, <span class="dv">12</span>), 
+                  <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">42</span>, <span class="dv">86</span>), 
+                  <span class="dt">z =</span> <span class="kw">c</span>(<span class="dv">0</span>, -<span class="dv">1</span>), 
+                  <span class="dt">caps =</span> <span class="kw">c</span>(<span class="st">&quot;G&quot;</span>, <span class="st">&quot;H&quot;</span>))
+df &lt;-<span class="st"> </span><span class="kw">rbind</span>(df, df2)</code></pre></div>
+<blockquote>
+<h2 id="challenge-2" class="challenge">Challenge 2</h2>
+<p>Create a data frame that holds the following information for yourself:</p>
+<ul>
+<li>First name</li>
+<li>Last name</li>
+<li>Age</li>
+</ul>
+<p>Then use rbind to add the same information for the people sitting near you.</p>
+<p>Now use cbind to add a column of logicals that will, for each person, hold the answer to the question, “Is there anything in this workshop you’re finding confusing?”</p>
+</blockquote>
+</div>
+<div id="reading-in-data" class="section level2">
+<h2>Reading in data</h2>
+<p>Remember earlier we obtained the gapminder dataset, which contains GDP ,population, and life expentancy for many countries around the world. ‘<a href="https://youtu.be/BPt8ElTQMIg?t=13">Gapminder</a>’.</p>
+<p>If you’re curious about where this data comes from you might like to look at the <a href="http://www.gapminder.org/data/documentation/">Gapminder website</a>.</p>
+<p>Let’s first open up the data in Excel, an environment we’re familiar with, to have a quick look.</p>
+<p>Now we want to load the gapminder data into R.</p>
+<p>As its file extension would suggest, the file contains comma-separated values, and seems to contain a header row.</p>
+<p>We can use <code>read.csv</code> to read this into R</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gapminder &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file=</span><span class="st">&quot;data/gapminder-FiveYearData.csv&quot;</span>)
+<span class="kw">head</span>(gapminder)</code></pre></div>
+<pre><code>##       country year      pop continent lifeExp gdpPercap
+## 1 Afghanistan 1952  8425333      Asia  28.801  779.4453
+## 2 Afghanistan 1957  9240934      Asia  30.332  820.8530
+## 3 Afghanistan 1962 10267083      Asia  31.997  853.1007
+## 4 Afghanistan 1967 11537966      Asia  34.020  836.1971
+## 5 Afghanistan 1972 13079460      Asia  36.088  739.9811
+## 6 Afghanistan 1977 14880372      Asia  38.438  786.1134</code></pre>
+<blockquote>
+<h2 id="miscellaneous-tips" class="callout">Miscellaneous Tips</h2>
+<ol style="list-style-type: decimal">
+<li><p>Another type of file you might encounter are tab-separated format. You can use <code>read.delim</code> to read in tab-separated files.</p></li>
+<li><p>If your file uses a different separater, the more generic <code>read.table</code> will let you specifiy it with the <code>sep</code> argument.</p></li>
+<li><p>You can also read in files from the Internet by replacing the file paths with a web address.</p></li>
+<li><p>You can read directly from excel spreadsheets without converting them to plain text first by using the <code>xlsx</code> package.</p></li>
+</ol>
+</blockquote>
+<p>To make sure our analysis is reproducible, we should put the code into a script file so we can come back to it later.</p>
+<blockquote>
+<h2 id="challenge-3" class="challenge">Challenge 3</h2>
+<p>Go to file -&gt; new file -&gt; R script, and write an R script to load in the gapminder dataset.</p>
+<p>Run the script using the <code>source</code> function, using the file path as its argument (or by pressing the “source” button in RStudio).</p>
+</blockquote>
+</div>
+<div id="using-data-frames-the-gapminder-dataset" class="section level2">
+<h2>Using data frames: the <code>gapminder</code> dataset</h2>
+<p>To recap what we’ve just learned, let’s have a look at our example data (life expectancy in various countries for various years).</p>
+<p>Remember, there are a few functions we can use to interrogate data structures in R:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>() <span class="co"># what is the data structure?</span>
+<span class="kw">length</span>() <span class="co"># how long is it? What about two dimensional objects?</span>
+<span class="kw">attributes</span>() <span class="co"># does it have any metadata?</span>
+<span class="kw">str</span>() <span class="co"># A full summary of the entire object</span>
+<span class="kw">dim</span>() <span class="co"># Dimensions of the object - also try nrow(), ncol()</span></code></pre></div>
+<p>Let’s use them to explore the gapminder dataset.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(gapminder)</code></pre></div>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<p>The gapminder data is stored in a “data.frame”. This is the default data structure when you read in data, and (as we’ve heard) is useful for storing data with mixed types of columns.</p>
+<p>Let’s look at some of the columns.</p>
+<blockquote>
+<h2 id="challenge-4-data-types-in-a-real-dataset" class="challenge">Challenge 4: Data types in a real dataset</h2>
+<p>Look at the first 6 rows of the gapminder data frame we loaded before:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(gapminder)</code></pre></div>
+<pre><code>##       country year      pop continent lifeExp gdpPercap
+## 1 Afghanistan 1952  8425333      Asia  28.801  779.4453
+## 2 Afghanistan 1957  9240934      Asia  30.332  820.8530
+## 3 Afghanistan 1962 10267083      Asia  31.997  853.1007
+## 4 Afghanistan 1967 11537966      Asia  34.020  836.1971
+## 5 Afghanistan 1972 13079460      Asia  36.088  739.9811
+## 6 Afghanistan 1977 14880372      Asia  38.438  786.1134</code></pre>
+<p>Write down what data type you think is in each column</p>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(gapminder$year)</code></pre></div>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(gapminder$lifeExp)</code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<p>Can anyone guess what we should expect the type of the continent column to be?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(gapminder$continent)</code></pre></div>
+<pre><code>## [1] &quot;factor&quot;</code></pre>
+<p>If you were expecting a the answer to be “character”, you would rightly be surprised by the answer.</p>
+<p>One of the default behaviours of R is to treat any text columns as “factors” when reading in data. The reason for this is that text columns often represent categorical data, which need to be factors to be handled appropriately by the statistical modeling functions in R.</p>
+<p>However it’s not obvious behaviour, and something that trips many people up. We can disable this behaviour when we read in the data.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gapminder &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file=</span><span class="st">&quot;data/gapminder-FiveYearData.csv&quot;</span>, 
+                      <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<blockquote>
+<h2 id="tip" class="callout">Tip</h2>
+<p>I <em>highly</em> recommend burning this pattern into your memory, or getting it tattooed onto your arm.</p>
+</blockquote>
+<p>The first thing you should do when reading data in, is check that it matches what you expect, even if the command ran without warnings or errors. The <code>str</code> function, short for “structure”, is really useful for this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(gapminder)</code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    1704 obs. of  6 variables:
+##  $ country  : chr  &quot;Afghanistan&quot; &quot;Afghanistan&quot; &quot;Afghanistan&quot; &quot;Afghanistan&quot; ...
+##  $ year     : int  1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 ...
+##  $ pop      : num  8425333 9240934 10267083 11537966 13079460 ...
+##  $ continent: chr  &quot;Asia&quot; &quot;Asia&quot; &quot;Asia&quot; &quot;Asia&quot; ...
+##  $ lifeExp  : num  28.8 30.3 32 34 36.1 ...
+##  $ gdpPercap: num  779 821 853 836 740 ...</code></pre>
+<p>We can see that the object is a <code>data.frame</code> with 1,704 observations (rows), and 6 variables (columns). Below that, we see the name of each column, followed by a “:”, followed by the type of variable in that column, along with the first few entries.</p>
+<p>As discussed above, we can retrieve or modify the column or row names of the data.frame:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">colnames</span>(gapminder)  </code></pre></div>
+<pre><code>## [1] &quot;country&quot;   &quot;year&quot;      &quot;pop&quot;       &quot;continent&quot; &quot;lifeExp&quot;   &quot;gdpPercap&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">copy &lt;-<span class="st"> </span>gapminder
+<span class="kw">colnames</span>(copy) &lt;-<span class="st"> </span>letters[<span class="dv">1</span>:<span class="dv">6</span>]
+<span class="kw">head</span>(copy, <span class="dt">n=</span><span class="dv">3</span>)</code></pre></div>
+<pre><code>##             a    b        c    d      e        f
+## 1 Afghanistan 1952  8425333 Asia 28.801 779.4453
+## 2 Afghanistan 1957  9240934 Asia 30.332 820.8530
+## 3 Afghanistan 1962 10267083 Asia 31.997 853.1007</code></pre>
+<blockquote>
+<h2 id="challenge-5" class="challenge">Challenge 5</h2>
+<p>Recall that we also used the <code>names</code> function (above) to modify column names. Does it matter which you use? You can check help with <code>?names</code> and <code>?colnames</code> to see whether it should matter.</p>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rownames</span>(gapminder)[<span class="dv">1</span>:<span class="dv">20</span>]</code></pre></div>
+<pre><code>##  [1] &quot;1&quot;  &quot;2&quot;  &quot;3&quot;  &quot;4&quot;  &quot;5&quot;  &quot;6&quot;  &quot;7&quot;  &quot;8&quot;  &quot;9&quot;  &quot;10&quot; &quot;11&quot; &quot;12&quot; &quot;13&quot; &quot;14&quot;
+## [15] &quot;15&quot; &quot;16&quot; &quot;17&quot; &quot;18&quot; &quot;19&quot; &quot;20&quot;</code></pre>
+<p>See those numbers in the square brackets on the left? That tells you the number of the first entry in that row of output. So we see that for the 5th row, the rowname is “5”. In this case, the rownames are simply the row numbers.</p>
+</div>
+<div id="challenge-solutions" class="section level2">
+<h2>Challenge Solutions</h2>
+<blockquote>
+<h2 id="solution-to-challenge-2" class="challenge">Solution to Challenge 2</h2>
+<p>Create a data frame that holds the following information for yourself:</p>
+<ul>
+<li>First name</li>
+<li>Last name</li>
+<li>Age</li>
+</ul>
+<p>Then use rbind to add the same information for the people sitting near you.</p>
+<p>Now use cbind to add a column of logicals answering the question, “Is there anything in this workshop you’re finding confusing?”</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">first_name =</span> <span class="st">&quot;Andy&quot;</span>, <span class="dt">last_name =</span> <span class="st">&quot;Teucher&quot;</span>, <span class="dt">age =</span> <span class="dv">36</span>)
+my_df &lt;-<span class="st"> </span><span class="kw">rbind</span>(my_df, <span class="kw">data.frame</span>(<span class="dt">first_name =</span> <span class="st">&quot;Jane&quot;</span>, <span class="dt">last_name =</span> <span class="st">&quot;Smith&quot;</span>, <span class="dt">age =</span> <span class="dv">29</span>))
+my_df &lt;-<span class="st"> </span><span class="kw">rbind</span>(my_df, <span class="kw">data.frame</span>(<span class="dt">first_name =</span> <span class="kw">c</span>(<span class="st">&quot;Jo&quot;</span>, <span class="st">&quot;John&quot;</span>), <span class="dt">last_name =</span> <span class="kw">c</span>(<span class="st">&quot;White&quot;</span>, <span class="st">&quot;Lee&quot;</span>), <span class="dt">age =</span> <span class="kw">c</span>(<span class="dv">23</span>, <span class="dv">41</span>)))
+my_df &lt;-<span class="st"> </span><span class="kw">cbind</span>(my_df, <span class="dt">confused =</span> <span class="kw">c</span>(<span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>))</code></pre></div>
+</blockquote>
+<blockquote>
+<h2 id="solution-to-challenge-5" class="challenge">Solution to Challenge 5</h2>
+<p><code>?colnames</code> tells you that the <code>colnames</code> function is the same as <code>names</code> for a data frame. For other structures, they may not be the same. In particular, <code>names</code> does not work for matrices, but <code>colnames</code> does. You can verify this with</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span>:<span class="dv">9</span>, <span class="dt">nrow=</span><span class="dv">3</span>)
+<span class="kw">colnames</span>(m) &lt;-<span class="st"> </span>letters[<span class="dv">1</span>:<span class="dv">3</span>] <span class="co"># works as you would expect</span>
+<span class="kw">names</span>(m) &lt;-<span class="st"> </span>letters[<span class="dv">1</span>:<span class="dv">3</span>]  <span class="co"># destroys the matrix</span></code></pre></div>
+</blockquote>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
