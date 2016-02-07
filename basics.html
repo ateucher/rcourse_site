@@ -10,7 +10,7 @@
 
 
 
-<title>Getting started with R</title>
+<title></title>
 
 <script src="libs/jquery-1.11.0/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -122,7 +122,6 @@ code > span.er { font-weight: bold; }
             <ul class="dropdown-menu">
                <li><a href="data/iris.csv">Iris Dataset (csv)</a></li>
                <li><a href="data/iris.zip">Iris Dataset (zip)</a></li>
-               <li><a href="data/toothgrowth.csv">Toothgrowth (csv)</a></li>
             </ul>
           </li>
         </ul>
@@ -137,14 +136,13 @@ code > span.er { font-weight: bold; }
   </div>
 </div>
 
-<div id="header">
-<h1 class="title">Getting started with R</h1>
-</div>
 
 
+<div id="getting-started-with-r-the-essentials" class="section level1">
+<h1>Getting started with R: The essentials</h1>
 <p>** The structure and much of the content in this module was borrowed from <a href="http://www.softwarecarpentry.org">Software Carpentry</a>’s <a href="https://github.com/swcarpentry/bc/tree/master/novice/r">novice R Bootcamp material</a> (Copyright (c) Software Carpentry), which they make available for reuse under the Creative Commons Attribution <a href="http://creativecommons.org/licenses/by/3.0/">(CC_BY)</a> license.</p>
+<p>*Note: We covered some, but not all of this content in the course (in the <a href="00-introduction.html">Introduction</a>)**</p>
 <ul>
-<li>Draw concept map of where we are headed towards best scientific practices, and reproducibility.</li>
 <li>Its really important that you know what you did. More journals/grants/etc. are also making it important for them to know what you did.</li>
 <li>A lot of scientific code is <em>not</em> reproducible.</li>
 <li>If you keep a lab notebook, why are we not as careful with our code?</li>
@@ -178,8 +176,9 @@ code > span.er { font-weight: bold; }
 <p>or by typing words</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="st">&quot;Hello World&quot;</span></code></pre>
 <pre><code>## [1] &quot;Hello World&quot;</code></pre>
-<div id="calculations" class="section level3">
-<h3>Calculations</h3>
+</div>
+<div id="calculations" class="section level2">
+<h2>Calculations</h2>
 <p>R can be used just like a calculator (as shown before).</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span> +<span class="st"> </span><span class="dv">5</span></code></pre>
 <pre><code>## [1] 8</code></pre>
@@ -197,8 +196,8 @@ code > span.er { font-weight: bold; }
 <pre><code>## [1] 27</code></pre>
 </div>
 </div>
-<div id="assignment" class="section level3">
-<h3>Assignment</h3>
+<div id="assignment" class="section level2">
+<h2>Assignment</h2>
 <p>R is an <em>object-oriented</em> programming language. Everything we do in R, we do with <em>objects</em>. We can save our results to an <em>object</em>, if we give it a name.</p>
 <p><code>&lt;-</code> is the assignment operator. The <em>result</em> of the operation on the right hand side of <code>&lt;-</code> is <em>assigned</em> to an object with the name specified on the left hand side of <code>&lt;-</code>. Put spaces around <code>&lt;-</code> (and all other operators).</p>
 <pre class="sourceCode r"><code class="sourceCode r">hrs_per_day &lt;-<span class="st"> </span><span class="dv">24</span>
@@ -221,8 +220,8 @@ hrs_per_week</code></pre>
 </ul>
 </div>
 </div>
-<div id="functions" class="section level3">
-<h3>Functions</h3>
+<div id="functions" class="section level2">
+<h2>Functions</h2>
 <p>Most of R’s power and flexibility comes from <em>functions</em>.</p>
 <p>A function is a saved object that takes inputs to perform a task. Functions take in information and return outputs. A function takes zero, one, or many <em>arguments</em> (also called <em>parameters</em>), depending on the function, and <em>returns</em> a value. To call a function, type its name followed by brackets <code>()</code>. Arguments go inside the brackets and are separated by commas.</p>
 <p><code>name_of_function(arg1,arg2,arg3)</code></p>
@@ -233,9 +232,9 @@ hrs_per_week</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">max</span>(<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">2</span>,<span class="dv">6</span>,<span class="dv">9</span>)</code></pre>
 <pre><code>## [1] 9</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">date</span>() <span class="co"># Not all functions require arguments</span></code></pre>
-<pre><code>## [1] &quot;Tue Nov 04 22:24:18 2014&quot;</code></pre>
-<div id="specifying-arguments" class="section level4">
-<h4>Specifying arguments</h4>
+<pre><code>## [1] &quot;Thu Nov 13 12:54:07 2014&quot;</code></pre>
+<div id="specifying-arguments" class="section level3">
+<h3>Specifying arguments</h3>
 <p>Arguments can be specified using <em>positional</em> and/or <em>named</em> matching. Some arguments have default values.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Positional matching: 10 is the first (and only) argument, and base is not </span>
 <span class="co"># specified, so the default (e; i.e., natural logarithm) is used</span>
@@ -251,15 +250,16 @@ hrs_per_week</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(<span class="dv">10</span>,<span class="dv">5</span>)</code></pre>
 <pre><code>## [1] 1.430677</code></pre>
 </div>
-<div id="help" class="section level4">
-<h4>Help</h4>
+<div id="help" class="section level3">
+<h3>Help</h3>
 <p>All functions come with a help screen. To get help on a function, type <code>?</code> followed by the function name.</p>
 <pre class="sourceCode r"><code class="sourceCode r">?log</code></pre>
 <p>If you don’t know the name of a function, you can find functions associated with a topic by typing <code>??topic_name</code> (one word) or <code>??&quot;topic phrase&quot;</code> (multiple words). Sometimes Google is just as (or more) effective.</p>
 <p>It is important that you learn to read the help screens since they provide important information on what the function does, how it works, and usually sample examples at the very bottom.</p>
 </div>
-<div id="some-other-useful-functions-for-navigating" class="section level4">
-<h4>Some other useful functions for navigating</h4>
+</div>
+<div id="navigating-your-environment" class="section level2">
+<h2>Navigating your environment</h2>
 <p>Get / set your working directory:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getwd</span>()
 <span class="kw">setwd</span>(<span class="st">&quot;H:/&quot;</span>)</code></pre>
@@ -290,36 +290,34 @@ hrs_per_week</code></pre>
 ## [21] Rcpp_0.11.3      scales_0.2.4     stringr_0.6.2    tools_3.1.1     
 ## [25] yaml_2.1.13</code></pre>
 </div>
-</div>
-<div id="workspace" class="section level3">
-<h3>Workspace</h3>
+<div id="workspace" class="section level2">
+<h2>Workspace</h2>
 <p>List objects in your workspace with <code>ls()</code> function.</p>
 <pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">5</span>
 <span class="kw">ls</span>()</code></pre>
-<pre><code>##  [1] &quot;a&quot;                 &quot;Andy&quot;              &quot;dat&quot;              
-##  [4] &quot;dat_long&quot;          &quot;dat2&quot;              &quot;data&quot;             
-##  [7] &quot;days_per_week&quot;     &quot;diamonds&quot;          &quot;diff&quot;             
-## [10] &quot;dummy&quot;             &quot;elev_pres.data&quot;    &quot;exercise&quot;         
-## [13] &quot;exercise_number&quot;   &quot;f&quot;                 &quot;fahr_to_celsius&quot;  
-## [16] &quot;fahr_to_kelvin&quot;    &quot;fence&quot;             &quot;files&quot;            
-## [19] &quot;final&quot;             &quot;fitted&quot;            &quot;fname&quot;            
-## [22] &quot;g&quot;                 &quot;grp_spp&quot;           &quot;hrs_per_day&quot;      
-## [25] &quot;hrs_per_week&quot;      &quot;i&quot;                 &quot;iris_files&quot;       
-## [28] &quot;iris_list&quot;         &quot;kelvin_to_celsius&quot; &quot;lr1&quot;              
-## [31] &quot;maxprint&quot;          &quot;mean.sl&quot;           &quot;mod1&quot;             
-## [34] &quot;mod2&quot;              &quot;mod3&quot;              &quot;mod4&quot;             
-## [37] &quot;my_list&quot;           &quot;original&quot;          &quot;out&quot;              
-## [40] &quot;p&quot;                 &quot;pangram&quot;           &quot;petal.reg&quot;        
-## [43] &quot;petal_length.aov&quot;  &quot;pred&quot;              &quot;probs&quot;            
-## [46] &quot;projDir&quot;           &quot;residuals&quot;         &quot;RmdDocs&quot;          
-## [49] &quot;sep_ratio&quot;         &quot;setosa.dat&quot;       
-##  [ reached getOption(&quot;max.print&quot;) -- omitted 6 entries ]</code></pre>
+<pre><code>##  [1] &quot;a&quot;                 &quot;Andy&quot;              &quot;clean_dirs&quot;       
+##  [4] &quot;clean_files&quot;       &quot;dat&quot;               &quot;dat_long&quot;         
+##  [7] &quot;dat2&quot;              &quot;data&quot;              &quot;days_per_week&quot;    
+## [10] &quot;diamonds&quot;          &quot;diff&quot;              &quot;dirs&quot;             
+## [13] &quot;dummy&quot;             &quot;elev_pres.data&quot;    &quot;exercise&quot;         
+## [16] &quot;exercise_number&quot;   &quot;f&quot;                 &quot;fahr_to_celsius&quot;  
+## [19] &quot;fahr_to_kelvin&quot;    &quot;fence&quot;             &quot;files&quot;            
+## [22] &quot;final&quot;             &quot;fitted&quot;            &quot;fname&quot;            
+## [25] &quot;g&quot;                 &quot;grp_spp&quot;           &quot;hrs_per_day&quot;      
+## [28] &quot;hrs_per_week&quot;      &quot;i&quot;                 &quot;iris_files&quot;       
+## [31] &quot;iris_list&quot;         &quot;kelvin_to_celsius&quot; &quot;lr1&quot;              
+## [34] &quot;maxprint&quot;          &quot;mean.sl&quot;           &quot;mod1&quot;             
+## [37] &quot;mod2&quot;              &quot;mod3&quot;              &quot;mod4&quot;             
+## [40] &quot;my_list&quot;           &quot;original&quot;          &quot;out&quot;              
+## [43] &quot;p&quot;                 &quot;pangram&quot;           &quot;petal.reg&quot;        
+## [46] &quot;petal_length.aov&quot;  &quot;pred&quot;              &quot;probs&quot;            
+## [49] &quot;residuals&quot;         &quot;RmdDocs&quot;          
+##  [ reached getOption(&quot;max.print&quot;) -- omitted 11 entries ]</code></pre>
 <p>Remove objects from your workspace with the <code>rm()</code> function.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(x)</code></pre>
 <p>Remove all objects from your workspace.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())</code></pre>
 <p><em>Notice that we have <strong>nested</strong> one function inside of another.</em> Calling <code>ls()</code> generates a list of objects to remove. This list is then passed to the <code>list</code> argument of <code>rm()</code>, so all the items in that list are removed.</p>
-</div>
 </div>
 <div id="data-types-and-structures" class="section level2">
 <h2>Data types and structures</h2>
@@ -369,8 +367,9 @@ T</code></pre>
 <pre><code>## [1] FALSE</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Chaos ensues</span></code></pre>
 </div>
-<div id="understanding-basic-data-structures-in-r" class="section level3">
-<h3>Understanding basic data structures in R</h3>
+</div>
+<div id="basic-data-structures-in-r" class="section level2">
+<h2>Basic data structures in R</h2>
 <p>R has many <strong>data structures</strong>. The main ones are:</p>
 <ul>
 <li>vector</li>
@@ -379,7 +378,6 @@ T</code></pre>
 <li>data frame</li>
 <li>factors</li>
 </ul>
-</div>
 <div id="vectors" class="section level3">
 <h3>Vectors</h3>
 <p>A vector is the most common and basic data structure in <code>R</code> and is pretty much the workhorse of R. It is a one-dimensional object with a series of values, all of the same type.</p>
@@ -665,6 +663,7 @@ dat</code></pre>
 <p>To install any package use <code>install.packages()</code></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)  ## install the ggplot2 package</code></pre>
 <p>You can’t ever learn all of R, but you can learn how to build a program and how to find help to do the things that you want to do.</p>
+</div>
 </div>
 </div>
 

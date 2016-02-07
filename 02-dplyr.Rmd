@@ -1,6 +1,7 @@
 ---
-title: Data munging with dplyr
 ---
+
+# Data munging with dplyr
 
 ** Most of the content in this module came from the dplyr 
 [Introduction vignette](http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html) 
@@ -24,7 +25,7 @@ install.packages("dplyr") # Install the package
 ```
 
 ```{r}
-library(dplyr) # Load the package into memory
+require(dplyr) # Load the package into memory
 ```
 
 `dplyr` implements the following verbs useful for data manipulation:
@@ -37,16 +38,13 @@ library(dplyr) # Load the package into memory
   (also `summarise_each()`)
 * `arrange()`: re-order the rows
 
-#### Filter rows with `filter()`
+## Filter rows with `filter()`
 
 `filter()` allows you to select a subset of the rows of a data frame. The first 
 argument is the name of the data frame, and the second and subsequent are 
 filtering expressions evaluated in the context of that data frame
 
 ```{r}
-# Load the data if you haven't already:
-dat <- read.csv("data/iris.csv", stringsAsFactors = FALSE)
-
 filter(dat, Sepal.Length > 5, Petal.Length > 1.5)
 ```
 
@@ -65,7 +63,7 @@ filter(dat, Sepal.Length > 5 | Petal.Length > 1.5)
 dat[dat$Sepal.Length > 5 | dat$Petal.Length > 1.5,]
 ```
 
-#### Arrange rows with `arrange()`
+## Arrange rows with `arrange()`
 
 `arrange()` works similarly to `filter()` except that instead of filtering or 
 selecting rows, it reorders them. It takes a data frame, and a set of column 
@@ -83,7 +81,7 @@ Use `desc()` to order a column in descending order:
 arrange(dat, desc(Petal.Length))
 ```
 
-#### Select columns with `select()`
+## Select columns with `select()`
 
 Often you work with large datasets with many columns where only a few are 
 actually of interest to you. `select()` allows you to rapidly zoom in on a 
@@ -98,7 +96,7 @@ select(dat, Petal.Length:Species)
 select(dat, -(Sepal.Length:Sepal.Width))
 ```
 
-#### Add new columns with `mutate()`
+## Add new columns with `mutate()`
 
 As well as selecting from the set of existing columns, it's often useful to add 
 new columns that are functions of existing columns. This is the job of `mutate()`:
@@ -109,7 +107,7 @@ mutate(dat,
   Sepal.Ratio = Sepal.Length / Sepal.Width)
 ```
 
-#### Summarise values with `summarise()`
+## Summarise values with `summarise()`
 
 The last verb is `summarise()`, which collapses a data frame to a single row. 
 It's not very useful (yet):
@@ -190,7 +188,7 @@ sum_dat <- dat %>%
             sd.Petal.Length = sd(Petal.Length))
 ```
 
-#### Exercise
+### Exercise
 
 Summarise `dat` by species, returning a data frame that calculates the median 
 ratio of sepal length and sepal width.
@@ -218,7 +216,7 @@ rm(temp1)
 rm(temp2, summary_dat)
 ```
 
-### Outputting files
+## Outputting files
 
 We've done our summaries, but now we want to save them so we can share our 
 amazing findings.  Just like we use the function `read.csv()` to read in data, 

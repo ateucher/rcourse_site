@@ -10,7 +10,7 @@
 
 
 
-<title>Functions</title>
+<title></title>
 
 <script src="libs/jquery-1.11.0/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -122,7 +122,6 @@ code > span.er { font-weight: bold; }
             <ul class="dropdown-menu">
                <li><a href="data/iris.csv">Iris Dataset (csv)</a></li>
                <li><a href="data/iris.zip">Iris Dataset (zip)</a></li>
-               <li><a href="data/toothgrowth.csv">Toothgrowth (csv)</a></li>
             </ul>
           </li>
         </ul>
@@ -137,14 +136,13 @@ code > span.er { font-weight: bold; }
   </div>
 </div>
 
-<div id="header">
-<h1 class="title">Functions</h1>
-</div>
 
 
+<div id="functions" class="section level1">
+<h1>Functions</h1>
 <p>** The structure and content in this module was borrowed (largely verbatim) from <a href="http://www.softwarecarpentry.org">Software Carpentry</a>’s <a href="https://github.com/swcarpentry/bc/tree/master/novice/r">novice R Bootcamp material</a> (Copyright (c) Software Carpentry), which they make available for reuse under the Creative Commons Attribution <a href="http://creativecommons.org/licenses/by/3.0/">(CC_BY)</a> license.</p>
-<div id="objectives" class="section level2">
-<h2>Objectives</h2>
+<div id="objectives" class="section level3">
+<h3>Objectives</h3>
 <ul>
 <li>Define a function that takes arguments (parameters).</li>
 <li>Return a value from a function.</li>
@@ -200,9 +198,8 @@ code > span.er { font-weight: bold; }
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fence</span>(<span class="st">&quot;name&quot;</span>, <span class="st">&quot;*&quot;</span>)</code></pre>
 <pre><code>## [1] &quot;*name*&quot;</code></pre>
 </div>
-</div>
-<div id="string-splits" class="section level2">
-<h2>String splits</h2>
+<div id="string-splits" class="section level3">
+<h3>String splits</h3>
 <p>If the variable s refers to a string, then we can parse the string into its separate components - each of the characters. Base R has a function called <code>strsplit</code> that can be used to break up strings, into smaller chunks.</p>
 <pre class="sourceCode r"><code class="sourceCode r">pangram &lt;-<span class="st"> &quot;the quick brown fox jumps over the lazy dog&quot;</span>
 <span class="kw">strsplit</span>(pangram, <span class="st">&quot; &quot;</span>)</code></pre>
@@ -241,6 +238,7 @@ code > span.er { font-weight: bold; }
 <pre class="sourceCode r"><code class="sourceCode r">words[<span class="kw">length</span>(words)]</code></pre>
 <pre><code>## [1] &quot;dog&quot;</code></pre>
 <p><strong>BREAK</strong></p>
+</div>
 </div>
 <div id="explaining-the-r-environments" class="section level2">
 <h2>Explaining the R Environments</h2>
@@ -293,6 +291,7 @@ f &lt;-<span class="st"> </span>function() {
 <pre><code>## [1] 74</code></pre>
 <p>We don’t expect the variable <code>diff</code> to have the value 74 after this function call, so the name <code>diff</code> cannot refer to the same variable defined inside <code>span()</code> as it does in your workspace (the global environment). And yes, we could probably choose a different name than <code>diff</code> for our variable in this case, but we don’t want to have to read every line of R code we write that we use to see what variable names its functions use before calling any of those functions, just in case they change the values of our variables.</p>
 <p>The big idea here is <strong>encapsulation</strong>, and it’s the key to writing correct, comprehensible programs. A function’s job is to turn several operations into one so that we can think about a single function call instead of a dozen or a hundred statements each time we want to do something. That only works if functions don’t interfere with each other; if they do, we have to pay attention to the details once again, which quickly overloads our short-term memory.</p>
+</div>
 </div>
 
 

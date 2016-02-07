@@ -1,6 +1,7 @@
 ---
-title: Basic statistics
 ---
+
+# Basic statistics
 
 Of course, R was written by statisticians, for statisticians.  We're not going 
 to go deep into stats - partly because I'm not really that qualified to teach it, 
@@ -36,11 +37,7 @@ Since we're only interested in _setosa_ and _virginica_, we need to get rid of
 _versicolor_.
 
 ```{r dropfort-test}
-library(dplyr)
-
-# Load the data if you haven't already:
-dat <- read.csv("data/iris.csv", stringsAsFactors = FALSE)
-
+require(dplyr)
 setosa.virginica <- filter(dat, Species != "versicolor")
 summary(setosa.virginica)
 setosa.virginica <- droplevels(setosa.virginica)
@@ -68,8 +65,6 @@ summary(petal.reg)
 #### Plot the data with the regression line, along with confidence limits
 
 ```{r olsreg-plot}
-library("ggplot2")
-
 p <- ggplot(setosa.dat, aes(x = Petal.Width, y = Petal.Length)) + geom_point()
 
 dummy <- data.frame(Petal.Width = seq(from = min(setosa.dat$Petal.Width), 

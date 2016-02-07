@@ -1,6 +1,7 @@
 ---
-title: Putting it all together
 ---
+
+# Putting it all together
 
 This is small script that pulls together almost all of the concepts we learned: 
 Reading in data, repeating things using `lapply` and a `for` loop, custom functions, 
@@ -8,8 +9,8 @@ manipulating data using `dplyr`, running a linear regression model using `lm`,
 plotting using `ggplot`, and exporting content.
 
 ```{r eval=FALSE}
-library(dplyr)
-library(ggplot2)
+require(dplyr)
+require(ggplot2)
 
 # A function to calculate the mean and standard deviatiaon
 mean_sd_iris <- function(x) {

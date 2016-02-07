@@ -1,6 +1,7 @@
 ---
-title: Best Practices
 ---
+
+# Best Practices
 
 ** The structure and content in this module was borrowed (largely verbatim) 
 from [Software Carpentry](http://www.softwarecarpentry.org)'s
@@ -9,7 +10,7 @@ from [Software Carpentry](http://www.softwarecarpentry.org)'s
 Creative Commons Attribution [(CC_BY)](http://creativecommons.org/licenses/by/3.0/) 
 license.
 
-## Some best practices for using R and designing programs
+### Some best practices for using R and designing programs
 
 1. Start your code with a description of what it is:
   

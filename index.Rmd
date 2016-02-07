@@ -32,8 +32,6 @@ On this page you will find links to the data we need for the course, as well as 
 
 [Iris dataset (zip)](data/iris.zip)
 
-[Toothgrowth dataset](data/toothgrowth.csv)
-
 #### Credits
 Most of the material here was borrowed and adapted from 
 [Software Carpentry](http://www.softwarecarpentry.org)'s
@@ -43,16 +41,21 @@ These are amazing people, doing amazing things to help the scientific world be
 more productive with their code and data. Check them out, and if you get the chance 
 to attend a bootcamp, do it.
 
-The [Introductory course notes](http://www.poissonconsulting.ca/course/2014/09/12/an-introduction-to-r-course.html) from [Poisson Consulting](http://www.poissonconsulting.ca/)'s 
-2014 R Course were also very helpful in putting this material together.
+The [course notes](http://www.poissonconsulting.ca/courses/2012/06/05/an-introduction-to-r-course-12.html) from [Poisson Consulting](http://www.poissonconsulting.ca/)'s 
+2012 R Course were also very helpful in putting this material together.
 
 Much of the `dplyr` material came from the dplyr [package vignette](http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html).
 
-(Spring 2014 course only): When we went off-roading to play with the reshape2 package, we used material from 
+When we went off-roading to play with the reshape2 package, we used material from 
 [this website](http://seananderson.ca/2013/10/19/reshape.html).
 
 #### Source
 Source material for the website can be found here: https://github.com/ateucher/rcourse_site
 
+#### PDF
+Download the entire course notes package as a pdf [here](pdf/Intro_R_ATeucher.pdf)
+
 #### License
 Notes: [CC-BY](http://creativecommons.org/licenses/by/3.0/). Code: [MIT](http://opensource.org/licenses/mit-license.html)
+
+#### Parting shot: [Nice Job!](high-five.html)

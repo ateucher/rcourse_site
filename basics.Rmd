@@ -1,6 +1,7 @@
 ---
-title: Getting started with R
 ---
+
+# Getting started with R: The essentials
 
 ** The structure and much of the content in this module was borrowed from 
 [Software Carpentry](http://www.softwarecarpentry.org)'s
@@ -9,8 +10,8 @@ title: Getting started with R
 Creative Commons Attribution [(CC_BY)](http://creativecommons.org/licenses/by/3.0/) 
 license.
 
+*Note: We covered some, but not all of this content in the course (in the [Introduction](00-introduction.html))**
 
-* Draw concept map of where we are headed towards best scientific practices, and reproducibility.
 * Its really important that you know what you did. More journals/grants/etc. are also making it important for them to know what you did.
 * A lot of scientific code is *not* reproducible.
 * If you keep a lab notebook, why are we not as careful with our code? 
@@ -51,7 +52,7 @@ or by typing words
 "Hello World"
 ```
 
-### Calculations
+## Calculations
 
 R can be used just like a calculator (as shown before).
 
@@ -69,7 +70,7 @@ R can be used just like a calculator (as shown before).
 3 * (4 + 5)
 ```
 
-### Assignment
+## Assignment
 
 R is an _object-oriented_ programming language.  Everything we do in R, we 
 do with _objects_. We can save our results to an _object_, if we give it a name.
@@ -100,7 +101,7 @@ clarity. `x` is easy to type, but may not mean much.
 * Try to be consistent.
 * Avoid giving things names that already exist (like `mean`, `sum`, `log`)
 
-### Functions
+## Functions
 
 Most of R's power and flexibility comes from _functions_. 
 
@@ -120,7 +121,7 @@ max(4,8,2,6,9)
 date() # Not all functions require arguments
 ```
 
-#### Specifying arguments
+### Specifying arguments
 Arguments can be specified using _positional_ and/or _named_ matching.  Some 
 arguments have default values.
 
@@ -136,7 +137,7 @@ log(base=10, x=5)   # But this is bad form, can cause rampant confusion because:
 log(10,5)
 ```
 
-#### Help
+### Help
 
 All functions come with a help screen. To get help on a function, type `?` 
 followed by the function name.
@@ -153,7 +154,7 @@ It is important that you learn to read the help screens since they provide
 important information on what the function does, how it works, and usually 
 sample examples at the very bottom.
 
-#### Some other useful functions for navigating
+## Navigating your environment
 
 Get / set your working directory:
 ```{r eval=FALSE}
@@ -168,7 +169,7 @@ to figure out what went wrong, and when asking for help:
 sessionInfo()
 ```
 
-### Workspace
+## Workspace
 List objects in your workspace with `ls()` function.
 
 ```{r}
@@ -253,7 +254,7 @@ T
 # Chaos ensues
 ```
 
-### Understanding basic data structures in R
+## Basic data structures in R
 
 R has many __data structures__. The main ones are:
 
