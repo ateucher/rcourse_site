@@ -255,64 +255,6 @@ for the 5th row, the rowname is "5". In this case, the rownames are
 simply the row numbers.
 
 
-There are a few related ways of retrieving and modifying this information.
-`attributes` will give you both the row and column names, along with the
-class information, while `dimnames` will give you just the rownames and
-column names.
-
-In both cases, the output object is stored in a `list`:
-
-```{r}
-str(dimnames(gapminder))
-```
-
-## Understanding how lists are used in function output
-
-
-Lets run a basic linear regression on the gapminder dataset:
-
-```{r}
-# What is the relationship between life expectancy and year?
-reg <- lm(lifeExp ~ year, data=gapminder)
-```
-
-We won't go into too much detail, but briefly: 
-
-* `lm` estimates linear statistical models
-* The first argument is a formula, with  `a ~ b` meaning that `a`,
-     the dependent (or response) variable, is a
-    function of `b`, the independent variable. 
-* We tell `lm` to use the gapminder data frame, so it knows where to
- find the variables `lifeExp` and `year`. 
-
-
-
-Let's look at the output:
-
-```{r}
-reg
-```
-
-Not much there right? But if we look at the structure...
-
-```{r}
-str(reg)
-```
-
-There's a great deal stored in nested lists! The structure function
-allows you to see all the data available, in this case, the data that
-was returned by the `lm` function.
-
-For now, we can look at the `summary`:
-
-```{r}
-summary(reg)
-```
-
-As you might expect, life expectancy has slowly been increasing over
-time, so we see a significant positive association!
-
-
 ## Challenge Solutions
 
 > ## Solution to Challenge 2 {.challenge}
