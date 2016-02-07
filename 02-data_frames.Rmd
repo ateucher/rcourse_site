@@ -271,10 +271,10 @@ simply the row numbers.
 > "Is there anything in this workshop you're finding confusing?"
 >
 > ```{r, eval=FALSE}
-> my_df <- data.frame(first_name = "Software", last_name = "Carpentry", age = 17)
-> my_df <- rbind(my_df, list("Jane", "Smith", 29))
-> my_df <- rbind(my_df, list(c("Jo", "John"), c("White", "Lee"), c(23, 41)))
-> my_df <- cbind(my_df, confused = c(FALSE, FALSE, TRUE, FALSE))
+my_df <- data.frame(first_name = "Andy", last_name = "Teucher", age = 36)
+my_df <- rbind(my_df, data.frame(first_name = "Jane", last_name = "Smith", age = 29))
+my_df <- rbind(my_df, data.frame(first_name = c("Jo", "John"), last_name = c("White", "Lee"), age = c(23, 41)))
+my_df <- cbind(my_df, confused = c(FALSE, FALSE, TRUE, FALSE))
 > ```
 
 > ## Solution to Challenge 5 {.challenge}
