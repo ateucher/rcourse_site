@@ -77,104 +77,8 @@ df
 To add a row we use `rbind`:
 
 ```{r}
-df <- rbind(df, list("g", 11, 42, 0, "G"))
+df <- rbind(df, data.frame(id = "g", x = 11, y = 42, z = 0, caps = "G"))
 ```
-
-Note that we add the row as a list, because we have multiple types
-across the columns. Nevertheless, this doesn't work as expected! What
-do the error messages tell us?
-
-It appears that R was trying to append "g" and "G" as factor
-levels. Why? Let's examine the first column.  We can access a column
-in a `data.frame` by using the `$` operator.
-
-
-```{r}
-class(df$id)
-str(df)
-```
-
-When we created the data frame, R automatically made the first
-and last columns into factors, not character vectors. There are no
-pre-existing levels "g" and "G", so the attempt to add these values
-fails. A row was added to the data frame, only there are missing
-values in the factor columns:
-
-```{r}
-df
-```
-
-
-There are two ways we can work around this issue:
-
-1. We can convert the factor columns into characters. This is
-convenient, but we lose the factor structure. 
-
-2. We can add factor levels to accomodate the new additions. If we
-really do want the columns to be factors, this is the correct way to
-proceed.
-
-We will illustrate both solutions in the same data frame:
-
-```{r}
-df$id <- as.character(df$id)  # convert to character
-class(df$id)
-levels(df$caps) <- c(levels(df$caps), 'G') # add a factor level
-class(df$caps)
-```
-
-Okay, now let's try adding that row again.
-
-```{r}
-df <- rbind(df, list("g", 11, 42, 0, 'G'))
-tail(df, n=3)
-```
-
-We successfully added the last row, but we have an undesired row with
-two `NA` values. How do delete it?
-
-## Deleting rows and handling NA
-
-
-There are multiple ways to delete a row containing `NA`:
-
-```{r}
-df[-7, ]  # The minus sign tells R to delete the row
-df[complete.cases(df), ]  # Return `TRUE` when no missing values
-na.omit(df)  # Another function for the same purpose
-df <- na.omit(df)
-```
-
-## Combining data frames
-
-We  can also row-bind data.frames together, but notice what happens to
-the rownames:
-
-```{r}
-rbind(df, df)
-```
-
-R is making sure that rownames are unique. You can restore sequential
-numbering by setting rownames to NULL:
-
-```{r}
-df2 <- rbind(df, df)
-rownames(df2) <- NULL
-df2
-```
-
-
-<!-- 
-When we add a row we need to use a list, because each column is
-a different type!  If you want to add multiple rows to a data.frame,
-you will need to separate the new columns in the list:
-
-```{r}
-df <- rbind(df, list(c("l", "m"), c(12, 13), c(534, -20), c(-1, -2),
-c('H', 'I')))
-tail(df, n=3)
-```
--->
 
 > ## Challenge 2 {.challenge}
 >
@@ -193,52 +97,30 @@ tail(df, n=3)
 
 ## Reading in data
 
-Remember earlier we obtained the gapminder dataset.
+Remember earlier we obtained the gapminder datasetGDP, which contains population and life expentancy for many countries around the world. '[Gapminder](https://youtu.be/BPt8ElTQMIg?t=13)'.
 If you're curious about where this data comes from you might like to
 look at the [Gapminder website](http://www.gapminder.org/data/documentation/).
 
-Now we want to load the gapminder data into R.
-Before reading in data, it's a good idea to have a look at its structure.
-Let's take a look using our newly-learned shell skills:
+Let's first open up the data in Excel, an environment we're familiar with, to have a quick look.
 
-```{r, engine='bash'}
-cd data/ # navigate to the data directory of the project folder
-head gapminder-FiveYearData.csv
-```
+Now we want to load the gapminder data into R.
 
 As its file extension would suggest, the file contains comma-separated
 values, and seems to contain a header row.
 
-We can use `read.table` to read this into R
+We can use `read.csv` to read this into R
 
 ```{r}
-gapminder <- read.table(
-  file="data/gapminder-FiveYearData.csv",
-  header=TRUE, sep=","
-)
-head(gapminder)
-```
-
-Because we know the structure of the data, we're able
-to specify the appropriate arguments to `read.table`.
-Without these arguments, `read.table` will do its
-best to do something sensible, but it is always more
-reliable to explicitly tell `read.table` the structure
-of the data. `read.csv` function provides a convenient shortcut
-for loading in CSV files.
-
-```{r}
-# Here is the read.csv version of the above command
-gapminder <- read.csv(
-  file="data/gapminder-FiveYearData.csv"
-)
+gapminder <- read.csv(file="data/gapminder-FiveYearData.csv")
 head(gapminder)
 ```
 
 > ## Miscellaneous Tips {.callout}
 >
 > 1. Another type of file you might encounter are tab-separated
-> format. To specify a tab as a separator, use `"\t"`.
+> format. You can use `read.delim` to read in tab-separated files.
+> 
+> 2. If your file uses a different separater, the more generic `read.table` will let you specifiy it with the `sep` argument.
 >
 > 2. You can also read in files from the Internet by replacing
 > the file paths with a web address.
