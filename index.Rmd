@@ -5,39 +5,41 @@ title: Introduction to R
 On this page you will find links to the data we need for the course, as well as course notes for each of the modules
 
 #### Course Notes
-[00 - Basics](00-basics.html) (We didn't actually go through this material, but referenced it as we worked through the other sections)
+1. [00 - Basics](00-basics.html) (We didn't actually go through this material, but referenced it as we worked through the other sections)
 
-[01 - Introduction](01-introduction.html) (This was our starting point)
+1. [Introduction](01-introduction.html)
 
-[02 - Starting with Data](02-data_frames.html)
+1. [Starting With data](02-data_frames.html)
 
-[02 - Data munging with dplyr](02-dplyr.html)
+1. [Plotting with ggplot2](03-plotting.html)
 
-[03 - Plotting](03-plotting.html)
+1. [Subsetting data](04-subsetting.html)
 
-[04 - Basic statistics](04-basic_stats.html)
+1. [Data manipulation with dplyr](05-dplyr.html)
 
-[05 - Repeating things](05-repeating-things.html)
+1. [Data manipulation with tidyr](06-tidyr.html)
 
-[06 - Functions](06-functions.html)
+1. [Writing data](07-writing-data.html)
 
-[07 - Putting it all together](07-all-together.html)
+1. [Writing functions](08-functions.html)
 
-[08 - Best Practices](08-best-practices.html)
+1. [Repeating things](09-repeating-things.html)
 
-[Getting help](getting_help.html)
+1. [Control flow](10-control-flow.html)
+
+1. [Putting it all together](11-all-together.html)
+
+1. [Getting help](getting_help.html)
+
+<!--1. [Best practices](best-practices.html)-->
 
 #### Data
 [Gapminder dataset](data/gapminder-FiveYearData.csv)
 
-[Iris dataset (csv)](data/iris.csv)
-
-[Iris dataset (zip)](data/iris.zip)
-
 #### Credits
 Most of the material here was borrowed and adapted from 
 [Software Carpentry](http://www.softwarecarpentry.org)'s
-[novice R Bootcamp material](https://github.com/swcarpentry/bc/tree/master/novice/r), 
+[novice R Bootcamp material](https://github.com/swcarpentry/r-novice-gapminder), 
 which they make available for reuse under the Creative Commons Attribution [(CC_BY)](http://creativecommons.org/licenses/by/3.0/) license. 
 These are amazing people, doing amazing things to help the scientific world be 
 more productive with their code and data. Check them out, and if you get the chance 
@@ -45,11 +47,6 @@ to attend a bootcamp, do it.
 
 The [course notes](http://www.poissonconsulting.ca/courses/2012/06/05/an-introduction-to-r-course-12.html) from [Poisson Consulting](http://www.poissonconsulting.ca/)'s 
 2012 R Course were also very helpful in putting this material together.
-
-Much of the `dplyr` material came from the dplyr [package vignette](http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html).
-
-When we went off-roading to play with the reshape2 package, we used material from 
-[this website](http://seananderson.ca/2013/10/19/reshape.html).
 
 #### Source
 Source material for the website can be found here: https://github.com/ateucher/rcourse_site
@@ -60,4 +57,4 @@ Download the entire course notes package as a pdf [here](pdf/Intro_R_ATeucher.pd
 #### License
 Notes: [CC-BY](http://creativecommons.org/licenses/by/3.0/). Code: [MIT](http://opensource.org/licenses/mit-license.html)
 
-#### Parting shot: [Nice Job!](high-five.html)
+<!--#### Parting shot: [Nice Job!](high-five.html)-->
