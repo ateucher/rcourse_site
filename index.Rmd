@@ -21,17 +21,19 @@ On this page you will find links to the data we need for the course, as well as 
 
 1. [Writing data](07-writing-data.html)
 
-1. [Writing functions](08-functions.html)
+1. [Basic statistics](08-basic_stats.html)
 
-1. [Repeating things](09-repeating-things.html)
+1. [Writing functions](09-functions.html)
 
-1. [Control flow](10-control-flow.html)
+1. [Repeating things](10-repeating-things.html)
 
-1. [Putting it all together](11-all-together.html)
+1. [Control flow](11-control-flow.html)
+
+1. [Best practices](best-practices.html)
 
 1. [Getting help](getting_help.html)
 
-<!--1. [Best practices](best-practices.html)-->
+<!-- 1. [Putting it all together](12-all-together.html) -->
 
 #### Data
 [Gapminder dataset](data/gapminder-FiveYearData.csv)
