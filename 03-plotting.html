@@ -202,31 +202,43 @@ img {
 <h2>Base plotting</h2>
 <p>R’s base (built-in) plotting functions are powerful and very flexible, but not overly user friendly. For simple exploratory plots that don’t need to look nice, they are useful. They are generally specified as <code>plot(x, y, ...)</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(gapminder$lifeExp, gapminder$gdpPercap)</code></pre></div>
-<p><img src="03-plotting_files/figure-html/baseplot1-1.png" title="" alt="" width="672" /></p>
+<p><img src="fig/03-plotting-baseplot1-1.png" title="" alt="" width="672" /></p>
 <p>You can also specify them in a formula format <code>plot(y ~ x, data='', ...)</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(gdpPercap ~<span class="st"> </span>lifeExp, <span class="dt">data=</span>gapminder)</code></pre></div>
-<p><img src="03-plotting_files/figure-html/baseplot2-1.png" title="" alt="" width="672" /></p>
+<p><img src="fig/03-plotting-baseplot2-1.png" title="" alt="" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(gapminder$gdpPercap)</code></pre></div>
-<p><img src="03-plotting_files/figure-html/baseplot2-2.png" title="" alt="" width="672" /></p>
+<p><img src="fig/03-plotting-baseplot2-2.png" title="" alt="" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">boxplot</span>(gdpPercap ~<span class="st"> </span>continent, <span class="dt">data=</span>gapminder)</code></pre></div>
-<p><img src="03-plotting_files/figure-html/baseplot2-3.png" title="" alt="" width="672" /></p>
+<p><img src="fig/03-plotting-baseplot2-3.png" title="" alt="" width="672" /></p>
+</div>
+<div id="ggplot2" class="section level2">
+<h2>ggplot2</h2>
 <p>Today we’ll be learning about the ggplot2 package developed by Hadley Wickham, because it is the most effective for creating publication quality graphics.</p>
-<p>ggplot2 is built on the grammar of graphics, the idea that any plot can be expressed from the same set of components: a <strong>data</strong> set, a <strong>coordinate system</strong>, and a set of <strong>geoms</strong>–the visual representation of data points.</p>
-<p>The key to understanding ggplot2 is thinking about a figure in layers: just like you might do in an image editing program like Photoshop, Illustrator, or Inkscape.</p>
+<div id="ggplot2-and-the-grammar-of-graphics" class="section level3">
+<h3>ggplot2 and the <em>Grammar of Graphics</em></h3>
+<p>The <strong>ggplot2</strong> package provides an R implementation of Leland Wilkinson’s <em>Grammar of Graphics</em> (1999). The <em>Grammar of Graphics</em> challenges data analysts to think beyond the garden variety plot types (e.g. scatter-plot, barplot) and to consider the components that make up a plot or graphic, such as how data are represented on the plot (as lines, points, etc.), how variables are mapped to coordinates or plotting shape or colour, what transformation or statistical summary is required, and so on. Specifically, <strong>ggplot2</strong> allows users to build a plot layer-by-layer by specifying:</p>
+<ul>
+<li>The <em>data</em>,</li>
+<li>some <em>aesthetics</em>, that map variables in the data to a visual representation on the plot. This tells ggplot2 how to show each variable, such as axes on the plot or to size, shape, color, etc.</li>
+<li>a <em>geom</em>, which specifies the geometry of how the data are represented on the plot (points, lines, bars, etc.),</li>
+<li>a <em>stat</em>, a statistical transformation or summary of the data applied prior to plotting,</li>
+<li><em>facets</em>, that allow the data to be divided into chunks on the basis of other categorical or continuous variables and the same plot drawn for each chunk.</li>
+</ul>
+<p>Because <strong>ggplot2</strong> implements a <em>layered</em> grammar of graphics, data points and additional information (scatterplot smoothers, confidence bands, etc.) can be added to the plot via additional layers, each of which utilize further geoms, aesthetics, and stats.</p>
 <p>Let’s start off with an example:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
 <span class="kw">ggplot</span>(<span class="dt">data =</span> gapminder, <span class="kw">aes</span>(<span class="dt">x =</span> lifeExp, <span class="dt">y =</span> gdpPercap)) +
 <span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
-<p><img src="03-plotting_files/figure-html/lifeExp-vs-gdpPercap-scatter-1.png" title="" alt="" width="672" /></p>
+<p><img src="fig/03-plotting-lifeExp-vs-gdpPercap-scatter-1.png" title="" alt="" width="672" /></p>
 <p>So the first thing we do is call the <code>ggplot</code> function. This function lets R know that we’re creating a new plot, and any of the arguments we give the <code>ggplot</code> function are the <em>global</em> options for the plot: they apply to all layers on the plot.</p>
 <p>We’ve passed in two arguments to <code>ggplot</code>. First, we tell <code>ggplot</code> what data we want to show on our figure, in this example the gapminder data we read in earlier. For the second argument we passed in the <code>aes</code> function, which tells <code>ggplot</code> how variables in the <strong>data</strong> map to <em>aesthetic</em> properties of the figure, in this case the <strong>x</strong> and <strong>y</strong> locations. Here we told <code>ggplot</code> we want to plot the “lifeExp” column of the gapminder data frame on the x-axis, and the “gdpPercap” column on the y-axis. Notice that we didn’t need to explicitly pass <code>aes</code> these columns (e.g. <code>x = gapminder[, &quot;lifeExp&quot;]</code>), this is because <code>ggplot</code> is smart enough to know to look in the <strong>data</strong> for that column!</p>
 <p>By itself, the call to <code>ggplot</code> isn’t enough to draw a figure:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gapminder, <span class="kw">aes</span>(<span class="dt">x =</span> lifeExp, <span class="dt">y =</span> gdpPercap))</code></pre></div>
-<p><img src="03-plotting_files/figure-html/unnamed-chunk-2-1.png" title="" alt="" width="672" /></p>
+<p><img src="fig/03-plotting-unnamed-chunk-2-1.png" title="" alt="" width="672" /></p>
 <p>We need to tell <code>ggplot</code> how we want to visually represent the data, which we do by adding a new <strong>geom</strong> layer. In our example, we used <code>geom_point</code>, which tells <code>ggplot</code> we want to visually represent the relationship between <strong>x</strong> and <strong>y</strong> as a scatterplot of points:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gapminder, <span class="kw">aes</span>(<span class="dt">x =</span> lifeExp, <span class="dt">y =</span> gdpPercap)) +
 <span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
-<p><img src="03-plotting_files/figure-html/lifeExp-vs-gdpPercap-scatter2-1.png" title="" alt="" width="672" /></p>
+<p><img src="fig/03-plotting-lifeExp-vs-gdpPercap-scatter2-1.png" title="" alt="" width="672" /></p>
 <blockquote>
 <h2 id="challenge-1" class="challenge">Challenge 1</h2>
 <p>Modify the example so that the figure visualise how life expectancy has changed over time:</p>
@@ -238,46 +250,54 @@ img {
 <p>In the previous examples and challenge we’ve used the <code>aes</code> function to tell the scatterplot <strong>geom</strong> about the <strong>x</strong> and <strong>y</strong> locations of each point. Another <em>aesthetic</em> property we can modify is the point <em>color</em>. Modify the code from the previous challenge to <strong>color</strong> the points by the “continent” column. What trends do you see in the data? Are they what you expected?</p>
 </blockquote>
 </div>
-<div id="layers" class="section level2">
-<h2>Layers</h2>
+</div>
+<div id="geom-layers" class="section level2">
+<h2>Geom Layers</h2>
 <p>Using a scatterplot probably isn’t the best for visualising change over time. Instead, let’s tell <code>ggplot</code> to visualise the data as a line plot:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gapminder, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>lifeExp, <span class="dt">by=</span>country, <span class="dt">color=</span>continent)) +
 <span class="st">  </span><span class="kw">geom_line</span>()</code></pre></div>
-<p><img src="03-plotting_files/figure-html/lifeExp-line-1.png" title="" alt="" width="672" /></p>
+<p><img src="fig/03-plotting-lifeExp-line-1.png" title="" alt="" width="672" /></p>
 <p>Instead of adding a <code>geom_point</code> layer, we’ve added a <code>geom_line</code> layer. We’ve added the <strong>by</strong> <em>aesthetic</em>, which tells <code>ggplot</code> to draw a line for each country.</p>
 <p>But what if we want to visualise both lines and points on the plot? We can simply add another layer to the plot:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gapminder, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>lifeExp, <span class="dt">by=</span>country, <span class="dt">color=</span>continent)) +
 <span class="st">  </span><span class="kw">geom_line</span>() +<span class="st"> </span><span class="kw">geom_point</span>()</code></pre></div>
-<p><img src="03-plotting_files/figure-html/lifeExp-line-point-1.png" title="" alt="" width="672" /></p>
+<p><img src="fig/03-plotting-lifeExp-line-point-1.png" title="" alt="" width="672" /></p>
 <p>It’s important to note that each layer is drawn on top of the previous layer. In this example, the points have been drawn <em>on top of</em> the lines. Here’s a demonstration:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gapminder, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>lifeExp, <span class="dt">by=</span>country)) +
 <span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">color=</span>continent)) +<span class="st"> </span><span class="kw">geom_point</span>()</code></pre></div>
-<p><img src="03-plotting_files/figure-html/lifeExp-layer-example-1-1.png" title="" alt="" width="672" /></p>
+<p><img src="fig/03-plotting-lifeExp-layer-example-1-1.png" title="" alt="" width="672" /></p>
 <p>In this example, the <em>aesthetic</em> mapping of <strong>color</strong> has been moved from the global plot options in <code>ggplot</code> to the <code>geom_line</code> layer so it no longer applies to the points. Now we can clearly see that the points are drawn on top of the lines.</p>
 <blockquote>
 <h2 id="challenge-3" class="challenge">Challenge 3</h2>
 <p>Switch the order of the point and line layers from the previous example. What happened?</p>
 </blockquote>
+<p>There are many other geoms we can use to explore the data. One common one is a histogram, so we can see the distribution of a single variable:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(gapminder, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap)) +<span class="st"> </span><span class="kw">geom_histogram</span>()</code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="fig/03-plotting-gdp-hist-1.png" title="" alt="" width="672" /></p>
+<p>Or a boxplot to compare life expectancy across continents:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(gapminder, <span class="kw">aes</span>(<span class="dt">x =</span> continent, <span class="dt">y =</span> lifeExp)) +<span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre></div>
+<p><img src="fig/03-plotting-life-exp-boxplot-1.png" title="" alt="" width="672" /></p>
 </div>
 <div id="transformations-and-statistics" class="section level2">
 <h2>Transformations and statistics</h2>
-<p>Ggplot also makes it easy to overlay statistical models over the data. To demonstrate we’ll go back to our first example:</p>
+<p>ggplot also makes it easy to overlay statistical models over the data. To demonstrate we’ll go back to our first example:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gapminder, <span class="kw">aes</span>(<span class="dt">x =</span> lifeExp, <span class="dt">y =</span> gdpPercap, <span class="dt">color=</span>continent)) +
 <span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
-<p><img src="03-plotting_files/figure-html/lifeExp-vs-gdpPercap-scatter3-1.png" title="" alt="" width="672" /></p>
+<p><img src="fig/03-plotting-lifeExp-vs-gdpPercap-scatter3-1.png" title="" alt="" width="672" /></p>
 <p>Currently it’s hard to see the relationship between the points due to some strong outliers in GDP per capita. We can change the scale of units on the y axis using the <em>scale</em> functions. These control the mapping between the data values and visual values of an aesthetic.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gapminder, <span class="kw">aes</span>(<span class="dt">x =</span> lifeExp, <span class="dt">y =</span> gdpPercap)) +
 <span class="st">  </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">scale_y_log10</span>()</code></pre></div>
-<p><img src="03-plotting_files/figure-html/axis-scale-1.png" title="" alt="" width="672" /></p>
+<p><img src="fig/03-plotting-axis-scale-1.png" title="" alt="" width="672" /></p>
 <p>The <code>log10</code> function applied a transformation to the values of the gdpPercap column before rendering them on the plot, so that each multiple of 10 now only corresponds to an increase in 1 on the transformed scale, e.g. a GDP per capita of 1,000 is now 3 on the y axis, a value of 10,000 corresponds to 4 on the y axis and so on. This makes it easier to visualise the spread of data on the y-axis.</p>
-<p>We can fit a simple relationship to the data by adding another layer, <code>geom_smooth</code>:</p>
+<p>We can fit a simple linear relationship to the data by adding another layer, <code>geom_smooth</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gapminder, <span class="kw">aes</span>(<span class="dt">x =</span> lifeExp, <span class="dt">y =</span> gdpPercap)) +
 <span class="st">  </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">scale_y_log10</span>() +<span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)</code></pre></div>
-<p><img src="03-plotting_files/figure-html/lm-fit-1.png" title="" alt="" width="672" /></p>
+<p><img src="fig/03-plotting-lm-fit-1.png" title="" alt="" width="672" /></p>
 <p>We can make the line thicker by <em>setting</em> the <strong>size</strong> aesthetic in the <code>geom_smooth</code> layer:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gapminder, <span class="kw">aes</span>(<span class="dt">x =</span> lifeExp, <span class="dt">y =</span> gdpPercap)) +
 <span class="st">  </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">scale_y_log10</span>() +<span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">size=</span><span class="fl">1.5</span>)</code></pre></div>
-<p><img src="03-plotting_files/figure-html/lm-fit2-1.png" title="" alt="" width="672" /></p>
+<p><img src="fig/03-plotting-lm-fit2-1.png" title="" alt="" width="672" /></p>
 <p>There are two ways an <em>aesthetic</em> can be specified. Here we <em>set</em> the <strong>size</strong> aesthetic by passing it as an argument to <code>geom_smooth</code>. Previously in the lesson we’ve used the <code>aes</code> function to define a <em>mapping</em> between data variables and their visual representation.</p>
 <blockquote>
 <h2 id="challenge-4" class="challenge">Challenge 4</h2>
@@ -290,7 +310,7 @@ img {
 <p>Earlier we visualised the change in life expectancy over time across all countries in one plot. Alternatively, we can split this out over multiple panels by adding a layer of <strong>facet</strong> panels:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gapminder, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> lifeExp, <span class="dt">color=</span>continent)) +
 <span class="st">  </span><span class="kw">geom_line</span>() +<span class="st"> </span><span class="kw">facet_wrap</span>( ~<span class="st"> </span>country)</code></pre></div>
-<p><img src="03-plotting_files/figure-html/facet-1.png" title="" alt="" width="672" /></p>
+<p><img src="fig/03-plotting-facet-1.png" title="" alt="" width="672" /></p>
 <p>The <code>facet_wrap</code> layer took a “formula” as its argument, denoted by the tilde (~). This tells R to draw a panel for each unique value in the country column of the gapminder dataset.</p>
 </div>
 <div id="modifying-text" class="section level2">
@@ -302,7 +322,7 @@ img {
 <span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Year&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Life expectancy&quot;</span>) +<span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;Figure 1&quot;</span>) +
 <span class="st">  </span><span class="kw">scale_fill_discrete</span>(<span class="dt">name=</span><span class="st">&quot;Continent&quot;</span>) +
 <span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x=</span><span class="kw">element_blank</span>(), <span class="dt">axis.ticks.x=</span><span class="kw">element_blank</span>())</code></pre></div>
-<p><img src="03-plotting_files/figure-html/theme-1.png" title="" alt="" width="672" /></p>
+<p><img src="fig/03-plotting-theme-1.png" title="" alt="" width="672" /></p>
 <p>This is just a taste of what you can do with <code>ggplot2</code>. RStudio provides a really useful <a href="http://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf">cheat sheet</a> of the different layers available, and more extensive documentation is available on the <a href="http://docs.ggplot2.org/current/">ggplot2 website</a>. Finally, if you have no idea how to change something, a quick google search will usually send you to a relevant question and answer on Stack Overflow with reusable code to modify!</p>
 <blockquote>
 <h2 id="challenge-5" class="challenge">Challenge 5</h2>
@@ -327,21 +347,21 @@ img {
 <h2 id="solution-to-challenge-1" class="challenge">Solution to challenge 1</h2>
 <p>Modify the example so that the figure visualise how life expectancy has changed over time:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gapminder, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> lifeExp)) +<span class="st"> </span><span class="kw">geom_point</span>()</code></pre></div>
-<p><img src="03-plotting_files/figure-html/ch1-sol-1.png" title="" alt="" width="672" /></p>
+<p><img src="fig/03-plotting-ch1-sol-1.png" title="" alt="" width="672" /></p>
 </blockquote>
 <blockquote>
 <h2 id="solution-to-challenge-2" class="challenge">Solution to challenge 2</h2>
 <p>In the previous examples and challenge we’ve used the <code>aes</code> function to tell the scatterplot <strong>geom</strong> about the <strong>x</strong> and <strong>y</strong> locations of each point. Another <em>aesthetic</em> property we can modify is the point <em>color</em>. Modify the code from the previous challenge to <strong>color</strong> the points by the “continent” column. What trends do you see in the data? Are they what you expected?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gapminder, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> lifeExp, <span class="dt">color=</span>continent)) +
 <span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
-<p><img src="03-plotting_files/figure-html/ch2-sol-1.png" title="" alt="" width="672" /></p>
+<p><img src="fig/03-plotting-ch2-sol-1.png" title="" alt="" width="672" /></p>
 </blockquote>
 <blockquote>
 <h2 id="solution-to-challenge-3" class="challenge">Solution to challenge 3</h2>
 <p>Switch the order of the point and line layers from the previous example. What happened?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gapminder, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>lifeExp, <span class="dt">by=</span>country)) +
 <span class="st"> </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">color=</span>continent))</code></pre></div>
-<p><img src="03-plotting_files/figure-html/ch3-sol-1.png" title="" alt="" width="672" /></p>
+<p><img src="fig/03-plotting-ch3-sol-1.png" title="" alt="" width="672" /></p>
 <p>The lines now get drawn over the points!</p>
 </blockquote>
 <blockquote>
@@ -351,7 +371,7 @@ img {
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gapminder, <span class="kw">aes</span>(<span class="dt">x =</span> lifeExp, <span class="dt">y =</span> gdpPercap)) +
 <span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">size=</span><span class="dv">3</span>, <span class="dt">color=</span><span class="st">&quot;orange&quot;</span>) +<span class="st"> </span><span class="kw">scale_y_log10</span>() +
 <span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">size=</span><span class="fl">1.5</span>)</code></pre></div>
-<p><img src="03-plotting_files/figure-html/ch4-sol-1.png" title="" alt="" width="672" /></p>
+<p><img src="fig/03-plotting-ch4-sol-1.png" title="" alt="" width="672" /></p>
 </blockquote>
 <blockquote>
 <h2 id="solution-to-challenge-5" class="challenge">Solution to challenge 5</h2>
@@ -359,7 +379,7 @@ img {
 <p>Advanced: - Transform the x axis to better visualise the data spread. - Add a facet layer to panel the density plots by year.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gapminder, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">fill=</span>continent)) +
 <span class="st"> </span><span class="kw">geom_density</span>(<span class="dt">alpha=</span><span class="fl">0.6</span>) +<span class="st"> </span><span class="kw">facet_wrap</span>( ~<span class="st"> </span>year) +<span class="st"> </span><span class="kw">scale_x_log10</span>()</code></pre></div>
-<p><img src="03-plotting_files/figure-html/ch5-sol-1.png" title="" alt="" width="672" /></p>
+<p><img src="fig/03-plotting-ch5-sol-1.png" title="" alt="" width="672" /></p>
 </blockquote>
 </div>
 </div>
