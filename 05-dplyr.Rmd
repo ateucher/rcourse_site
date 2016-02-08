@@ -1,13 +1,9 @@
 ---
-layout: page
-title: R for reproducible scientific analysis
-subtitle: Dataframe manipulation with dplyr
-minutes: 90
+
 ---
 
 ```{r, include=FALSE}
-source("tools/chunk-options.R")
-opts_chunk$set(fig.path = "fig/13-dplyr-")
+opts_chunk$set(fig.path = "fig/05-dplyr-")
 # Silently load in the data so the rest of the lesson works
 gapminder <- read.csv("data/gapminder-FiveYearData.csv", header=TRUE)
 ```
@@ -59,7 +55,7 @@ If, for example, we wanted to move forward with only a few of the variables in o
 year_country_gdp <- select(gapminder,year,country,gdpPercap)
 ```
 
-![](fig/13-dplyr-fig1.png)
+![](fig/05-dplyr-fig1.png)
 
 If we open up `year_country_gdp` we'll see that it only contains the year, country and gdpPercap. Above we used 'normal' grammar, but the strengths of `dplyr` lie in combining several functions using pipes. Since the pipes grammar is unlike anything we've seen in R before, let's repeat what we've done above using pipes.
 
@@ -99,7 +95,7 @@ str(gapminder %>% group_by(continent))
 ```
 You will notice that the structure of the dataframe where we used `group_by()` (`grouped_df`) is not the same as the original `gapminder` (`data.frame`). A `grouped_df` can be thought of as a `list` where each item in the `list`is a `data.frame` which contains only the rows that correspond to the a particular value `continent` (at least in the example above).
 
-![](fig/13-dplyr-fig2.png)
+![](fig/05-dplyr-fig2.png)
 
 ## Using summarize()
 
@@ -111,7 +107,7 @@ gdp_bycontinents <- gapminder %>%
     summarize(mean_gdpPercap=mean(gdpPercap))
 ```
 
-![](fig/13-dplyr-fig3.png)
+![](fig/05-dplyr-fig3.png)
 
 That allowed us to calculate the mean gdpPercap for each continent, but it gets even better.
 
@@ -190,5 +186,7 @@ gdp_pop_bycontinents_byyear <- gapminder %>%
 >```
 
 ## Other great resources
+
 [Data Wrangling Cheat sheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
+
 [Introduction to dplyr](https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html)
