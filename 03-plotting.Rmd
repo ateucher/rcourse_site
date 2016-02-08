@@ -193,7 +193,7 @@ histogram, so we can see the distribution of a single variable:
 ggplot(gapminder, aes(x = gdpPercap)) + geom_histogram()
 ```
 
-Or a boxplot to compare life expectancy across continents:
+Or a boxplot to compare distribution of life expectancy across continents:
 ```{r life-exp-boxplot}
 ggplot(gapminder, aes(x = continent, y = lifeExp)) + geom_boxplot()
 ```
