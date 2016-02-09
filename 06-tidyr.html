@@ -200,7 +200,7 @@ img {
 </ul>
 <p>In the ‘long’ format, you usually have 1 column for the observed variable and the other columns are ID variables.</p>
 <p>For the ‘wide’ format each row is often a site/subject/patient and you have multiple observation variables containing the same type of data. These can be either repeated observations over time, or observation of multiple variables (or a mix of both). You may find data input may be simpler or some other applications may prefer the ‘wide’ format. However, many of <code>R</code>‘s functions have been designed assuming you have ’long’ format data. This tutorial will help you efficiently transform your data regardless of original format.</p>
-<p><img src="fig/06-tidyr-fig1.png" alt="" /></p>
+<p><img src="fig/dplyr_tidyr/06-tidyr-fig1.png" alt="" /></p>
 <p>These data formats mainly affect readability. For humans, the wide format is often more intuitive since we can often see more of the data on the screen due to it’s shape. However, the long format is more machine readable and is closer to the formating of databases. The ID variables in our dataframes are similar to the fields in a database and observed variables are like the database values.</p>
 <div id="getting-started" class="section level2">
 <h2>Getting started</h2>
@@ -269,7 +269,7 @@ img {
 ##  $ pop_1997      : num  29072015 9875024 6066080 1536536 10352843 ...
 ##  $ pop_2002      : int  31287142 10866106 7026113 1630347 12251209 7021078 15929988 4048013 8835739 614382 ...
 ##  $ pop_2007      : int  33333216 12420476 8078314 1639131 14326203 8390505 17696293 4369038 10238807 710960 ...</code></pre>
-<p><img src="fig/06-tidyr-fig2.png" alt="" /></p>
+<p><img src="fig/dplyr_tidyr/06-tidyr-fig2.png" alt="" /></p>
 <p>The first step towards getting our nice intermediate data format is to first convert from the wide to the long format. The <code>tidyr</code> function <code>gather()</code> will ‘gather’ your observation variables into a single variable.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gap_long &lt;-<span class="st"> </span>gap_wide %&gt;%<span class="st"> </span><span class="kw">gather</span>(obstype_year,obs_values,<span class="kw">starts_with</span>(<span class="st">&#39;pop&#39;</span>),<span class="kw">starts_with</span>(<span class="st">&#39;lifeExp&#39;</span>),<span class="kw">starts_with</span>(<span class="st">&#39;gdpPercap&#39;</span>))
 <span class="kw">str</span>(gap_long)</code></pre></div>
@@ -280,7 +280,7 @@ img {
 ##  $ obs_values  : num  9279525 4232095 1738315 442308 4469979 ...</code></pre>
 <p>Here we have used piping syntax which is similar to what we were doing in the previous lesson with dplyr. In fact, these are compatible and you can use a mix of tidyr and dplyr functions by piping them together</p>
 <p>Inside <code>gather()</code> we first name the new column for the new ID variable (<code>obstype_year</code>), the name for the new amalgamated observation variable (<code>obs_value</code>), then the names of the old observation variable. We could have typed out all the observation variables, but as in the <code>select()</code> function (see <code>dplyr</code> lesson), we can use the <code>starts_with()</code> argument to select all variables that starts with the desired character sring. Gather also allows the alternative syntax of using the <code>-</code> symbol to identify which variables are not to be gathered (i.e. ID variables)</p>
-<p><img src="fig/06-tidyr-fig3.png" alt="" /></p>
+<p><img src="fig/dplyr_tidyr/06-tidyr-fig3.png" alt="" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gap_long &lt;-<span class="st"> </span>gap_wide %&gt;%<span class="st"> </span><span class="kw">gather</span>(obstype_year,obs_values,-continent,-country)
 <span class="kw">str</span>(gap_long)</code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    5112 obs. of  4 variables:
@@ -321,12 +321,18 @@ gap_long$year &lt;-<span class="st"> </span><span class="kw">as.integer</span>(g
 <pre><code>##   country year      pop continent lifeExp gdpPercap
 ## 1 Algeria 1952  9279525    Africa  43.077  2449.008
 ## 2 Algeria 1957 10270856    Africa  45.685  3013.976
-##  [ reached getOption(&quot;max.print&quot;) -- omitted 4 rows ]</code></pre>
+## 3 Algeria 1962 11000948    Africa  48.303  2550.817
+## 4 Algeria 1967 12760499    Africa  51.407  3246.992
+## 5 Algeria 1972 14760787    Africa  54.518  4182.664
+##  [ reached getOption(&quot;max.print&quot;) -- omitted 1 row ]</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(gapminder)</code></pre></div>
 <pre><code>##       country year      pop continent lifeExp gdpPercap
 ## 1 Afghanistan 1952  8425333      Asia  28.801  779.4453
 ## 2 Afghanistan 1957  9240934      Asia  30.332  820.8530
-##  [ reached getOption(&quot;max.print&quot;) -- omitted 4 rows ]</code></pre>
+## 3 Afghanistan 1962 10267083      Asia  31.997  853.1007
+## 4 Afghanistan 1967 11537966      Asia  34.020  836.1971
+## 5 Afghanistan 1972 13079460      Asia  36.088  739.9811
+##  [ reached getOption(&quot;max.print&quot;) -- omitted 1 row ]</code></pre>
 <p>We’re almost there, the original was sorted by <code>country</code>, <code>continent</code>, then <code>year</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gap_normal &lt;-<span class="st"> </span>gap_normal %&gt;%<span class="st"> </span><span class="kw">arrange</span>(country,continent,year)
 <span class="kw">all.equal</span>(gap_normal,gapminder)</code></pre></div>
@@ -463,7 +469,12 @@ gap_wide_betterID &lt;-<span class="st"> </span>gap_long %&gt;%<span class="st">
 ## 2     Africa   lifeExp 4.886533e+01
 ## 3     Africa       pop 9.916003e+06
 ## 4   Americas gdpPercap 7.136110e+03
-##  [ reached getOption(&quot;max.print&quot;) -- omitted 11 rows ]</code></pre>
+## 5   Americas   lifeExp 6.465874e+01
+## 6   Americas       pop 2.450479e+07
+## 7       Asia gdpPercap 7.902150e+03
+## 8       Asia   lifeExp 6.006490e+01
+## 9       Asia       pop 7.703872e+07
+##  [ reached getOption(&quot;max.print&quot;) -- omitted 6 rows ]</code></pre>
 </blockquote>
 <blockquote>
 <h2 id="solution-to-challenge-3" class="challenge">Solution to Challenge 3</h2>

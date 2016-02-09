@@ -203,7 +203,7 @@ df</code></pre></div>
 ## 3  c 3 216
 ## 4  d 4 217
 ## 5  e 5 218
-##  [ reached getOption(&quot;max.print&quot;) -- omitted 1 row ]</code></pre>
+## 6  f 6 219</code></pre>
 <blockquote>
 <h2 id="challenge-1-data-frames" class="challenge">Challenge 1: Data frames</h2>
 <p>Try using the <code>length</code> function to query your data frame <code>df</code>. Does it give the result you expect?</p>
@@ -219,7 +219,9 @@ df</code></pre></div>
 ## 1  a 1 214   6
 ## 2  b 2 215   5
 ## 3  c 3 216   4
-##  [ reached getOption(&quot;max.print&quot;) -- omitted 3 rows ]</code></pre>
+## 4  d 4 217   3
+## 5  e 5 218   2
+## 6  f 6 219   1</code></pre>
 <p>Note that R automatically names the column. We may decide to change the name by assigning a value using the <code>names</code> function:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(df)[<span class="dv">4</span>] &lt;-<span class="st"> &#39;z&#39;</span></code></pre></div>
 <p>We can also provide a name when we add the column:</p>
@@ -229,7 +231,9 @@ df</code></pre></div>
 ## 1  a 1 214 6    A
 ## 2  b 2 215 5    B
 ## 3  c 3 216 4    C
-##  [ reached getOption(&quot;max.print&quot;) -- omitted 3 rows ]</code></pre>
+## 4  d 4 217 3    D
+## 5  e 5 218 2    E
+## 6  f 6 219 1    F</code></pre>
 </div>
 <div id="adding-rows-to-a-data-frame" class="section level2">
 <h2>Adding rows to a data frame</h2>
@@ -265,7 +269,10 @@ df &lt;-<span class="st"> </span><span class="kw">rbind</span>(df, df2)</code></
 <pre><code>##       country year      pop continent lifeExp gdpPercap
 ## 1 Afghanistan 1952  8425333      Asia  28.801  779.4453
 ## 2 Afghanistan 1957  9240934      Asia  30.332  820.8530
-##  [ reached getOption(&quot;max.print&quot;) -- omitted 4 rows ]</code></pre>
+## 3 Afghanistan 1962 10267083      Asia  31.997  853.1007
+## 4 Afghanistan 1967 11537966      Asia  34.020  836.1971
+## 5 Afghanistan 1972 13079460      Asia  36.088  739.9811
+##  [ reached getOption(&quot;max.print&quot;) -- omitted 1 row ]</code></pre>
 <blockquote>
 <h2 id="miscellaneous-tips" class="callout">Miscellaneous Tips</h2>
 <ol style="list-style-type: decimal">
@@ -303,7 +310,10 @@ df &lt;-<span class="st"> </span><span class="kw">rbind</span>(df, df2)</code></
 <pre><code>##       country year      pop continent lifeExp gdpPercap
 ## 1 Afghanistan 1952  8425333      Asia  28.801  779.4453
 ## 2 Afghanistan 1957  9240934      Asia  30.332  820.8530
-##  [ reached getOption(&quot;max.print&quot;) -- omitted 4 rows ]</code></pre>
+## 3 Afghanistan 1962 10267083      Asia  31.997  853.1007
+## 4 Afghanistan 1967 11537966      Asia  34.020  836.1971
+## 5 Afghanistan 1972 13079460      Asia  36.088  739.9811
+##  [ reached getOption(&quot;max.print&quot;) -- omitted 1 row ]</code></pre>
 <p>Write down what data type you think is in each column</p>
 </blockquote>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(gapminder$year)</code></pre></div>
@@ -341,19 +351,19 @@ df &lt;-<span class="st"> </span><span class="kw">rbind</span>(df, df2)</code></
 <pre><code>##             a    b        c    d      e        f
 ## 1 Afghanistan 1952  8425333 Asia 28.801 779.4453
 ## 2 Afghanistan 1957  9240934 Asia 30.332 820.8530
-##  [ reached getOption(&quot;max.print&quot;) -- omitted 1 row ]</code></pre>
+## 3 Afghanistan 1962 10267083 Asia 31.997 853.1007</code></pre>
 <blockquote>
 <h2 id="challenge-5" class="challenge">Challenge 5</h2>
 <p>Recall that we also used the <code>names</code> function (above) to modify column names. Does it matter which you use? You can check help with <code>?names</code> and <code>?colnames</code> to see whether it should matter.</p>
 </blockquote>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rownames</span>(gapminder)[<span class="dv">1</span>:<span class="dv">20</span>]</code></pre></div>
 <pre><code>##  [1] &quot;1&quot;  &quot;2&quot;  &quot;3&quot;  &quot;4&quot;  &quot;5&quot;  &quot;6&quot;  &quot;7&quot;  &quot;8&quot;  &quot;9&quot;  &quot;10&quot; &quot;11&quot; &quot;12&quot; &quot;13&quot; &quot;14&quot;
-## [15] &quot;15&quot;
-##  [ reached getOption(&quot;max.print&quot;) -- omitted 5 entries ]</code></pre>
+## [15] &quot;15&quot; &quot;16&quot; &quot;17&quot; &quot;18&quot; &quot;19&quot; &quot;20&quot;</code></pre>
 <p>See those numbers in the square brackets on the left? That tells you the number of the first entry in that row of output. So we see that for the 5th row, the rowname is “5”. In this case, the rownames are simply the row numbers.</p>
 </div>
 <div id="challenge-solutions" class="section level2">
 <h2>Challenge Solutions</h2>
+<p>Solutions to challenges 2 &amp; 3.</p>
 <blockquote>
 <h2 id="solution-to-challenge-2" class="challenge">Solution to Challenge 2</h2>
 <p>Create a data frame that holds the following information for yourself:</p>

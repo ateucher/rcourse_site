@@ -315,8 +315,8 @@ for (i in <span class="dv">1</span>:<span class="dv">5</span>){
 }
 output_vector</code></pre></div>
 <pre><code>##  [1] &quot;1 a&quot; &quot;1 b&quot; &quot;1 c&quot; &quot;1 d&quot; &quot;1 e&quot; &quot;2 a&quot; &quot;2 b&quot; &quot;2 c&quot; &quot;2 d&quot; &quot;2 e&quot; &quot;3 a&quot;
-## [12] &quot;3 b&quot; &quot;3 c&quot; &quot;3 d&quot; &quot;3 e&quot;
-##  [ reached getOption(&quot;max.print&quot;) -- omitted 10 entries ]</code></pre>
+## [12] &quot;3 b&quot; &quot;3 c&quot; &quot;3 d&quot; &quot;3 e&quot; &quot;4 a&quot; &quot;4 b&quot; &quot;4 c&quot; &quot;4 d&quot; &quot;4 e&quot; &quot;5 a&quot; &quot;5 b&quot;
+## [23] &quot;5 c&quot; &quot;5 d&quot; &quot;5 e&quot;</code></pre>
 <p>This approach can be useful, but ‘growing your results’ (building the result object incrementally) is computationally inefficient, so avoid it when you are iterating through a lot of values.</p>
 <blockquote>
 <h2 id="tip-dont-grow-your-results" class="callout">Tip: don’t grow your results</h2>
@@ -335,8 +335,8 @@ for (i in <span class="dv">1</span>:<span class="dv">5</span>){
 output_vector2 &lt;-<span class="st"> </span><span class="kw">as.vector</span>(output_matrix)
 output_vector2</code></pre></div>
 <pre><code>##  [1] &quot;1 a&quot; &quot;2 a&quot; &quot;3 a&quot; &quot;4 a&quot; &quot;5 a&quot; &quot;1 b&quot; &quot;2 b&quot; &quot;3 b&quot; &quot;4 b&quot; &quot;5 b&quot; &quot;1 c&quot;
-## [12] &quot;2 c&quot; &quot;3 c&quot; &quot;4 c&quot; &quot;5 c&quot;
-##  [ reached getOption(&quot;max.print&quot;) -- omitted 10 entries ]</code></pre>
+## [12] &quot;2 c&quot; &quot;3 c&quot; &quot;4 c&quot; &quot;5 c&quot; &quot;1 d&quot; &quot;2 d&quot; &quot;3 d&quot; &quot;4 d&quot; &quot;5 d&quot; &quot;1 e&quot; &quot;2 e&quot;
+## [23] &quot;3 e&quot; &quot;4 e&quot; &quot;5 e&quot;</code></pre>
 <blockquote>
 <h2 id="tip-while-loops" class="callout">Tip: While loops</h2>
 <p>Sometimes you will find yourself needing to repeat an operation until a certain condition is met. You can do this with a <code>while</code> loop.</p>

@@ -56,7 +56,7 @@ for (fname in files) {
 exercise_number <- 0
 dplyr_tidyr_pngs_to_copy <- list.files("fig", "^(05-dplyr|06-tidyr)-.+\\.png$", full.names = TRUE)
 dir.create("pdf/fig", showWarnings = FALSE)
-file.copy(dplyr_tidyr_pngs_to_copy, to = "pdf/fig/")
+file.copy(dplyr_tidyr_pngs_to_copy, to = "pdf/fig/dplyr_tidyr")
 render("pdf/Intro_R_ATeucher.Rmd")
 
 # Reset options and get rid of stuff
