@@ -1,7 +1,6 @@
 ---
+title: "Getting started with R: The essentials"
 ---
-
-# Getting started with R: The essentials
 
 ** The structure and much of the content in this module was borrowed from 
 [Software Carpentry](http://www.softwarecarpentry.org)'s
@@ -10,7 +9,7 @@
 Creative Commons Attribution [(CC_BY)](http://creativecommons.org/licenses/by/3.0/) 
 license.
 
-*Note: We covered some, but not all of this content in the course (in the [Introduction](00-introduction.html))**
+*Note: We covered some, but not all of this content in the course (in the [Introduction](01-introduction.html))**
 
 * Its really important that you know what you did. More journals/grants/etc. are also making it important for them to know what you did.
 * A lot of scientific code is *not* reproducible.
@@ -174,7 +173,15 @@ List objects in your workspace with `ls()` function.
 
 ```{r}
 x <- 5
+```
+
+```{r, eval=FALSE}
 ls()
+```
+
+```
+[1] "days_per_week" "hrs_per_day"   "hrs_per_week" 
+[4] "x"  
 ```
 
 Remove objects from your workspace with the `rm()` function.

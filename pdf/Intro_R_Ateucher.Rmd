@@ -8,41 +8,62 @@ output:
     toc_depth: 2
 ---
 
-```{r child = "../00-basics.Rmd"}
-```
+# Introduction to R and RStudio
 
 ```{r child = "../01-introduction.Rmd"}
 ```
 
+# Data frames
+
 ```{r child = "../02-data_frames.Rmd"}
 ```
+
+# Data visualization with ggplot2
 
 ```{r child = "../03-plotting.Rmd"}
 ```
 
+# Subsetting data
+
 ```{r child = "../04-subsetting.Rmd"}
 ```
+
+# Dataframe manipulation with dplyr
 
 ```{r child = "../05-dplyr.Rmd"}
 ```
 
+# Dataframe manipulation with tidyr
+
 ```{r child = "../06-tidyr.Rmd"}
 ```
+
+# Writing data
 
 ```{r child = "../07-writing-data.Rmd"}
 ```
 
+# Basic statistics
+
 ```{r child = "../08-basic_stats.Rmd"}
 ```
+
+# Writing functions
 
 ```{r child = "../09-functions.Rmd"}
 ```
 
+# Flow control
+
 ```{r child = "../10-control-flow.Rmd"}
 ```
 
+# Best Practices
+
 ```{r child = "../best-practices.Rmd"}
 ```
+
+# Getting help
 
 ```{r child = "../getting_help.Rmd"}
 ```

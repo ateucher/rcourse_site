@@ -1,7 +1,6 @@
 ---
+title: Best Practices
 ---
-
-# Best Practices
 
 ** The structure and content in this module was borrowed (largely verbatim) 
 from [Software Carpentry](http://www.softwarecarpentry.org)'s

@@ -1,4 +1,5 @@
 ---
+title: Writing functions
 ---
 
 ```{r, include=FALSE}

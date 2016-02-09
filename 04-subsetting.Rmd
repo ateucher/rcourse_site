@@ -1,7 +1,6 @@
 ---
+title: Subsetting data
 ---
-
-# Subsetting data
 
 ```{r, include=FALSE}
 # Silently load in the data so the rest of the lesson works

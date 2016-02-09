@@ -1,7 +1,6 @@
 ---
+title: Getting help
 ---
-
-# Getting R Help
 
 To get help for a particular function in R, type `?` and then the function name:
 

@@ -1,7 +1,6 @@
 ---
+title: Data visualization with ggplot2
 ---
-
-# Data visualization with ggplot2
 
 ```{r, include=FALSE}
 knitr::opts_chunk$set(fig.path = "fig/03-plotting-")

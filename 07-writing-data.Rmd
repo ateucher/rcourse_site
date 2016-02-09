@@ -1,4 +1,5 @@
 ---
+title: Writing data
 ---
 
 ```{r, include=FALSE}

@@ -1,8 +1,6 @@
 ---
-
+title: Dataframe manipulation with tidyr
 ---
-
-# Dataframe manipulation with tidyr
 
 ```{r, include=FALSE}
 knitr::opts_chunk$set(fig.path = "fig/06-tidyr-")

@@ -1,7 +1,6 @@
 ---
+title: Basic statistics
 ---
-
-# Basic statistics
 
 ```{r, include=FALSE}
 knitr::opts_chunk$set(fig.path = "fig/08-basic_stats-")

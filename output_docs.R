@@ -5,7 +5,7 @@ require(knitr)
 
 # Define a function to enumerate exercises
 exercise_number <- 0
-exercise <- function (txt) {
+exercise <- function(txt) {
   exercise_number <<- exercise_number + 1
   cat(paste0("\n**Exercise ", exercise_number, ":** "), paste0("*", txt, "*\n"))
 }
@@ -17,6 +17,7 @@ options(max.print = 30L)
 # clean old files
 clean_files <- list.files(c(".", "./pdf"), pattern = ".\\.html|.\\.pdf", 
                           full.names = TRUE)
+clean_files <- setdiff(clean_files, "./_navbar.html")
 dirs <- list.dirs(recursive = FALSE)
 clean_dirs <- dirs[grep("_files$", dirs)]
 unlink(c(clean_files, clean_dirs), recursive = TRUE)
@@ -45,9 +46,10 @@ if (!file.exists(gapdata)) {
 }
 
 # Knit Rmd files to html
-RmdDocs <- list.files(".", pattern="*\\.Rmd", full.names = TRUE)
-files <- RmdDocs
-files <- normalizePath(RmdDocs, winslash="/")
+RmdDocs <- list.files(".", pattern = "\\.Rmd$", full.names = TRUE)
+old_RmdDocs <- list.files(".", pattern = "^old_.*\\.Rmd$", full.names = TRUE)
+files <- setdiff(RmdDocs, old_RmdDocs)
+files <- normalizePath(files, winslash="/")
 for (fname in files) {
   render(basename(fname))
 }
