@@ -12,7 +12,7 @@ exercise <- function (txt) {
 
 opts_chunk$set(results="markup")
 maxprint <- getOption("max.print")
-options(max.print = 15L)
+options(max.print = 30L)
 
 # clean old files
 clean_files <- list.files(c(".", "./pdf"), pattern = ".\\.html|.\\.pdf", 
@@ -53,12 +53,11 @@ for (fname in files) {
 }
 
 # knit pdf
-options(max.print = 10L)
 exercise_number <- 0
 dplyr_tidyr_pngs_to_copy <- list.files("fig", "^(05-dplyr|06-tidyr)-.+\\.png$", full.names = TRUE)
 dir.create("pdf/fig", showWarnings = FALSE)
 file.copy(dplyr_tidyr_pngs_to_copy, to = "pdf/fig/")
-render("pdf/Intro_R_ATeucher.Rmd", clean = FALSE)
+render("pdf/Intro_R_ATeucher.Rmd")
 
 # Reset options and get rid of stuff
 options(max.print = maxprint)
