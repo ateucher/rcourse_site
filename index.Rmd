@@ -25,9 +25,7 @@ On this page you will find links to the data we need for the course, as well as 
 
 1. [Writing functions](09-functions.html)
 
-1. [Repeating things](10-repeating-things.html)
-
-1. [Control flow](11-control-flow.html)
+1. [Control flow](10-control-flow.html)
 
 1. [Best practices](best-practices.html)
 

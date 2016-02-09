@@ -38,10 +38,7 @@ output:
 ```{r child = "../09-functions.Rmd"}
 ```
 
-```{r child = "../10-repeating-things.Rmd"}
-```
-
-```{r child = "../11-control-flow.Rmd"}
+```{r child = "../10-control-flow.Rmd"}
 ```
 
 ```{r child = "../best-practices.Rmd"}
