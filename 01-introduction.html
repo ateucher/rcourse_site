@@ -30,7 +30,7 @@
  } 
  } 
  /* offset scroll position for anchor links (for fixed navbar) */
- @media (min-width: 980px) {
+ @media (min-width: 980px) { 
  .section h2 { 
  padding-top: 52px; 
  margin-top: -52px; 
@@ -147,16 +147,19 @@ img {
           <li class="dropdown">
             <a href="notes" class="dropdown-toggle" data-toggle="dropdown">Course Notes <b class="caret"></b></a>
             <ul class="dropdown-menu">
-               <li><a href="00basics.html">Basics</a></li>
+               <li><a href="00-basics.html">Basics</a></li>
                <li><a href="01-introduction.html">Introduction</a></li>
-               <li><a href="02-data_frames.html">Starting With Data</a></li>
-               <li><a href="02-dplyr.html">Data Munging with dplyr</a></li>
+               <li><a href="02-data_frames.html">Starting With data</a></li>
                <li><a href="03-plotting.html">Plotting with ggplot2</a></li>
-               <li><a href="04-basic_stats.html">Basic Statistics</a></li>
-               <li><a href="05-repeating-things.html">Repeating Things</a></li>
-               <li><a href="06-functions.html">Functions</a></li>
-               <li><a href="07-all-together.html">Putting it all Together</a></li>
-               <li><a href="08-best-practices.html">Best Practices</a></li>
+               <li><a href="04-subsetting.html">Subsetting data</a></li>
+               <li><a href="05-dplyr.html">Data manipulation with dplyr</a></li>
+               <li><a href="06-tidyr.html">Data manipulation with tidyr</a></li>
+               <li><a href="07-writing-data.html">Writing data</a></li>
+               <li><a href="08-basic-stats.html">Basic statistics</a></li>
+               <li><a href="09-functions.html">Writing functions</a></li>
+               <li><a href="10-control-flow.html">Control flow</a></li>
+               <!--<li><a href="11-all-together.html">Putting it all Together</a></li>-->
+               <li><a href="best-practices.html">Best Practices</a></li>
                <li><a href="getting_help.html">Getting Help</a></li>
             </ul>
           </li>
@@ -164,8 +167,6 @@ img {
             <a href="data" class="dropdown-toggle" data-toggle="dropdown">Data <b class="caret"></b></a>
             <ul class="dropdown-menu">
                <li><a href="data/gapminder-FiveYearData.csv">Gapminder Dataset (csv)</a></li>
-               <li><a href="data/iris.csv">Iris Dataset (csv)</a></li>
-               <li><a href="data/iris.zip">Iris Dataset (zip)</a></li>
             </ul>
           </li>
         </ul>
@@ -184,8 +185,6 @@ img {
 
 <div id="introduction-to-r-and-rstudio" class="section level1">
 <h1>Introduction to R and RStudio</h1>
-<div id="introduction" class="section level2">
-<h2>Introduction</h2>
 <blockquote>
 <h2 id="learning-objectives" class="objectives">Learning Objectives</h2>
 <ul>
@@ -198,7 +197,6 @@ img {
 <li>To be able to create self-contained projects in RStudio</li>
 </ul>
 </blockquote>
-</div>
 <div id="introduction-to-rstudio" class="section level2">
 <h2>Introduction to RStudio</h2>
 <p>Throughout this lesson, we’re going to teach you some of the fundamentals of the R language as well as some best practices for organising code for scientific projects that will make your life easier.</p>
@@ -430,7 +428,12 @@ x &lt;-<span class="st"> </span><span class="kw">as.factor</span>(x)
 <p>There are a few useful commands you can use to interact with the R session.</p>
 <p><code>ls</code> will list all of the variables and functions stored in the global environment (your working R session):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls</span>()</code></pre></div>
-<pre><code>## [1] &quot;exercise&quot;        &quot;exercise_number&quot; &quot;x&quot;               &quot;y&quot;</code></pre>
+<pre><code>##  [1] &quot;a&quot;               &quot;Andy&quot;            &quot;b&quot;              
+##  [4] &quot;clean_dirs&quot;      &quot;clean_files&quot;     &quot;dat&quot;            
+##  [7] &quot;days_per_week&quot;   &quot;dirs&quot;            &quot;exercise&quot;       
+## [10] &quot;exercise_number&quot; &quot;f&quot;               &quot;files&quot;          
+## [13] &quot;first.names&quot;     &quot;fname&quot;           &quot;gapdata&quot;        
+##  [ reached getOption(&quot;max.print&quot;) -- omitted 14 entries ]</code></pre>
 <p>Note here that we didn’t given any arguments to <code>ls</code>, but we still needed to give the parentheses to tell R to call the function.</p>
 <p>If we type <code>ls</code> by itself, R will print out the source code for that function!</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ls</code></pre></div>
@@ -465,7 +468,7 @@ x &lt;-<span class="st"> </span><span class="kw">as.factor</span>(x)
 ##     }
 ##     else all.names
 ## }
-## &lt;bytecode: 0x7ff6856559c8&gt;
+## &lt;bytecode: 0x102615070&gt;
 ## &lt;environment: namespace:base&gt;</code></pre>
 <p>You can use <code>rm</code> to delete objects you no longer need:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(x)</code></pre></div>
@@ -510,7 +513,7 @@ age &lt;-<span class="st"> </span>age -<span class="st"> </span><span class="dv"
 </div>
 <div id="project-management-with-rstudio" class="section level1">
 <h1>Project management with RStudio</h1>
-<div id="introduction-1" class="section level2">
+<div id="introduction" class="section level2">
 <h2>Introduction</h2>
 <p>The scientific process is naturally incremental, and many projects start life as random notes, some data, some code, then a report or manuscript, and eventually everything is a bit mixed together.</p>
 <p>It’s pretty easy to get data scattered among many different folders, with multiple versions.</p>

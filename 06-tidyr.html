@@ -157,8 +157,7 @@ img {
                <li><a href="07-writing-data.html">Writing data</a></li>
                <li><a href="08-basic-stats.html">Basic statistics</a></li>
                <li><a href="09-functions.html">Writing functions</a></li>
-               <li><a href="10-repeating-things.html">Repeating things</a></li>
-               <li><a href="11-control-flow.html">Control flow</a></li>
+               <li><a href="10-control-flow.html">Control flow</a></li>
                <!--<li><a href="11-all-together.html">Putting it all Together</a></li>-->
                <li><a href="best-practices.html">Best Practices</a></li>
                <li><a href="getting_help.html">Getting Help</a></li>
@@ -322,18 +321,12 @@ gap_long$year &lt;-<span class="st"> </span><span class="kw">as.integer</span>(g
 <pre><code>##   country year      pop continent lifeExp gdpPercap
 ## 1 Algeria 1952  9279525    Africa  43.077  2449.008
 ## 2 Algeria 1957 10270856    Africa  45.685  3013.976
-## 3 Algeria 1962 11000948    Africa  48.303  2550.817
-## 4 Algeria 1967 12760499    Africa  51.407  3246.992
-## 5 Algeria 1972 14760787    Africa  54.518  4182.664
-## 6 Algeria 1977 17152804    Africa  58.014  4910.417</code></pre>
+##  [ reached getOption(&quot;max.print&quot;) -- omitted 4 rows ]</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(gapminder)</code></pre></div>
 <pre><code>##       country year      pop continent lifeExp gdpPercap
 ## 1 Afghanistan 1952  8425333      Asia  28.801  779.4453
 ## 2 Afghanistan 1957  9240934      Asia  30.332  820.8530
-## 3 Afghanistan 1962 10267083      Asia  31.997  853.1007
-## 4 Afghanistan 1967 11537966      Asia  34.020  836.1971
-## 5 Afghanistan 1972 13079460      Asia  36.088  739.9811
-## 6 Afghanistan 1977 14880372      Asia  38.438  786.1134</code></pre>
+##  [ reached getOption(&quot;max.print&quot;) -- omitted 4 rows ]</code></pre>
 <p>We’re almost there, the original was sorted by <code>country</code>, <code>continent</code>, then <code>year</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gap_normal &lt;-<span class="st"> </span>gap_normal %&gt;%<span class="st"> </span><span class="kw">arrange</span>(country,continent,year)
 <span class="kw">all.equal</span>(gap_normal,gapminder)</code></pre></div>
@@ -470,17 +463,7 @@ gap_wide_betterID &lt;-<span class="st"> </span>gap_long %&gt;%<span class="st">
 ## 2     Africa   lifeExp 4.886533e+01
 ## 3     Africa       pop 9.916003e+06
 ## 4   Americas gdpPercap 7.136110e+03
-## 5   Americas   lifeExp 6.465874e+01
-## 6   Americas       pop 2.450479e+07
-## 7       Asia gdpPercap 7.902150e+03
-## 8       Asia   lifeExp 6.006490e+01
-## 9       Asia       pop 7.703872e+07
-## 10    Europe gdpPercap 1.446948e+04
-## 11    Europe   lifeExp 7.190369e+01
-## 12    Europe       pop 1.716976e+07
-## 13   Oceania gdpPercap 1.862161e+04
-## 14   Oceania   lifeExp 7.432621e+01
-## 15   Oceania       pop 8.874672e+06</code></pre>
+##  [ reached getOption(&quot;max.print&quot;) -- omitted 11 rows ]</code></pre>
 </blockquote>
 <blockquote>
 <h2 id="solution-to-challenge-3" class="challenge">Solution to Challenge 3</h2>
