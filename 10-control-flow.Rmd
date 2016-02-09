@@ -1,12 +1,7 @@
 ---
-layout: page
-title: R for reproducible scientific analysis
-subtitle: Control flow
-minutes: 35
 ---
 
 ```{r, include=FALSE}
-source("tools/chunk-options.R")
 # Silently load in the data so the rest of the lesson works
 gapminder <- read.csv("data/gapminder-FiveYearData.csv", header=TRUE)
 # Silently set seed for random number generation, so we don't have to explain it
