@@ -3,6 +3,12 @@
 
 # Basic statistics
 
+```{r, include=FALSE}
+# Silently load in the data so the rest of the lesson works
+gapminder <- read.csv("data/gapminder-FiveYearData.csv", header=TRUE)
+library(ggplot2)
+```
+
 Of course, R was written by statisticians, for statisticians.  We're not going 
 to go deep into stats - partly because I'm not really that qualified to teach it, 
 and because we don't have time to cover all of the potential needs that people 
@@ -11,8 +17,8 @@ the common **R** way of fitting statistical models.
 
 ### t-test
 
-We'll keep going with our Iris data; we want to test if petal lengths are 
-significantly different between _Iris setosa_ and _Iris virginica_; so we can use a 
+We'll keep going with our gapminder data; we want to test if GDP is 
+significantly different between the Americas and Europe in 2007; so we can use a 
 basic two-sample t-test.
 
 First, let's search the help to find out what functions are avaible: `??"t-test"`
@@ -29,49 +35,70 @@ t.test(data, mu=0)
 ## Unsurprisingly, not significant.
 ```
 
-For the iris data, we want to use a two-sample t-test.  I like using the formula 
+For our GDP question data, we want to use a two-sample t-test.  I like using the formula 
 specification because it's similar to how many other statistical tests are 
-specified: ` t.test(Value ~ factor, data=)`
+specified: `t.test(Value ~ factor, data=)`
 
-Since we're only interested in _setosa_ and _virginica_, we need to get rid of 
-_versicolor_.
+Since we're only interested in Europe and the Americas in 2007, we need to do a bit of filtering of the data.
 
 ```{r dropfort-test}
-require(dplyr)
-setosa.virginica <- filter(dat, Species != "versicolor")
-summary(setosa.virginica)
-setosa.virginica <- droplevels(setosa.virginica)
+library(dplyr)
+gdp_07_EuAm <- filter(gapminder, 
+                      continent %in% c("Americas", "Europe"), 
+                      year == 2007)
+summary(gdp_07_EuAm)
+gdp_07_EuAm <- droplevels(gdp_07_EuAm)
 ```
 
 ```{r tst-test}
-t.test(Sepal.Length ~ Species, data=setosa.virginica)
+t.test(gdpPercap ~ continent, data = gdp_07_EuAm)
 ```
 
 ### Simple linear regression
 
-Let's see if petal length can be used to predict petal width for a single species; _Iris setosa_. (Note; this is a bit of a misuse of regression, as regression 
-usually implies causation, but as an example it will suffice).
+Let's explore the relationship between life expectancy and year
 
-The following code fits the basic linear regression model where `Petal.Length` 
-is the response variable and `Petal.Width` is the predictor variable, then 
-prints a summary of the model.
-
-```{r olsreg}
-setosa.dat <- filter(dat, Species == "setosa")
-petal.reg <- lm(Petal.Length ~ Petal.Width, data=setosa.dat)
-summary(petal.reg)
+```{r}
+reg <- lm(lifeExp ~ year, data=gapminder)
 ```
+
+We won't go into too much detail, but briefly: 
+
+* `lm` estimates linear statistical models
+* The first argument is a formula, with  `a ~ b` meaning that `a`,
+     the dependent (or response) variable, is a
+    function of `b`, the independent variable. 
+* We tell `lm` to use the gapminder data frame, so it knows where to
+ find the variables `lifeExp` and `year`. 
+
+Let's look at the output, which is an object of class `lm`:
+
+```{r}
+reg
+class(reg)
+```
+
+There's a great deal stored in this object!
+
+For now, we can look at the `summary`:
+
+```{r}
+summary(reg)
+```
+
+As you might expect, life expectancy has slowly been increasing over
+time, so we see a significant positive association!
 
 #### Plot the data with the regression line, along with confidence limits
 
 ```{r olsreg-plot}
-p <- ggplot(setosa.dat, aes(x = Petal.Width, y = Petal.Length)) + geom_point()
+p <- ggplot(gapminder, aes(x = year, y = lifeExp)) + geom_point()
 
-dummy <- data.frame(Petal.Width = seq(from = min(setosa.dat$Petal.Width), 
-                                     to = max(setosa.dat$Petal.Width), 
+dummy <- data.frame(year = seq(from = min(gapminder$year), 
+                                     to = max(gapminder$year), 
                                      length.out = 100))
                    
-pred <- predict(petal.reg, newdata=dummy, interval = "conf")
+pred <- predict(reg, newdata=dummy, interval = "conf")
 
 dummy <- cbind(dummy, pred)
 
@@ -97,8 +124,8 @@ We can check these assumptions of the model by plotting the residuals vs the
 fitted values.
 
 ```{r ggplot-resids}
-fitted <- fitted(petal.reg)
-residuals <- resid(petal.reg)
+fitted <- fitted(reg)
+residuals <- resid(reg)
 
 ggplot(data=NULL, aes(x = fitted, y = residuals)) + geom_point() + 
   geom_hline(yintercept = 0)
@@ -110,39 +137,40 @@ object you call them on.  When you call plot on an `lm` object, a series of
 diagnostic plots is created to help us check the assumptions of the `lm` object.
 
 ```{r olsreg-check}
-plot(petal.reg)
+plot(reg)
 ```
 
 Get more information on these plots by checking `?plot.lm`.
 
 ### Analysis of Variance (ANOVA)
 
-Now say we want to compare an attribute among all three species, then we can't 
+Now say we want to extend our GDP analysis above to all continents, then we can't 
 use a t-test; we have to use an ANOVA.  Since an ANOVA is simply a linear 
 regression model with a categorical rather than continuous predictor variable, we 
 still use the `lm()` function.  Let's test for differences in petal length among 
 all three species.
 
 ```{r anova}
-petal_length.aov <- lm(Petal.Length ~ Species, data=dat)
-summary(petal_length.aov)
-anova(petal_length.aov)
+gap_07 <- filter(gapminder, year == 2007)
+gdp_aov <- lm(gdpPercap ~ continent, data=gapminder)
+summary(gdp_aov)
+anova(gdp_aov)
 ```
 
 #### Plot
 
 ```{r petal-box-plot}
-ggplot(data = dat, aes(x = Species, y = Petal.Length)) + geom_boxplot()
-ggplot(data = dat, aes(x = Species, y = Petal.Length)) + geom_point()
-ggplot(data = dat, aes(x = Species, y = Petal.Length)) + geom_jitter()
-
+ggplot(data = gap_07, aes(x = continent, y = gdpPercap)) + geom_boxplot()
+ggplot(data = gap_07, aes(x = continent, y = gdpPercap)) + geom_point()
+ggplot(data = gap_07, aes(x = continent, y = gdpPercap, colour = continent)) +
+  geom_jitter()
 ```
 
 #### Check assumptions
 
 ```{r ggplot-aov-resids}
-fitted <- fitted(petal_length.aov)
-residuals <- resid(petal_length.aov)
+fitted <- fitted(gdp_aov)
+residuals <- resid(gdp_aov)
 
 ggplot(data=NULL, aes(x = fitted, y = residuals)) + geom_point() + 
   geom_hline(yintercept = 0)
