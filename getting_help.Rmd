@@ -25,6 +25,15 @@ quotes if more than one word):
 * Each other! (Talk it out)
 * [Tell it to the duck](http://blog.codinghorror.com/rubber-duck-problem-solving/)
 
+### Cheat Sheets
+
+* [General **R** cheatsheet](https://cran.r-project.org/doc/contrib/Baggott-refcard-v2.pdf)
+* [RStudio Cheetsheets](https://www.rstudio.com/resources/cheatsheets/) on:
+    - Data Wrangling with dplyr and tidyr, 
+    - Data Visualization with ggplot2,
+    - Using RStudio
+    - Other more advanced topics such as package development, Shiny, and R Markdown
+
 ### ggplot2
 
 * [ggplot2 official documentation](http://docs.ggplot2.org/current/)
