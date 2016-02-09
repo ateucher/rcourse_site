@@ -176,6 +176,27 @@ ggplot(data=NULL, aes(x = fitted, y = residuals)) + geom_point() +
   geom_hline(yintercept = 0)
 ```
 
+### More advanced linear models and model selection using AIC
+
+Here we're going to divert to a different dataset: Measurements of Sepals and Petals (widths and lengths) in three species of Iris. We are going to explore the relationship between sepal length, sepal width among species.  
+
+```{r}
+mod1 <- lm(Sepal.Length ~ Sepal.Width * Species, data=iris) # includes interaction term
+mod1a <- lm(Sepal.Length ~ Sepal.Width + Species + Sepal.Width:Species, data=iris) #Equivalend to above
+mod2 <- lm(Sepal.Length ~ Sepal.Width + Species, data=iris) # ANCOVA
+mod3 <- lm(Sepal.Length ~ Sepal.Width, data=iris)
+mod4 <- lm(Sepal.Length ~ Species, data=iris)
+
+AIC(mod1, mod2, mod3, mod4)
+```
+
+Let's plot the data:
+```{r ggplot-adv-lm}
+ggplot(iris, aes(x=Sepal.Width, y=Sepal.Length, colour=Species, group=Species)) + 
+  geom_point() + 
+  geom_smooth(method="lm", formula = y ~ x)
+```
+
 ### Generalized linear models: Logistic regression
 
 Say you want to know whether elevation can predict whether or not a particular 
@@ -230,26 +251,3 @@ ggplot(elev_pres.data, aes(x = elev, y = pres)) +
   geom_line(aes(y = predict(lr1, type="response")))
 
 ```
-
-
-
-### More advanced linear models and model selection using AIC
-
-```{r}
-mod1 <- lm(Sepal.Length ~ Sepal.Width * Species, data=iris)
-mod2 <- lm(Sepal.Length ~ Sepal.Width + Species, data=iris) # ANCOVA
-mod3 <- lm(Sepal.Length ~ Sepal.Width, data=iris)
-mod4 <- lm(Sepal.Length ~ Species, data=iris)
-
-AIC(mod1, mod2, mod3, mod4)
-```
-
-Let's plot the data:
-```{r ggplot-adv-lm}
-ggplot(iris, aes(x=Sepal.Width, y=Sepal.Length, colour=Species, group=Species)) + 
-  geom_point() + 
-  geom_smooth(method="lm", formula = y ~ x)
-```
-
-
-
