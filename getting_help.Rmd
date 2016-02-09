@@ -38,7 +38,7 @@ quotes if more than one word):
 * [The R Graphics Cookbook](http://www.amazon.com/gp/product/1449316956) by 
   Winston Change - The paper version of the Cookbook for R website mentioned above
   
-### Other learning resources - onlince courses, etc
+### Other learning resources - online courses, etc
 
 * [R for cats](http://rforcats.net/)
 * [Try R - codeschool](http://tryr.codeschool.com/)
