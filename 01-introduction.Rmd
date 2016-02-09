@@ -124,7 +124,7 @@ would have learnt back in school.
 From highest to lowest precedence:
 
  * Parentheses: `(`, `)`
- * Exponents: `^` or `*`*
+ * Exponents: `^`
  * Divide: `/`
  * Multiply: `*`
  * Add: `+`
@@ -542,15 +542,14 @@ functionality. We'll be using this today to create a self-contained, reproducibl
 project.
 
 
-> ## Challenge: Creating a self-contained project {.challenge}
+> ## Challenge 5: Creating a self-contained project {.challenge}
 >
 > We're going to create a new project in RStudio:
 >
 > 1. Click the "File" menu button, then "New Project".
 > 2. Click "New Directory".
 > 3. Click "Empty Project".
-> 4. Type in the name of the directory to store your project, e.g. "my_project".
-> 5. Make sure that the checkbox for "Create a git repository" is selected.
+> 4. Type in the name of the directory to store your project, e.g. "r_course".
 > 6. Click the "Create Project" button.
 >
 
@@ -607,7 +606,7 @@ one to store the analysis scripts.
 
 Now we have a good directory structure we will now place/save the data file in the `data/` directory.
 
-> ## Challenge 1 {.challenge}
+> ## Challenge 6 {.challenge}
 > Download the gapminder data from [here](data/gapminder-FiveYearData.csv).
 >
 > 1. Download the file (CTRL + S, right mouse click -> "Save as", or File -> "Save page as")
