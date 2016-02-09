@@ -7,43 +7,19 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 
 
-<title></title>
+<title>Introduction to R and RStudio</title>
 
-<script src="libs/jquery-1.11.0/jquery.min.js"></script>
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="libs/bootstrap-3.3.1/css/flatly.min.css" rel="stylesheet" />
-<script src="libs/bootstrap-3.3.1/js/bootstrap.min.js"></script>
-<script src="libs/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
-<script src="libs/bootstrap-3.3.1/shim/respond.min.js"></script>
+<link href="libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <style type="text/css">
- /* padding for bootstrap navbar */
- body { 
- padding-top: 50px; 
- padding-bottom: 40px; 
- } 
- @media (max-width: 979px) { 
- body { 
- padding-top: 0; 
- } 
- } 
- /* offset scroll position for anchor links (for fixed navbar) */
- @media (min-width: 980px) { 
- .section h2 { 
- padding-top: 52px; 
- margin-top: -52px; 
- } 
- .section h3 { 
- padding-top: 52px; 
- margin-top: -52px; 
- } 
- } 
-/* don't use link color in navbar */
-/* .dropdown-menu>li>a { */
-/* color: white; */
-/* }  */
 
 blockquote {
   background-color: #D7ECF7;
@@ -126,65 +102,165 @@ code {
   color: inherit;
   background-color: rgba(0, 0, 0, 0.04);
 }
-img { 
-  max-width:100%; 
-  height: auto; 
+img {
+  max-width:100%;
+  height: auto;
+}
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
 }
 </style>
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 50px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+
+.section h2 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+.section h3 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+.section h4 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+.section h5 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+.section h6 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
 <div class="container-fluid main-container">
 
-<div class="navbar navbar-default navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container">
-      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+<!-- tabsets -->
+<script src="libs/navigation/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <div class="nav-collapse collapse">
-        <ul class="nav">
-          <li><a href="/rcourse_site/">Home</a></li>
-          <li class="dropdown">
-            <a href="notes" class="dropdown-toggle" data-toggle="dropdown">Course Notes <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-               <li><a href="00-basics.html">Basics</a></li>
-               <li><a href="01-introduction.html">Introduction</a></li>
-               <li><a href="02-data_frames.html">Starting With data</a></li>
-               <li><a href="03-plotting.html">Plotting with ggplot2</a></li>
-               <li><a href="04-subsetting.html">Subsetting data</a></li>
-               <li><a href="05-dplyr.html">Data manipulation with dplyr</a></li>
-               <li><a href="06-tidyr.html">Data manipulation with tidyr</a></li>
-               <li><a href="07-writing-data.html">Writing data</a></li>
-               <li><a href="08-basic-stats.html">Basic statistics</a></li>
-               <li><a href="09-functions.html">Writing functions</a></li>
-               <li><a href="10-control-flow.html">Control flow</a></li>
-               <!--<li><a href="11-all-together.html">Putting it all Together</a></li>-->
-               <li><a href="best-practices.html">Best Practices</a></li>
-               <li><a href="getting_help.html">Getting Help</a></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a href="data" class="dropdown-toggle" data-toggle="dropdown">Data <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-               <li><a href="data/gapminder-FiveYearData.csv">Gapminder Dataset (csv)</a></li>
-            </ul>
-          </li>
-        </ul>
-        <ul class="nav pull-right">
+      <a class="navbar-brand" href="/">Introduction to R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li class="dropdown">
+          <a href="formats" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Course Notes <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+             <li><a href="00-basics.html">Basics</a></li>
+             <li><a href="01-introduction.html">Introduction</a></li>
+             <li><a href="02-data_frames.html">Starting With data</a></li>
+             <li><a href="03-plotting.html">Plotting with ggplot2</a></li>
+             <li><a href="04-subsetting.html">Subsetting data</a></li>
+             <li><a href="05-dplyr.html">Data manipulation with dplyr</a></li>
+             <li><a href="06-tidyr.html">Data manipulation with tidyr</a></li>
+             <li><a href="07-writing-data.html">Writing data</a></li>
+             <li><a href="08-basic_stats.html">Basic statistics</a></li>
+             <li><a href="09-functions.html">Writing functions</a></li>
+             <li><a href="10-control-flow.html">Control flow</a></li>
+             <!--<li><a href="11-all-together.html">Putting it all Together</a></li>-->
+             <li><a href="best-practices.html">Best Practices</a></li>
+             <li><a href="getting_help.html">Getting Help</a></li>
+          </ul>
+        </li>
+                <li class="dropdown">
+          <a href="authoring" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Data <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+             <li><a href="data/gapminder-FiveYearData.csv">Gapminder Dataset (csv)</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav pull-right">
           <a class="btn btn-primary" href="https://github.com/ateucher/rcourse_site">
             <i class="fa fa-github fa-lg"></i>
             GitHub
           </a>
-        </ul>
-      </div><!--/.nav-collapse -->
-    </div>
-  </div>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+<h1 class="title">Introduction to R and RStudio</h1>
+
 </div>
 
 
-
-<div id="introduction-to-r-and-rstudio" class="section level1">
-<h1>Introduction to R and RStudio</h1>
 <blockquote>
 <h2 id="learning-objectives" class="objectives">Learning Objectives</h2>
 <ul>
@@ -428,52 +504,9 @@ x &lt;-<span class="st"> </span><span class="kw">as.factor</span>(x)
 <p>There are a few useful commands you can use to interact with the R session.</p>
 <p><code>ls</code> will list all of the variables and functions stored in the global environment (your working R session):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls</span>()</code></pre></div>
-<pre><code>##  [1] &quot;a&quot;               &quot;Andy&quot;            &quot;b&quot;              
-##  [4] &quot;clean_dirs&quot;      &quot;clean_files&quot;     &quot;dat&quot;            
-##  [7] &quot;days_per_week&quot;   &quot;dirs&quot;            &quot;exercise&quot;       
-## [10] &quot;exercise_number&quot; &quot;f&quot;               &quot;files&quot;          
-## [13] &quot;first.names&quot;     &quot;fname&quot;           &quot;gapdata&quot;        
-## [16] &quot;hrs_per_day&quot;     &quot;hrs_per_week&quot;    &quot;m&quot;              
-## [19] &quot;maxprint&quot;        &quot;p&quot;               &quot;q&quot;              
-## [22] &quot;RmdDocs&quot;         &quot;series&quot;          &quot;T&quot;              
-## [25] &quot;x&quot;               &quot;x1&quot;              &quot;xx&quot;             
-## [28] &quot;y&quot;               &quot;z&quot;</code></pre>
+<pre><code>[1] &quot;x&quot;   &quot;y&quot;</code></pre>
 <p>Note here that we didn’t given any arguments to <code>ls</code>, but we still needed to give the parentheses to tell R to call the function.</p>
 <p>If we type <code>ls</code> by itself, R will print out the source code for that function!</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ls</code></pre></div>
-<pre><code>## function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE, 
-##     pattern, sorted = TRUE) 
-## {
-##     if (!missing(name)) {
-##         pos &lt;- tryCatch(name, error = function(e) e)
-##         if (inherits(pos, &quot;error&quot;)) {
-##             name &lt;- substitute(name)
-##             if (!is.character(name)) 
-##                 name &lt;- deparse(name)
-##             warning(gettextf(&quot;%s converted to character string&quot;, 
-##                 sQuote(name)), domain = NA)
-##             pos &lt;- name
-##         }
-##     }
-##     all.names &lt;- .Internal(ls(envir, all.names, sorted))
-##     if (!missing(pattern)) {
-##         if ((ll &lt;- length(grep(&quot;[&quot;, pattern, fixed = TRUE))) &amp;&amp; 
-##             ll != length(grep(&quot;]&quot;, pattern, fixed = TRUE))) {
-##             if (pattern == &quot;[&quot;) {
-##                 pattern &lt;- &quot;\\[&quot;
-##                 warning(&quot;replaced regular expression pattern &#39;[&#39; by  &#39;\\\\[&#39;&quot;)
-##             }
-##             else if (length(grep(&quot;[^\\\\]\\[&lt;-&quot;, pattern))) {
-##                 pattern &lt;- sub(&quot;\\[&lt;-&quot;, &quot;\\\\\\[&lt;-&quot;, pattern)
-##                 warning(&quot;replaced &#39;[&lt;-&#39; by &#39;\\\\[&lt;-&#39; in regular expression pattern&quot;)
-##             }
-##         }
-##         grep(pattern, all.names, value = TRUE)
-##     }
-##     else all.names
-## }
-## &lt;bytecode: 0x106b80070&gt;
-## &lt;environment: namespace:base&gt;</code></pre>
 <p>You can use <code>rm</code> to delete objects you no longer need:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(x)</code></pre></div>
 <p>If you have lots of things in your environment and want to delete all of them, you can pass the results of <code>ls</code> to the <code>rm</code> function:</p>
@@ -514,11 +547,10 @@ age &lt;-<span class="st"> </span>age -<span class="st"> </span><span class="dv"
 <p>Clean up your working environment by deleting the mass and age variables.</p>
 </blockquote>
 </div>
-</div>
-<div id="project-management-with-rstudio" class="section level1">
-<h1>Project management with RStudio</h1>
-<div id="introduction" class="section level2">
-<h2>Introduction</h2>
+<div id="project-management-with-rstudio" class="section level2">
+<h2>Project management with RStudio</h2>
+<div id="introduction" class="section level3">
+<h3>Introduction</h3>
 <p>The scientific process is naturally incremental, and many projects start life as random notes, some data, some code, then a report or manuscript, and eventually everything is a bit mixed together.</p>
 <p>It’s pretty easy to get data scattered among many different folders, with multiple versions.</p>
 <p>There are many reasons why we should avoid this:</p>
@@ -535,8 +567,8 @@ age &lt;-<span class="st"> </span>age -<span class="st"> </span><span class="dv"
 <li>It makes it easier to pick the project back up after a break.</li>
 </ul>
 </div>
-<div id="a-possible-solution" class="section level2">
-<h2>A possible solution</h2>
+<div id="a-possible-solution" class="section level3">
+<h3>A possible solution</h3>
 <p>Fortunately, there are tools and packages which can help you manage your work effectively.</p>
 <p>One of the most powerful and useful aspects of RStudio is its project management functionality. We’ll be using this today to create a self-contained, reproducible project.</p>
 <blockquote>
@@ -553,30 +585,30 @@ age &lt;-<span class="st"> </span>age -<span class="st"> </span><span class="dv"
 </blockquote>
 <p>Now when we start R in this project directory, or open this project with RStudio, all of our work on this project will be entirely self-contained in this directory.</p>
 </div>
-<div id="best-practices-for-project-organisation" class="section level2">
-<h2>Best practices for project organisation</h2>
+<div id="best-practices-for-project-organisation" class="section level3">
+<h3>Best practices for project organisation</h3>
 <p>Although there is no “best” way to lay out a project, there are some general principles to adhere to that will make project management easier:</p>
 </div>
-<div id="treat-data-as-read-only" class="section level2">
-<h2>Treat data as read only</h2>
+<div id="treat-data-as-read-only" class="section level3">
+<h3>Treat data as read only</h3>
 <p>This is probably the most important goal of setting up a project. Data is typically time consuming and/or expensive to collect. Working with them interactively (e.g., in Excel) where they can be modified means you are never sure of where the data came from, or how it has been modified since collection. It is therefore a good idea to treat your data as “read-only”.</p>
 </div>
-<div id="data-cleaning" class="section level2">
-<h2>Data Cleaning</h2>
+<div id="data-cleaning" class="section level3">
+<h3>Data Cleaning</h3>
 <p>In many cases your data will be “dirty”: it will need significant preprocessing to get into a format R (or any other programming language) will find useful. This task is sometimes called “data munging”. I find it useful to store these scripts in a separate folder, and create a second “read-only” data folder to hold the “cleaned” data sets.</p>
 </div>
-<div id="treat-generated-output-as-disposable" class="section level2">
-<h2>Treat generated output as disposable</h2>
+<div id="treat-generated-output-as-disposable" class="section level3">
+<h3>Treat generated output as disposable</h3>
 <p>Anything generated by your scripts should be treated as disposable: it should all be able to be regenerated from your scripts.</p>
 <p>There are lots of different ways to manage this output. I find it useful to have an output folder with different sub-directories for each separate analysis. This makes it easier later, as many of my analyses are exploratory and don’t end up being used in the final project, and some of the analyses get shared between projects.</p>
 </div>
-<div id="separate-function-definition-and-application" class="section level2">
-<h2>Separate function definition and application</h2>
+<div id="separate-function-definition-and-application" class="section level3">
+<h3>Separate function definition and application</h3>
 <p>The most effective way I find to work in R, is to play around in the interactive session, then copy commands across to a script file when I’m sure they work and do what I want. You can also save all the commands you’ve entered using the <code>history</code> command, but I don’t find it useful because when I’m typing its 90% trial and error.</p>
 <p>When your project is new and shiny, the script file usually contains many lines of directly executed code. As it matures, reusable chunks get pulled into their own functions. It’s a good idea to separate these into separate folders; one to store useful functions that you’ll reuse across analyses and projects, and one to store the analysis scripts.</p>
 </div>
-<div id="save-the-data-in-the-data-directory" class="section level2">
-<h2>Save the data in the data directory</h2>
+<div id="save-the-data-in-the-data-directory" class="section level3">
+<h3>Save the data in the data directory</h3>
 <p>Now we have a good directory structure we will now place/save the data file in the <code>data/</code> directory.</p>
 <blockquote>
 <h2 id="challenge-1-1" class="challenge">Challenge 1</h2>
@@ -591,6 +623,8 @@ age &lt;-<span class="st"> </span>age -<span class="st"> </span><span class="dv"
 <p>** The structure and much of the content in this module was borrowed from: - <a href="http://www.swcarpentry.org">Software Carpentry’s</a>’s <a href="http://swcarpentry.github.io/r-novice-gapminder/index.html">R Gapminder lesson</a>, and - <a href="http://www.poissonconsulting.ca">Poisson Consulting</a>’s <a href="http://www.poissonconsulting.ca/course/2014/09/12/an-introduction-to-r-course.html">Introductory course notes</a>, - Both are available for reuse under the Creative Commons Attribution <a href="http://creativecommons.org/licenses/by/3.0/">(CC_BY)</a> license.</p>
 </div>
 </div>
+
+
 
 
 </div>

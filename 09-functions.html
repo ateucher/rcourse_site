@@ -7,43 +7,19 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 
 
-<title></title>
+<title>Writing functions</title>
 
-<script src="libs/jquery-1.11.0/jquery.min.js"></script>
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="libs/bootstrap-3.3.1/css/flatly.min.css" rel="stylesheet" />
-<script src="libs/bootstrap-3.3.1/js/bootstrap.min.js"></script>
-<script src="libs/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
-<script src="libs/bootstrap-3.3.1/shim/respond.min.js"></script>
+<link href="libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <style type="text/css">
- /* padding for bootstrap navbar */
- body { 
- padding-top: 50px; 
- padding-bottom: 40px; 
- } 
- @media (max-width: 979px) { 
- body { 
- padding-top: 0; 
- } 
- } 
- /* offset scroll position for anchor links (for fixed navbar) */
- @media (min-width: 980px) { 
- .section h2 { 
- padding-top: 52px; 
- margin-top: -52px; 
- } 
- .section h3 { 
- padding-top: 52px; 
- margin-top: -52px; 
- } 
- } 
-/* don't use link color in navbar */
-/* .dropdown-menu>li>a { */
-/* color: white; */
-/* }  */
 
 blockquote {
   background-color: #D7ECF7;
@@ -126,61 +102,163 @@ code {
   color: inherit;
   background-color: rgba(0, 0, 0, 0.04);
 }
-img { 
-  max-width:100%; 
-  height: auto; 
+img {
+  max-width:100%;
+  height: auto;
+}
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
 }
 </style>
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 50px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+
+.section h2 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+.section h3 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+.section h4 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+.section h5 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+.section h6 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
 <div class="container-fluid main-container">
 
-<div class="navbar navbar-default navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container">
-      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+<!-- tabsets -->
+<script src="libs/navigation/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <div class="nav-collapse collapse">
-        <ul class="nav">
-          <li><a href="/rcourse_site/">Home</a></li>
-          <li class="dropdown">
-            <a href="notes" class="dropdown-toggle" data-toggle="dropdown">Course Notes <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-               <li><a href="00-basics.html">Basics</a></li>
-               <li><a href="01-introduction.html">Introduction</a></li>
-               <li><a href="02-data_frames.html">Starting With data</a></li>
-               <li><a href="03-plotting.html">Plotting with ggplot2</a></li>
-               <li><a href="04-subsetting.html">Subsetting data</a></li>
-               <li><a href="05-dplyr.html">Data manipulation with dplyr</a></li>
-               <li><a href="06-tidyr.html">Data manipulation with tidyr</a></li>
-               <li><a href="07-writing-data.html">Writing data</a></li>
-               <li><a href="08-basic-stats.html">Basic statistics</a></li>
-               <li><a href="09-functions.html">Writing functions</a></li>
-               <li><a href="10-control-flow.html">Control flow</a></li>
-               <!--<li><a href="11-all-together.html">Putting it all Together</a></li>-->
-               <li><a href="best-practices.html">Best Practices</a></li>
-               <li><a href="getting_help.html">Getting Help</a></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a href="data" class="dropdown-toggle" data-toggle="dropdown">Data <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-               <li><a href="data/gapminder-FiveYearData.csv">Gapminder Dataset (csv)</a></li>
-            </ul>
-          </li>
-        </ul>
-        <ul class="nav pull-right">
+      <a class="navbar-brand" href="/">Introduction to R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li class="dropdown">
+          <a href="formats" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Course Notes <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+             <li><a href="00-basics.html">Basics</a></li>
+             <li><a href="01-introduction.html">Introduction</a></li>
+             <li><a href="02-data_frames.html">Starting With data</a></li>
+             <li><a href="03-plotting.html">Plotting with ggplot2</a></li>
+             <li><a href="04-subsetting.html">Subsetting data</a></li>
+             <li><a href="05-dplyr.html">Data manipulation with dplyr</a></li>
+             <li><a href="06-tidyr.html">Data manipulation with tidyr</a></li>
+             <li><a href="07-writing-data.html">Writing data</a></li>
+             <li><a href="08-basic_stats.html">Basic statistics</a></li>
+             <li><a href="09-functions.html">Writing functions</a></li>
+             <li><a href="10-control-flow.html">Control flow</a></li>
+             <!--<li><a href="11-all-together.html">Putting it all Together</a></li>-->
+             <li><a href="best-practices.html">Best Practices</a></li>
+             <li><a href="getting_help.html">Getting Help</a></li>
+          </ul>
+        </li>
+                <li class="dropdown">
+          <a href="authoring" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Data <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+             <li><a href="data/gapminder-FiveYearData.csv">Gapminder Dataset (csv)</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav pull-right">
           <a class="btn btn-primary" href="https://github.com/ateucher/rcourse_site">
             <i class="fa fa-github fa-lg"></i>
             GitHub
           </a>
-        </ul>
-      </div><!--/.nav-collapse -->
-    </div>
-  </div>
-</div>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
 
+<div class="fluid-row" id="header">
+
+
+<h1 class="title">Writing functions</h1>
+
+</div>
 
 
 <blockquote>
@@ -213,7 +291,7 @@ img {
   the_sum &lt;-<span class="st"> </span>a +<span class="st"> </span>b
   <span class="kw">return</span>(the_sum)
 }</code></pre></div>
-<p>Let’s define a function fahr_to_kelvin that converts temperatures from Fahrenheit to Kelvin:</p>
+<p>Letâ€™s define a function fahr_to_kelvin that converts temperatures from Fahrenheit to Kelvin:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fahr_to_kelvin &lt;-<span class="st"> </span>function(temp) {
   kelvin &lt;-<span class="st"> </span>((temp -<span class="st"> </span><span class="dv">32</span>) *<span class="st"> </span>(<span class="dv">5</span> /<span class="st"> </span><span class="dv">9</span>)) +<span class="st"> </span><span class="fl">273.15</span>
   <span class="kw">return</span>(kelvin)
@@ -400,6 +478,8 @@ best_practice &lt;-<span class="st"> </span><span class="kw">c</span>(<span clas
 <pre><code>## [1] &quot;*** Write programs for people not computers ***&quot;</code></pre>
 </blockquote>
 </div>
+
+
 
 
 </div>
