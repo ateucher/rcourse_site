@@ -15,12 +15,11 @@ maxprint <- getOption("max.print")
 options(max.print = 30L)
 
 # clean old files
-clean_files <- list.files(c(".", "./pdf"), pattern = ".\\.html|.\\.pdf", 
-                          full.names = TRUE)
+clean_files <- list.files(c(".", "./pdf", "./pdf/fig", "./fig"), pattern = ".\\.html|.\\.pdf|.\\.png", 
+                          full.names = TRUE, recursive = FALSE)
 clean_files <- setdiff(clean_files, "./_navbar.html")
-dirs <- list.dirs(recursive = FALSE)
-clean_dirs <- dirs[grep("_files$", dirs)]
-unlink(c(clean_files, clean_dirs), recursive = TRUE)
+
+unlink(clean_files, recursive = TRUE)
 
 # Create data sets
 if (!file.exists("data/iris.zip")) {
