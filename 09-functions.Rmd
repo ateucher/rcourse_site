@@ -1,12 +1,7 @@
 ---
-layout: page
-title: R for reproducible scientific analysis
-subtitle: Creating functions
-minutes: 45
 ---
 
 ```{r, include=FALSE}
-source("tools/chunk-options.R")
 # Silently load in the data so the rest of the lesson works
 gapminder <- read.csv("data/gapminder-FiveYearData.csv", header=TRUE)
 ```
@@ -176,7 +171,7 @@ calcGDP <- function(dat, year=NULL, country=NULL) {
   }
   gdp <- dat$pop * dat$gdpPercap
 
-  new <- cbind(dat, gdp=gdp)
+  new <- data.frame(dat, gdp=gdp)
   return(new)
 }
 ```
@@ -274,7 +269,7 @@ to those arguments.
 
 ```{r, eval=FALSE}
   gdp <- dat$pop * dat$gdpPercap
-  new <- cbind(dat, gdp=gdp)
+  new <- data.frame(dat, gdp=gdp)
   return(new)
 }
 ```
