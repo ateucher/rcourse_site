@@ -183,7 +183,7 @@ Here we're going to divert to a different dataset: Measurements of Sepals and Pe
 
 ```{r}
 mod1 <- lm(Sepal.Length ~ Sepal.Width * Species, data=iris) # includes interaction term
-mod1a <- lm(Sepal.Length ~ Sepal.Width + Species + Sepal.Width:Species, data=iris) #Equivalend to above
+mod1a <- lm(Sepal.Length ~ Sepal.Width + Species + Sepal.Width:Species, data=iris) #Equivalent to above
 mod2 <- lm(Sepal.Length ~ Sepal.Width + Species, data=iris) # ANCOVA
 mod3 <- lm(Sepal.Length ~ Sepal.Width, data=iris)
 mod4 <- lm(Sepal.Length ~ Species, data=iris)
