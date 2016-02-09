@@ -5,4 +5,3 @@ html_document:
   lib_dir: libs
   includes:
     in_header: include/in_header.html
-    before_body: include/before_body.html
