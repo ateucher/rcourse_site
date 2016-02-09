@@ -1,0 +1,293 @@
+---
+---
+
+```{r, include=FALSE}
+# Silently load in the data so the rest of the lesson works
+gapminder <- read.csv("data/gapminder-FiveYearData.csv", header=TRUE)
+```
+
+# Data frames
+
+> ## Learning Objectives {.objectives}
+>
+> * Become familiar with data frames
+> * Be able to read regular data into R
+>
+
+A data frame is the standard structure for storing data sets, with rows and columns similar to a table in a spreadsheet. 
+
+Underneath the hood,
+data frames are really lists, where each element is an atomic vector,
+with the added restriction that they're all the same length.  As you
+will see, if we pull out one column of a data frame,we will have a
+vector. You will probably find that data frames are more complicated
+than vectors and other data structures we have considered, but they
+provide powerful capabilities.
+
+
+Data frames can be created manually with the `data.frame` function:
+
+```{r}
+df <- data.frame(id = c('a', 'b', 'c', 'd', 'e', 'f'), x = 1:6, y = c(214:219))
+df
+```
+
+> ## Challenge 1: Data frames {.challenge}
+>
+> Try using the `length` function to query
+> your data frame `df`. Does it give the result
+> you expect?
+>
+
+Each column in the data frame is simply a list element, which is why
+when you ask for the `length` of the data frame, it tells you the
+number of columns. If you actually want the number of rows, you can
+use the `nrow` function.
+
+We can add columns or rows to a data.frame using `cbind` or `rbind`
+(these are the two-dimensional equivalents of the `c` function):
+
+## Adding columns to a data frame
+
+To add a column we can use `cbind`:
+
+```{r}
+df <- cbind(df, 6:1)
+df
+```
+
+Note that R automatically names the column. We may decide to change
+the name by assigning a value using the `names` function:
+
+```{r}
+names(df)[4] <- 'z'
+```
+
+We can also provide a name when we add the column:
+
+```{r}
+df <- cbind(df, caps=c("A", "B", "C", "D", "E", "F"))
+df
+```
+
+## Adding rows to a data frame 
+
+To add rows we use `rbind`:
+
+```{r}
+df2 <- data.frame(id = c("g", "h"), 
+                  x = c(11, 12), 
+                  y = c(42, 86), 
+                  z = c(0, -1), 
+                  caps = c("G", "H"))
+df <- rbind(df, df2)
+```
+
+> ## Challenge 2 {.challenge}
+>
+> Create a data frame that holds the following information for yourself:
+>
+> * First name
+> * Last name
+> * Age
+>
+> Then use rbind to add the same information for the people sitting near you.
+>
+> Now use cbind to add a column of logicals that will, for each
+> person, hold the answer to the question,
+> "Is there anything in this workshop you're finding confusing?"
+>
+
+## Reading in data
+
+Remember earlier we obtained the gapminder dataset, which contains GDP ,population, and life expentancy for many countries around the world. '[Gapminder](https://youtu.be/BPt8ElTQMIg?t=13)'.
+
+If you're curious about where this data comes from you might like to
+look at the [Gapminder website](http://www.gapminder.org/data/documentation/).
+
+Let's first open up the data in Excel, an environment we're familiar with, to have a quick look.
+
+Now we want to load the gapminder data into R.
+
+As its file extension would suggest, the file contains comma-separated
+values, and seems to contain a header row.
+
+We can use `read.csv` to read this into R
+
+```{r}
+gapminder <- read.csv(file="data/gapminder-FiveYearData.csv")
+head(gapminder)
+```
+
+> ## Miscellaneous Tips {.callout}
+>
+> 1. Another type of file you might encounter are tab-separated
+> format. You can use `read.delim` to read in tab-separated files.
+> 
+> 2. If your file uses a different separater, the more generic `read.table` will let you specifiy it with the `sep` argument.
+>
+> 2. You can also read in files from the Internet by replacing
+> the file paths with a web address.
+>
+> 3. You can read directly from excel spreadsheets without
+> converting them to plain text first by using the `xlsx` package.
+>
+
+To make sure our analysis is reproducible, we should put the code
+into a script file so we can come back to it later.
+
+> ## Challenge 3 {.challenge}
+>
+> Go to file -> new file -> R script, and write an R script
+> to load in the gapminder dataset. 
+>
+> Run the script using the `source` function, using the file path
+> as its argument (or by pressing the "source" button in RStudio).
+>
+
+## Using data frames: the `gapminder` dataset
+
+
+To recap what we've just learned, let's have a look at our example
+data (life expectancy in various countries for various years).
+
+Remember, there are a few functions we can use to interrogate data structures in R:
+
+```{r, eval=FALSE}
+class() # what is the data structure?
+length() # how long is it? What about two dimensional objects?
+attributes() # does it have any metadata?
+str() # A full summary of the entire object
+dim() # Dimensions of the object - also try nrow(), ncol()
+```
+
+Let's use them to explore the gapminder dataset.
+
+
+```{r}
+class(gapminder)
+```
+
+The gapminder data is stored in a "data.frame". This is the default
+data structure when you read in data, and (as we've heard) is useful
+for storing data with mixed types of columns.
+
+Let's look at some of the columns.
+
+> ## Challenge 4: Data types in a real dataset {.challenge}
+>
+> Look at the first 6 rows of the gapminder data frame we loaded before:
+>
+> ```{r}
+> head(gapminder)
+> ```
+>
+> Write down what data type you think is in each column
+>
+
+
+```{r}
+class(gapminder$year)
+class(gapminder$lifeExp)
+```
+
+Can anyone guess what we should expect the type of the continent column to be?
+
+```{r}
+class(gapminder$continent)
+```
+
+If you were expecting a the answer to be "character", you would rightly be
+surprised by the answer.
+
+One of the default behaviours of R is to treat any text columns as "factors"
+when reading in data. The reason for this is that text columns often represent
+categorical data, which need to be factors to be handled appropriately by
+the statistical modeling functions in R.
+
+However it's not obvious behaviour, and something that trips many people up. We can
+disable this behaviour when we read in the data.
+
+```{r}
+gapminder <- read.csv(file="data/gapminder-FiveYearData.csv", 
+                      stringsAsFactors = FALSE)
+```
+
+> ## Tip {.callout}
+> I *highly* recommend burning this pattern into your memory, or getting it tattooed onto your arm.
+
+The first thing you should do when reading data in, is check that it matches what
+you expect, even if the command ran without warnings or errors. The `str` function,
+short for "structure", is really useful for this:
+
+```{r}
+str(gapminder)
+```
+
+We can see that the object is a `data.frame` with 1,704 observations (rows),
+and 6 variables (columns). Below that, we see the name of each column, followed
+by a ":", followed by the type of variable in that column, along with the first
+few entries.
+
+As discussed above, we can retrieve or modify the column or row names
+of the data.frame:
+
+```{r}
+colnames(gapminder)  
+copy <- gapminder
+colnames(copy) <- letters[1:6]
+head(copy, n=3)
+```
+
+> ## Challenge 5 {.challenge}
+>
+> Recall that we also used the `names` function (above) to modify
+> column names. Does it matter which you use? You can check help with
+> `?names` and `?colnames` to see whether it should matter.
+
+
+```{r}
+rownames(gapminder)[1:20]
+```
+
+See those numbers in the square brackets on the left? That tells you
+the number of the first entry in that row of output. So we see that
+for the 5th row, the rowname is "5". In this case, the rownames are
+simply the row numbers.
+
+
+## Challenge Solutions
+
+Solutions to challenges 2 & 3.
+
+> ## Solution to Challenge 2 {.challenge}
+>
+> Create a data frame that holds the following information for yourself:
+>
+> * First name
+> * Last name
+> * Age
+>
+> Then use rbind to add the same information for the people sitting near you.
+>
+> Now use cbind to add a column of logicals answering the question,
+> "Is there anything in this workshop you're finding confusing?"
+>
+> ```{r, eval=FALSE}
+my_df <- data.frame(first_name = "Andy", last_name = "Teucher", age = 36)
+my_df <- rbind(my_df, data.frame(first_name = "Jane", last_name = "Smith", age = 29))
+my_df <- rbind(my_df, data.frame(first_name = c("Jo", "John"), last_name = c("White", "Lee"), age = c(23, 41)))
+my_df <- cbind(my_df, confused = c(FALSE, FALSE, TRUE, FALSE))
+> ```
+
+> ## Solution to Challenge 5 {.challenge}
+> 
+> `?colnames` tells you that the `colnames` function is the same as
+> `names` for a data frame. For other structures, they may not be the
+> same. In particular, `names` does not work for matrices, but
+> `colnames` does. You can verify this with 
+> ```{r}
+> m <- matrix(1:9, nrow=3)
+> colnames(m) <- letters[1:3] # works as you would expect
+> names(m) <- letters[1:3]  # destroys the matrix
+> ```

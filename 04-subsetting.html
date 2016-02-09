@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+<title></title>
+
+<script src="libs/jquery-1.11.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.1/css/flatly.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/respond.min.js"></script>
+<style type="text/css">
+ /* padding for bootstrap navbar */
+ body { 
+ padding-top: 50px; 
+ padding-bottom: 40px; 
+ } 
+ @media (max-width: 979px) { 
+ body { 
+ padding-top: 0; 
+ } 
+ } 
+ /* offset scroll position for anchor links (for fixed navbar) */
+ @media (min-width: 980px) { 
+ .section h2 { 
+ padding-top: 52px; 
+ margin-top: -52px; 
+ } 
+ .section h3 { 
+ padding-top: 52px; 
+ margin-top: -52px; 
+ } 
+ } 
+/* don't use link color in navbar */
+/* .dropdown-menu>li>a { */
+/* color: white; */
+/* }  */
+
+blockquote {
+  background-color: #D7ECF7;
+  border-color: #318FBF;
+  font-size: 1em;
+}
+
+blockquote p {
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+}
+
+blockquote h2 {
+  font-size: 1.2em;
+  font-style: italic;
+}
+</style>
+
+<link rel="stylesheet" href="libs/font-awesome-4.2.0/css/font-awesome.min.css"/>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img { 
+  max-width:100%; 
+  height: auto; 
+}
+</style>
+<div class="container-fluid main-container">
+
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <div class="nav-collapse collapse">
+        <ul class="nav">
+          <li><a href="/rcourse_site/">Home</a></li>
+          <li class="dropdown">
+            <a href="notes" class="dropdown-toggle" data-toggle="dropdown">Course Notes <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+               <li><a href="00-basics.html">Basics</a></li>
+               <li><a href="01-introduction.html">Introduction</a></li>
+               <li><a href="02-data_frames.html">Starting With data</a></li>
+               <li><a href="03-plotting.html">Plotting with ggplot2</a></li>
+               <li><a href="04-subsetting.html">Subsetting data</a></li>
+               <li><a href="05-dplyr.html">Data manipulation with dplyr</a></li>
+               <li><a href="06-tidyr.html">Data manipulation with tidyr</a></li>
+               <li><a href="07-writing-data.html">Writing data</a></li>
+               <li><a href="08-basic-stats.html">Basic statistics</a></li>
+               <li><a href="09-functions.html">Writing functions</a></li>
+               <li><a href="10-control-flow.html">Control flow</a></li>
+               <!--<li><a href="11-all-together.html">Putting it all Together</a></li>-->
+               <li><a href="best-practices.html">Best Practices</a></li>
+               <li><a href="getting_help.html">Getting Help</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="data" class="dropdown-toggle" data-toggle="dropdown">Data <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+               <li><a href="data/gapminder-FiveYearData.csv">Gapminder Dataset (csv)</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav pull-right">
+          <a class="btn btn-primary" href="https://github.com/ateucher/rcourse_site">
+            <i class="fa fa-github fa-lg"></i>
+            GitHub
+          </a>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>
+
+
+
+<div id="subsetting-data" class="section level1">
+<h1>Subsetting data</h1>
+<blockquote>
+<h2 id="learning-objectives" class="objectives">Learning Objectives</h2>
+<ul>
+<li>To be able to subset vectors and data frames</li>
+<li>To be able to extract individual and multiple elements:
+<ul>
+<li>by index,</li>
+<li>by name,</li>
+<li>using comparison operations</li>
+</ul></li>
+<li>To be able to skip and remove elements from various data structures.</li>
+</ul>
+</blockquote>
+<p>R has many powerful subset operators and mastering them will allow you to easily perform complex operations on any kind of dataset.</p>
+<p>There are six different ways we can subset any kind of object, and three different subsetting operators for the different data structures.</p>
+<p>Let’s start with the workhorse of R: atomic vectors.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">5.4</span>, <span class="fl">6.2</span>, <span class="fl">7.1</span>, <span class="fl">4.8</span>, <span class="fl">7.5</span>)
+<span class="kw">names</span>(x) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;a&#39;</span>, <span class="st">&#39;b&#39;</span>, <span class="st">&#39;c&#39;</span>, <span class="st">&#39;d&#39;</span>, <span class="st">&#39;e&#39;</span>)
+x</code></pre></div>
+<pre><code>##   a   b   c   d   e 
+## 5.4 6.2 7.1 4.8 7.5</code></pre>
+<p>So now that we’ve created a dummy vector to play with, how do we get at its contents?</p>
+<div id="accessing-elements-using-their-indices" class="section level2">
+<h2>Accessing elements using their indices</h2>
+<p>To extract elements of a vector we can give their corresponding index, starting from one:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[<span class="dv">1</span>]</code></pre></div>
+<pre><code>##   a 
+## 5.4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[<span class="dv">4</span>]</code></pre></div>
+<pre><code>##   d 
+## 4.8</code></pre>
+<p>The square brackets operator is just like any other function. For atomic vectors (and matrices), it means “get me the nth element”.</p>
+<p>We can ask for multiple elements at once:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>)]</code></pre></div>
+<pre><code>##   a   c 
+## 5.4 7.1</code></pre>
+<p>Or slices of the vector:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[<span class="dv">1</span>:<span class="dv">4</span>]</code></pre></div>
+<pre><code>##   a   b   c   d 
+## 5.4 6.2 7.1 4.8</code></pre>
+<p>the <code>:</code> operator just creates a sequence of numbers from the left element to the right. I.e. <code>x[1:4]</code> is equivalent to <code>x[c(1,2,3,4)]</code>.</p>
+<p>We can ask for the same element multiple times:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">3</span>)]</code></pre></div>
+<pre><code>##   a   a   c 
+## 5.4 5.4 7.1</code></pre>
+<p>If we ask for a number outside of the vector, R will return missing values:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[<span class="dv">6</span>]</code></pre></div>
+<pre><code>## &lt;NA&gt; 
+##   NA</code></pre>
+<p>This is a vector of length one containing an <code>NA</code>, whose name is also <code>NA</code>.</p>
+<p>If we ask for the 0th element, we get an empty vector:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[<span class="dv">0</span>]</code></pre></div>
+<pre><code>## named numeric(0)</code></pre>
+<blockquote>
+<h2 id="vector-numbering-in-r-starts-at-1" class="callout">Vector numbering in R starts at 1</h2>
+<p>In many programming languages (C and python, for example), the first element of a vector has an index of 0. In R, the first element is 1.</p>
+</blockquote>
+</div>
+<div id="skipping-and-removing-elements" class="section level2">
+<h2>Skipping and removing elements</h2>
+<p>If we use a negative number as the index of a vector, R will return every element <em>except</em> for the one specified:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[-<span class="dv">2</span>]</code></pre></div>
+<pre><code>##   a   c   d   e 
+## 5.4 7.1 4.8 7.5</code></pre>
+<p>We can skip multiple elements:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[<span class="kw">c</span>(-<span class="dv">1</span>, -<span class="dv">5</span>)]  <span class="co"># or x[-c(1,5)]</span></code></pre></div>
+<pre><code>##   b   c   d 
+## 6.2 7.1 4.8</code></pre>
+<blockquote>
+<h2 id="tip-order-of-operations" class="callout">Tip: Order of operations</h2>
+<p>A common trip up for novices occurs when trying to skip slices of a vector. Most people first try to negate a sequence like so:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[-<span class="dv">1</span>:<span class="dv">3</span>]</code></pre></div>
+<pre><code>## Error in x[-1:3]: only 0&#39;s may be mixed with negative subscripts</code></pre>
+<p>This gives a somewhat cryptic error:</p>
+<p>But remember the order of operations. <code>:</code> is really a function, so what happens is it takes its first argument as -1, and second as 3, so generates the sequence of numbers: <code>c(-1, 0, 1, 2, 3)</code>.</p>
+<p>The correct solution is to wrap that function call in brackets, so that the <code>-</code> operator applies to the results:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[-(<span class="dv">1</span>:<span class="dv">3</span>)]</code></pre></div>
+<pre><code>##   d   e 
+## 4.8 7.5</code></pre>
+</blockquote>
+<p>To remove elements from a vector, we need to assign the results back into the variable:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span>x[-<span class="dv">4</span>]
+x</code></pre></div>
+<pre><code>##   a   b   c   e 
+## 5.4 6.2 7.1 7.5</code></pre>
+<blockquote>
+<h2 id="challenge-1" class="challenge">Challenge 1</h2>
+<p>Given the following code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">5.4</span>, <span class="fl">6.2</span>, <span class="fl">7.1</span>, <span class="fl">4.8</span>, <span class="fl">7.5</span>)
+<span class="kw">names</span>(x) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;a&#39;</span>, <span class="st">&#39;b&#39;</span>, <span class="st">&#39;c&#39;</span>, <span class="st">&#39;d&#39;</span>, <span class="st">&#39;e&#39;</span>)
+<span class="kw">print</span>(x)</code></pre></div>
+<pre><code>##   a   b   c   d   e 
+## 5.4 6.2 7.1 4.8 7.5</code></pre>
+<ol style="list-style-type: decimal">
+<li>Come up with at least 3 different commands that will produce the following output:</li>
+</ol>
+<pre><code>##   b   c   d 
+## 6.2 7.1 4.8</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Compare notes with your neighbour. Did you have different strategies?</li>
+</ol>
+</blockquote>
+</div>
+<div id="subsetting-by-name" class="section level2">
+<h2>Subsetting by name</h2>
+<p>We can extract elements by using their name, instead of index:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;c&quot;</span>)]</code></pre></div>
+<pre><code>##   a   c 
+## 5.4 7.1</code></pre>
+<p>This is usually a much more reliable way to subset objects: the position of various elements can often change when chaining together subsetting operations, but the names will always remain the same!</p>
+<p>Unfortunately we can’t skip or remove elements so easily.</p>
+<p>To skip (or remove) a single named element:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[-<span class="kw">which</span>(<span class="kw">names</span>(x) ==<span class="st"> &quot;a&quot;</span>)]</code></pre></div>
+<pre><code>##   b   c   d   e 
+## 6.2 7.1 4.8 7.5</code></pre>
+<p>The <code>which</code> function returns the indices of all <code>TRUE</code> elements of its argument. Remember that expressions evaluate before being passed to functions. Let’s break this down so that its clearer what’s happening.</p>
+<p>First this happens:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(x) ==<span class="st"> &quot;a&quot;</span></code></pre></div>
+<pre><code>## [1]  TRUE FALSE FALSE FALSE FALSE</code></pre>
+<p>The condition operator is applied to every name of the vector <code>x</code>. Only the first name is “a” so that element is TRUE.</p>
+<p><code>which</code> then converts this to an index:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">which</span>(<span class="kw">names</span>(x) ==<span class="st"> &quot;a&quot;</span>)</code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<p>Only the first element is <code>TRUE</code>, so <code>which</code> returns 1. Now that we have indices the skipping works because we have a negative index!</p>
+<p>Skipping multiple named indices is similar, but uses a different comparison operator:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[-<span class="kw">which</span>(<span class="kw">names</span>(x) %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;c&quot;</span>))]</code></pre></div>
+<pre><code>##   b   d   e 
+## 6.2 4.8 7.5</code></pre>
+<p>The <code>%in%</code> goes through each element of its left argument, in this case the names of <code>x</code>, and asks, “Does this element occur in the second argument?”.</p>
+<blockquote>
+<h2 id="challenge-2" class="challenge">Challenge 2</h2>
+<p>Run the following code to define vector <code>x</code> as above:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">5.4</span>, <span class="fl">6.2</span>, <span class="fl">7.1</span>, <span class="fl">4.8</span>, <span class="fl">7.5</span>)
+<span class="kw">names</span>(x) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;a&#39;</span>, <span class="st">&#39;b&#39;</span>, <span class="st">&#39;c&#39;</span>, <span class="st">&#39;d&#39;</span>, <span class="st">&#39;e&#39;</span>)
+<span class="kw">print</span>(x)</code></pre></div>
+<pre><code>##   a   b   c   d   e 
+## 5.4 6.2 7.1 4.8 7.5</code></pre>
+<p>Given this vector <code>x</code>, what would you expect the following to do?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[-<span class="kw">which</span>(<span class="kw">names</span>(x) ==<span class="st"> &quot;g&quot;</span>)]</code></pre></div>
+<p>Try out this command and see what you get. Did this match your expectation? Why did we get this result? (Tip: test out each part of the command on it’s own like we just did above - this is a useful debugging strategy)</p>
+<p>Which of the following are true:</p>
+<ul>
+<li><ol style="list-style-type: upper-alpha">
+<li>if there are no <code>TRUE</code> values passed to <code>which</code>, an empty vector is returned</li>
+</ol></li>
+<li><ol start="2" style="list-style-type: upper-alpha">
+<li>if there are no <code>TRUE</code> values passed to <code>which</code>, an error message is shown</li>
+</ol></li>
+<li><ol start="3" style="list-style-type: upper-alpha">
+<li><code>integer()</code> is an empty vector</li>
+</ol></li>
+<li><ol start="4" style="list-style-type: upper-alpha">
+<li>making an empty vector negative produces an “everything” vector</li>
+</ol></li>
+<li><ol start="5" style="list-style-type: upper-alpha">
+<li><code>x[]</code> gives the same result as <code>x[integer()]</code></li>
+</ol></li>
+</ul>
+</blockquote>
+<blockquote>
+<h2 id="tip-non-unique-names" class="callout">Tip: Non-unique names</h2>
+<p>You should be aware that it is possible for multiple elements in a vector to have the same name. (For a data frame, columns can have the same name — although R tries to avoid this — but row names must be unique.) Consider these examples:</p>
+</blockquote>
+<blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">3</span>
+x</code></pre></div>
+<pre><code>## [1] 1 2 3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(x) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;a&#39;</span>, <span class="st">&#39;a&#39;</span>, <span class="st">&#39;a&#39;</span>)  
+x</code></pre></div>
+<pre><code>## a a a 
+## 1 2 3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[<span class="st">&#39;a&#39;</span>]  <span class="co"># only returns first value</span></code></pre></div>
+<pre><code>## a 
+## 1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[<span class="kw">which</span>(<span class="kw">names</span>(x) ==<span class="st"> &#39;a&#39;</span>)]  <span class="co"># returns all three values</span></code></pre></div>
+<pre><code>## a a a 
+## 1 2 3</code></pre>
+</blockquote>
+<blockquote>
+<h2 id="tip-getting-help-for-operators" class="callout">Tip: Getting help for operators</h2>
+<p>Remember you can search for help on operators by wrapping them in quotes: <code>help(&quot;%in%&quot;)</code> or <code>?&quot;%in%&quot;</code>.</p>
+</blockquote>
+<p>So why can’t we use <code>==</code> like before? That’s an excellent question.</p>
+<p>Let’s take a look at just the comparison component:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(x) ==<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;a&#39;</span>, <span class="st">&#39;c&#39;</span>)</code></pre></div>
+<pre><code>## Warning in names(x) == c(&quot;a&quot;, &quot;c&quot;): longer object length is not a multiple
+## of shorter object length</code></pre>
+<pre><code>## [1]  TRUE FALSE  TRUE</code></pre>
+<p>Obviously “c” is in the names of <code>x</code>, so why didn’t this work? <code>==</code> works slightly differently than <code>%in%</code>. It will compare each element of its left argument to the corresponding element of its right argument.</p>
+<p>Here’s a mock illustration:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;e&quot;</span>)  <span class="co"># names of x</span>
+   |<span class="st">    </span><span class="er">|</span><span class="st">    </span><span class="er">|</span><span class="st">    </span><span class="er">|</span><span class="st">    </span><span class="co"># The elements == is comparing</span>
+<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;c&quot;</span>)</code></pre></div>
+<p>When one vector is shorter than the other, it gets <em>recycled</em>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;e&quot;</span>)  <span class="co"># names of x</span>
+   |<span class="st">    </span><span class="er">|</span><span class="st">    </span><span class="er">|</span><span class="st">    </span><span class="er">|</span><span class="st">    </span><span class="co"># The elements == is comparing</span>
+<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;c&quot;</span>)</code></pre></div>
+<p>In this case R simply repeats <code>c(&quot;a&quot;, &quot;c&quot;)</code> twice. If the longer vector length isn’t a multiple of the shorter vector length, then R will also print out a warning message:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(x) ==<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;a&#39;</span>, <span class="st">&#39;c&#39;</span>, <span class="st">&#39;e&#39;</span>)</code></pre></div>
+<pre><code>## [1]  TRUE FALSE FALSE</code></pre>
+<p>This difference between <code>==</code> and <code>%in%</code> is important to remember, because it can introduce hard to find and subtle bugs!</p>
+</div>
+<div id="subsetting-through-other-logical-operations" class="section level2">
+<h2>Subsetting through other logical operations</h2>
+<p>We can also more simply subset through logical operations:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>)]</code></pre></div>
+<pre><code>## a a 
+## 1 2</code></pre>
+<p>Note that in this case, the logical vector is also recycled to the length of the vector we’re subsetting!</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>)]</code></pre></div>
+<pre><code>## a a 
+## 1 3</code></pre>
+<p>Since comparison operators evaluate to logical vectors, we can also use them to succinctly subset vectors:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[x &gt;<span class="st"> </span><span class="dv">7</span>]</code></pre></div>
+<pre><code>## named integer(0)</code></pre>
+<blockquote>
+<h2 id="tip-combining-logical-operations" class="callout">Tip: Combining logical operations</h2>
+<p>There are many situations in which you will wish to combine multiple conditions. To do so several logical operations exist in R:</p>
+<ul>
+<li><code>|</code> logical OR: returns <code>TRUE</code>, if either the left or right are <code>TRUE</code>.</li>
+<li><code>&amp;</code> logical AND: returns <code>TRUE</code> if both the left and right are <code>TRUE</code></li>
+<li><code>!</code> logical NOT: converts <code>TRUE</code> to <code>FALSE</code> and <code>FALSE</code> to <code>TRUE</code></li>
+<li><code>&amp;&amp;</code> and <code>||</code> compare the individual elements of two vectors. Recycling rules also apply here.</li>
+</ul>
+</blockquote>
+<blockquote>
+<h2 id="challenge-3" class="challenge">Challenge 3</h2>
+<p>Given the following code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">5.4</span>, <span class="fl">6.2</span>, <span class="fl">7.1</span>, <span class="fl">4.8</span>, <span class="fl">7.5</span>)
+<span class="kw">names</span>(x) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;a&#39;</span>, <span class="st">&#39;b&#39;</span>, <span class="st">&#39;c&#39;</span>, <span class="st">&#39;d&#39;</span>, <span class="st">&#39;e&#39;</span>)
+<span class="kw">print</span>(x)</code></pre></div>
+<pre><code>##   a   b   c   d   e 
+## 5.4 6.2 7.1 4.8 7.5</code></pre>
+<ol style="list-style-type: decimal">
+<li>Write a subsetting command to return the values in x that are greater than 4 and less than 7.</li>
+</ol>
+</blockquote>
+</div>
+<div id="handling-special-values" class="section level2">
+<h2>Handling special values</h2>
+<p>At some point you will encounter functions in R which cannot handle missing, infinite, or undefined data.</p>
+<p>There are a number of special functions you can use to filter out this data:</p>
+<ul>
+<li><code>is.na</code> will return all positions in a vector, matrix, or data.frame containing <code>NA</code>.</li>
+<li>likewise, <code>is.nan</code>, and <code>is.infinite</code> will do the same for <code>NaN</code> and <code>Inf</code>.</li>
+<li><code>is.finite</code> will return all positions in a vector, matrix, or data.frame that do not contain <code>NA</code>, <code>NaN</code> or <code>Inf</code>.</li>
+<li><code>na.omit</code> will filter out all missing values from a vector</li>
+</ul>
+</div>
+<div id="data-frames" class="section level2">
+<h2>Data frames</h2>
+<p>Remember the data frames are lists underneath the hood, so similar rules apply. However they are also two dimensional objects:</p>
+<p><code>[</code> with one argument will act the same was as for lists, where each list element corresponds to a column. The resulting object will be a data frame:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(gapminder[<span class="dv">3</span>])</code></pre></div>
+<pre><code>##        pop
+## 1  8425333
+## 2  9240934
+## 3 10267083
+## 4 11537966
+## 5 13079460
+## 6 14880372</code></pre>
+<p>Similarly, <code>[[</code> will act to extract <em>a single column</em>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(gapminder[[<span class="st">&quot;lifeExp&quot;</span>]])</code></pre></div>
+<pre><code>## [1] 28.801 30.332 31.997 34.020 36.088 38.438</code></pre>
+<p>And <code>$</code> provides a convenient shorthand to extract columns by name:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(gapminder$year)</code></pre></div>
+<pre><code>## [1] 1952 1957 1962 1967 1972 1977</code></pre>
+<p>With two arguments, <code>[</code> behaves the same way as for matrices:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gapminder[<span class="dv">1</span>:<span class="dv">3</span>,]</code></pre></div>
+<pre><code>##       country year      pop continent lifeExp gdpPercap
+## 1 Afghanistan 1952  8425333      Asia  28.801  779.4453
+## 2 Afghanistan 1957  9240934      Asia  30.332  820.8530
+## 3 Afghanistan 1962 10267083      Asia  31.997  853.1007</code></pre>
+<p>If we subset a single row, the result will be a data frame (because the elements are mixed types):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gapminder[<span class="dv">3</span>,]</code></pre></div>
+<pre><code>##       country year      pop continent lifeExp gdpPercap
+## 3 Afghanistan 1962 10267083      Asia  31.997  853.1007</code></pre>
+<p>But for a single column the result will be a vector (this can be changed with the third argument, <code>drop = FALSE</code>).</p>
+<blockquote>
+<h2 id="challenge-4" class="challenge">Challenge 4</h2>
+<p>Fix each of the following common data frame subsetting errors:</p>
+<ol style="list-style-type: decimal">
+<li>Extract observations collected for the year 1957</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gapminder[gapminder$year =<span class="st"> </span><span class="dv">1957</span>,]</code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Extract all columns except 1 through to 4</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gapminder[,-<span class="dv">1</span>:<span class="dv">4</span>]</code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>Extract the rows where the life expectancy is longer the 80 years</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gapminder[gapminder$lifeExp &gt;<span class="st"> </span><span class="dv">80</span>]</code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li>Extract the first row, and the fourth and fifth columns (<code>lifeExp</code> and <code>gdpPercap</code>).</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gapminder[<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">5</span>]</code></pre></div>
+<ol start="5" style="list-style-type: decimal">
+<li>Advanced: extract rows that contain information for the years 2002 and 2007</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gapminder[gapminder$year ==<span class="st"> </span><span class="dv">2002</span> |<span class="st"> </span><span class="dv">2007</span>,]</code></pre></div>
+</blockquote>
+<blockquote>
+<h2 id="challenge-5" class="challenge">Challenge 5</h2>
+<ol style="list-style-type: decimal">
+<li><p>Why does <code>gapminder[1:20]</code> return an error? How does it differ from <code>gapminder[1:20, ]</code>?</p></li>
+<li><p>Create a new <code>data.frame</code> called <code>gapminder_small</code> that only contains rows 1 through 9 and 19 through 23. You can do this in one or two steps.</p></li>
+</ol>
+</blockquote>
+</div>
+<div id="challenge-solutions" class="section level2">
+<h2>Challenge solutions</h2>
+<p>Solutions to challenges.</p>
+<blockquote>
+<h2 id="solution-to-challenge-1" class="challenge">Solution to challenge 1</h2>
+<p>Given the following code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">5.4</span>, <span class="fl">6.2</span>, <span class="fl">7.1</span>, <span class="fl">4.8</span>, <span class="fl">7.5</span>)
+<span class="kw">names</span>(x) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;a&#39;</span>, <span class="st">&#39;b&#39;</span>, <span class="st">&#39;c&#39;</span>, <span class="st">&#39;d&#39;</span>, <span class="st">&#39;e&#39;</span>)
+<span class="kw">print</span>(x)</code></pre></div>
+<pre><code>##   a   b   c   d   e 
+## 5.4 6.2 7.1 4.8 7.5</code></pre>
+<ol style="list-style-type: decimal">
+<li>Come up with at least 3 different commands that will produce the following output:</li>
+</ol>
+<pre><code>##   b   c   d 
+## 6.2 7.1 4.8</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[<span class="dv">2</span>:<span class="dv">4</span>] 
+x[-<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">5</span>)]
+x[<span class="kw">c</span>(<span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>)]
+x[<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>)]</code></pre></div>
+</blockquote>
+<blockquote>
+<h2 id="solution-to-challenge-2" class="challenge">Solution to challenge 2</h2>
+<p>Run the following code to define vector <code>x</code> as above:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">5.4</span>, <span class="fl">6.2</span>, <span class="fl">7.1</span>, <span class="fl">4.8</span>, <span class="fl">7.5</span>)
+<span class="kw">names</span>(x) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;a&#39;</span>, <span class="st">&#39;b&#39;</span>, <span class="st">&#39;c&#39;</span>, <span class="st">&#39;d&#39;</span>, <span class="st">&#39;e&#39;</span>)
+<span class="kw">print</span>(x)</code></pre></div>
+<pre><code>##   a   b   c   d   e 
+## 5.4 6.2 7.1 4.8 7.5</code></pre>
+<p>Given this vector <code>x</code>, what would you expect the following to do?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[-<span class="kw">which</span>(<span class="kw">names</span>(x) ==<span class="st"> &quot;g&quot;</span>)]</code></pre></div>
+<p>Try out this command and see what you get. Did this match your expectation?</p>
+<p>Why did we get this result? (Tip: test out each part of the command on it’s own like we just did above - this is a useful debugging strategy)</p>
+<p>Which of the following are true:</p>
+<ul>
+<li><ol style="list-style-type: upper-alpha">
+<li>if there are no <code>TRUE</code> values passed to “which”, an empty vector is returned</li>
+</ol></li>
+<li><ol start="2" style="list-style-type: upper-alpha">
+<li>if there are no <code>TRUE</code> values passed to “which”, an error message is shown</li>
+</ol></li>
+<li><ol start="3" style="list-style-type: upper-alpha">
+<li><code>integer()</code> is an empty vector</li>
+</ol></li>
+<li><ol start="4" style="list-style-type: upper-alpha">
+<li>making an empty vector negative produces an “everything” vector</li>
+</ol></li>
+<li><ol start="5" style="list-style-type: upper-alpha">
+<li><code>x[]</code> gives the same result as <code>x[integer()]</code></li>
+</ol></li>
+</ul>
+<p>Answer: A and C are correct.</p>
+<p>The <code>which</code> command returns the index of every <code>TRUE</code> value in its input. The <code>names(x) == &quot;g&quot;</code> command didn’t return any <code>TRUE</code> values. Because there were no <code>TRUE</code> values passed to the <code>which</code> command, it returned an empty vector. Negating this vector with the minus sign didn’t change its meaning. Because we used this empty vector to retrieve values from <code>x</code>, it produced an empty numeric vector. It was a <code>named numeric</code> empty vector because the vector type of x is “named numeric” since we assigned names to the values (try <code>str(x)</code> ).</p>
+</blockquote>
+<blockquote>
+<h2 id="solution-to-challenge-4" class="challenge">Solution to challenge 4</h2>
+<p>Fix each of the following common data frame subsetting errors:</p>
+<ol style="list-style-type: decimal">
+<li>Extract observations collected for the year 1957</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># gapminder[gapminder$year = 1957,]</span>
+gapminder[gapminder$year ==<span class="st"> </span><span class="dv">1957</span>,]</code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Extract all columns except 1 through to 4</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># gapminder[,-1:4]</span>
+gapminder[,-<span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">4</span>)]</code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>Extract the rows where the life expectancy is longer the 80 years</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># gapminder[gapminder$lifeExp &gt; 80]</span>
+gapminder[gapminder$lifeExp &gt;<span class="st"> </span><span class="dv">80</span>,]</code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li>Extract the first row, and the fourth and fifth columns (<code>lifeExp</code> and <code>gdpPercap</code>).</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># gapminder[1, 4, 5]</span>
+gapminder[<span class="dv">1</span>, <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">5</span>)]</code></pre></div>
+<ol start="5" style="list-style-type: decimal">
+<li>Advanced: extract rows that contain information for the years 2002 and 2007</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># gapminder[gapminder$year == 2002 | 2007,]</span>
+gapminder[gapminder$year ==<span class="st"> </span><span class="dv">2002</span> |<span class="st"> </span>gapminder$year ==<span class="st"> </span><span class="dv">2007</span>,]
+gapminder[gapminder$year %in%<span class="st"> </span><span class="kw">c</span>(<span class="dv">2002</span>, <span class="dv">2007</span>),]</code></pre></div>
+</blockquote>
+<blockquote>
+<h2 id="solution-to-challenge-5" class="challenge">Solution to challenge 5</h2>
+<ol style="list-style-type: decimal">
+<li>Why does <code>gapminder[1:20]</code> return an error? How does it differ from <code>gapminder[1:20, ]</code>?</li>
+</ol>
+<p>Answer: <code>gapminder</code> is a data.frame so needs to be subsetted on two dimensions. <code>gapminder[1:20, ]</code> subsets the data to give the first 20 rows and all columns.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Create a new <code>data.frame</code> called <code>gapminder_small</code> that only contains rows 1 through 9 and 19 through 23. You can do this in one or two steps.</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gapminder_small &lt;-<span class="st"> </span>gapminder[<span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">9</span>, <span class="dv">19</span>:<span class="dv">23</span>),]</code></pre></div>
+</blockquote>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

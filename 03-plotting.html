@@ -13,35 +13,53 @@
 <title></title>
 
 <script src="libs/jquery-1.11.0/jquery.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link href="libs/bootstrap-2.3.2/css/flatly.min.css" rel="stylesheet" />
-<link href="libs/bootstrap-2.3.2/css/bootstrap-responsive.min.css" rel="stylesheet" />
-<script src="libs/bootstrap-2.3.2/js/bootstrap.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.1/css/flatly.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/respond.min.js"></script>
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-padding-top: 50px;
-padding-bottom: 40px;
-}
-@media (max-width: 979px) {
-body {
-padding-top: 0;
-}
-}
-/* offset scroll position for anchor links (for fixed navbar) */
-@media (min-width: 980px) {
-.section h2 {
-padding-top: 52px;
-margin-top: -52px;
-}
-.section h3 {
-padding-top: 52px;
-margin-top: -52px;
-}
-}
+ /* padding for bootstrap navbar */
+ body { 
+ padding-top: 50px; 
+ padding-bottom: 40px; 
+ } 
+ @media (max-width: 979px) { 
+ body { 
+ padding-top: 0; 
+ } 
+ } 
+ /* offset scroll position for anchor links (for fixed navbar) */
+ @media (min-width: 980px) { 
+ .section h2 { 
+ padding-top: 52px; 
+ margin-top: -52px; 
+ } 
+ .section h3 { 
+ padding-top: 52px; 
+ margin-top: -52px; 
+ } 
+ } 
 /* don't use link color in navbar */
-.dropdown-menu>li>a {
-color: white;
+/* .dropdown-menu>li>a { */
+/* color: white; */
+/* }  */
+
+blockquote {
+  background-color: #D7ECF7;
+  border-color: #318FBF;
+  font-size: 1em;
+}
+
+blockquote p {
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+}
+
+blockquote h2 {
+  font-size: 1.2em;
+  font-style: italic;
 }
 </style>
 
@@ -50,24 +68,41 @@ color: white;
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
+div.sourceCode { overflow-x: auto; }
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
   margin: 0; padding: 0; vertical-align: baseline; border: none; }
 table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
 td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
 td.sourceCode { padding-left: 5px; }
 pre, code { background-color: #f8f8f8; }
-code > span.kw { color: #204a87; font-weight: bold; }
-code > span.dt { color: #204a87; }
-code > span.dv { color: #0000cf; }
-code > span.bn { color: #0000cf; }
-code > span.fl { color: #0000cf; }
-code > span.ch { color: #4e9a06; }
-code > span.st { color: #4e9a06; }
-code > span.co { color: #8f5902; font-style: italic; }
-code > span.ot { color: #8f5902; }
-code > span.al { color: #ef2929; }
-code > span.fu { color: #000000; }
-code > span.er { font-weight: bold; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
 </style>
 <style type="text/css">
   pre:not([class]) {
@@ -87,6 +122,14 @@ code > span.er { font-weight: bold; }
   margin-left: auto;
   margin-right: auto;
 }
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img { 
+  max-width:100%; 
+  height: auto; 
+}
 </style>
 <div class="container-fluid main-container">
 
@@ -104,24 +147,26 @@ code > span.er { font-weight: bold; }
           <li class="dropdown">
             <a href="notes" class="dropdown-toggle" data-toggle="dropdown">Course Notes <b class="caret"></b></a>
             <ul class="dropdown-menu">
-               <li><a href="basics.html">Basics</a></li>
-               <li><a href="00-introduction.html">Introduction</a></li>
-               <li><a href="01-starting-with-data.html">Starting With Data</a></li>
-               <li><a href="02-dplyr.html">Data Munging with dplyr</a></li>
+               <li><a href="00-basics.html">Basics</a></li>
+               <li><a href="01-introduction.html">Introduction</a></li>
+               <li><a href="02-data_frames.html">Starting With data</a></li>
                <li><a href="03-plotting.html">Plotting with ggplot2</a></li>
-               <li><a href="04-basic_stats.html">Basic Statistics</a></li>
-               <li><a href="05-repeating-things.html">Repeating Things</a></li>
-               <li><a href="06-functions.html">Functions</a></li>
-               <li><a href="07-all-together.html">Putting it all Together</a></li>
-               <li><a href="08-best-practices.html">Best Practices</a></li>
+               <li><a href="04-subsetting.html">Subsetting data</a></li>
+               <li><a href="05-dplyr.html">Data manipulation with dplyr</a></li>
+               <li><a href="06-tidyr.html">Data manipulation with tidyr</a></li>
+               <li><a href="07-writing-data.html">Writing data</a></li>
+               <li><a href="08-basic-stats.html">Basic statistics</a></li>
+               <li><a href="09-functions.html">Writing functions</a></li>
+               <li><a href="10-control-flow.html">Control flow</a></li>
+               <!--<li><a href="11-all-together.html">Putting it all Together</a></li>-->
+               <li><a href="best-practices.html">Best Practices</a></li>
                <li><a href="getting_help.html">Getting Help</a></li>
             </ul>
           </li>
           <li class="dropdown">
             <a href="data" class="dropdown-toggle" data-toggle="dropdown">Data <b class="caret"></b></a>
             <ul class="dropdown-menu">
-               <li><a href="data/iris.csv">Iris Dataset (csv)</a></li>
-               <li><a href="data/iris.zip">Iris Dataset (zip)</a></li>
+               <li><a href="data/gapminder-FiveYearData.csv">Gapminder Dataset (csv)</a></li>
             </ul>
           </li>
         </ul>
@@ -140,184 +185,151 @@ code > span.er { font-weight: bold; }
 
 <div id="data-visualization-with-ggplot2" class="section level1">
 <h1>Data visualization with ggplot2</h1>
-<p>** The structure and much of the content in this module was borrowed from <a href="http://www.softwarecarpentry.org">Software Carpentry</a>’s <a href="https://github.com/swcarpentry/bc/tree/master/novice/r">novice R Bootcamp material</a> (Copyright (c) Software Carpentry), which they make available for reuse under the Creative Commons Attribution <a href="http://creativecommons.org/licenses/by/3.0/">(CC_BY)</a> license.</p>
-<div id="basic-plotting" class="section level2">
-<h2>Basic plotting</h2>
+<blockquote>
+<h2 id="learning-objectives" class="objectives">Learning Objectives</h2>
+<ul>
+<li>To be able to use ggplot2 to generate publication quality graphics</li>
+<li>To understand the basics of the grammar of graphics:</li>
+<li>The aesthetics layer</li>
+<li>The geometry layer</li>
+<li>Adding statistics</li>
+<li>Transforming scales</li>
+<li>Coloring or paneling by groups.</li>
+</ul>
+</blockquote>
+<p>Plotting our data is one of the best ways to quickly explore it and the various relationships between variables.</p>
+<p>There are three main plotting systems in R, the <a href="http://www.statmethods.net/graphs/">base plotting system</a>, the <a href="http://www.statmethods.net/advgraphs/trellis.html">lattice</a> package, and the <a href="http://www.statmethods.net/advgraphs/ggplot2.html">ggplot2</a> package.</p>
+<div id="base-plotting" class="section level2">
+<h2>Base plotting</h2>
 <p>R’s base (built-in) plotting functions are powerful and very flexible, but not overly user friendly. For simple exploratory plots that don’t need to look nice, they are useful. They are generally specified as <code>plot(x, y, ...)</code></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(dat$Sepal.Width, dat$Sepal.Length, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>, <span class="dt">col=</span>dat$Species)</code></pre>
-<p><img src="03-plotting_files/figure-html/baseplot1-1.png" title="" alt="" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(gapminder$lifeExp, gapminder$gdpPercap)</code></pre></div>
+<p><img src="fig/03-plotting-baseplot1-1.png" title="" alt="" width="672" /></p>
 <p>You can also specify them in a formula format <code>plot(y ~ x, data='', ...)</code></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(Sepal.Length ~<span class="st"> </span>Sepal.Width, <span class="dt">data=</span>dat, <span class="dt">col=</span>Species)</code></pre>
-<p><img src="03-plotting_files/figure-html/baseplot2-1.png" title="" alt="" width="672" /></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">boxplot</span>(Sepal.Length ~<span class="st"> </span>Species, <span class="dt">data=</span>dat)</code></pre>
-<p><img src="03-plotting_files/figure-html/baseplot2-2.png" title="" alt="" width="672" /></p>
-<p>For more advanced (and easier) plotting, we’re going to use another package by Hadley Wickham, the same person who developed <strong>dplyr</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(gdpPercap ~<span class="st"> </span>lifeExp, <span class="dt">data=</span>gapminder)</code></pre></div>
+<p><img src="fig/03-plotting-baseplot2-1.png" title="" alt="" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(gapminder$gdpPercap)</code></pre></div>
+<p><img src="fig/03-plotting-baseplot2-2.png" title="" alt="" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">boxplot</span>(gdpPercap ~<span class="st"> </span>continent, <span class="dt">data=</span>gapminder)</code></pre></div>
+<p><img src="fig/03-plotting-baseplot2-3.png" title="" alt="" width="672" /></p>
 </div>
 <div id="ggplot2" class="section level2">
 <h2>ggplot2</h2>
-<div id="the-diamonds-dataset" class="section level3">
-<h3>The Diamonds dataset</h3>
-<p>Now let’s look at a bigger dataset. We’re going to be using a data visualization package called <strong>ggplot2</strong> for drawing the plots, and the <strong>ggplot2</strong> package comes with some data we’re going to use for this example.</p>
-<p>Recall how to install and load packages. Install the package if you haven’t already:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Only need to do this once</span>
-<span class="kw">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</code></pre>
-<p>Then load it:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)</code></pre>
-<p>Now let’s load the diamonds dataset and take a look at the first few rows and it’s structure with commands we learned previously. To learn more about this dataset you can also run <code>?diamonds</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(diamonds)
-<span class="kw">head</span>(diamonds)</code></pre>
-<pre><code>##   carat       cut color clarity depth table price    x    y    z
-## 1  0.23     Ideal     E     SI2  61.5    55   326 3.95 3.98 2.43
-## 2  0.21   Premium     E     SI1  59.8    61   326 3.89 3.84 2.31
-## 3  0.23      Good     E     VS1  56.9    65   327 4.05 4.07 2.31
-## 4  0.29   Premium     I     VS2  62.4    58   334 4.20 4.23 2.63
-## 5  0.31      Good     J     SI2  63.3    58   335 4.34 4.35 2.75
-##  [ reached getOption(&quot;max.print&quot;) -- omitted 1 row ]</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(diamonds)</code></pre>
-<pre><code>## &#39;data.frame&#39;:    53940 obs. of  10 variables:
-##  $ carat  : num  0.23 0.21 0.23 0.29 0.31 0.24 0.24 0.26 0.22 0.23 ...
-##  $ cut    : Ord.factor w/ 5 levels &quot;Fair&quot;&lt;&quot;Good&quot;&lt;..: 5 4 2 4 2 3 3 3 1 3 ...
-##  $ color  : Ord.factor w/ 7 levels &quot;D&quot;&lt;&quot;E&quot;&lt;&quot;F&quot;&lt;&quot;G&quot;&lt;..: 2 2 2 6 7 7 6 5 2 5 ...
-##  $ clarity: Ord.factor w/ 8 levels &quot;I1&quot;&lt;&quot;SI2&quot;&lt;&quot;SI1&quot;&lt;..: 2 3 5 4 2 6 7 3 4 5 ...
-##  $ depth  : num  61.5 59.8 56.9 62.4 63.3 62.8 62.3 61.9 65.1 59.4 ...
-##  $ table  : num  55 61 65 58 58 57 57 55 61 61 ...
-##  $ price  : int  326 326 327 334 335 336 336 337 337 338 ...
-##  $ x      : num  3.95 3.89 4.05 4.2 4.34 3.94 3.95 4.07 3.87 4 ...
-##  $ y      : num  3.98 3.84 4.07 4.23 4.35 3.96 3.98 4.11 3.78 4.05 ...
-##  $ z      : num  2.43 2.31 2.31 2.63 2.75 2.48 2.47 2.53 2.49 2.39 ...</code></pre>
-<p>From this we can see this dataset has prices of nearly 54,000 diamonds along with various features about the diamonds, such as the weight, the quality of the cut, the color, the clarity, and measurements of various dimensions.</p>
-<p>If we wanted to do some exploratory data analysis we might start by plotting the price versus the weight of the diamond using base graphics.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(price ~<span class="st"> </span>carat, <span class="dt">data=</span>diamonds)</code></pre>
-<p><img src="03-plotting_files/figure-html/basediamond-1.png" title="" alt="" width="672" /></p>
-<p>As we would expect there is definitely a relationship between the size of the diamond and its cost, but how do the other variables (cut, color, clarity) affect the price? We could examine the interrelationships of all these variables using base R graphics, but it could become extremely cumbersome.</p>
-<p><strong>ggplot2</strong> is a widely used R package that extends R’s visualization capabilities. It takes the hassle out of things like creating legends, mapping other variables to scales like color, or faceting plots into small multiples. We’ll learn about what all these things mean shortly. To start with, let’s produce the same plot as before, but this time using <strong>ggplot2</strong>.</p>
-</div>
+<p>Today we’ll be learning about the ggplot2 package developed by Hadley Wickham, because it is the most effective for creating publication quality graphics.</p>
 <div id="ggplot2-and-the-grammar-of-graphics" class="section level3">
 <h3>ggplot2 and the <em>Grammar of Graphics</em></h3>
 <p>The <strong>ggplot2</strong> package provides an R implementation of Leland Wilkinson’s <em>Grammar of Graphics</em> (1999). The <em>Grammar of Graphics</em> challenges data analysts to think beyond the garden variety plot types (e.g. scatter-plot, barplot) and to consider the components that make up a plot or graphic, such as how data are represented on the plot (as lines, points, etc.), how variables are mapped to coordinates or plotting shape or colour, what transformation or statistical summary is required, and so on. Specifically, <strong>ggplot2</strong> allows users to build a plot layer-by-layer by specifying:</p>
 <ul>
-<li>The <em>data</em>, plus some <em>aesthetics</em> that map variables in the data to axes on the plot or to size, shape, color, etc.,</li>
-<li>a <em>geom</em>, which specifies how the data are represented on the plot (points, lines, bars, etc.),</li>
+<li>The <em>data</em>,</li>
+<li>some <em>aesthetics</em>, that map variables in the data to a visual representation on the plot. This tells ggplot2 how to show each variable, such as axes on the plot or to size, shape, color, etc.</li>
+<li>a <em>geom</em>, which specifies the geometry of how the data are represented on the plot (points, lines, bars, etc.),</li>
 <li>a <em>stat</em>, a statistical transformation or summary of the data applied prior to plotting,</li>
-<li><em>facets</em>, which we’ve already seen above, that allow the data to be divided into chunks on the basis of other categorical or continuous variables and the same plot drawn for each chunk.</li>
+<li><em>facets</em>, that allow the data to be divided into chunks on the basis of other categorical or continuous variables and the same plot drawn for each chunk.</li>
 </ul>
 <p>Because <strong>ggplot2</strong> implements a <em>layered</em> grammar of graphics, data points and additional information (scatterplot smoothers, confidence bands, etc.) can be added to the plot via additional layers, each of which utilize further geoms, aesthetics, and stats.</p>
-<p>To make the best use of <strong>ggplot2</strong> it helps to understand the grammar and how it affects how plots are produced. In addition, it is important to note that <strong>ggplot2</strong> is not a general-purpose plotting tool-kit; you may not be able to achieve certain plots or additions to a figure of they do not map onto concepts included in the layered grammar.</p>
-<p>The <code>ggplot</code> function has two required arguments: the <em>data</em> used for creating the plot, and an <em>aesthetic</em> mapping to describe how variables in said data are mapped to things we can see on the plot. Let’s use <code>ggplot</code> to recreate some of the same plots we produced above. First, the simple scatterplot:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(<span class="dt">x=</span>carat, <span class="dt">y=</span>price)) +<span class="st"> </span><span class="kw">geom_point</span>()</code></pre>
-<p><img src="03-plotting_files/figure-html/ggdiamonds-1.png" title="" alt="" width="672" /></p>
-<p>Here, we’ve built our plot in layers. First, we create a canvas for plotting layers to come using the <code>ggplot</code> function, specifying which <strong>data</strong> to use (here, the <em>diamonds</em> data frame), and an <strong>aesthetic mapping</strong> of <em>carat</em> to the x-axis and <em>price</em> to the y-axis. We next add a layer to the plot, specifying a <strong>geom</strong>, or a way of visually representing the aesthetic mapping. Here we’re using a point, and the funtion is <code>geom_point()</code>. Parts are layered together using the <code>+</code> operator</p>
-<p>Instead of using a point, we could use a different geom. Here, let’s use <a href="http://cran.r-project.org/web/packages/hexbin/vignettes/hexagon_binning.pdf">hexagonal binning</a> instead of a point.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(carat, price)) +<span class="st"> </span><span class="kw">geom_hex</span>()</code></pre>
-<p><img src="03-plotting_files/figure-html/gghexbin-1.png" title="" alt="" width="672" /></p>
-<p>Here, each bin represents a segment of the plotting surface with lighter blue colors representing more density in that segment. The number of bins can be adjusted as an argument to the <code>geom_hex()</code> function. This is one method of solving the overplotting problem we have in this plot.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(carat, price)) +<span class="st"> </span><span class="kw">geom_hex</span>(<span class="dt">bins=</span><span class="dv">50</span>)</code></pre>
-<p><img src="03-plotting_files/figure-html/gghexbin50-1.png" title="" alt="" width="672" /></p>
-<p>Another method, here using points again, is to lower the opacity of each point. Here, <code>alpha=1/5</code> sets the opacity of each point to 20%. In other words, 5 points would have to overlap to result in a completely solid point. Note that in this case we’re not <em>mapping</em> the alpha level aesthetic to some other variable as we did above with color – we’re setting it to a static value of 0.20 for all points in the layer.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(carat, price)) +<span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">alpha=</span><span class="dv">1</span>/<span class="dv">5</span>)</code></pre>
-<p><img src="03-plotting_files/figure-html/gghexbin2-1.png" title="" alt="" width="672" /></p>
-<p>We can easily add more layers to the plot. For instance, we could add another layer displaying a smoothed conditional mean using the <code>geom_smooth()</code> function.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(carat, price)) +<span class="st"> </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">geom_smooth</span>()</code></pre>
-<pre><code>## geom_smooth: method=&quot;auto&quot; and size of largest group is &gt;=1000, so using gam with formula: y ~ s(x, bs = &quot;cs&quot;). Use &#39;method = x&#39; to change the smoothing method.</code></pre>
-<p><img src="03-plotting_files/figure-html/smoothgam-1.png" title="" alt="" width="672" /></p>
-<p>We’ll get a message telling us that because we have &gt;1,000 observations we will default to using a generalized additive model. We could easily plot a straight line by specifying that we want a linear model (<code>method=&quot;lm&quot;</code>) instead of a generalized additive model, the default for large datasets.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(carat, price)) +<span class="st"> </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)</code></pre>
-<p><img src="03-plotting_files/figure-html/smoothlinear-1.png" title="" alt="" width="672" /></p>
-<p>We see again the strong relationship between the size of the diamond and its price, but the relationship doesn’t appear linear. How does the diamond’s clarity affect the weight-price relationship?</p>
-</div>
-<div id="faceting-and-scaling" class="section level3">
-<h3>Faceting and scaling</h3>
-<p>One option we could use is to color-code the points by their clarity. Here, we add another <em>aesthetic</em>, colour (<code>col</code>) and map it to the variable we want it to represent: clarity</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(<span class="dt">x=</span>carat, <span class="dt">y=</span>price, <span class="dt">col=</span>clarity)) +<span class="st"> </span><span class="kw">geom_point</span>()</code></pre>
-<p><img src="03-plotting_files/figure-html/ggcolclarity-1.png" title="" alt="" width="672" /></p>
-<p>Examining the plot you can see that poor-clarity diamonds (included, small inclusions, etc) fetch a lower price per carat relative to more clear diamonds (very small inclusions, internally flawless, etc). We can see that <strong>ggplot2</strong> color-codes the points using a sensible default color scheme, and automatically draws a legend on the side for us. This requires a good deal of extra error-prone coding using base graphics.</p>
-<p>However, with 54,000 points on this plot, there is a good deal of overplotting that obscures how clarity affects the nature of the weight-price relationship. How else might we visualize this data? This is where a <em>series of small multiples</em> is helpful. The idea of <em>small multiples</em> was popularized by data visualization expert Edward Tufte. The idea is that you create a large grid of small plots, where each plot shows a particular <em>facet</em> of the data. Here, each plot in the grid might be price vs. carat for each particular clarity level. You explain to your audience the axes and how to interpret each plot only once, and the audience will immediately understand the rest of the plots.</p>
-<p>This can be accomplished easily using <strong>ggplot2</strong>:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(<span class="dt">x=</span>carat, <span class="dt">y=</span>price)) +<span class="st"> </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">facet_wrap</span>( ~<span class="st"> </span>clarity)</code></pre>
-<p><img src="03-plotting_files/figure-html/facetclar-1.png" title="" alt="" width="672" /></p>
-<p>Here, the <code>facets</code> argument expects a forumla object that’s constructed with the <code>~</code> operator. Here, we’ve plotted the price vs. weight separately for each level of clarity. We can see what we suspected before. With dirty diamonds (included, and perhaps small inclusions), the weight-price relationship is linear or slightly quadratic. Large diamonds can be purchased rather cheaply. But for very clear diamonds (internally flawless), the relationship is quadratic or even exponential.</p>
-<p>Let’s examine the weight-price relationship for various color ratings:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(<span class="dt">x=</span>carat, <span class="dt">y=</span>price)) +<span class="st"> </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">facet_wrap</span>( ~<span class="st"> </span>color)</code></pre>
-<p><img src="03-plotting_files/figure-html/facetcol-1.png" title="" alt="" width="672" /></p>
-<p>Here we see that for whiter diamonds (D, E, F) the price rises more quickly with increasing weight than for yellower diamonds (H, I, J).</p>
-<p>We can further facet the plot across two different categorical variables using the same syntax:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(carat, price)) +<span class="st"> </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">facet_grid</span>(clarity ~<span class="st"> </span>color)</code></pre>
-<p><img src="03-plotting_files/figure-html/ggfacet-1.png" title="" alt="" width="960" /></p>
-<p>Here we see that the price per carat rises very steeply for very white, very clear diamonds, while the relationship is nearly linear for yellower, more flawed diamonds. We can see that a perfect white diamond averages around $15,000 while a yellow included diamond can be had for only around $2,000.</p>
-<p>Finally, we can combind both color-coding and faceting in the same plot. Let’s use the same faceting scheme as last time, but color the points by the quality of the diamond’s cut.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(<span class="dt">x=</span>carat, <span class="dt">y=</span>price, <span class="dt">col=</span>cut)) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>() +<span class="st"> </span>
-<span class="st">  </span><span class="kw">facet_grid</span>(clarity ~<span class="st"> </span>color)</code></pre>
-<p><img src="03-plotting_files/figure-html/ggfacetclarcol_colcut-1.png" title="" alt="" width="960" /></p>
-<p>This color-coding reveals that clearer, whiter diamonds <em>generally</em> have higher quality cuts, but the relationship doesn’t appear strong, visually. Looking down the plot toward clearer diamonds you start to see more “Ideal” cuts than at the top, which are the more included diamonds.</p>
-<p>What we’ve done here in addition to faceting is map a feature of the data (here, the cut quality) onto a scale (here, color). This behavior will work differently depending on whether you’re looking at categorical or continuous variables. We can also map features to other <em>scales</em> such as <code>size=</code>, <code>shape=</code>, <code>linetype=</code>, or even transparency using <code>alpha=</code>. All of these different scales can be combined with each other or with facets, and give you an extremely powerful and easy-to-use graphical toolbox for exploratory data analysis.</p>
-<p>By combining multiple layers with aesthetic mappings to different scales, <strong>ggplot2</strong> provides a foundation for producing a wide range of statistical graphics beyond simple “named” plots like scatter plots, histograms, bar plots, etc.</p>
-<p>How about a stacked histogram, mapping the fill color of the stacked histogram to levels of the <em>clarity</em> variable:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(price, <span class="dt">fill=</span>clarity)) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">position=</span><span class="st">&quot;fill&quot;</span>, <span class="dt">binwidth=</span><span class="dv">200</span>)</code></pre>
-<p><img src="03-plotting_files/figure-html/ggfillhisto-1.png" title="" alt="" width="672" /></p>
-<p>Or what about box plots of the price grouped separately by the quality of the cut, color-coded by the color of the diamond, with the price on the y-axis being on the log (base 10) scale? Simple:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(cut, price)) +<span class="st"> </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">fill=</span>color)) +<span class="st"> </span><span class="kw">scale_y_log10</span>()</code></pre>
-<p><img src="03-plotting_files/figure-html/ggboxplots-1.png" title="" alt="" width="1152" /></p>
-<p>Or what about a kernel density plot (think about a smooth histogram) of the diamond’s depth in different semitransparent curves with the color fill mapped to each level of <em>cut</em>, limited to depths between 55 and 70, with a title and a proper axis labels? This also shows the syntax of building up a plot one step at a time. We first initialize the plot with <code>ggplot</code>, giving it the data we’re working with, and aesthetic mappings. We then add a <code>geom_density</code> layer, limit the x-axis displayed, and finally give it a title and axis labels. The plot is in the <strong>g</strong> object here; we can simply enter <code>g</code> and the plot will be displayed.</p>
-<pre class="sourceCode r"><code class="sourceCode r">g &lt;-<span class="st"> </span><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(depth, <span class="dt">fill=</span>cut)) 
-g &lt;-<span class="st"> </span>g +<span class="st"> </span><span class="kw">geom_density</span>(<span class="dt">alpha=</span><span class="dv">1</span>/<span class="dv">4</span>) 
-g &lt;-<span class="st"> </span>g +<span class="st"> </span><span class="kw">xlim</span>(<span class="dv">55</span>, <span class="dv">70</span>)
-g &lt;-<span class="st"> </span>g +<span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;Depths by Cut Quality&quot;</span>)
-g &lt;-<span class="st"> </span>g +<span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Depth&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Density&quot;</span>)
-g</code></pre>
-<p><img src="03-plotting_files/figure-html/ggdepthdensity-1.png" title="" alt="" width="672" /></p>
-<p>Finally, we can save the plot created using the <code>ggsave</code> function:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggsave</span>(<span class="dt">filename=</span><span class="st">&quot;table-depth-density.png&quot;</span>, <span class="dt">plot=</span>g)</code></pre>
-<p>There are endless ways to combine aesthetic mappings with different geoms and multiple layers. Read about other <strong>geom</strong>s, mappings, scales, and other layer options at the links below.</p>
-<div id="exercise" class="section level4">
-<h4>Exercise</h4>
-<p>Now, plot a graph using the iris dataset using <strong>ggplot2</strong>. You don’t have to use points; other geoms include: <code>gemo_bar</code>, <code>geom_area</code>, <code>geom_boxplot</code>, and many more. Try to incorporate at least one extra aesthetic (over <code>x</code> and <code>y</code>). Some examples of aesthetics are <code>col</code>, <code>fill</code>, <code>size</code>, <code>shape</code>, <code>alpha</code>, <code>linetype</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(<span class="dt">x=</span>Petal.Length, <span class="dt">y=</span>Petal.Width, <span class="dt">col=</span>Sepal.Width, <span class="dt">size=</span>Sepal.Length)) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>() +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>Species)</code></pre>
-<p><img src="03-plotting_files/figure-html/irisexamples-1.png" title="" alt="" width="672" /></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(<span class="dt">x=</span>Petal.Length)) +<span class="st"> </span><span class="kw">geom_histogram</span>() +<span class="st"> </span><span class="kw">facet_wrap</span>(~Species)</code></pre>
-<pre><code>## stat_bin: binwidth defaulted to range/30. Use &#39;binwidth = x&#39; to adjust this.
-## stat_bin: binwidth defaulted to range/30. Use &#39;binwidth = x&#39; to adjust this.
-## stat_bin: binwidth defaulted to range/30. Use &#39;binwidth = x&#39; to adjust this.</code></pre>
-<p><img src="03-plotting_files/figure-html/irisexamples-2.png" title="" alt="" width="672" /></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(<span class="dt">x=</span>Petal.Length, <span class="dt">fill=</span>Species)) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">position=</span><span class="st">&quot;dodge&quot;</span>, <span class="dt">binwidth=</span><span class="fl">0.1</span>)</code></pre>
-<p><img src="03-plotting_files/figure-html/irisexamples-3.png" title="" alt="" width="672" /></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(<span class="dt">x=</span>Petal.Length, <span class="dt">fill=</span>Species)) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">alpha=</span><span class="fl">0.5</span>)</code></pre>
-<p><img src="03-plotting_files/figure-html/irisexamples-4.png" title="" alt="" width="672" /></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(<span class="dt">x=</span>Species, <span class="dt">y=</span>Sepal.Length)) +<span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre>
-<p><img src="03-plotting_files/figure-html/irisexamples-5.png" title="" alt="" width="672" /></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(<span class="dt">x=</span>Species, <span class="dt">y=</span>Sepal.Width, <span class="dt">fill=</span>Species)) +<span class="st"> </span><span class="kw">geom_violin</span>()</code></pre>
-<pre><code>## Warning: Removed 5 rows containing non-finite values (stat_ydensity).</code></pre>
-<p><img src="03-plotting_files/figure-html/irisexamples-6.png" title="" alt="" width="672" /></p>
-<p>What if we want to split up the measurements and compare them all? We need the type of measurement (<code>Petal.length</code>, <code>Petal.Width</code>) as a variable rather than each as a column heading. There is another package by Hadley Wickham (see a trend here?) that helps us restructure, or reshape our data: It’s called <code>reshape2</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(reshape2)</code></pre>
-<pre><code>## Loading required package: reshape2</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">dat_long &lt;-<span class="st"> </span><span class="kw">melt</span>(dat)</code></pre>
-<pre><code>## Using Species as id variables</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(dat_long)</code></pre>
-<pre><code>##   Species     variable value
-## 1  setosa Sepal.Length   5.1
-## 2  setosa Sepal.Length   4.9
-## 3  setosa Sepal.Length   4.7
-## 4  setosa Sepal.Length   4.6
-## 5  setosa Sepal.Length   5.0
-## 6  setosa Sepal.Length   5.4</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(dat_long, <span class="kw">aes</span>(<span class="dt">x=</span>variable, <span class="dt">y=</span>value, <span class="dt">fill=</span>Species)) +<span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre>
-<p><img src="03-plotting_files/figure-html/irisreshapebox-1.png" title="" alt="" width="672" /></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(dat_long, <span class="kw">aes</span>(<span class="dt">x=</span>variable, <span class="dt">y=</span>value, <span class="dt">fill=</span>Species)) +<span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre>
-<p><img src="03-plotting_files/figure-html/irisreshapebox-2.png" title="" alt="" width="672" /></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(dat_long, <span class="kw">aes</span>(<span class="dt">x=</span>Species, <span class="dt">y=</span>value, <span class="dt">fill=</span>Species)) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_violin</span>() +<span class="st"> </span>
-<span class="st">  </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>variable) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Measurement (cm)&quot;</span>)</code></pre>
-<p><img src="03-plotting_files/figure-html/irisreshapebox-3.png" title="" alt="" width="672" /></p>
+<p>Let’s start off with an example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+<span class="kw">ggplot</span>(<span class="dt">data =</span> gapminder, <span class="kw">aes</span>(<span class="dt">x =</span> lifeExp, <span class="dt">y =</span> gdpPercap)) +
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="fig/03-plotting-lifeExp-vs-gdpPercap-scatter-1.png" title="" alt="" width="672" /></p>
+<p>So the first thing we do is call the <code>ggplot</code> function. This function lets R know that we’re creating a new plot, and any of the arguments we give the <code>ggplot</code> function are the <em>global</em> options for the plot: they apply to all layers on the plot.</p>
+<p>We’ve passed in two arguments to <code>ggplot</code>. First, we tell <code>ggplot</code> what data we want to show on our figure, in this example the gapminder data we read in earlier. For the second argument we passed in the <code>aes</code> function, which tells <code>ggplot</code> how variables in the <strong>data</strong> map to <em>aesthetic</em> properties of the figure, in this case the <strong>x</strong> and <strong>y</strong> locations. Here we told <code>ggplot</code> we want to plot the “lifeExp” column of the gapminder data frame on the x-axis, and the “gdpPercap” column on the y-axis. Notice that we didn’t need to explicitly pass <code>aes</code> these columns (e.g. <code>x = gapminder[, &quot;lifeExp&quot;]</code>), this is because <code>ggplot</code> is smart enough to know to look in the <strong>data</strong> for that column!</p>
+<p>By itself, the call to <code>ggplot</code> isn’t enough to draw a figure:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gapminder, <span class="kw">aes</span>(<span class="dt">x =</span> lifeExp, <span class="dt">y =</span> gdpPercap))</code></pre></div>
+<p><img src="fig/03-plotting-unnamed-chunk-2-1.png" title="" alt="" width="672" /></p>
+<p>We need to tell <code>ggplot</code> how we want to visually represent the data, which we do by adding a new <strong>geom</strong> layer. In our example, we used <code>geom_point</code>, which tells <code>ggplot</code> we want to visually represent the relationship between <strong>x</strong> and <strong>y</strong> as a scatterplot of points:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gapminder, <span class="kw">aes</span>(<span class="dt">x =</span> lifeExp, <span class="dt">y =</span> gdpPercap)) +
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="fig/03-plotting-lifeExp-vs-gdpPercap-scatter2-1.png" title="" alt="" width="672" /></p>
+<blockquote>
+<h2 id="challenge-1" class="challenge">Challenge 1</h2>
+<p>Modify the example so that the figure visualise how life expectancy has changed over time:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gapminder, <span class="kw">aes</span>(<span class="dt">x =</span> lifeExp, <span class="dt">y =</span> gdpPercap)) +<span class="st"> </span><span class="kw">geom_point</span>()</code></pre></div>
+<p>Hint: the gapminder dataset has a column called “year”, which should appear on the x-axis.</p>
+</blockquote>
+<blockquote>
+<h2 id="challenge-2" class="challenge">Challenge 2</h2>
+<p>In the previous examples and challenge we’ve used the <code>aes</code> function to tell the scatterplot <strong>geom</strong> about the <strong>x</strong> and <strong>y</strong> locations of each point. Another <em>aesthetic</em> property we can modify is the point <em>color</em>. Modify the code from the previous challenge to <strong>color</strong> the points by the “continent” column. What trends do you see in the data? Are they what you expected?</p>
+</blockquote>
 </div>
 </div>
+<div id="geom-layers" class="section level2">
+<h2>Geom Layers</h2>
+<p>Using a scatterplot probably isn’t the best for visualising change over time. Instead, let’s tell <code>ggplot</code> to visualise the data as a line plot:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gapminder, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>lifeExp, <span class="dt">by=</span>country, <span class="dt">color=</span>continent)) +
+<span class="st">  </span><span class="kw">geom_line</span>()</code></pre></div>
+<p><img src="fig/03-plotting-lifeExp-line-1.png" title="" alt="" width="672" /></p>
+<p>Instead of adding a <code>geom_point</code> layer, we’ve added a <code>geom_line</code> layer. We’ve added the <strong>by</strong> <em>aesthetic</em>, which tells <code>ggplot</code> to draw a line for each country.</p>
+<p>But what if we want to visualise both lines and points on the plot? We can simply add another layer to the plot:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gapminder, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>lifeExp, <span class="dt">by=</span>country, <span class="dt">color=</span>continent)) +
+<span class="st">  </span><span class="kw">geom_line</span>() +<span class="st"> </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="fig/03-plotting-lifeExp-line-point-1.png" title="" alt="" width="672" /></p>
+<p>It’s important to note that each layer is drawn on top of the previous layer. In this example, the points have been drawn <em>on top of</em> the lines. Here’s a demonstration:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gapminder, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>lifeExp, <span class="dt">by=</span>country)) +
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">color=</span>continent)) +<span class="st"> </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="fig/03-plotting-lifeExp-layer-example-1-1.png" title="" alt="" width="672" /></p>
+<p>In this example, the <em>aesthetic</em> mapping of <strong>color</strong> has been moved from the global plot options in <code>ggplot</code> to the <code>geom_line</code> layer so it no longer applies to the points. Now we can clearly see that the points are drawn on top of the lines.</p>
+<blockquote>
+<h2 id="challenge-3" class="challenge">Challenge 3</h2>
+<p>Switch the order of the point and line layers from the previous example. What happened?</p>
+</blockquote>
+<p>There are many other geoms we can use to explore the data. One common one is a histogram, so we can see the distribution of a single variable:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(gapminder, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap)) +<span class="st"> </span><span class="kw">geom_histogram</span>()</code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="fig/03-plotting-gdp-hist-1.png" title="" alt="" width="672" /></p>
+<p>Or a boxplot to compare distribution of life expectancy across continents:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(gapminder, <span class="kw">aes</span>(<span class="dt">x =</span> continent, <span class="dt">y =</span> lifeExp)) +<span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre></div>
+<p><img src="fig/03-plotting-life-exp-boxplot-1.png" title="" alt="" width="672" /></p>
+</div>
+<div id="transformations-and-statistics" class="section level2">
+<h2>Transformations and statistics</h2>
+<p>ggplot also makes it easy to overlay statistical models over the data. To demonstrate we’ll go back to our first example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gapminder, <span class="kw">aes</span>(<span class="dt">x =</span> lifeExp, <span class="dt">y =</span> gdpPercap, <span class="dt">color=</span>continent)) +
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="fig/03-plotting-lifeExp-vs-gdpPercap-scatter3-1.png" title="" alt="" width="672" /></p>
+<p>Currently it’s hard to see the relationship between the points due to some strong outliers in GDP per capita. We can change the scale of units on the y axis using the <em>scale</em> functions. These control the mapping between the data values and visual values of an aesthetic.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gapminder, <span class="kw">aes</span>(<span class="dt">x =</span> lifeExp, <span class="dt">y =</span> gdpPercap)) +
+<span class="st">  </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">scale_y_log10</span>()</code></pre></div>
+<p><img src="fig/03-plotting-axis-scale-1.png" title="" alt="" width="672" /></p>
+<p>The <code>log10</code> function applied a transformation to the values of the gdpPercap column before rendering them on the plot, so that each multiple of 10 now only corresponds to an increase in 1 on the transformed scale, e.g. a GDP per capita of 1,000 is now 3 on the y axis, a value of 10,000 corresponds to 4 on the y axis and so on. This makes it easier to visualise the spread of data on the y-axis.</p>
+<p>We can fit a simple linear relationship to the data by adding another layer, <code>geom_smooth</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gapminder, <span class="kw">aes</span>(<span class="dt">x =</span> lifeExp, <span class="dt">y =</span> gdpPercap)) +
+<span class="st">  </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">scale_y_log10</span>() +<span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)</code></pre></div>
+<p><img src="fig/03-plotting-lm-fit-1.png" title="" alt="" width="672" /></p>
+<p>We can make the line thicker by <em>setting</em> the <strong>size</strong> aesthetic in the <code>geom_smooth</code> layer:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gapminder, <span class="kw">aes</span>(<span class="dt">x =</span> lifeExp, <span class="dt">y =</span> gdpPercap)) +
+<span class="st">  </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">scale_y_log10</span>() +<span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">size=</span><span class="fl">1.5</span>)</code></pre></div>
+<p><img src="fig/03-plotting-lm-fit2-1.png" title="" alt="" width="672" /></p>
+<p>There are two ways an <em>aesthetic</em> can be specified. Here we <em>set</em> the <strong>size</strong> aesthetic by passing it as an argument to <code>geom_smooth</code>. Previously in the lesson we’ve used the <code>aes</code> function to define a <em>mapping</em> between data variables and their visual representation.</p>
+<blockquote>
+<h2 id="challenge-4" class="challenge">Challenge 4</h2>
+<p>Modify the color and size of the points on the point layer in the previous example.</p>
+<p>Hint: do not use the <code>aes</code> function.</p>
+</blockquote>
+</div>
+<div id="multi-panel-figures" class="section level2">
+<h2>Multi-panel figures</h2>
+<p>Earlier we visualised the change in life expectancy over time across all countries in one plot. Alternatively, we can split this out over multiple panels by adding a layer of <strong>facet</strong> panels:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gapminder, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> lifeExp, <span class="dt">color=</span>continent)) +
+<span class="st">  </span><span class="kw">geom_line</span>() +<span class="st"> </span><span class="kw">facet_wrap</span>( ~<span class="st"> </span>country)</code></pre></div>
+<p><img src="fig/03-plotting-facet-1.png" title="" alt="" width="672" /></p>
+<p>The <code>facet_wrap</code> layer took a “formula” as its argument, denoted by the tilde (~). This tells R to draw a panel for each unique value in the country column of the gapminder dataset.</p>
+</div>
+<div id="modifying-text" class="section level2">
+<h2>Modifying text</h2>
+<p>To clean this figure up for a publication we need to change some of the text elements. The x-axis is way too cluttered, and the y axis should read “Life expectancy”, rather than the column name in the data frame.</p>
+<p>We can do this by adding a couple of different layers. The <strong>theme</strong> layer controls the axis text, and overall text size, and there are special layers for changing the axis labels. To change the legend title, we need to use the <strong>scales</strong> layer.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gapminder, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> lifeExp, <span class="dt">color=</span>continent)) +
+<span class="st">  </span><span class="kw">geom_line</span>() +<span class="st"> </span><span class="kw">facet_wrap</span>( ~<span class="st"> </span>country) +
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Year&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Life expectancy&quot;</span>) +<span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;Figure 1&quot;</span>) +
+<span class="st">  </span><span class="kw">scale_fill_discrete</span>(<span class="dt">name=</span><span class="st">&quot;Continent&quot;</span>) +
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x=</span><span class="kw">element_blank</span>(), <span class="dt">axis.ticks.x=</span><span class="kw">element_blank</span>())</code></pre></div>
+<p><img src="fig/03-plotting-theme-1.png" title="" alt="" width="672" /></p>
+<p>This is just a taste of what you can do with <code>ggplot2</code>. RStudio provides a really useful <a href="http://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf">cheat sheet</a> of the different layers available, and more extensive documentation is available on the <a href="http://docs.ggplot2.org/current/">ggplot2 website</a>. Finally, if you have no idea how to change something, a quick google search will usually send you to a relevant question and answer on Stack Overflow with reusable code to modify!</p>
+<blockquote>
+<h2 id="challenge-5" class="challenge">Challenge 5</h2>
+<p>Create a density plot of GDP per capita, filled by continent.</p>
+<p>Advanced: - Transform the x axis to better visualise the data spread. - Add a facet layer to panel the density plots by year.</p>
+</blockquote>
 <div id="further-ggplot2-resources" class="section level3">
 <h3>Further <strong>ggplot2</strong> resources</h3>
 <ul>
@@ -329,6 +341,48 @@ g</code></pre>
 <li><a href="http://stackoverflow.com/questions/tagged/ggplot2">Thousands of questions and answers tagged with “ggplot2” on Stack Overflow, a programming Q&amp;A site</a>.</li>
 </ul>
 </div>
+</div>
+<div id="challenge-solutions" class="section level2">
+<h2>Challenge solutions</h2>
+<p>Solutions to challenges</p>
+<blockquote>
+<h2 id="solution-to-challenge-1" class="challenge">Solution to challenge 1</h2>
+<p>Modify the example so that the figure visualise how life expectancy has changed over time:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gapminder, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> lifeExp)) +<span class="st"> </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="fig/03-plotting-ch1-sol-1.png" title="" alt="" width="672" /></p>
+</blockquote>
+<blockquote>
+<h2 id="solution-to-challenge-2" class="challenge">Solution to challenge 2</h2>
+<p>In the previous examples and challenge we’ve used the <code>aes</code> function to tell the scatterplot <strong>geom</strong> about the <strong>x</strong> and <strong>y</strong> locations of each point. Another <em>aesthetic</em> property we can modify is the point <em>color</em>. Modify the code from the previous challenge to <strong>color</strong> the points by the “continent” column. What trends do you see in the data? Are they what you expected?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gapminder, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> lifeExp, <span class="dt">color=</span>continent)) +
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="fig/03-plotting-ch2-sol-1.png" title="" alt="" width="672" /></p>
+</blockquote>
+<blockquote>
+<h2 id="solution-to-challenge-3" class="challenge">Solution to challenge 3</h2>
+<p>Switch the order of the point and line layers from the previous example. What happened?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gapminder, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>lifeExp, <span class="dt">by=</span>country)) +
+<span class="st"> </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">color=</span>continent))</code></pre></div>
+<p><img src="fig/03-plotting-ch3-sol-1.png" title="" alt="" width="672" /></p>
+<p>The lines now get drawn over the points!</p>
+</blockquote>
+<blockquote>
+<h2 id="solution-to-challenge-4" class="challenge">Solution to challenge 4</h2>
+<p>Modify the color and size of the points on the point layer in the previous example.</p>
+<p>Hint: do not use the <code>aes</code> function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gapminder, <span class="kw">aes</span>(<span class="dt">x =</span> lifeExp, <span class="dt">y =</span> gdpPercap)) +
+<span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">size=</span><span class="dv">3</span>, <span class="dt">color=</span><span class="st">&quot;orange&quot;</span>) +<span class="st"> </span><span class="kw">scale_y_log10</span>() +
+<span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">size=</span><span class="fl">1.5</span>)</code></pre></div>
+<p><img src="fig/03-plotting-ch4-sol-1.png" title="" alt="" width="672" /></p>
+</blockquote>
+<blockquote>
+<h2 id="solution-to-challenge-5" class="challenge">Solution to challenge 5</h2>
+<p>Create a density plot of GDP per capita, filled by continent.</p>
+<p>Advanced: - Transform the x axis to better visualise the data spread. - Add a facet layer to panel the density plots by year.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> gapminder, <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">fill=</span>continent)) +
+<span class="st"> </span><span class="kw">geom_density</span>(<span class="dt">alpha=</span><span class="fl">0.6</span>) +<span class="st"> </span><span class="kw">facet_wrap</span>( ~<span class="st"> </span>year) +<span class="st"> </span><span class="kw">scale_x_log10</span>()</code></pre></div>
+<p><img src="fig/03-plotting-ch5-sol-1.png" title="" alt="" width="672" /></p>
+</blockquote>
 </div>
 </div>
 

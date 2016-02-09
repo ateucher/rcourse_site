@@ -13,35 +13,53 @@
 <title>Introduction to R</title>
 
 <script src="libs/jquery-1.11.0/jquery.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link href="libs/bootstrap-2.3.2/css/flatly.min.css" rel="stylesheet" />
-<link href="libs/bootstrap-2.3.2/css/bootstrap-responsive.min.css" rel="stylesheet" />
-<script src="libs/bootstrap-2.3.2/js/bootstrap.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.1/css/flatly.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/respond.min.js"></script>
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-padding-top: 50px;
-padding-bottom: 40px;
-}
-@media (max-width: 979px) {
-body {
-padding-top: 0;
-}
-}
-/* offset scroll position for anchor links (for fixed navbar) */
-@media (min-width: 980px) {
-.section h2 {
-padding-top: 52px;
-margin-top: -52px;
-}
-.section h3 {
-padding-top: 52px;
-margin-top: -52px;
-}
-}
+ /* padding for bootstrap navbar */
+ body { 
+ padding-top: 50px; 
+ padding-bottom: 40px; 
+ } 
+ @media (max-width: 979px) { 
+ body { 
+ padding-top: 0; 
+ } 
+ } 
+ /* offset scroll position for anchor links (for fixed navbar) */
+ @media (min-width: 980px) { 
+ .section h2 { 
+ padding-top: 52px; 
+ margin-top: -52px; 
+ } 
+ .section h3 { 
+ padding-top: 52px; 
+ margin-top: -52px; 
+ } 
+ } 
 /* don't use link color in navbar */
-.dropdown-menu>li>a {
-color: white;
+/* .dropdown-menu>li>a { */
+/* color: white; */
+/* }  */
+
+blockquote {
+  background-color: #D7ECF7;
+  border-color: #318FBF;
+  font-size: 1em;
+}
+
+blockquote p {
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+}
+
+blockquote h2 {
+  font-size: 1.2em;
+  font-style: italic;
 }
 </style>
 
@@ -60,6 +78,14 @@ color: white;
   margin-left: auto;
   margin-right: auto;
 }
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img { 
+  max-width:100%; 
+  height: auto; 
+}
 </style>
 <div class="container-fluid main-container">
 
@@ -77,24 +103,26 @@ color: white;
           <li class="dropdown">
             <a href="notes" class="dropdown-toggle" data-toggle="dropdown">Course Notes <b class="caret"></b></a>
             <ul class="dropdown-menu">
-               <li><a href="basics.html">Basics</a></li>
-               <li><a href="00-introduction.html">Introduction</a></li>
-               <li><a href="01-starting-with-data.html">Starting With Data</a></li>
-               <li><a href="02-dplyr.html">Data Munging with dplyr</a></li>
+               <li><a href="00-basics.html">Basics</a></li>
+               <li><a href="01-introduction.html">Introduction</a></li>
+               <li><a href="02-data_frames.html">Starting With data</a></li>
                <li><a href="03-plotting.html">Plotting with ggplot2</a></li>
-               <li><a href="04-basic_stats.html">Basic Statistics</a></li>
-               <li><a href="05-repeating-things.html">Repeating Things</a></li>
-               <li><a href="06-functions.html">Functions</a></li>
-               <li><a href="07-all-together.html">Putting it all Together</a></li>
-               <li><a href="08-best-practices.html">Best Practices</a></li>
+               <li><a href="04-subsetting.html">Subsetting data</a></li>
+               <li><a href="05-dplyr.html">Data manipulation with dplyr</a></li>
+               <li><a href="06-tidyr.html">Data manipulation with tidyr</a></li>
+               <li><a href="07-writing-data.html">Writing data</a></li>
+               <li><a href="08-basic-stats.html">Basic statistics</a></li>
+               <li><a href="09-functions.html">Writing functions</a></li>
+               <li><a href="10-control-flow.html">Control flow</a></li>
+               <!--<li><a href="11-all-together.html">Putting it all Together</a></li>-->
+               <li><a href="best-practices.html">Best Practices</a></li>
                <li><a href="getting_help.html">Getting Help</a></li>
             </ul>
           </li>
           <li class="dropdown">
             <a href="data" class="dropdown-toggle" data-toggle="dropdown">Data <b class="caret"></b></a>
             <ul class="dropdown-menu">
-               <li><a href="data/iris.csv">Iris Dataset (csv)</a></li>
-               <li><a href="data/iris.zip">Iris Dataset (zip)</a></li>
+               <li><a href="data/gapminder-FiveYearData.csv">Gapminder Dataset (csv)</a></li>
             </ul>
           </li>
         </ul>
@@ -117,29 +145,31 @@ color: white;
 <p>On this page you will find links to the data we need for the course, as well as course notes for each of the modules</p>
 <div id="course-notes" class="section level4">
 <h4>Course Notes</h4>
-<p><a href="basics.html">Basics</a> (We didn’t actually go through this material, but referenced it as we worked through the other sections)</p>
-<p><a href="00-introduction.html">00 - Introduction</a> (This was our starting point)</p>
-<p><a href="01-starting-with-data.html">01 - Starting with Data</a></p>
-<p><a href="02-dplyr.html">02 - Data munging with dplyr</a></p>
-<p><a href="03-plotting.html">03 - Plotting</a></p>
-<p><a href="04-basic_stats.html">04 - Basic statistics</a></p>
-<p><a href="05-repeating-things.html">05 - Repeating things</a></p>
-<p><a href="06-functions.html">06 - Functions</a></p>
-<p><a href="07-all-together.html">07 - Putting it all together</a></p>
-<p><a href="08-best-practices.html">08 - Best Practices</a></p>
-<p><a href="getting_help.html">Getting help</a></p>
+<ol style="list-style-type: decimal">
+<li><p><a href="00-basics.html">00 - Basics</a> (We didn’t actually go through this material, but referenced it as we worked through the other sections)</p></li>
+<li><p><a href="01-introduction.html">Introduction</a></p></li>
+<li><p><a href="02-data_frames.html">Starting With data</a></p></li>
+<li><p><a href="03-plotting.html">Plotting with ggplot2</a></p></li>
+<li><p><a href="04-subsetting.html">Subsetting data</a></p></li>
+<li><p><a href="05-dplyr.html">Data manipulation with dplyr</a></p></li>
+<li><p><a href="06-tidyr.html">Data manipulation with tidyr</a></p></li>
+<li><p><a href="07-writing-data.html">Writing data</a></p></li>
+<li><p><a href="08-basic_stats.html">Basic statistics</a></p></li>
+<li><p><a href="09-functions.html">Writing functions</a></p></li>
+<li><p><a href="10-control-flow.html">Control flow</a></p></li>
+<li><p><a href="best-practices.html">Best practices</a></p></li>
+<li><p><a href="getting_help.html">Getting help</a></p></li>
+</ol>
+<!-- 1. [Putting it all together](12-all-together.html) -->
 </div>
 <div id="data" class="section level4">
 <h4>Data</h4>
-<p><a href="data/iris.csv">Iris dataset (csv)</a></p>
-<p><a href="data/iris.zip">Iris dataset (zip)</a></p>
+<p><a href="data/gapminder-FiveYearData.csv">Gapminder dataset</a></p>
 </div>
 <div id="credits" class="section level4">
 <h4>Credits</h4>
-<p>Most of the material here was borrowed and adapted from <a href="http://www.softwarecarpentry.org">Software Carpentry</a>’s <a href="https://github.com/swcarpentry/bc/tree/master/novice/r">novice R Bootcamp material</a>, which they make available for reuse under the Creative Commons Attribution <a href="http://creativecommons.org/licenses/by/3.0/">(CC_BY)</a> license. These are amazing people, doing amazing things to help the scientific world be more productive with their code and data. Check them out, and if you get the chance to attend a bootcamp, do it.</p>
+<p>Most of the material here was borrowed and adapted from <a href="http://www.softwarecarpentry.org">Software Carpentry</a>’s <a href="https://github.com/swcarpentry/r-novice-gapminder">novice R Bootcamp material</a>, which they make available for reuse under the Creative Commons Attribution <a href="http://creativecommons.org/licenses/by/3.0/">(CC_BY)</a> license. These are amazing people, doing amazing things to help the scientific world be more productive with their code and data. Check them out, and if you get the chance to attend a bootcamp, do it.</p>
 <p>The <a href="http://www.poissonconsulting.ca/courses/2012/06/05/an-introduction-to-r-course-12.html">course notes</a> from <a href="http://www.poissonconsulting.ca/">Poisson Consulting</a>’s 2012 R Course were also very helpful in putting this material together.</p>
-<p>Much of the <code>dplyr</code> material came from the dplyr <a href="http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html">package vignette</a>.</p>
-<p>When we went off-roading to play with the reshape2 package, we used material from <a href="http://seananderson.ca/2013/10/19/reshape.html">this website</a>.</p>
 </div>
 <div id="source" class="section level4">
 <h4>Source</h4>
@@ -152,9 +182,7 @@ color: white;
 <div id="license" class="section level4">
 <h4>License</h4>
 <p>Notes: <a href="http://creativecommons.org/licenses/by/3.0/">CC-BY</a>. Code: <a href="http://opensource.org/licenses/mit-license.html">MIT</a></p>
-</div>
-<div id="parting-shot-nice-job" class="section level4">
-<h4>Parting shot: <a href="high-five.html">Nice Job!</a></h4>
+<!--#### Parting shot: [Nice Job!](high-five.html)-->
 </div>
 
 

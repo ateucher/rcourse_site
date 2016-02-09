@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+<title></title>
+
+<script src="libs/jquery-1.11.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.1/css/flatly.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/respond.min.js"></script>
+<style type="text/css">
+ /* padding for bootstrap navbar */
+ body { 
+ padding-top: 50px; 
+ padding-bottom: 40px; 
+ } 
+ @media (max-width: 979px) { 
+ body { 
+ padding-top: 0; 
+ } 
+ } 
+ /* offset scroll position for anchor links (for fixed navbar) */
+ @media (min-width: 980px) { 
+ .section h2 { 
+ padding-top: 52px; 
+ margin-top: -52px; 
+ } 
+ .section h3 { 
+ padding-top: 52px; 
+ margin-top: -52px; 
+ } 
+ } 
+/* don't use link color in navbar */
+/* .dropdown-menu>li>a { */
+/* color: white; */
+/* }  */
+
+blockquote {
+  background-color: #D7ECF7;
+  border-color: #318FBF;
+  font-size: 1em;
+}
+
+blockquote p {
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+}
+
+blockquote h2 {
+  font-size: 1.2em;
+  font-style: italic;
+}
+</style>
+
+<link rel="stylesheet" href="libs/font-awesome-4.2.0/css/font-awesome.min.css"/>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img { 
+  max-width:100%; 
+  height: auto; 
+}
+</style>
+<div class="container-fluid main-container">
+
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <div class="nav-collapse collapse">
+        <ul class="nav">
+          <li><a href="/rcourse_site/">Home</a></li>
+          <li class="dropdown">
+            <a href="notes" class="dropdown-toggle" data-toggle="dropdown">Course Notes <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+               <li><a href="00-basics.html">Basics</a></li>
+               <li><a href="01-introduction.html">Introduction</a></li>
+               <li><a href="02-data_frames.html">Starting With data</a></li>
+               <li><a href="03-plotting.html">Plotting with ggplot2</a></li>
+               <li><a href="04-subsetting.html">Subsetting data</a></li>
+               <li><a href="05-dplyr.html">Data manipulation with dplyr</a></li>
+               <li><a href="06-tidyr.html">Data manipulation with tidyr</a></li>
+               <li><a href="07-writing-data.html">Writing data</a></li>
+               <li><a href="08-basic-stats.html">Basic statistics</a></li>
+               <li><a href="09-functions.html">Writing functions</a></li>
+               <li><a href="10-control-flow.html">Control flow</a></li>
+               <!--<li><a href="11-all-together.html">Putting it all Together</a></li>-->
+               <li><a href="best-practices.html">Best Practices</a></li>
+               <li><a href="getting_help.html">Getting Help</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="data" class="dropdown-toggle" data-toggle="dropdown">Data <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+               <li><a href="data/gapminder-FiveYearData.csv">Gapminder Dataset (csv)</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav pull-right">
+          <a class="btn btn-primary" href="https://github.com/ateucher/rcourse_site">
+            <i class="fa fa-github fa-lg"></i>
+            GitHub
+          </a>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>
+
+
+
+<hr />
+<hr />
+<div id="dataframe-manipulation-with-dplyr" class="section level1">
+<h1>Dataframe manipulation with dplyr</h1>
+<blockquote>
+<h2 id="learning-objectives" class="objectives">Learning Objectives</h2>
+<ul>
+<li>To be able to use the 6 main dataframe manipulation ‘verbs’ with pipes in <code>dplyr</code></li>
+</ul>
+</blockquote>
+<p>Manipulation of dataframes means many things to many researchers, we often select certain observations (rows) or variables (columns), we often group the data by a certain variable(s), or we even calculate summary statistics. We can do these operations using the normal base R operations:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(gapminder[gapminder$continent ==<span class="st"> &quot;Africa&quot;</span>, <span class="st">&quot;gdpPercap&quot;</span>])</code></pre></div>
+<pre><code>## [1] 2193.755</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(gapminder[gapminder$continent ==<span class="st"> &quot;Americas&quot;</span>, <span class="st">&quot;gdpPercap&quot;</span>])</code></pre></div>
+<pre><code>## [1] 7136.11</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(gapminder[gapminder$continent ==<span class="st"> &quot;Asia&quot;</span>, <span class="st">&quot;gdpPercap&quot;</span>])</code></pre></div>
+<pre><code>## [1] 7902.15</code></pre>
+<p>But this isn’t very <em>nice</em> because there is a fair bit of repetition. Repeating yourself will cost you time, both now and later, and potentially introduce some nasty bugs.</p>
+<div id="the-dplyr-package" class="section level2">
+<h2>The <code>dplyr</code> package</h2>
+<p>Luckily, the <a href="https://cran.r-project.org/web/packages/dplyr/dplyr.pdf"><code>dplyr</code></a> package provides a number of very useful functions for manipulating dataframes in a way that will reduce the above repetition, reduce the probability of making errors, and probably even save you some typing. As an added bonus, you might even find the <code>dplyr</code> grammar easier to read.</p>
+<p>Here we’re going to cover 6 of the most commonly used functions as well as using pipes (<code>%&gt;%</code>) to combine them.</p>
+<ol style="list-style-type: decimal">
+<li><code>select()</code></li>
+<li><code>filter()</code></li>
+<li><code>group_by()</code></li>
+<li><code>summarize()</code></li>
+<li><code>mutate()</code></li>
+</ol>
+<p>If you have have not installed this package earlier, please do so:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&#39;dplyr&#39;</span>)</code></pre></div>
+<p>Now let’s load the package:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)</code></pre></div>
+</div>
+<div id="using-select" class="section level2">
+<h2>Using select()</h2>
+<p>If, for example, we wanted to move forward with only a few of the variables in our dataframe we could use the <code>select()</code> function. This will keep only the variables you select.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">year_country_gdp &lt;-<span class="st"> </span><span class="kw">select</span>(gapminder,year,country,gdpPercap)</code></pre></div>
+<p><img src="fig/dplyr_tidyr/05-dplyr-fig1.png" alt="" /></p>
+<p>If we open up <code>year_country_gdp</code> we’ll see that it only contains the year, country and gdpPercap. Above we used ‘normal’ grammar, but the strengths of <code>dplyr</code> lie in combining several functions using pipes. Since the pipes grammar is unlike anything we’ve seen in R before, let’s repeat what we’ve done above using pipes.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">year_country_gdp &lt;-<span class="st"> </span>gapminder %&gt;%<span class="st"> </span><span class="kw">select</span>(year,country,gdpPercap)</code></pre></div>
+<p>To help you understand why we wrote that in that way, let’s walk through it step by step. First we summon the gapminder dataframe and pass it on, using the pipe symbol <code>%&gt;%</code>, to the next step, which is the <code>select()</code> function. In this case we don’t specify which data object we use in the <code>select()</code> function since in gets that from the previous pipe. <strong>Fun Fact</strong>: There is a good chance you have encountered pipes before in the shell. In R, a pipe symbol is <code>%&gt;%</code> while in the shell it is <code>|</code> but the concept is the same!</p>
+</div>
+<div id="using-filter" class="section level2">
+<h2>Using filter()</h2>
+<p>If we now wanted to move forward with the above, but only with European countries, we can combine <code>select</code> and <code>filter</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">year_country_gdp_euro &lt;-<span class="st"> </span>gapminder %&gt;%
+<span class="st">    </span><span class="kw">filter</span>(continent==<span class="st">&quot;Europe&quot;</span>) %&gt;%
+<span class="st">    </span><span class="kw">select</span>(year,country,gdpPercap)</code></pre></div>
+<blockquote>
+<h2 id="challenge-1" class="challenge">Challenge 1</h2>
+<p>Write a single command (which can span multiple lines and includes pipes) that will produce a dataframe that has the African values for <code>lifeExp</code>, <code>country</code> and <code>year</code>, but not for other Continents. How many rows does your dataframe have and why?</p>
+</blockquote>
+<p>As with last time, first we pass the gapminder dataframe to the <code>filter()</code> function, then we pass the filtered version of the gapminder dataframe to the <code>select()</code> function. <strong>Note:</strong> The order of operations is very important in this case. If we used ‘select’ first, filter would not be able to find the variable continent since we would have removed it in the previous step.</p>
+</div>
+<div id="using-group_by-and-summarize" class="section level2">
+<h2>Using group_by() and summarize()</h2>
+<p>Now, we were supposed to be reducing the error prone repetitiveness of what can be done with base R, but up to now we haven’t done that since we would have to repeat the above for each continent. Instead of <code>filter()</code>, which will only pass observations that meet your criteria (in the above: <code>continent==&quot;Europe&quot;</code>), we can use <code>group_by()</code>, which will essentially use every unique criteria that you could have used in filter.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(gapminder)</code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    1704 obs. of  6 variables:
+##  $ country  : Factor w/ 142 levels &quot;Afghanistan&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ year     : int  1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 ...
+##  $ pop      : num  8425333 9240934 10267083 11537966 13079460 ...
+##  $ continent: Factor w/ 5 levels &quot;Africa&quot;,&quot;Americas&quot;,..: 3 3 3 3 3 3 3 3 3 3 ...
+##  $ lifeExp  : num  28.8 30.3 32 34 36.1 ...
+##  $ gdpPercap: num  779 821 853 836 740 ...</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(gapminder %&gt;%<span class="st"> </span><span class="kw">group_by</span>(continent))</code></pre></div>
+<pre><code>## Classes &#39;grouped_df&#39;, &#39;tbl_df&#39;, &#39;tbl&#39; and &#39;data.frame&#39;:  1704 obs. of  6 variables:
+##  $ country  : Factor w/ 142 levels &quot;Afghanistan&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ year     : int  1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 ...
+##  $ pop      : num  8425333 9240934 10267083 11537966 13079460 ...
+##  $ continent: Factor w/ 5 levels &quot;Africa&quot;,&quot;Americas&quot;,..: 3 3 3 3 3 3 3 3 3 3 ...
+##  $ lifeExp  : num  28.8 30.3 32 34 36.1 ...
+##  $ gdpPercap: num  779 821 853 836 740 ...
+##  - attr(*, &quot;vars&quot;)=List of 1
+##   ..$ : symbol continent
+##  - attr(*, &quot;drop&quot;)= logi TRUE
+##  - attr(*, &quot;indices&quot;)=List of 5
+##   ..$ : int  24 25 26 27 28 29 30 31 32 33 ...
+##   ..$ : int  48 49 50 51 52 53 54 55 56 57 ...
+##   ..$ : int  0 1 2 3 4 5 6 7 8 9 ...
+##   ..$ : int  12 13 14 15 16 17 18 19 20 21 ...
+##   ..$ : int  60 61 62 63 64 65 66 67 68 69 ...
+##  - attr(*, &quot;group_sizes&quot;)= int  624 300 396 360 24
+##  - attr(*, &quot;biggest_group_size&quot;)= int 624
+##  - attr(*, &quot;labels&quot;)=&#39;data.frame&#39;:   5 obs. of  1 variable:
+##   ..$ continent: Factor w/ 5 levels &quot;Africa&quot;,&quot;Americas&quot;,..: 1 2 3 4 5
+##   ..- attr(*, &quot;vars&quot;)=List of 1
+##   .. ..$ : symbol continent
+##   ..- attr(*, &quot;drop&quot;)= logi TRUE</code></pre>
+<p>You will notice that the structure of the dataframe where we used <code>group_by()</code> (<code>grouped_df</code>) is not the same as the original <code>gapminder</code> (<code>data.frame</code>). A <code>grouped_df</code> can be thought of as a <code>list</code> where each item in the <code>list</code>is a <code>data.frame</code> which contains only the rows that correspond to the a particular value <code>continent</code> (at least in the example above).</p>
+<p><img src="fig/dplyr_tidyr/05-dplyr-fig2.png" alt="" /></p>
+</div>
+<div id="using-summarize" class="section level2">
+<h2>Using summarize()</h2>
+<p>The above was a bit on the uneventful side because <code>group_by()</code> much more exciting in conjunction with <code>summarize()</code>. This will allow use to create new variable(s) by using functions that repeat for each of the continent-specific data frames. That is to say, using the <code>group_by()</code> function, we split our original dataframe into multiple pieces, then we can run functions (e.g. <code>mean()</code> or <code>sd()</code>) within <code>summarize()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gdp_bycontinents &lt;-<span class="st"> </span>gapminder %&gt;%
+<span class="st">    </span><span class="kw">group_by</span>(continent) %&gt;%
+<span class="st">    </span><span class="kw">summarize</span>(<span class="dt">mean_gdpPercap=</span><span class="kw">mean</span>(gdpPercap))</code></pre></div>
+<p><img src="fig/dplyr_tidyr/05-dplyr-fig3.png" alt="" /></p>
+<p>That allowed us to calculate the mean gdpPercap for each continent, but it gets even better.</p>
+<blockquote>
+<h2 id="challenge-2" class="challenge">Challenge 2</h2>
+<p>Calculate the average life expectancy per country. Which had the longest life expectancy and which had the shortest life expectancy?</p>
+</blockquote>
+<p>The function <code>group_by()</code> allows us to group by multiple variables. Let’s group by <code>year</code> and <code>continent</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gdp_bycontinents_byyear &lt;-<span class="st"> </span>gapminder %&gt;%
+<span class="st">    </span><span class="kw">group_by</span>(continent,year) %&gt;%
+<span class="st">    </span><span class="kw">summarize</span>(<span class="dt">mean_gdpPercap=</span><span class="kw">mean</span>(gdpPercap))</code></pre></div>
+<p>That is already quite powerful, but it gets even better! You’re not limited to defining 1 new variable in <code>summarize()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gdp_pop_bycontinents_byyear &lt;-<span class="st"> </span>gapminder %&gt;%
+<span class="st">    </span><span class="kw">group_by</span>(continent,year) %&gt;%
+<span class="st">    </span><span class="kw">summarize</span>(<span class="dt">mean_gdpPercap=</span><span class="kw">mean</span>(gdpPercap),
+              <span class="dt">sd_gdpPercap=</span><span class="kw">sd</span>(gdpPercap),
+              <span class="dt">mean_pop=</span><span class="kw">mean</span>(pop),
+              <span class="dt">sd_pop=</span><span class="kw">sd</span>(pop))</code></pre></div>
+</div>
+<div id="using-mutate" class="section level2">
+<h2>Using mutate()</h2>
+<p>We can also create new variables prior to (or even after) summarizing information using <code>mutate()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gdp_pop_bycontinents_byyear &lt;-<span class="st"> </span>gapminder %&gt;%
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">gdp_billion=</span>gdpPercap*pop/<span class="dv">10</span>^<span class="dv">9</span>) %&gt;%
+<span class="st">    </span><span class="kw">group_by</span>(continent,year) %&gt;%
+<span class="st">    </span><span class="kw">summarize</span>(<span class="dt">mean_gdpPercap=</span><span class="kw">mean</span>(gdpPercap),
+              <span class="dt">sd_gdpPercap=</span><span class="kw">sd</span>(gdpPercap),
+              <span class="dt">mean_pop=</span><span class="kw">mean</span>(pop),
+              <span class="dt">sd_pop=</span><span class="kw">sd</span>(pop),
+              <span class="dt">mean_pop=</span><span class="kw">mean</span>(pop),
+              <span class="dt">sd_pop=</span><span class="kw">sd</span>(pop))</code></pre></div>
+<blockquote>
+<h2 id="advanced-challenge" class="challenge">Advanced Challenge</h2>
+<p>Calculate the average life expectancy in 2002 of 2 randomly selected countries for each continent. Then arrange the continent names in reverse order. <strong>Hint:</strong> Use the <code>dplyr</code> functions <code>arrange()</code> and <code>sample_n()</code>, they have similar syntax to other dplyr functions.</p>
+</blockquote>
+<blockquote>
+<h2 id="solution-to-challenge-1" class="challenge">Solution to Challenge 1</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">year_country_lifeExp_Africa &lt;-<span class="st"> </span>gapminder %&gt;%
+<span class="st">                           </span><span class="kw">filter</span>(continent==<span class="st">&quot;Africa&quot;</span>) %&gt;%
+<span class="st">                           </span><span class="kw">select</span>(year,country,lifeExp)</code></pre></div>
+</blockquote>
+<blockquote>
+<h2 id="solution-to-challenge-2" class="challenge">Solution to Challenge 2</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lifeExp_bycountry &lt;-<span class="st"> </span>gapminder %&gt;%
+<span class="st">   </span><span class="kw">group_by</span>(country) %&gt;%
+<span class="st">   </span><span class="kw">summarize</span>(<span class="dt">mean_lifeExp=</span><span class="kw">mean</span>(lifeExp))</code></pre></div>
+</blockquote>
+<blockquote>
+<h2 id="solution-to-advanced-challenge" class="challenge">Solution to Advanced Challenge</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lifeExp_2countries_bycontinents &lt;-<span class="st"> </span>gapminder %&gt;%<span class="st"> </span>
+<span class="st">   </span><span class="kw">filter</span>(year==<span class="dv">2002</span>) %&gt;%
+<span class="st">   </span><span class="kw">group_by</span>(continent) %&gt;%
+<span class="st">   </span><span class="kw">sample_n</span>(<span class="dv">2</span>) %&gt;%
+<span class="st">   </span><span class="kw">summarize</span>(<span class="dt">mean_lifeExp=</span><span class="kw">mean</span>(lifeExp)) %&gt;%
+<span class="st">   </span><span class="kw">arrange</span>(<span class="kw">desc</span>(mean_lifeExp))</code></pre></div>
+</blockquote>
+</div>
+<div id="other-great-resources" class="section level2">
+<h2>Other great resources</h2>
+<p><a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">Data Wrangling Cheat sheet</a></p>
+<p><a href="https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html">Introduction to dplyr</a></p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

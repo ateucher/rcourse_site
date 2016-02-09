@@ -8,34 +8,40 @@ output:
     toc_depth: 2
 ---
 
-```{r child = "../basics.Rmd"}
+```{r child = "../00-basics.Rmd"}
 ```
 
-```{r child = "../00-introduction.Rmd"}
+```{r child = "../01-introduction.Rmd"}
 ```
 
-```{r child = "../01-starting-with-data.Rmd"}
-```
-
-```{r child = "../02-dplyr.Rmd"}
+```{r child = "../02-data_frames.Rmd"}
 ```
 
 ```{r child = "../03-plotting.Rmd"}
 ```
 
-```{r child = "../04-basic_stats.Rmd"}
+```{r child = "../04-subsetting.Rmd"}
 ```
 
-```{r child = "../05-repeating-things.Rmd"}
+```{r child = "../05-dplyr.Rmd"}
 ```
 
-```{r child = "../06-functions.Rmd"}
+```{r child = "../06-tidyr.Rmd"}
 ```
 
-```{r child = "../07-all-together.Rmd"}
+```{r child = "../07-writing-data.Rmd"}
 ```
 
-```{r child = "../08-best-practices.Rmd"}
+```{r child = "../08-basic_stats.Rmd"}
+```
+
+```{r child = "../09-functions.Rmd"}
+```
+
+```{r child = "../10-control-flow.Rmd"}
+```
+
+```{r child = "../best-practices.Rmd"}
 ```
 
 ```{r child = "../getting_help.Rmd"}
