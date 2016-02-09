@@ -451,6 +451,8 @@ be changed with the third argument, `drop = FALSE`).
 
 ## Challenge solutions
 
+Solutions to challenges.
+
 > ## Solution to challenge 1 {.challenge}
 >
 > Given the following code:

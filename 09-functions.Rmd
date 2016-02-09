@@ -348,6 +348,8 @@ which is much better than in our first attempt where we just got a vector of num
 
 ## Challenge solutions
 
+Solutions to challenges
+
 > ## Solution to challenge 1 {.challenge}
 >
 > Write a function called `kelvin_to_celsius` that takes a temperature in Kelvin

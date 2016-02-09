@@ -322,6 +322,8 @@ code to modify!
 
 ## Challenge solutions
 
+Solutions to challenges
+
 > ## Solution to challenge 1 {.challenge}
 >
 > Modify the example so that the figure visualise how life expectancy has

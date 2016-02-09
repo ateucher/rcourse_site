@@ -94,7 +94,7 @@ df <- rbind(df, df2)
 > Then use rbind to add the same information for the people sitting near you.
 >
 > Now use cbind to add a column of logicals that will, for each
->person, hold the answer to the question,
+> person, hold the answer to the question,
 > "Is there anything in this workshop you're finding confusing?"
 >
 
@@ -257,6 +257,8 @@ simply the row numbers.
 
 
 ## Challenge Solutions
+
+Solutions to challenges 2 & 3.
 
 > ## Solution to Challenge 2 {.challenge}
 >
