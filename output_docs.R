@@ -53,10 +53,12 @@ for (fname in files) {
 }
 
 # knit pdf
+options(max.print = 10L)
 exercise_number <- 0
-setwd("pdf")
-render("Intro_R_ATeucher.Rmd")
-setwd("..")
+dplyr_tidyr_pngs_to_copy <- list.files("fig", "^(05-dplyr|06-tidyr)-.+\\.png$", full.names = TRUE)
+dir.create("pdf/fig", showWarnings = FALSE)
+file.copy(dplyr_tidyr_pngs_to_copy, to = "pdf/fig/")
+render("pdf/Intro_R_ATeucher.Rmd", clean = FALSE)
 
 # Reset options and get rid of stuff
 options(max.print = maxprint)
