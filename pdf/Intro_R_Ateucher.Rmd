@@ -5,13 +5,13 @@ output:
   pdf_document:
     number_sections: yes
     toc: yes
-    toc_depth: 2
+    toc_depth: 1
 ---
 
 # Introduction
 
 ### Course website
-These notes are a pdf version of the website four the course, which you can see at:
+These notes are a pdf version of the website for the course, which can be viewed at:
 https://ateucher.github.io/rcourse_site
 
 ### Credits
