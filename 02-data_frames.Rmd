@@ -460,14 +460,14 @@ At this point, you've see it all - in the last lesson, we toured all the basic d
 We learned last time that the columns in a data.frame were vectors, so that our data are consistent in type throughout the column. As such, we can perform operations on them just as we did with vectors
 
 ```{r}
-# Calculate weight of cats in Kg
-cats$weight / 2.2
+# Calculate weight of cats in g
+cats$weight * 1000
 ```
 
 We can also assign this result to a new column in the data frame:
 
 ```{r}
-cats$weight_kg <- cats$weight / 2.2
+cats$weight_kg <- cats$weight * 1000
 cats
 ```
 
