@@ -7,41 +7,35 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 
 
-<title></title>
+<title>Getting help</title>
 
-<script src="libs/jquery-1.11.0/jquery.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link href="libs/bootstrap-2.3.2/css/flatly.min.css" rel="stylesheet" />
-<link href="libs/bootstrap-2.3.2/css/bootstrap-responsive.min.css" rel="stylesheet" />
-<script src="libs/bootstrap-2.3.2/js/bootstrap.min.js"></script>
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-padding-top: 50px;
-padding-bottom: 40px;
+
+blockquote {
+  background-color: #D7ECF7;
+  border-color: #318FBF;
+  font-size: 1em;
 }
-@media (max-width: 979px) {
-body {
-padding-top: 0;
+
+blockquote p {
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
 }
-}
-/* offset scroll position for anchor links (for fixed navbar) */
-@media (min-width: 980px) {
-.section h2 {
-padding-top: 52px;
-margin-top: -52px;
-}
-.section h3 {
-padding-top: 52px;
-margin-top: -52px;
-}
-}
-/* don't use link color in navbar */
-.dropdown-menu>li>a {
-color: white;
+
+blockquote h2 {
+  font-size: 1.2em;
+  font-style: italic;
 }
 </style>
 
@@ -50,24 +44,41 @@ color: white;
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
+div.sourceCode { overflow-x: auto; }
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
   margin: 0; padding: 0; vertical-align: baseline; border: none; }
 table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
 td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
 td.sourceCode { padding-left: 5px; }
 pre, code { background-color: #f8f8f8; }
-code > span.kw { color: #204a87; font-weight: bold; }
-code > span.dt { color: #204a87; }
-code > span.dv { color: #0000cf; }
-code > span.bn { color: #0000cf; }
-code > span.fl { color: #0000cf; }
-code > span.ch { color: #4e9a06; }
-code > span.st { color: #4e9a06; }
-code > span.co { color: #8f5902; font-style: italic; }
-code > span.ot { color: #8f5902; }
-code > span.al { color: #ef2929; }
-code > span.fu { color: #000000; }
-code > span.er { font-weight: bold; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
 </style>
 <style type="text/css">
   pre:not([class]) {
@@ -87,63 +98,173 @@ code > span.er { font-weight: bold; }
   margin-left: auto;
   margin-right: auto;
 }
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
 </style>
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 50px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+
+.section h2 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+.section h3 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+.section h4 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+.section h5 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+.section h6 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
 <div class="container-fluid main-container">
 
-<div class="navbar navbar-default navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container">
-      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+<!-- tabsets -->
+<script src="libs/navigation/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <div class="nav-collapse collapse">
-        <ul class="nav">
-          <li><a href="/rcourse_site/">Home</a></li>
-          <li class="dropdown">
-            <a href="notes" class="dropdown-toggle" data-toggle="dropdown">Course Notes <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-               <li><a href="basics.html">Basics</a></li>
-               <li><a href="00-introduction.html">Introduction</a></li>
-               <li><a href="01-starting-with-data.html">Starting With Data</a></li>
-               <li><a href="02-dplyr.html">Data Munging with dplyr</a></li>
-               <li><a href="03-plotting.html">Plotting with ggplot2</a></li>
-               <li><a href="04-basic_stats.html">Basic Statistics</a></li>
-               <li><a href="05-repeating-things.html">Repeating Things</a></li>
-               <li><a href="06-functions.html">Functions</a></li>
-               <li><a href="07-all-together.html">Putting it all Together</a></li>
-               <li><a href="08-best-practices.html">Best Practices</a></li>
-               <li><a href="getting_help.html">Getting Help</a></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a href="data" class="dropdown-toggle" data-toggle="dropdown">Data <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-               <li><a href="data/iris.csv">Iris Dataset (csv)</a></li>
-               <li><a href="data/iris.zip">Iris Dataset (zip)</a></li>
-            </ul>
-          </li>
-        </ul>
-        <ul class="nav pull-right">
+      <a class="navbar-brand" href="/">Introduction to R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li class="dropdown">
+          <a href="formats" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Course Notes <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+             <li><a href="00-basics.html">Basics</a></li>
+             <li><a href="01-introduction.html">Introduction</a></li>
+             <li><a href="02-data_frames.html">Starting With data</a></li>
+             <li><a href="03-plotting.html">Plotting with ggplot2</a></li>
+             <li><a href="04-subsetting.html">Subsetting data</a></li>
+             <li><a href="05-dplyr.html">Data manipulation with dplyr</a></li>
+             <li><a href="06-tidyr.html">Data manipulation with tidyr</a></li>
+             <li><a href="07-writing-data.html">Writing data</a></li>
+             <li><a href="08-basic_stats.html">Basic statistics</a></li>
+             <li><a href="09-functions.html">Writing functions</a></li>
+             <li><a href="10-control-flow.html">Control flow</a></li>
+             <!--<li><a href="11-all-together.html">Putting it all Together</a></li>-->
+             <li><a href="best-practices.html">Best Practices</a></li>
+             <li><a href="getting_help.html">Getting Help</a></li>
+          </ul>
+        </li>
+                <li class="dropdown">
+          <a href="authoring" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Data <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+             <li><a href="data/gapminder-FiveYearData.csv">Gapminder Dataset (csv)</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav pull-right">
           <a class="btn btn-primary" href="https://github.com/ateucher/rcourse_site">
             <i class="fa fa-github fa-lg"></i>
             GitHub
           </a>
-        </ul>
-      </div><!--/.nav-collapse -->
-    </div>
-  </div>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+<h1 class="title">Getting help</h1>
+
 </div>
 
 
-
-<div id="getting-r-help" class="section level1">
-<h1>Getting R Help</h1>
 <p>To get help for a particular function in R, type <code>?</code> and then the function name:</p>
-<pre class="sourceCode r"><code class="sourceCode r">?mean</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?mean</code></pre></div>
 <p>To get help for a topic in R, do a “fuzzy”&quot; search with <code>??</code> (wrap the phrase in quotes if more than one word):</p>
-<pre class="sourceCode r"><code class="sourceCode r">??<span class="st">&quot;t-test&quot;</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">??<span class="st">&quot;t-test&quot;</span></code></pre></div>
 <div id="general-help" class="section level3">
 <h3>General help</h3>
 <ul>
@@ -153,6 +274,19 @@ code > span.er { font-weight: bold; }
 <li><a href="http://www.rdocumentation.org/" class="uri">http://www.rdocumentation.org/</a></li>
 <li>Each other! (Talk it out)</li>
 <li><a href="http://blog.codinghorror.com/rubber-duck-problem-solving/">Tell it to the duck</a></li>
+</ul>
+</div>
+<div id="cheat-sheets" class="section level3">
+<h3>Cheat Sheets</h3>
+<ul>
+<li><a href="https://cran.r-project.org/doc/contrib/Baggott-refcard-v2.pdf">General <strong>R</strong> cheatsheet</a></li>
+<li><a href="https://www.rstudio.com/resources/cheatsheets/">RStudio Cheetsheets</a> on:
+<ul>
+<li>Data Wrangling with dplyr and tidyr,</li>
+<li>Data Visualization with ggplot2,</li>
+<li>Using RStudio</li>
+<li>Other more advanced topics such as package development, Shiny, and R Markdown</li>
+</ul></li>
 </ul>
 </div>
 <div id="ggplot2" class="section level3">
@@ -170,8 +304,8 @@ code > span.er { font-weight: bold; }
 <li><a href="http://www.amazon.com/gp/product/1449316956">The R Graphics Cookbook</a> by Winston Change - The paper version of the Cookbook for R website mentioned above</li>
 </ul>
 </div>
-<div id="other-learning-resources---onlince-courses-etc" class="section level3">
-<h3>Other learning resources - onlince courses, etc</h3>
+<div id="other-learning-resources---online-courses-etc" class="section level3">
+<h3>Other learning resources - online courses, etc</h3>
 <ul>
 <li><a href="http://rforcats.net/">R for cats</a></li>
 <li><a href="http://tryr.codeschool.com/">Try R - codeschool</a></li>
@@ -182,7 +316,8 @@ code > span.er { font-weight: bold; }
 </ul></li>
 </ul>
 </div>
-</div>
+
+
 
 
 </div>

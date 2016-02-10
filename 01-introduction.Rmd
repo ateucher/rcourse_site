@@ -1,0 +1,616 @@
+---
+title: Introduction to R and RStudio
+---
+
+```{r, echo = FALSE}
+
+exercise_number <- 0
+exercise <- function(txt) {
+  exercise_number <<- exercise_number + 1
+  cat(paste0("\n**Exercise** ", exercise_number), paste0("*", txt, "*\n"))
+}
+
+```
+
+> ## Learning Objectives {.objectives}
+>
+> * To gain familiarity with the various panes in the RStudio IDE
+> * To gain familiarity with the buttons, short cuts and options in the RStudio IDE
+> * To understand variables and how to assign to them
+> * To be able to manage your workspace in an interactive R session
+> * To be able to use mathematical and comparison operations
+> * To be able to call functions
+> * To be able to create self-contained projects in RStudio
+> 
+
+## Introduction to RStudio
+
+Throughout this lesson, we're going to teach you some of the fundamentals of
+the R language as well as some best practices for organising code for
+scientific projects that will make your life easier.
+
+We'll be using RStudio: a free, open source R integrated development
+environment. It provides a built in editor, works on all platforms (including
+on servers) and provides many advantages such as integration with version
+control and project management.
+
+**Basic layout**
+
+When you first open RStudio, you will be greeted by three panels:
+
+  * The interactive R console (entire left)
+  * Environment/History (tabbed in upper right)
+  * Files/Plots/Packages/Help/Viewer (tabbed in lower right)
+
+Once you open files, such as R scripts, an editor panel will also open
+in the top left.
+
+## Work flow within RStudio
+There are two main ways one can work within RStudio.
+
+1. Test and play within the interactive R console
+   *  This works well when doing small tests and initially starting off.
+   *  It quickly becomes laborious
+2. Start writing in an .R file and use RStudio's command / short cut
+to push current line, selected lines or modified lines to the
+interactive R console. 
+   * This is a great way to start; all your code is saved for later
+   * You will be able to run the file you create from within RStudio
+   or using R's `source()`  function.
+
+> ## Tip: Running segments of your code {.callout}
+>
+> RStudio offers you great flexibility in running code from within the editor
+> window. There are buttons, menu choices, and keyboard shortcuts. To run the
+> current line, you can 1. click on the `Run` button just above the editor panel,
+> or 2. select "Run Lines" from the "Code" menu, or 3. hit Ctrl-Enter in Windows
+> or Linux or Command-Enter on OS X. (This shortcut can also be seen by hovering
+> the mouse over the button). To run a block of code, select it and then `Run`.
+> If you have modified a line of code within a block of code you have just run,
+> there is no need to reselct the section and `Run`, you can use the next button
+> along, `Re-run the previous region`. This will run the previous code block
+> inculding the modifications you have made.
+
+## Introduction to R
+
+Much of your time in R will be spent in the R interactive
+console. This is where you will run all of your code, and can be a
+useful environment to try out ideas before adding them to an R script
+file. This console in RStudio is the same as the one when you open up the basic R GUI.
+
+The first thing you will see in the R interactive session is a bunch
+of information, followed by a ">" and a blinking cursor. It operates on the idea 
+of a "Read, Evaluate, Print loop" (REPL): you type in commands, R tries to execute them, and then
+returns a result.
+
+## Using R as a calculator
+
+The simplest thing you could do with R is do arithmetic:
+
+```{r}
+1 + 100
+```
+
+And R will print out the answer, with a preceding "[1]". Don't worry about this
+for now, we'll explain that later. For now think of it as indicating ouput.
+
+If you type in an incomplete command, R will wait for you to
+complete it:
+
+~~~ {.r}
+> 1 +
+~~~
+
+~~~ {.output}
++
+~~~
+
+Any time you hit return and the R session shows a "+" instead of a ">", it
+means it's waiting for you to complete the command. If you want to cancel
+a command you can simply hit "Esc" and RStudio will give you back the ">"
+prompt.
+
+> ## Tip: Cancelling commands {.callout}
+>
+> Cancelling a command isn't just useful for killing incomplete commands:
+> you can also use it to tell R to stop running code (for example if its
+> taking much longer than you expect), or to get rid of the code you're
+> currently writing.
+>
+
+When using R as a calculator, the order of operations is the same as you
+would have learnt back in school.
+
+From highest to lowest precedence:
+
+ * Parentheses: `(`, `)`
+ * Exponents: `^`
+ * Divide: `/`
+ * Multiply: `*`
+ * Add: `+`
+ * Subtract: `-`
+
+```{r}
+3 + 5 * 2
+```
+
+Use parentheses to group operations in order to force the order of
+evaluation if it differs from the default, or to make clear what you 
+intend.
+
+```{r}
+(3 + 5) * 2
+```
+
+This can get unwieldy when not needed, but  clarifies your intentions.
+Remember that others may later read your code.
+
+```{r, eval=FALSE}
+(3 + (5 * (2 ^ 2))) # hard to read
+3 + 5 * 2 ^ 2       # clear, if you remember the rules
+3 + 5 * (2 ^ 2)     # if you forget some rules, this might help
+```
+
+
+The text after each line of code is called a
+"comment". Anything that follows after the hash (or octothorpe) symbol
+`#` is ignored by R when it executes code.
+
+Really small or large numbers get a scientific notation:
+
+```{r}
+2 / 10000
+```
+
+Which is shorthand for "multiplied by `10^XX`". So `2e-4`
+is shorthand for `2 * 10^(-4)`.
+
+You can write numbers in scientific notation too:
+
+```{r}
+5e3  # Note the lack of minus here
+```
+
+## Functions
+Most of R's functionality comes from its *functions*. A function takes zero, one or multiple *arguments*, depending on the function, and returns a value. To call a function enter it's name followed by a pair of brackets - include any arguments in the brackets.
+```{r}
+log(10)
+```
+
+To find out more about a function called `function_name` type `?function_name`. To search for the functions associated with a topic type `??topic` or `??"multiple topics"`. As well as providing a detailed description of
+the command and how it works, scrolling ot the bottom of the
+help page will usually show a collection of code examples which
+illustrate command usage. 
+
+```{r, echo = FALSE, results = 'asis'}
+exercise("Which function calculates sums? And what arguments does it take?")
+```
+
+### Arguments
+The documentation for `log` indicates that the function requires an argument `x` that is a vector of
+*numeric* (real) or *complex* numbers and an argument `base` which is the base of the logarithm. 
+
+```{r, echo = FALSE, results = 'asis'}
+exercise("What kind of logarithm does the `log` function take by default?")
+```
+
+When calling a function its arguments can be specified using *positional* and/or 
+*named* matching.
+
+```{r}
+log(x = 10, base = 2)
+log(10, 2)
+log(2, 10)
+```
+
+## Mathematical functions
+
+R has many built in mathematical functions.
+
+```{r}
+sin(1)  # trigonometry functions
+```
+
+```{r}
+log(1)  # natural logarithm
+```
+
+```{r}
+log10(10) # base-10 logarithm
+```
+
+```{r}
+exp(0.5) # e^(1/2)
+```
+
+Don't worry about trying to remember every function in R. You
+can simply look them up on google, or if you can remember the
+start of the function's name, use the tab completion in RStudio.
+
+This is one advantage that RStudio has over R on its own, it
+has autocompletion abilities that allow you to more easily
+look up functions, their arguments, and the values that they
+take.
+
+## Comparing things
+
+We can also do comparison in R:
+
+```{r}
+1 == 1  # equality (note two equals signs, read as "is equal to")
+```
+
+```{r}
+1 != 2  # inequality (read as "is not equal to")
+```
+
+```{r}
+1 <  2  # less than
+```
+
+```{r}
+1 <= 1  # less than or equal to
+```
+
+```{r}
+1 > 0  # greater than
+```
+
+```{r}
+1 >= -9 # greater than or equal to
+```
+
+> ## Tip: Comparing Numbers {.callout}
+>
+> A word of warning about comparing numbers: you should
+> never use `==` to compare two numbers unless they are
+> integers (a data type which can specifically represent
+> only whole numbers).
+>
+> Computers may only represent decimal numbers with a
+> certain degree of precision, so two numbers which look
+> the same when printed out by R, may actually have
+> different underlying representations and therefore be
+> different by a small margin of error (called Machine
+> numeric tolerance).
+>
+> Instead you should use the `all.equal` function.
+>
+> Further reading: [http://floating-point-gui.de/](http://floating-point-gui.de/)
+>
+
+## Variables and assignment
+
+We can store values in variables by giving them a name, and using the assignment operator `<-` (To save finger strokes, type `Alt-`):
+
+```{r}
+x <- 1 / 40
+```
+
+Notice that assignment does not print a value. Instead, we stored it for later
+in something called a **variable**. `x` now contains the **value** `0.025`:
+
+```{r}
+x
+```
+
+Look for the `Environment` tab in one of the panes of RStudio, and you will see that `x` and its value
+have appeared. Our variable `x` can be used in place of a number in any calculation that expects a number:
+
+```{r}
+log(x)
+```
+
+Notice also that variables can be reassigned:
+
+```{r}
+x <- 100
+```
+
+`x` used to contain the value 0.025 and and now it has the value 100.
+
+Assignment values can contain the variable being assigned to:
+
+```{r}
+x <- x + 1 #notice how RStudio updates its description of x on the top right tab
+```
+
+The right hand side of the assignment can be any valid R expression.
+The right hand side is *fully evaluated* before the assignment occurs.
+
+```{r, echo = FALSE, results = 'asis'}
+exercise("Create an object called `x` with the value `7`. What is the value of `x^x`. Save the value in a object called `i`. If you assign the value `20` to the object `x` does the value of `i` change? What does this indicate about how R assigns values to objects?")
+```
+
+Variable names can contain letters, numbers, underscores and periods. They
+cannot start with a number nor contain spaces at all. Different people use
+different conventions for long variable names, these include
+
+  * periods.between.words
+  * underscores\_between_words
+  * camelCaseToSeparateWords
+
+What you use is up to you, but **be consistent**.
+
+It is also possible to use the `=` operator for assignment:
+
+```{r}
+x = 1 / 40
+```
+
+But this is much less common among R users.  The most important thing is to
+**be consistent** with the operator you use. There are occasionally places
+where it is less confusing to use `<-` than `=`, and it is the most common
+symbol used in the community. So the recommendation is to use `<-`.
+
+## Vectors
+A *vector* is a string of values, of the same type of data: numbers, words, etc.
+
+### Generation
+Vectors can be created using the `c` (concatenate) and `seq` (sequence) functions.
+```{r}
+c(1, 3, 5, 7, 13)
+seq(from = 1, to = 11, by = 2)
+seq(1, 6)
+```
+The `length` function returns the number of values in a vector.
+
+```{r, echo = FALSE, results = 'asis'}
+exercise("Use the `seq` function to generate a vector called bob, of `30` evenly spaced numbers from `0` to `1`. Confirm its length.")
+```
+
+### Vectorized calculations
+Even simple calculations are designed to be performed on vectors.
+```{r}
+x <- seq(3, 5)
+y <- c(1, 2, 2)
+x - y
+x / y
+```
+
+```{r, echo = FALSE, results = 'asis'}
+exercise("Create the vector that is the square root of all the whole numbers from `1` to `100`.")
+exercise("Create a vector that gives the deviation of the values in the vector `seq(1, 10)` from their mean.")
+```
+
+### Classes
+The vectors you have dealt with so far have been of class `numeric` which have real numbers as their permissible values.
+```{r}
+x <- c(1.5, 2.7)
+class(x)
+```
+
+Another important vector class is `character` which has text values.
+```{r}
+x <- c("txt", "one", "1", "1.9")
+class(x)
+```
+
+```{r, echo = FALSE, results = 'asis'}
+exercise("Try combining character and numeric values together in the same vector. What happens?")
+```
+
+
+### Missing values
+Missing values are represented by `NA`. Functions such as `min`, `max` and `mean`
+that require knowledge of
+all the input values return an `NA` if one or more values are missing.
+This behaviour can be altered by setting the `na.rm` argument to be `TRUE`.
+```{r}
+x <- c(1, 2, 3, NA)
+mean(x)
+mean(x, na.rm = TRUE)
+```
+
+### Factors
+Factors represent categorical variables.
+
+Vectors can be coerced to class `factor` using the `as.factor` function.
+```{r}
+x <- c("blue", "green", "blue", "red", "green")
+x <- as.factor(x)
+class(x)
+```
+
+```{r, echo = FALSE, results = 'asis'}
+exercise("Coerce the factor `x` to a vector of class numeric using `as.numeric`. What happens?")
+```
+
+
+## Managing your environment
+
+There are a few useful commands you can use to interact with the R session.
+
+`ls` will list all of the variables and functions stored in the global environment
+(your working R session):
+
+```{r, eval=FALSE}
+ls()
+```
+
+```
+[1] "x"   "y"
+```
+
+Note here that we didn't given any arguments to `ls`, but we still
+needed to give the parentheses to tell R to call the function.
+
+If we type `ls` by itself, R will print out the source code for that function!
+
+You can use `rm` to delete objects you no longer need:
+
+```{r}
+rm(x)
+```
+
+If you have lots of things in your environment and want to delete all of them,
+you can pass the results of `ls` to the `rm` function:
+
+```{r}
+rm(list = ls())
+```
+
+In this case we've combined the two. Just like the order of operations, anything
+inside the innermost parentheses is evaluated first, and so on.
+
+In this case we've specified that the results of `ls` should be used for the
+`list` argument in `rm`.
+
+> ## Tip: Warnings vs. Errors {.callout}
+>
+> Pay attention when R does something unexpected! Errors, like above,
+> are thrown when R cannot proceed with a calculation. Warnings on the
+> other hand usually mean that the function has run, but it probably
+> hasn't worked as expected.
+>
+> In both cases, the message that R prints out usually give you clues
+> how to fix a problem.
+>
+
+> ## Challenge 1 {.challenge}
+> Which of the following are valid R variable names?
+> ```{r, eval=FALSE}
+> min_height
+> max.height
+> _age
+> .mass
+> MaxLength
+> min-length
+> 2widths
+> celsius2kelvin
+> ```
+
+> ## Challenge 2 {.challenge}
+>
+> What will be the value of each  variable  after each
+> statement in the following program?
+>
+> ```{r, eval=FALSE}
+> mass <- 47.5
+> age <- 122
+> mass <- mass * 2.3
+> age <- age - 20
+> ```
+>
+
+> ## Challenge 3 {.challenge}
+>
+> Run the code from the previous challenge, and write a command to
+> compare mass to age. Is mass larger than age?
+>
+
+> ## Challenge 4 {.challenge}
+>
+> Clean up your working environment by deleting the mass and age
+> variables.
+>
+
+## Project management with RStudio
+
+### Introduction
+
+The scientific process is naturally incremental, and many projects
+start life as random notes, some data, some code, then a report or manuscript, and
+eventually everything is a bit mixed together.
+
+It's pretty easy to get data scattered among many different folders, with multiple versions.
+
+There are many reasons why we should avoid this:
+
+1. It is really hard to tell which version of your data is
+the original and which is the modified;
+2. It gets really messy because it mixes files with various
+extensions together;
+3. It probably takes you a lot of time to actually find
+things, and relate the correct figures to the exact files/code
+that has been used to generate it;
+
+A good project layout will ultimately make your life easier:
+
+* It will help ensure the integrity of your data;
+* It makes it simpler to share your code with someone else
+(a lab-mate, collaborator, or supervisor);
+* It allows you to easily upload your code with your manuscript submission;
+* It makes it easier to pick the project back up after a break.
+
+### A possible solution
+
+Fortunately, there are tools and packages which can help you manage your work effectively.
+
+One of the most powerful and useful aspects of RStudio is its project management
+functionality. We'll be using this today to create a self-contained, reproducible
+project.
+
+
+> ## Challenge 5: Creating a self-contained project {.challenge}
+>
+> We're going to create a new project in RStudio:
+>
+> 1. Click the "File" menu button, then "New Project".
+> 2. Click "New Directory".
+> 3. Click "Empty Project".
+> 4. Type in the name of the directory to store your project, e.g. "r_course".
+> 6. Click the "Create Project" button.
+>
+
+Now when we start R in this project directory, or open this project with RStudio,
+all of our work on this project will be entirely self-contained in this directory.
+
+### Best practices for project organisation
+
+Although there is no "best" way to lay out a project, there are some general
+principles to adhere to that will make project management easier:
+
+### Treat data as read only
+
+This is probably the most important goal of setting up a project. Data is
+typically time consuming and/or expensive to collect. Working with them
+interactively (e.g., in Excel) where they can be modified means you are never
+sure of where the data came from, or how it has been modified since collection.
+It is therefore a good idea to treat your data as "read-only".
+
+### Data Cleaning
+
+In many cases your data will be "dirty": it will need significant preprocessing
+to get into a format R (or any other programming language) will find useful. This
+task is sometimes called "data munging". I find it useful to store these scripts
+in a separate folder, and create a second "read-only" data folder to hold the
+"cleaned" data sets.
+
+### Treat generated output as disposable
+
+Anything generated by your scripts should be treated as disposable: it should
+all be able to be regenerated from your scripts.
+
+There are lots of different ways to manage this output. I find it useful to
+have an output folder with different sub-directories for each separate
+analysis. This makes it easier later, as many of my analyses are exploratory
+and don't end up being used in the final project, and some of the analyses
+get shared between projects.
+
+### Separate function definition and application
+
+The most effective way I find to work in R, is to play around in the interactive
+session, then copy commands across to a script file when I'm sure they work and
+do what I want. You can also save all the commands you've entered using the
+`history` command, but I don't find it useful because when I'm typing its 90%
+trial and error.
+
+When your project is new and shiny, the script file usually contains many lines
+of directly executed code. As it matures, reusable chunks get pulled into their
+own functions. It's a good idea to separate these into separate folders; one
+to store useful functions that you'll reuse across analyses and projects, and
+one to store the analysis scripts.
+
+### Save the data in the data directory
+
+Now we have a good directory structure we will now place/save the data file in the `data/` directory.
+
+> ## Challenge 6 {.challenge}
+> Download the gapminder data from [here](data/gapminder-FiveYearData.csv).
+>
+> 1. Download the file (CTRL + S, right mouse click -> "Save as", or File -> "Save page as")
+> 2. Make sure it's saved under the name `gapminder-FiveYearData.csv`
+> 3. Save the file in the `data/` folder within your project.
+>
+> We will load and inspect these data later.

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>Best Practices</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style type="text/css">
+
+blockquote {
+  background-color: #D7ECF7;
+  border-color: #318FBF;
+  font-size: 1em;
+}
+
+blockquote p {
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+}
+
+blockquote h2 {
+  font-size: 1.2em;
+  font-style: italic;
+}
+</style>
+
+<link rel="stylesheet" href="libs/font-awesome-4.2.0/css/font-awesome.min.css"/>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 50px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+
+.section h2 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+.section h3 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+.section h4 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+.section h5 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+.section h6 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="libs/navigation/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Introduction to R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li class="dropdown">
+          <a href="formats" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Course Notes <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+             <li><a href="00-basics.html">Basics</a></li>
+             <li><a href="01-introduction.html">Introduction</a></li>
+             <li><a href="02-data_frames.html">Starting With data</a></li>
+             <li><a href="03-plotting.html">Plotting with ggplot2</a></li>
+             <li><a href="04-subsetting.html">Subsetting data</a></li>
+             <li><a href="05-dplyr.html">Data manipulation with dplyr</a></li>
+             <li><a href="06-tidyr.html">Data manipulation with tidyr</a></li>
+             <li><a href="07-writing-data.html">Writing data</a></li>
+             <li><a href="08-basic_stats.html">Basic statistics</a></li>
+             <li><a href="09-functions.html">Writing functions</a></li>
+             <li><a href="10-control-flow.html">Control flow</a></li>
+             <!--<li><a href="11-all-together.html">Putting it all Together</a></li>-->
+             <li><a href="best-practices.html">Best Practices</a></li>
+             <li><a href="getting_help.html">Getting Help</a></li>
+          </ul>
+        </li>
+                <li class="dropdown">
+          <a href="authoring" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Data <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+             <li><a href="data/gapminder-FiveYearData.csv">Gapminder Dataset (csv)</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav pull-right">
+          <a class="btn btn-primary" href="https://github.com/ateucher/rcourse_site">
+            <i class="fa fa-github fa-lg"></i>
+            GitHub
+          </a>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+<h1 class="title">Best Practices</h1>
+
+</div>
+
+
+<div id="some-best-practices-for-using-r-and-designing-programs" class="section level3">
+<h3>Some best practices for using R and designing programs</h3>
+<ol style="list-style-type: decimal">
+<li>Start your code with a description of what it is:</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># This is code to replicate the analyses and figures from my 2014 Science paper.</span>
+<span class="co"># Code developed by Andy Teucher and friends</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Run all of your import statments (<code>library</code> or <code>require</code>):</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(reshape)
+<span class="kw">library</span>(vegan)</code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Set your working directory. Avoid changing the working directory once a script is underway. Use <code>setwd()</code> first . Do it at the beginning of a R session. Better yet, start R inside a project folder.</p></li>
+<li><p>Use <code>#</code> or <code>#-</code> to set off sections of your code so you can easily scroll through it and find things.</p></li>
+<li><p>If you have only one or a few functions, put them at the top of your code, so they are among the first things run. If you written many functions, put them all in their own .R file, and <code>source</code> them. Source will run all of these functions so that you can use them as you need them.</p></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&quot;my_genius_fxns.R&quot;</span>)</code></pre></div>
+<ol start="6" style="list-style-type: decimal">
+<li><p>Use consistent style within your code.</p></li>
+<li><p>Keep your code modular. If a single function or loop gets too long, consider breaking it into smaller pieces.</p></li>
+<li><p>Don’t repeat yourself. Automate! If you are repeating the same piece of code on multiple objects or files, use a loop or a function to do the same thing. The more you repeat yourself, the more likely you are to make a mistake.</p></li>
+<li><p>Manage all of your source files for a project in the same directory. Then use relative paths as necessary. For example, use</p></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file =</span> <span class="st">&quot;/files/dataset-2013-01.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p>rather than:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file =</span> <span class="st">&quot;/Users/ateucher/Documents/sannic-project/files/dataset-2013-01.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<ol start="10" style="list-style-type: decimal">
+<li><p>Don’t save a session history (the default option in R, when it asks if you want an <code>RData</code> file). Instead, start in a clean environment so that older objects don’t contaminate your current environment. This can lead to unexpected results, especially if the code were to be run on someone else’s machine.</p></li>
+<li><p>Where possible keep track of <code>sessionInfo()</code> somewhere in your project folder. Session information is invaluable since it captures all of the packages used in the current project. If a newer version of a project changes the way a function behaves, you can always go back and reinstall the version that worked (Note: At least on CRAN all older versions of packages are permanently archived).</p></li>
+<li><p>Collaborate. Grab a buddy and practice “code review”. We do it for methods and papers, why not code? Our code is a major scientific product and the result of a lot of hard work!</p></li>
+<li><p>Develop your code using version control and frequent updates!</p></li>
+</ol>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>Introduction to R and RStudio</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style type="text/css">
+
+blockquote {
+  background-color: #D7ECF7;
+  border-color: #318FBF;
+  font-size: 1em;
+}
+
+blockquote p {
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+}
+
+blockquote h2 {
+  font-size: 1.2em;
+  font-style: italic;
+}
+</style>
+
+<link rel="stylesheet" href="libs/font-awesome-4.2.0/css/font-awesome.min.css"/>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 50px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+
+.section h2 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+.section h3 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+.section h4 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+.section h5 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+.section h6 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="libs/navigation/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Introduction to R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li class="dropdown">
+          <a href="formats" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Course Notes <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+             <li><a href="00-basics.html">Basics</a></li>
+             <li><a href="01-introduction.html">Introduction</a></li>
+             <li><a href="02-data_frames.html">Starting With data</a></li>
+             <li><a href="03-plotting.html">Plotting with ggplot2</a></li>
+             <li><a href="04-subsetting.html">Subsetting data</a></li>
+             <li><a href="05-dplyr.html">Data manipulation with dplyr</a></li>
+             <li><a href="06-tidyr.html">Data manipulation with tidyr</a></li>
+             <li><a href="07-writing-data.html">Writing data</a></li>
+             <li><a href="08-basic_stats.html">Basic statistics</a></li>
+             <li><a href="09-functions.html">Writing functions</a></li>
+             <li><a href="10-control-flow.html">Control flow</a></li>
+             <!--<li><a href="11-all-together.html">Putting it all Together</a></li>-->
+             <li><a href="best-practices.html">Best Practices</a></li>
+             <li><a href="getting_help.html">Getting Help</a></li>
+          </ul>
+        </li>
+                <li class="dropdown">
+          <a href="authoring" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Data <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+             <li><a href="data/gapminder-FiveYearData.csv">Gapminder Dataset (csv)</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav pull-right">
+          <a class="btn btn-primary" href="https://github.com/ateucher/rcourse_site">
+            <i class="fa fa-github fa-lg"></i>
+            GitHub
+          </a>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+<h1 class="title">Introduction to R and RStudio</h1>
+
+</div>
+
+
+<blockquote>
+<h2 id="learning-objectives" class="objectives">Learning Objectives</h2>
+<ul>
+<li>To gain familiarity with the various panes in the RStudio IDE</li>
+<li>To gain familiarity with the buttons, short cuts and options in the RStudio IDE</li>
+<li>To understand variables and how to assign to them</li>
+<li>To be able to manage your workspace in an interactive R session</li>
+<li>To be able to use mathematical and comparison operations</li>
+<li>To be able to call functions</li>
+<li>To be able to create self-contained projects in RStudio</li>
+</ul>
+</blockquote>
+<div id="introduction-to-rstudio" class="section level2">
+<h2>Introduction to RStudio</h2>
+<p>Throughout this lesson, we’re going to teach you some of the fundamentals of the R language as well as some best practices for organising code for scientific projects that will make your life easier.</p>
+<p>We’ll be using RStudio: a free, open source R integrated development environment. It provides a built in editor, works on all platforms (including on servers) and provides many advantages such as integration with version control and project management.</p>
+<p><strong>Basic layout</strong></p>
+<p>When you first open RStudio, you will be greeted by three panels:</p>
+<ul>
+<li>The interactive R console (entire left)</li>
+<li>Environment/History (tabbed in upper right)</li>
+<li>Files/Plots/Packages/Help/Viewer (tabbed in lower right)</li>
+</ul>
+<p>Once you open files, such as R scripts, an editor panel will also open in the top left.</p>
+</div>
+<div id="work-flow-within-rstudio" class="section level2">
+<h2>Work flow within RStudio</h2>
+<p>There are two main ways one can work within RStudio.</p>
+<ol style="list-style-type: decimal">
+<li>Test and play within the interactive R console</li>
+</ol>
+<ul>
+<li>This works well when doing small tests and initially starting off.</li>
+<li>It quickly becomes laborious</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>Start writing in an .R file and use RStudio’s command / short cut to push current line, selected lines or modified lines to the interactive R console.</li>
+</ol>
+<ul>
+<li>This is a great way to start; all your code is saved for later</li>
+<li>You will be able to run the file you create from within RStudio or using R’s <code>source()</code> function.</li>
+</ul>
+<blockquote>
+<h2 id="tip-running-segments-of-your-code" class="callout">Tip: Running segments of your code</h2>
+<p>RStudio offers you great flexibility in running code from within the editor window. There are buttons, menu choices, and keyboard shortcuts. To run the current line, you can 1. click on the <code>Run</code> button just above the editor panel, or 2. select “Run Lines” from the “Code” menu, or 3. hit Ctrl-Enter in Windows or Linux or Command-Enter on OS X. (This shortcut can also be seen by hovering the mouse over the button). To run a block of code, select it and then <code>Run</code>. If you have modified a line of code within a block of code you have just run, there is no need to reselct the section and <code>Run</code>, you can use the next button along, <code>Re-run the previous region</code>. This will run the previous code block inculding the modifications you have made.</p>
+</blockquote>
+</div>
+<div id="introduction-to-r" class="section level2">
+<h2>Introduction to R</h2>
+<p>Much of your time in R will be spent in the R interactive console. This is where you will run all of your code, and can be a useful environment to try out ideas before adding them to an R script file. This console in RStudio is the same as the one when you open up the basic R GUI.</p>
+<p>The first thing you will see in the R interactive session is a bunch of information, followed by a “&gt;” and a blinking cursor. It operates on the idea of a “Read, Evaluate, Print loop” (REPL): you type in commands, R tries to execute them, and then returns a result.</p>
+</div>
+<div id="using-r-as-a-calculator" class="section level2">
+<h2>Using R as a calculator</h2>
+<p>The simplest thing you could do with R is do arithmetic:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> +<span class="st"> </span><span class="dv">100</span></code></pre></div>
+<pre><code>## [1] 101</code></pre>
+<p>And R will print out the answer, with a preceding “[1]”. Don’t worry about this for now, we’ll explain that later. For now think of it as indicating ouput.</p>
+<p>If you type in an incomplete command, R will wait for you to complete it:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span><span class="dv">1</span> +</code></pre></div>
+<pre class="output"><code>+</code></pre>
+<p>Any time you hit return and the R session shows a “+” instead of a “&gt;”, it means it’s waiting for you to complete the command. If you want to cancel a command you can simply hit “Esc” and RStudio will give you back the “&gt;” prompt.</p>
+<blockquote>
+<h2 id="tip-cancelling-commands" class="callout">Tip: Cancelling commands</h2>
+<p>Cancelling a command isn’t just useful for killing incomplete commands: you can also use it to tell R to stop running code (for example if its taking much longer than you expect), or to get rid of the code you’re currently writing.</p>
+</blockquote>
+<p>When using R as a calculator, the order of operations is the same as you would have learnt back in school.</p>
+<p>From highest to lowest precedence:</p>
+<ul>
+<li>Parentheses: <code>(</code>, <code>)</code></li>
+<li>Exponents: <code>^</code></li>
+<li>Divide: <code>/</code></li>
+<li>Multiply: <code>*</code></li>
+<li>Add: <code>+</code></li>
+<li>Subtract: <code>-</code></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span> +<span class="st"> </span><span class="dv">5</span> *<span class="st"> </span><span class="dv">2</span></code></pre></div>
+<pre><code>## [1] 13</code></pre>
+<p>Use parentheses to group operations in order to force the order of evaluation if it differs from the default, or to make clear what you intend.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(<span class="dv">3</span> +<span class="st"> </span><span class="dv">5</span>) *<span class="st"> </span><span class="dv">2</span></code></pre></div>
+<pre><code>## [1] 16</code></pre>
+<p>This can get unwieldy when not needed, but clarifies your intentions. Remember that others may later read your code.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(<span class="dv">3</span> +<span class="st"> </span>(<span class="dv">5</span> *<span class="st"> </span>(<span class="dv">2</span> ^<span class="st"> </span><span class="dv">2</span>))) <span class="co"># hard to read</span>
+<span class="dv">3</span> +<span class="st"> </span><span class="dv">5</span> *<span class="st"> </span><span class="dv">2</span> ^<span class="st"> </span><span class="dv">2</span>       <span class="co"># clear, if you remember the rules</span>
+<span class="dv">3</span> +<span class="st"> </span><span class="dv">5</span> *<span class="st"> </span>(<span class="dv">2</span> ^<span class="st"> </span><span class="dv">2</span>)     <span class="co"># if you forget some rules, this might help</span></code></pre></div>
+<p>The text after each line of code is called a “comment”. Anything that follows after the hash (or octothorpe) symbol <code>#</code> is ignored by R when it executes code.</p>
+<p>Really small or large numbers get a scientific notation:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span> /<span class="st"> </span><span class="dv">10000</span></code></pre></div>
+<pre><code>## [1] 2e-04</code></pre>
+<p>Which is shorthand for “multiplied by <code>10^XX</code>”. So <code>2e-4</code> is shorthand for <code>2 * 10^(-4)</code>.</p>
+<p>You can write numbers in scientific notation too:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="fl">5e3</span>  <span class="co"># Note the lack of minus here</span></code></pre></div>
+<pre><code>## [1] 5000</code></pre>
+</div>
+<div id="functions" class="section level2">
+<h2>Functions</h2>
+<p>Most of R’s functionality comes from its <em>functions</em>. A function takes zero, one or multiple <em>arguments</em>, depending on the function, and returns a value. To call a function enter it’s name followed by a pair of brackets - include any arguments in the brackets.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(<span class="dv">10</span>)</code></pre></div>
+<pre><code>## [1] 2.302585</code></pre>
+<p>To find out more about a function called <code>function_name</code> type <code>?function_name</code>. To search for the functions associated with a topic type <code>??topic</code> or <code>??&quot;multiple topics&quot;</code>. As well as providing a detailed description of the command and how it works, scrolling ot the bottom of the help page will usually show a collection of code examples which illustrate command usage.</p>
+<p><strong>Exercise</strong> 1 <em>Which function calculates sums? And what arguments does it take?</em></p>
+<div id="arguments" class="section level3">
+<h3>Arguments</h3>
+<p>The documentation for <code>log</code> indicates that the function requires an argument <code>x</code> that is a vector of <em>numeric</em> (real) or <em>complex</em> numbers and an argument <code>base</code> which is the base of the logarithm.</p>
+<p><strong>Exercise</strong> 2 <em>What kind of logarithm does the <code>log</code> function take by default?</em></p>
+<p>When calling a function its arguments can be specified using <em>positional</em> and/or <em>named</em> matching.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(<span class="dt">x =</span> <span class="dv">10</span>, <span class="dt">base =</span> <span class="dv">2</span>)</code></pre></div>
+<pre><code>## [1] 3.321928</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(<span class="dv">10</span>, <span class="dv">2</span>)</code></pre></div>
+<pre><code>## [1] 3.321928</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(<span class="dv">2</span>, <span class="dv">10</span>)</code></pre></div>
+<pre><code>## [1] 0.30103</code></pre>
+</div>
+</div>
+<div id="mathematical-functions" class="section level2">
+<h2>Mathematical functions</h2>
+<p>R has many built in mathematical functions.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sin</span>(<span class="dv">1</span>)  <span class="co"># trigonometry functions</span></code></pre></div>
+<pre><code>## [1] 0.841471</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(<span class="dv">1</span>)  <span class="co"># natural logarithm</span></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log10</span>(<span class="dv">10</span>) <span class="co"># base-10 logarithm</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="fl">0.5</span>) <span class="co"># e^(1/2)</span></code></pre></div>
+<pre><code>## [1] 1.648721</code></pre>
+<p>Don’t worry about trying to remember every function in R. You can simply look them up on google, or if you can remember the start of the function’s name, use the tab completion in RStudio.</p>
+<p>This is one advantage that RStudio has over R on its own, it has autocompletion abilities that allow you to more easily look up functions, their arguments, and the values that they take.</p>
+</div>
+<div id="comparing-things" class="section level2">
+<h2>Comparing things</h2>
+<p>We can also do comparison in R:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> ==<span class="st"> </span><span class="dv">1</span>  <span class="co"># equality (note two equals signs, read as &quot;is equal to&quot;)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> !=<span class="st"> </span><span class="dv">2</span>  <span class="co"># inequality (read as &quot;is not equal to&quot;)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> &lt;<span class="st">  </span><span class="dv">2</span>  <span class="co"># less than</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> &lt;=<span class="st"> </span><span class="dv">1</span>  <span class="co"># less than or equal to</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> &gt;<span class="st"> </span><span class="dv">0</span>  <span class="co"># greater than</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> &gt;=<span class="st"> </span>-<span class="dv">9</span> <span class="co"># greater than or equal to</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<blockquote>
+<h2 id="tip-comparing-numbers" class="callout">Tip: Comparing Numbers</h2>
+<p>A word of warning about comparing numbers: you should never use <code>==</code> to compare two numbers unless they are integers (a data type which can specifically represent only whole numbers).</p>
+<p>Computers may only represent decimal numbers with a certain degree of precision, so two numbers which look the same when printed out by R, may actually have different underlying representations and therefore be different by a small margin of error (called Machine numeric tolerance).</p>
+<p>Instead you should use the <code>all.equal</code> function.</p>
+<p>Further reading: <a href="http://floating-point-gui.de/" class="uri">http://floating-point-gui.de/</a></p>
+</blockquote>
+</div>
+<div id="variables-and-assignment" class="section level2">
+<h2>Variables and assignment</h2>
+<p>We can store values in variables by giving them a name, and using the assignment operator <code>&lt;-</code> (To save finger strokes, type <code>Alt-</code>):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">1</span> /<span class="st"> </span><span class="dv">40</span></code></pre></div>
+<p>Notice that assignment does not print a value. Instead, we stored it for later in something called a <strong>variable</strong>. <code>x</code> now contains the <strong>value</strong> <code>0.025</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x</code></pre></div>
+<pre><code>## [1] 0.025</code></pre>
+<p>Look for the <code>Environment</code> tab in one of the panes of RStudio, and you will see that <code>x</code> and its value have appeared. Our variable <code>x</code> can be used in place of a number in any calculation that expects a number:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(x)</code></pre></div>
+<pre><code>## [1] -3.688879</code></pre>
+<p>Notice also that variables can be reassigned:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">100</span></code></pre></div>
+<p><code>x</code> used to contain the value 0.025 and and now it has the value 100.</p>
+<p>Assignment values can contain the variable being assigned to:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span>x +<span class="st"> </span><span class="dv">1</span> <span class="co">#notice how RStudio updates its description of x on the top right tab</span></code></pre></div>
+<p>The right hand side of the assignment can be any valid R expression. The right hand side is <em>fully evaluated</em> before the assignment occurs.</p>
+<p><strong>Exercise</strong> 3 <em>Create an object called <code>x</code> with the value <code>7</code>. What is the value of <code>x^x</code>. Save the value in a object called <code>i</code>. If you assign the value <code>20</code> to the object <code>x</code> does the value of <code>i</code> change? What does this indicate about how R assigns values to objects?</em></p>
+<p>Variable names can contain letters, numbers, underscores and periods. They cannot start with a number nor contain spaces at all. Different people use different conventions for long variable names, these include</p>
+<ul>
+<li>periods.between.words</li>
+<li>underscores_between_words</li>
+<li>camelCaseToSeparateWords</li>
+</ul>
+<p>What you use is up to you, but <strong>be consistent</strong>.</p>
+<p>It is also possible to use the <code>=</code> operator for assignment:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x =<span class="st"> </span><span class="dv">1</span> /<span class="st"> </span><span class="dv">40</span></code></pre></div>
+<p>But this is much less common among R users. The most important thing is to <strong>be consistent</strong> with the operator you use. There are occasionally places where it is less confusing to use <code>&lt;-</code> than <code>=</code>, and it is the most common symbol used in the community. So the recommendation is to use <code>&lt;-</code>.</p>
+</div>
+<div id="vectors" class="section level2">
+<h2>Vectors</h2>
+<p>A <em>vector</em> is a string of values, of the same type of data: numbers, words, etc.</p>
+<div id="generation" class="section level3">
+<h3>Generation</h3>
+<p>Vectors can be created using the <code>c</code> (concatenate) and <code>seq</code> (sequence) functions.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">13</span>)</code></pre></div>
+<pre><code>## [1]  1  3  5  7 13</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">1</span>, <span class="dt">to =</span> <span class="dv">11</span>, <span class="dt">by =</span> <span class="dv">2</span>)</code></pre></div>
+<pre><code>## [1]  1  3  5  7  9 11</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">6</span>)</code></pre></div>
+<pre><code>## [1] 1 2 3 4 5 6</code></pre>
+<p>The <code>length</code> function returns the number of values in a vector.</p>
+<p><strong>Exercise</strong> 4 <em>Use the <code>seq</code> function to generate a vector called bob, of <code>30</code> evenly spaced numbers from <code>0</code> to <code>1</code>. Confirm its length.</em></p>
+</div>
+<div id="vectorized-calculations" class="section level3">
+<h3>Vectorized calculations</h3>
+<p>Even simple calculations are designed to be performed on vectors.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">3</span>, <span class="dv">5</span>)
+y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>)
+x -<span class="st"> </span>y</code></pre></div>
+<pre><code>## [1] 2 2 3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x /<span class="st"> </span>y</code></pre></div>
+<pre><code>## [1] 3.0 2.0 2.5</code></pre>
+<p><strong>Exercise</strong> 5 <em>Create the vector that is the square root of all the whole numbers from <code>1</code> to <code>100</code>.</em></p>
+<p><strong>Exercise</strong> 6 <em>Create a vector that gives the deviation of the values in the vector <code>seq(1, 10)</code> from their mean.</em></p>
+</div>
+<div id="classes" class="section level3">
+<h3>Classes</h3>
+<p>The vectors you have dealt with so far have been of class <code>numeric</code> which have real numbers as their permissible values.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">1.5</span>, <span class="fl">2.7</span>)
+<span class="kw">class</span>(x)</code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<p>Another important vector class is <code>character</code> which has text values.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;txt&quot;</span>, <span class="st">&quot;one&quot;</span>, <span class="st">&quot;1&quot;</span>, <span class="st">&quot;1.9&quot;</span>)
+<span class="kw">class</span>(x)</code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<p><strong>Exercise</strong> 7 <em>Try combining character and numeric values together in the same vector. What happens?</em></p>
+</div>
+<div id="missing-values" class="section level3">
+<h3>Missing values</h3>
+<p>Missing values are represented by <code>NA</code>. Functions such as <code>min</code>, <code>max</code> and <code>mean</code> that require knowledge of all the input values return an <code>NA</code> if one or more values are missing. This behaviour can be altered by setting the <code>na.rm</code> argument to be <code>TRUE</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="ot">NA</span>)
+<span class="kw">mean</span>(x)</code></pre></div>
+<pre><code>## [1] NA</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## [1] 2</code></pre>
+</div>
+<div id="factors" class="section level3">
+<h3>Factors</h3>
+<p>Factors represent categorical variables.</p>
+<p>Vectors can be coerced to class <code>factor</code> using the <code>as.factor</code> function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>, <span class="st">&quot;green&quot;</span>)
+x &lt;-<span class="st"> </span><span class="kw">as.factor</span>(x)
+<span class="kw">class</span>(x)</code></pre></div>
+<pre><code>## [1] &quot;factor&quot;</code></pre>
+<p><strong>Exercise</strong> 8 <em>Coerce the factor <code>x</code> to a vector of class numeric using <code>as.numeric</code>. What happens?</em></p>
+</div>
+</div>
+<div id="managing-your-environment" class="section level2">
+<h2>Managing your environment</h2>
+<p>There are a few useful commands you can use to interact with the R session.</p>
+<p><code>ls</code> will list all of the variables and functions stored in the global environment (your working R session):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls</span>()</code></pre></div>
+<pre><code>[1] &quot;x&quot;   &quot;y&quot;</code></pre>
+<p>Note here that we didn’t given any arguments to <code>ls</code>, but we still needed to give the parentheses to tell R to call the function.</p>
+<p>If we type <code>ls</code> by itself, R will print out the source code for that function!</p>
+<p>You can use <code>rm</code> to delete objects you no longer need:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(x)</code></pre></div>
+<p>If you have lots of things in your environment and want to delete all of them, you can pass the results of <code>ls</code> to the <code>rm</code> function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())</code></pre></div>
+<p>In this case we’ve combined the two. Just like the order of operations, anything inside the innermost parentheses is evaluated first, and so on.</p>
+<p>In this case we’ve specified that the results of <code>ls</code> should be used for the <code>list</code> argument in <code>rm</code>.</p>
+<blockquote>
+<h2 id="tip-warnings-vs.errors" class="callout">Tip: Warnings vs. Errors</h2>
+<p>Pay attention when R does something unexpected! Errors, like above, are thrown when R cannot proceed with a calculation. Warnings on the other hand usually mean that the function has run, but it probably hasn’t worked as expected.</p>
+<p>In both cases, the message that R prints out usually give you clues how to fix a problem.</p>
+</blockquote>
+<blockquote>
+<h2 id="challenge-1" class="challenge">Challenge 1</h2>
+<p>Which of the following are valid R variable names?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">min_height
+max.height
+_age
+.mass
+MaxLength
+min-length
+2widths
+celsius2kelvin</code></pre></div>
+</blockquote>
+<blockquote>
+<h2 id="challenge-2" class="challenge">Challenge 2</h2>
+<p>What will be the value of each variable after each statement in the following program?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mass &lt;-<span class="st"> </span><span class="fl">47.5</span>
+age &lt;-<span class="st"> </span><span class="dv">122</span>
+mass &lt;-<span class="st"> </span>mass *<span class="st"> </span><span class="fl">2.3</span>
+age &lt;-<span class="st"> </span>age -<span class="st"> </span><span class="dv">20</span></code></pre></div>
+</blockquote>
+<blockquote>
+<h2 id="challenge-3" class="challenge">Challenge 3</h2>
+<p>Run the code from the previous challenge, and write a command to compare mass to age. Is mass larger than age?</p>
+</blockquote>
+<blockquote>
+<h2 id="challenge-4" class="challenge">Challenge 4</h2>
+<p>Clean up your working environment by deleting the mass and age variables.</p>
+</blockquote>
+</div>
+<div id="project-management-with-rstudio" class="section level2">
+<h2>Project management with RStudio</h2>
+<div id="introduction" class="section level3">
+<h3>Introduction</h3>
+<p>The scientific process is naturally incremental, and many projects start life as random notes, some data, some code, then a report or manuscript, and eventually everything is a bit mixed together.</p>
+<p>It’s pretty easy to get data scattered among many different folders, with multiple versions.</p>
+<p>There are many reasons why we should avoid this:</p>
+<ol style="list-style-type: decimal">
+<li>It is really hard to tell which version of your data is the original and which is the modified;</li>
+<li>It gets really messy because it mixes files with various extensions together;</li>
+<li>It probably takes you a lot of time to actually find things, and relate the correct figures to the exact files/code that has been used to generate it;</li>
+</ol>
+<p>A good project layout will ultimately make your life easier:</p>
+<ul>
+<li>It will help ensure the integrity of your data;</li>
+<li>It makes it simpler to share your code with someone else (a lab-mate, collaborator, or supervisor);</li>
+<li>It allows you to easily upload your code with your manuscript submission;</li>
+<li>It makes it easier to pick the project back up after a break.</li>
+</ul>
+</div>
+<div id="a-possible-solution" class="section level3">
+<h3>A possible solution</h3>
+<p>Fortunately, there are tools and packages which can help you manage your work effectively.</p>
+<p>One of the most powerful and useful aspects of RStudio is its project management functionality. We’ll be using this today to create a self-contained, reproducible project.</p>
+<blockquote>
+<h2 id="challenge-5-creating-a-self-contained-project" class="challenge">Challenge 5: Creating a self-contained project</h2>
+<p>We’re going to create a new project in RStudio:</p>
+<ol style="list-style-type: decimal">
+<li>Click the “File” menu button, then “New Project”.</li>
+<li>Click “New Directory”.</li>
+<li>Click “Empty Project”.</li>
+<li>Type in the name of the directory to store your project, e.g. “r_course”.</li>
+<li>Click the “Create Project” button.</li>
+</ol>
+</blockquote>
+<p>Now when we start R in this project directory, or open this project with RStudio, all of our work on this project will be entirely self-contained in this directory.</p>
+</div>
+<div id="best-practices-for-project-organisation" class="section level3">
+<h3>Best practices for project organisation</h3>
+<p>Although there is no “best” way to lay out a project, there are some general principles to adhere to that will make project management easier:</p>
+</div>
+<div id="treat-data-as-read-only" class="section level3">
+<h3>Treat data as read only</h3>
+<p>This is probably the most important goal of setting up a project. Data is typically time consuming and/or expensive to collect. Working with them interactively (e.g., in Excel) where they can be modified means you are never sure of where the data came from, or how it has been modified since collection. It is therefore a good idea to treat your data as “read-only”.</p>
+</div>
+<div id="data-cleaning" class="section level3">
+<h3>Data Cleaning</h3>
+<p>In many cases your data will be “dirty”: it will need significant preprocessing to get into a format R (or any other programming language) will find useful. This task is sometimes called “data munging”. I find it useful to store these scripts in a separate folder, and create a second “read-only” data folder to hold the “cleaned” data sets.</p>
+</div>
+<div id="treat-generated-output-as-disposable" class="section level3">
+<h3>Treat generated output as disposable</h3>
+<p>Anything generated by your scripts should be treated as disposable: it should all be able to be regenerated from your scripts.</p>
+<p>There are lots of different ways to manage this output. I find it useful to have an output folder with different sub-directories for each separate analysis. This makes it easier later, as many of my analyses are exploratory and don’t end up being used in the final project, and some of the analyses get shared between projects.</p>
+</div>
+<div id="separate-function-definition-and-application" class="section level3">
+<h3>Separate function definition and application</h3>
+<p>The most effective way I find to work in R, is to play around in the interactive session, then copy commands across to a script file when I’m sure they work and do what I want. You can also save all the commands you’ve entered using the <code>history</code> command, but I don’t find it useful because when I’m typing its 90% trial and error.</p>
+<p>When your project is new and shiny, the script file usually contains many lines of directly executed code. As it matures, reusable chunks get pulled into their own functions. It’s a good idea to separate these into separate folders; one to store useful functions that you’ll reuse across analyses and projects, and one to store the analysis scripts.</p>
+</div>
+<div id="save-the-data-in-the-data-directory" class="section level3">
+<h3>Save the data in the data directory</h3>
+<p>Now we have a good directory structure we will now place/save the data file in the <code>data/</code> directory.</p>
+<blockquote>
+<h2 id="challenge-6" class="challenge">Challenge 6</h2>
+<p>Download the gapminder data from <a href="data/gapminder-FiveYearData.csv">here</a>.</p>
+<ol style="list-style-type: decimal">
+<li>Download the file (CTRL + S, right mouse click -&gt; “Save as”, or File -&gt; “Save page as”)</li>
+<li>Make sure it’s saved under the name <code>gapminder-FiveYearData.csv</code></li>
+<li>Save the file in the <code>data/</code> folder within your project.</li>
+</ol>
+<p>We will load and inspect these data later.</p>
+</blockquote>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

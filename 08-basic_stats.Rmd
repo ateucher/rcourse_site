@@ -1,0 +1,253 @@
+---
+title: Basic statistics
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(fig.path = "fig/08-basic_stats-")
+# Silently load in the data so the rest of the lesson works
+gapminder <- read.csv("data/gapminder-FiveYearData.csv", header=TRUE)
+library(ggplot2)
+```
+
+Of course, R was written by statisticians, for statisticians.  We're not going 
+to go deep into stats - partly because I'm not really that qualified to teach it, 
+and because we don't have time to cover all of the potential needs that people 
+in the course will have.  But we can cover a few of the basics, and introduce 
+the common **R** way of fitting statistical models.
+
+### t-test
+
+We'll keep going with our gapminder data; we want to test if GDP is 
+significantly different between the Americas and Europe in 2007; so we can use a 
+basic two-sample t-test.
+
+First, let's search the help to find out what functions are avaible: `??"t-test"`
+.  Student's t-test is the one we want.  There are a few variations of the 
+t-test available.  If we are testing a single sample against a known value (for 
+example, find out if something is different from 0), we would use the 
+single-sample t-test like so:
+
+```{r sst-test}
+# Simulate some data with a normal distribution, a mean of 0, and sd of 1.
+data <- rnorm(100)
+mean(data)
+t.test(data, mu=0)
+## Unsurprisingly, not significant.
+```
+
+For our GDP question data, we want to use a two-sample t-test.  I like using the formula 
+specification because it's similar to how many other statistical tests are 
+specified: `t.test(Value ~ factor, data=)`
+
+Since we're only interested in Europe and the Americas in 2007, we need to do a bit of filtering of the data.
+
+```{r dropfort-test}
+library(dplyr)
+gdp_07_EuAm <- filter(gapminder, 
+                      continent %in% c("Americas", "Europe"), 
+                      year == 2007)
+summary(gdp_07_EuAm)
+gdp_07_EuAm <- droplevels(gdp_07_EuAm)
+```
+
+```{r tst-test}
+t.test(gdpPercap ~ continent, data = gdp_07_EuAm)
+```
+
+### Simple linear regression
+
+Let's explore the relationship between life expectancy and year
+
+```{r}
+reg <- lm(lifeExp ~ year, data=gapminder)
+```
+
+We won't go into too much detail, but briefly: 
+
+* `lm` estimates linear statistical models
+* The first argument is a formula, with  `a ~ b` meaning that `a`,
+     the dependent (or response) variable, is a
+    function of `b`, the independent variable. 
+* We tell `lm` to use the gapminder data frame, so it knows where to
+ find the variables `lifeExp` and `year`. 
+
+Let's look at the output, which is an object of class `lm`:
+
+```{r}
+reg
+class(reg)
+```
+
+There's a great deal stored in this object!
+
+For now, we can look at the `summary`:
+
+```{r}
+summary(reg)
+```
+
+As you might expect, life expectancy has slowly been increasing over
+time, so we see a significant positive association!
+
+#### Plot the data with the regression line, along with confidence limits
+
+```{r olsreg-plot}
+p <- ggplot(gapminder, aes(x = year, y = lifeExp)) + geom_point()
+
+dummy <- data.frame(year = seq(from = min(gapminder$year), 
+                                     to = max(gapminder$year), 
+                                     length.out = 100))
+                   
+pred <- predict(reg, newdata=dummy, interval = "conf")
+
+dummy <- cbind(dummy, pred)
+
+p + geom_line(data = dummy, aes(y = fit)) + 
+  geom_line(data = dummy, aes(y = lwr), linetype = 'dashed') + 
+  geom_line(data = dummy, aes(y = upr), linetype = 'dashed')
+
+```
+
+ggplot2 will also generate a fitted line and confidence intervals for you - 
+which is useful, but only works for a univariate relationship ... it's also nice 
+to do it yourself as above so you *know* that the fit is coming directly from 
+regression model you ran.
+
+```{r olsreg-ggplot-lm}
+p + geom_smooth(method="lm")
+```
+
+
+#### Checking Assumptions
+
+We can check these assumptions of the model by plotting the residuals vs the 
+fitted values.
+
+```{r ggplot-resids}
+fitted <- fitted(reg)
+residuals <- resid(reg)
+
+ggplot(data=NULL, aes(x = fitted, y = residuals)) + geom_point() + 
+  geom_hline(yintercept = 0)
+```
+
+We can check also assumptions using `plot()`.  There are actually a bunch of 
+different `plot` methods in R, which are dispatched depending on the type of 
+object you call them on.  When you call plot on an `lm` object, a series of 
+diagnostic plots is created to help us check the assumptions of the `lm` object.
+
+```{r olsreg-check}
+plot(reg)
+```
+
+Get more information on these plots by checking `?plot.lm`.
+
+### Analysis of Variance (ANOVA)
+
+Now say we want to extend our GDP analysis above to all continents, then we can't 
+use a t-test; we have to use an ANOVA.  Since an ANOVA is simply a linear 
+regression model with a categorical rather than continuous predictor variable, we 
+still use the `lm()` function.  Let's test for differences in petal length among 
+all three species.
+
+```{r anova}
+gap_07 <- filter(gapminder, year == 2007)
+gdp_aov <- lm(gdpPercap ~ continent, data=gapminder)
+summary(gdp_aov)
+anova(gdp_aov)
+```
+
+#### Plot
+
+```{r petal-box-plot}
+ggplot(data = gap_07, aes(x = continent, y = gdpPercap)) + geom_boxplot()
+ggplot(data = gap_07, aes(x = continent, y = gdpPercap)) + geom_point()
+ggplot(data = gap_07, aes(x = continent, y = gdpPercap, colour = continent)) +
+  geom_jitter()
+```
+
+#### Check assumptions
+
+```{r ggplot-aov-resids}
+fitted <- fitted(gdp_aov)
+residuals <- resid(gdp_aov)
+
+ggplot(data=NULL, aes(x = fitted, y = residuals)) + geom_point() + 
+  geom_hline(yintercept = 0)
+```
+
+### More advanced linear models and model selection using AIC
+
+Here we're going to divert to a different dataset: Measurements of Sepals and Petals (widths and lengths) in three species of Iris. We are going to explore the relationship between sepal length, sepal width among species.  
+
+```{r}
+mod1 <- lm(Sepal.Length ~ Sepal.Width * Species, data=iris) # includes interaction term
+mod1a <- lm(Sepal.Length ~ Sepal.Width + Species + Sepal.Width:Species, data=iris) #Equivalent to above
+mod2 <- lm(Sepal.Length ~ Sepal.Width + Species, data=iris) # ANCOVA
+mod3 <- lm(Sepal.Length ~ Sepal.Width, data=iris)
+mod4 <- lm(Sepal.Length ~ Species, data=iris)
+
+AIC(mod1, mod2, mod3, mod4)
+```
+
+Let's plot the data:
+```{r ggplot-adv-lm}
+ggplot(iris, aes(x=Sepal.Width, y=Sepal.Length, colour=Species, group=Species)) + 
+  geom_point() + 
+  geom_smooth(method="lm", formula = y ~ x)
+```
+
+### Generalized linear models: Logistic regression
+
+Say you want to know whether elevation can predict whether or not a particular 
+species of beetle is present (all other things being equal of course). You walk 
+up a hillside, starting at 100m elevation and sampling for the beetle every 10m 
+until you reach 1000m.  At each stop you record whether or the beetle is present 
+(`1`) or absent (`0`).
+
+First, let's simulate some data
+
+```{r glm-binom-sim}
+## Generate a sequence of elevations
+elev <- seq(100, 1000, by=10)
+
+# Generate a vector of probabilities the same length as `elev` with increasing 
+# probabilities
+probs <- 0:length(elev) / length(elev)
+
+## Generate a sequence of 0's and 1's
+pres <- rbinom(length(elev), 1, prob=probs)
+
+## combine into a data frame and remove consituent parts
+elev_pres.data <- data.frame(elev, pres)
+rm(elev, pres)
+
+## Plot the data
+ggplot(elev_pres.data, aes(x = elev, y = pres)) + geom_point()
+```
+
+Presence / absence data is a classic example of where to use logistic regression; 
+the outcome is binary (0 or 1), and the predictor variable is continuous 
+(elevation, in this case).  Logisitic regression is a particular type of model 
+in the family of _Generalized Linear Models_.  Where ordinary least squares 
+regression assumes a normal disribution of the response variable, _Generalized 
+linear models_ assume a different distribution.  Logistic regression assumes a 
+binomial distribution (outcome will be in one of two states).  Another common 
+example is the poisson distribution, which is often useful for count data.  
+Implementing GLMs is relatively straightforward using the `glm()` function.  You 
+specify the model formula in the same way as in `lm()`, and specify the 
+distribution you want in the _family_ parameter.
+
+```{r glm-binom}
+lr1 <- glm(pres ~ elev, data=elev_pres.data, family=binomial)
+summary(lr1)
+```
+
+So let's add the curve generated by the logistic regression to the plot:
+
+```{r lr-plot}
+ggplot(elev_pres.data, aes(x = elev, y = pres)) + 
+  geom_point() + 
+  geom_line(aes(y = predict(lr1, type="response")))
+
+```

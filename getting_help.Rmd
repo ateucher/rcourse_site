@@ -1,7 +1,6 @@
 ---
+title: Getting help
 ---
-
-# Getting R Help
 
 To get help for a particular function in R, type `?` and then the function name:
 
@@ -26,6 +25,15 @@ quotes if more than one word):
 * Each other! (Talk it out)
 * [Tell it to the duck](http://blog.codinghorror.com/rubber-duck-problem-solving/)
 
+### Cheat Sheets
+
+* [General **R** cheatsheet](https://cran.r-project.org/doc/contrib/Baggott-refcard-v2.pdf)
+* [RStudio Cheetsheets](https://www.rstudio.com/resources/cheatsheets/) on:
+    - Data Wrangling with dplyr and tidyr, 
+    - Data Visualization with ggplot2,
+    - Using RStudio
+    - Other more advanced topics such as package development, Shiny, and R Markdown
+
 ### ggplot2
 
 * [ggplot2 official documentation](http://docs.ggplot2.org/current/)
@@ -38,7 +46,7 @@ quotes if more than one word):
 * [The R Graphics Cookbook](http://www.amazon.com/gp/product/1449316956) by 
   Winston Change - The paper version of the Cookbook for R website mentioned above
   
-### Other learning resources - onlince courses, etc
+### Other learning resources - online courses, etc
 
 * [R for cats](http://rforcats.net/)
 * [Try R - codeschool](http://tryr.codeschool.com/)
