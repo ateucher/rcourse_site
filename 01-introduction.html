@@ -440,65 +440,6 @@ $(document).ready(function () {
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x =<span class="st"> </span><span class="dv">1</span> /<span class="st"> </span><span class="dv">40</span></code></pre></div>
 <p>But this is much less common among R users. The most important thing is to <strong>be consistent</strong> with the operator you use. There are occasionally places where it is less confusing to use <code>&lt;-</code> than <code>=</code>, and it is the most common symbol used in the community. So the recommendation is to use <code>&lt;-</code>.</p>
 </div>
-<div id="vectors" class="section level2">
-<h2>Vectors</h2>
-<p>A <em>vector</em> is a string of values, of the same type of data: numbers, words, etc.</p>
-<div id="generation" class="section level3">
-<h3>Generation</h3>
-<p>Vectors can be created using the <code>c</code> (concatenate) and <code>seq</code> (sequence) functions.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">13</span>)</code></pre></div>
-<pre><code>## [1]  1  3  5  7 13</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">1</span>, <span class="dt">to =</span> <span class="dv">11</span>, <span class="dt">by =</span> <span class="dv">2</span>)</code></pre></div>
-<pre><code>## [1]  1  3  5  7  9 11</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">6</span>)</code></pre></div>
-<pre><code>## [1] 1 2 3 4 5 6</code></pre>
-<p>The <code>length</code> function returns the number of values in a vector.</p>
-<p><strong>Exercise</strong> 4 <em>Use the <code>seq</code> function to generate a vector called bob, of <code>30</code> evenly spaced numbers from <code>0</code> to <code>1</code>. Confirm its length.</em></p>
-</div>
-<div id="vectorized-calculations" class="section level3">
-<h3>Vectorized calculations</h3>
-<p>Even simple calculations are designed to be performed on vectors.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">3</span>, <span class="dv">5</span>)
-y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>)
-x -<span class="st"> </span>y</code></pre></div>
-<pre><code>## [1] 2 2 3</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x /<span class="st"> </span>y</code></pre></div>
-<pre><code>## [1] 3.0 2.0 2.5</code></pre>
-<p><strong>Exercise</strong> 5 <em>Create the vector that is the square root of all the whole numbers from <code>1</code> to <code>100</code>.</em></p>
-<p><strong>Exercise</strong> 6 <em>Create a vector that gives the deviation of the values in the vector <code>seq(1, 10)</code> from their mean.</em></p>
-</div>
-<div id="classes" class="section level3">
-<h3>Classes</h3>
-<p>The vectors you have dealt with so far have been of class <code>numeric</code> which have real numbers as their permissible values.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">1.5</span>, <span class="fl">2.7</span>)
-<span class="kw">class</span>(x)</code></pre></div>
-<pre><code>## [1] &quot;numeric&quot;</code></pre>
-<p>Another important vector class is <code>character</code> which has text values.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;txt&quot;</span>, <span class="st">&quot;one&quot;</span>, <span class="st">&quot;1&quot;</span>, <span class="st">&quot;1.9&quot;</span>)
-<span class="kw">class</span>(x)</code></pre></div>
-<pre><code>## [1] &quot;character&quot;</code></pre>
-<p><strong>Exercise</strong> 7 <em>Try combining character and numeric values together in the same vector. What happens?</em></p>
-</div>
-<div id="missing-values" class="section level3">
-<h3>Missing values</h3>
-<p>Missing values are represented by <code>NA</code>. Functions such as <code>min</code>, <code>max</code> and <code>mean</code> that require knowledge of all the input values return an <code>NA</code> if one or more values are missing. This behaviour can be altered by setting the <code>na.rm</code> argument to be <code>TRUE</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="ot">NA</span>)
-<span class="kw">mean</span>(x)</code></pre></div>
-<pre><code>## [1] NA</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<pre><code>## [1] 2</code></pre>
-</div>
-<div id="factors" class="section level3">
-<h3>Factors</h3>
-<p>Factors represent categorical variables.</p>
-<p>Vectors can be coerced to class <code>factor</code> using the <code>as.factor</code> function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>, <span class="st">&quot;green&quot;</span>)
-x &lt;-<span class="st"> </span><span class="kw">as.factor</span>(x)
-<span class="kw">class</span>(x)</code></pre></div>
-<pre><code>## [1] &quot;factor&quot;</code></pre>
-<p><strong>Exercise</strong> 8 <em>Coerce the factor <code>x</code> to a vector of class numeric using <code>as.numeric</code>. What happens?</em></p>
-</div>
-</div>
 <div id="managing-your-environment" class="section level2">
 <h2>Managing your environment</h2>
 <p>There are a few useful commands you can use to interact with the R session.</p>

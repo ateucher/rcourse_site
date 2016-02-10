@@ -42,7 +42,7 @@ cats$coat
 We can do other operations on the columns:
 
 ```{r}
-## We discovered that the scale weighs one pound light:
+## We discovered that the scale weighs one Kg light:
 cats$weight + 2
 paste("My cat is", cats$coat)
 ```
@@ -73,16 +73,18 @@ class(TRUE)
 class('banana')
 ```
 
-Note the `L` suffix to insist that a number is an integer. No matter how complicated our analyses become, all data in R is interpreted as one of these basic data types. This strictness has some really important concequences. Try changing the last row of your cat data to this:
+Note the `L` suffix to insist that a number is an integer. Character classes are always enclosed in quotation marks.
+
+No matter how complicated our analyses become, all data in R is interpreted as one of these basic data types. This strictness has some really important concequences. Try adding another row to your cat data like this:
 
 ```{r, eval=FALSE}
 tabby,2.3 or 2.4,1
 ```
 
 ```{r, include=FALSE}
-cats <- data.frame(coat = c("calico", "black", "tabby"),
-                   weight = c('2.1', '5.0', '2.3 or 2.4'), 
-                   likes_string = c(1, 0, 1))
+cats <- data.frame(coat = c("calico", "black", "tabby", "tabby"),
+                   weight = c(2.1, 5.0, 3.2, '2.3 or 2.4'), 
+                   likes_string = c(1, 0, 1, 1))
 write.csv(cats, "data/feline-data.csv", row.names = FALSE, quote = FALSE)
 ```
 
@@ -125,19 +127,16 @@ cats <- read.csv(file="data/feline-data.csv")
 
 ## Vectors & Type Coercion
 
-To better understand the behavior we just saw, let's meet another of the data structures: the *vector*.
+To better understand the behavior we just saw, let's meet another of the data structures: the *vector*. All vectors are one of the classes we met above. We can create a vector by calling the function of the same name:
 
 ```{r}
-x <- vector(length=3)
+x <- numeric(5)
 x
+y <- character(3)
+y
 ```
 
-Just like you might be familiar with from vectors elsewhere, a vector in R is essentially an ordered list of things, with the special condition that *everything in the vector must be the same basic data type*. If you don't choose the datatype, it'll default to `logical`; or, you can declare an empty vector of whatever type you like.
-
-```{r}
-x <- vector(mode='character', length=3)
-x
-```
+Just like you might be familiar with from vectors elsewhere, a vector in R is essentially an ordered list of things, with the special condition that *everything in the vector must be the same basic data type*.
 
 You can check if something is a vector:
 
@@ -159,11 +158,13 @@ we see that that's a vector, too - *the columns of data we load into R data.fram
 > How does this help us?
 >
 
-You can also make vectors with explicit contents with the concatenate function:
+You can also make vectors with explicit contents with the `c` (combine) function:
 
 ```{r}
 x <- c(2,6,3)
 x
+y <- c("Hello", "Goodbye", "I love data")
+y
 ```
 
 Given what we've learned so far, what do you think the following will produce?
@@ -251,12 +252,6 @@ mean(x)
 mean(x, na.rm = TRUE)
 ```
 
-> ## Challenge 1 {.challenge}
-> Start by making a vector with the numbers 11 to 20. 
-> Then use the functions we just learned to extract the 3rd through 5th element in that vector into a new vector; 
-> name the elements in that new vector 'S', 'W', 'C'.
->
-
 ## Factors
 
 ```{r}
@@ -274,7 +269,7 @@ str(coats)
 We can turn a vector into a factor like so:
 
 ```{r}
-CATegories <- factor(coats)
+CATegories <- as.factor(coats)
 str(CATegories)
 ```
 
