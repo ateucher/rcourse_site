@@ -238,6 +238,19 @@ x
 x['b']
 ```
 
+### Missing values
+
+Missing values are represented by `NA`. Functions such as `min`, `max` and `mean`
+that require knowledge of
+all the input values return an `NA` if one or more values are missing.
+This behaviour can be altered by setting the `na.rm` argument to be `TRUE`.
+
+```{r}
+x <- c(1, 2, 3, NA)
+mean(x)
+mean(x, na.rm = TRUE)
+```
+
 > ## Challenge 1 {.challenge}
 > Start by making a vector with the numbers 11 to 20. 
 > Then use the functions we just learned to extract the 3rd through 5th element in that vector into a new vector; 
