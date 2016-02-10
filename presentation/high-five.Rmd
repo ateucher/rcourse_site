@@ -1,0 +1,22 @@
+---
+output:
+  ioslides_presentation:
+    fig_height: 3
+    fig_width: 5
+    self_contained: yes
+---
+----
+
+<div class="centered">![](img/high-five.gif)</div>
+
+----
+
+<div class="centered">![](img/turtle-high-five.gif)</div>
+
+----
+
+<div class="centered">![](img/corgi-high-five.gif)</div>
+
+----
+
+<div class="centered">![](img/walkby-cat-high-five.gif)</div>
