@@ -1,103 +1,482 @@
 ---
-title: Data Frames
+title: Data structures
 ---
 
 ```{r, include=FALSE}
-# Silently load in the data so the rest of the lesson works
-gapminder <- read.csv("data/gapminder-FiveYearData.csv", header=TRUE)
+cats <- data.frame(coat = c("calico", "black", "tabby"),
+                   weight = c(2.1, 5.0, 3.2), 
+                   likes_string = c(TRUE, FALSE, TRUE))
+write.csv(cats, "data/feline-data.csv", row.names = FALSE, quote = FALSE)
 ```
 
 > ## Learning Objectives {.objectives}
 >
-> * Become familiar with data frames
-> * Be able to read regular data into R
+> - To be aware of the different types of data
+> - To begin exploring the data.frame, and understand how it's related to vectors, factors and lists
+> - To be able to ask questions from R about the type, class, and structure of an object.
 >
 
-A data frame is the standard structure for storing data sets, with rows and columns similar to a table in a spreadsheet. 
+One of R's most powerful features is its ability to deal with tabular data - like what you might already have in a spreadsheet or a CSV. Let's start by making a toy dataset in your `data/` directory, called `feline-data.csv`:
 
-Underneath the hood,
-data frames are really lists, where each element is an atomic vector,
-with the added restriction that they're all the same length.  As you
-will see, if we pull out one column of a data frame,we will have a
-vector. You will probably find that data frames are more complicated
-than vectors and other data structures we have considered, but they
-provide powerful capabilities.
-
-
-Data frames can be created manually with the `data.frame` function:
-
-```{r}
-df <- data.frame(id = c('a', 'b', 'c', 'd', 'e', 'f'), x = 1:6, y = c(214:219))
-df
+```{r, eval=FALSE}
+coat,weight,likes_string
+calico,2.1,TRUE   
+black,5.0,FALSE   
+tabby,3.2,TRUE 
 ```
 
-> ## Challenge 1: Data frames {.challenge}
+We can load this into R via the following:
+
+```{r}
+cats <- read.csv(file="data/feline-data.csv")
+cats
+```
+
+We can begin exploring our dataset right away, pulling out columns and rows via the following:
+
+```{r}
+cats$weight
+cats$weight[1]
+cats$weight[2]
+cats$weight[1] + cats$weight[2]
+```
+
+But what about
+
+```{r}
+cats$weight[1] + cats$coat[2]
+```
+
+Understanding what happened here is key to successfully analyzing data in R.
+
+## Data Types
+
+If you guessed that the last command will return an error because 2.1 plus black is nonsense, you're right - and you already have some intuition for an important concept in programming called *data types*. We can ask what type of data something is:
+
+```{r}
+typeof(cats$weight[1])
+```
+
+There are 5 main types: doubles, integers, complex, logical and character.
+
+```
+typeof(3.14)
+typeof(1L)
+typeof(1+1i)
+typeof(TRUE)
+typeof('banana')
+```
+
+Note the `L` suffix to insist that a number is an integer. No matter how complicated our analyses become, all data in R is interpreted as one of these basic data types. This strictness has some really important concequences. Try adding this row to your cat data:
+
+```{r, eval=FALSE}
+tabby,2.3 or 2.4,TRUE
+```
+
+Reload your cats data like before, and check what type of data we find in the `weight` column:
+
+```{r}
+cats <- read.csv(file="data/feline-data.csv")
+typeof(cats$weight[1])
+```
+
+Oh no, our weights aren't the double type anymore! If we try to do the same math we did on them before, we run into trouble:
+
+```{r}
+cats$weight[1] + cats$weight[2]
+```
+
+What happened? When R reads a csv into one of these tables, it insists that everything in a column be the same basic type; if it can't understand *everything* in the column as a double, then *nobody* in the column gets to be a double. The table that R loaded our cats data into is something called a *data.frame*, and it is our first example of something called a *data structure* - things that R knows how to build out of the basic data types. In order to successfully use our data in R, we need to understand what these basic data structures are, and how they behave. For now, let's remove that extra line from our cats data and reload it, while we investigate this behavior further:
+
+feline-data.csv:
+
+```
+coat,weight,likes_string
+calico,2.1,TRUE   
+black,5.0,FALSE   
+tabby,3.2,TRUE 
+```
+
+And back in RStudio:
+
+```
+cats <- read.csv(file="data/feline-data.csv")
+```
+
+## Vectors & Type Coercion
+
+To better understand the behavior we just saw, let's meet another of the data structures: the *vector*.
+
+```{r}
+x <- vector(length=3)
+x
+```
+
+Just like you might be familiar with from vectors elsewhere, a vector in R is essentially an ordered list of things, with the special condition that *everything in the vector must be the same basic data type*. If you don't choose the datatype, it'll default to `logical`; or, you can declare an empty vector of whatever type you like.
+
+```{r}
+x <- vector(mode='character', length=3)
+x
+```
+
+You can check if something is a vector:
+
+```{r}
+str(x)
+```
+
+The somewhat cryptic output from this command indicates the basic data type found in this vector; the number of things in the vector; and a few examples of what's actually in the vector. If we similarly do
+
+```{r}
+str(cats$weight)
+```
+
+we see that that's a vector, too - *the columns of data we load into R data.frames are all vectors*, and that's the root of why R forces everything in a column to be the same basic data type.
+
+> ## Discussion 1 {.challenge}
 >
-> Try using the `length` function to query
-> your data frame `df`. Does it give the result
-> you expect?
+> Why is R so opinionated about what we put in our columns of data?
+> How does this help us?
 >
 
-Each column in the data frame is simply a list element, which is why
-when you ask for the `length` of the data frame, it tells you the
-number of columns. If you actually want the number of rows, you can
-use the `nrow` function.
-
-We can add columns or rows to a data.frame using `cbind` or `rbind`
-(these are the two-dimensional equivalents of the `c` function):
-
-## Adding columns to a data frame
-
-To add a column we can use `cbind`:
+You can also make vectors with explicit contents with the concatenate function:
 
 ```{r}
-df <- cbind(df, 6:1)
-df
+x <- c(2,6,3)
+x
 ```
 
-Note that R automatically names the column. We may decide to change
-the name by assigning a value using the `names` function:
+Given what we've learned so far, what do you think the following will produce?
 
 ```{r}
-names(df)[4] <- 'z'
+x <- c(2,6,'3')
 ```
 
-We can also provide a name when we add the column:
+This is something called *type coercion*, and it is the source of many surprises and the reason why we need to be aware of the basic data types and how R will interpret them. Consider:
 
 ```{r}
-df <- cbind(df, caps=c("A", "B", "C", "D", "E", "F"))
-df
+x <- c('a', TRUE)
+x
+x <- c(0, TRUE)
+x
 ```
 
-## Adding rows to a data frame 
-
-To add rows we use `rbind`:
+The coercion rules go: `logical` -> `integer` -> `numeric` -> `complex` -> `character`. You can try to force coercion against this flow using the `as.` functions:
 
 ```{r}
-df2 <- data.frame(id = c("g", "h"), 
-                  x = c(11, 12), 
-                  y = c(42, 86), 
-                  z = c(0, -1), 
-                  caps = c("G", "H"))
-df <- rbind(df, df2)
+x <- c('0','2','4')
+x
+y <- as.numeric(x)
+y
+z <- as.logical(y)
+z
+```
+
+As you can see, some surprising things can happen when R forces one basic data type into another! Nitty-gritty of type coercion aside, the point is: if your data doesn't look like what you thought it was going to look like, type coercion may well be to blame; make sure everything is the same type in your vectors and your columns of data.frames, or you will get nasty surprises!
+
+Concatenate will also append things to an existing vector:
+
+```{r}
+x <- c('a', 'b')
+x
+x <- c(x, 'SWC')
+x
+```
+
+You can also make series of numbers:
+
+```{r}
+mySeries <- 1:10
+mySeries
+seq(10)
+seq(1,10, by=0.1)
+```
+
+In addition to asking for elements of a vector with the square bracket notation, we can ask a few other questions about vectors:
+
+```{r}
+x <- seq(10)
+head(x, n=2)
+tail(x, n=4)
+length(x)
+```
+
+Finally, you can give names to elements in your vector, and ask for them that way:
+
+```{r}
+x <- 5:8
+names(x) <- c("a", "b", "c", "d")
+x
+x['b']
+```
+
+> ## Challenge 1 {.challenge}
+> Start by making a vector with the numbers 11 to 20. 
+> Then use the functions we just learned to extract the 3rd through 5th element in that vector into a new vector; 
+> name the elements in that new vector 'S', 'W', 'C'.
+>
+
+## Factors
+
+We said that columns in data.frames were vectors:
+
+```{r}
+str(cats$weight)
+str(cats$likes_string)
+```
+
+But what about
+
+```{r}
+str(cats$coat)
+```
+
+Another important data structure is called a *factor*. Factors usually look like character data, but are typically used to represent categorical information. For example, let's make a vector of strings labeling cat colorations for all the cats in our study:
+
+```{r}
+coats <- c('tabby', 'tortoiseshell', 'tortoiseshell', 'black', 'tabby')
+coats
+str(coats)
+```
+
+We can turn a vector into a factor like so:
+
+```{r}
+CATegories <- factor(coats)
+str(CATegories)
+```
+
+Now R has noticed that there are three possible categories in our data - but it also did something surprising; instead of printing out the strings we gave it, we got a bunch of numbers instead. R has replaced our human-readable categories with numbered indices under the hood:
+
+```{r}
+typeof(coats[1])
+typeof(CATegories[1])
 ```
 
 > ## Challenge 2 {.challenge}
->
-> Create a data frame that holds the following information for yourself:
->
-> * First name
-> * Last name
-> * Age
->
-> Then use rbind to add the same information for the people sitting near you.
->
-> Now use cbind to add a column of logicals that will, for each
-> person, hold the answer to the question,
-> "Is there anything in this workshop you're finding confusing?"
+> When we loaded our `cats` data, the coats column was interpreted as a factor; 
+> try using the help for `read.csv` to figure out how to keep text columns as character vectors instead of factors; 
+> then write a command or two to show that the cats$coats column actually is a character vector when loaded in this way.
 >
 
-## Reading in data
+In modeling functions, it's important to know what the baseline levels are. This is assumed to be the
+first factor, but by default factors are labeled in alphabetical order. You can change this by specifying the levels:
+
+```{r}
+mydata <- c("case", "control", "control", "case")
+x <- factor(mydata, levels = c("control", "case"))
+str(x)
+```
+
+In this case, we've explicitly told R that "control" should represented by 1, and
+"case" by 2. This designation can be very important for interpreting the
+results of statistical models!
+
+## Lists
+
+Another data structure you'll want in your bag of tricks is the `list`. A list is simpler in some ways than the other types, because you can put anything you want in it:
+
+```{r}
+x <- list(1, "a", TRUE, 1+4i)
+x
+x[2]
+x <- list(title = "Research Bazaar", numbers = 1:10, data = TRUE )
+x
+```
+
+We can now understand something a bit surprising in our data.frame; what happens if we run:
+
+```{r}
+typeof(cats)
+```
+
+We see that data.frames look like lists 'under the hood' - this is because a data.frame is really a list of vectors and factors, as they have to be - in order to hold those columns that are a mix of vectors and factors, the data.frame needs something a bit more flexible than a vector to put all the columns together into a familiar table.
+
+## Matrices
+
+Last but not least is the matrix. We can declare a matrix full of zeros:
+
+```{r}
+x <- matrix(0, ncol=6, nrow=3)
+x
+```
+
+and we can ask for and put values in the elements of our matrix with a couple of different notations:
+
+```{r}
+x[1,1] <- 1
+x
+x[1][1]
+x[1][1] <- 2
+x[1,1]
+x
+```
+
+>
+> ## Challenge 3 {.challenge}
+>
+> What do you think will be the result of
+> `length(x)`?
+> Try it.
+> Were you right? Why / why not?
+>
+
+>
+> ## Challenge 4 {.challenge}
+>
+> Make another matrix, this time containing the numbers 1:50,
+> with 5 columns and 10 rows.
+> Did the `matrix` function fill your matrix by column, or by
+> row, as its default behaviour?
+> See if you can figure out how to change this.
+> (hint: read the documentation for `matrix`!)
+>
+
+> ## Challenge 5 {.challenge}
+> Create a list of length two containing a character vector for each of the sections in this part of the workshop:
+>
+> - Data types
+> - Data structures
+>
+> Populate each character vector with the names of the data types and data structures we've seen so far.
+>
+
+## Challenge solutions
+
+Solutions to challenges
+
+> ## Discussion 1 {.challenge}
+> By keeping everything in a column the same, we allow ourselves to make simple assumptions about our data;
+> if you can interpret one entry in the column as a number, then you can interpret *all* of them as numbers,
+> so we don't have to check every time. This consistency, like consistently using the same separator in our 
+> data files, is what people mean when they talk about *clean data*; in the long run, strict consistency goes 
+> a long way to making our lives easier in R. 
+>
+
+> ## Solution to Challenge 1 {.challenge}
+> ```{r}
+> x <- 11:20
+> subset <- x[3:5]
+> names(subset) <- c('S', 'W', 'C')
+> ```
+>
+
+> ## Solution to Challenge 2 {.challenge}
+> ```{r}
+> cats <- read.csv(file="data/feline-data.csv", stringsAsFactors=FALSE)
+> str(cats$coat)
+> ``` 
+> Note: new students find the help files difficult to understand; make sure to let them know
+> that this is typical, and encourage them to take their best guess based on semantic meaning,
+> even if they aren't sure.
+
+>
+> ## Solution to challenge 3 {.challenge}
+>
+> What do you think will be the result of
+> `length(x)`?
+>
+> ```{r}
+> x <- matrix(0, ncol=6, nrow=3)
+> length(x)
+> ```
+> 
+> Because a matrix is really just a vector with added dimension attributes, `length`
+> gives you the total number of elements in the matrix.
+>
+
+>
+> ## Solution to challenge 4 {.challenge}
+>
+> Make another matrix, this time containing the numbers 1:50,
+> with 5 columns and 10 rows.
+> Did the `matrix` function fill your matrix by column, or by
+> row, as its default behaviour?
+> See if you can figure out how to change this.
+> (hint: read the documentation for `matrix`!)
+>
+> ```{r, eval=FALSE}
+> x <- matrix(1:50, ncol=5, nrow=10)
+> x <- matrix(1:50, ncol=5, nrow=10, byrow = TRUE) # to fill by row
+> ```
+>
+
+> ## Solution to Challenge 5 {.challenge}
+> ```{r}
+> dataTypes <- c('double', 'complex', 'integer', 'character', 'logical')
+> dataStructures <- c('data.frame', 'vector', 'factor', 'list', 'matrix')
+> answer <- list(dataTypes, dataStructures)
+> ```
+> Note: it's nice to make a list in big writing on the board or taped to the wall
+> listing all of these types and structures - leave it up for the rest of the workshop
+> to remind people of the importance of these basics.
+>
+
+
+# Exploring Data Frames
+
+> ## Learning Objectives {.objectives}
+>
+> - To learn how to manipulate a data.frame in memory
+> - To tour some best practices of exploring and understanding a data.frame when it is first loaded.
+>
+
+At this point, you've see it all - in the last lesson, we toured all the basic data types and data structures in R. Everything you do will be a manipulation of those tools. But a whole lot of the time, the star of the show is going to be the data.frame - that table that we started with that information from a CSV gets dumped into when we load it. In this lesson, we'll learn a few more things about working with data.frame.
+
+We learned last time that the columns in a data.frame were vectors, so that our data are consistent in type throughout the column. As such, we can perform operations on them just as we did with vectors
+
+```{r}
+# Calculate weight of cats in Kg
+cats$weight / 2.2
+```
+
+We can also assign this result to a new column in the data frame:
+
+```{r}
+cats$weight_kg <- cats$weight / 2.2
+cats
+```
+
+Our new column has appeared!
+
+> ## Discussion 1 {.challenge} 
+> What do you think
+> ```
+> cats$weight[4]
+> ```
+> will print at this point?
+>
+
+The key to remember when adding data to a data.frame is that *columns are vectors or factors, and rows are lists.*
+We can also glue two dataframes together with `rbind`:
+
+```{r}
+cats <- rbind(cats, cats)
+```
+But now the row names are unnecessarily complicated. We can ask R to re-name everything sequentially:
+
+```{r}
+rownames(cats) <- NULL
+cats
+```
+
+> ### Challenge 1 {.challenge}
+>
+> You can create a new data.frame right from within R with the following syntax:
+> ```{r}
+> df <- data.frame(id = c('a', 'b', 'c'), x = 1:3, y = c(TRUE, TRUE, FALSE), stringsAsFactors = FALSE)
+> ```
+> Make a data.frame that holds the following information for yourself:
+>
+> - first name
+> - last name
+> - lucky number
+>
+> Then use `rbind` to add an entry for the people sitting beside you. 
+> Finally, use `cbind` to add a column with each person's answer to the question, "Is it time for coffee break?"
+>
+
+So far, you've seen the basics of manipulating data.frames with our cat data; now, let's use those skills to digest a more realistic dataset.## Reading in data
 
 Remember earlier we obtained the gapminder dataset, which contains GDP ,population, and life expentancy for many countries around the world. '[Gapminder](https://youtu.be/BPt8ElTQMIg?t=13)'.
 
@@ -290,3 +669,4 @@ my_df <- cbind(my_df, confused = c(FALSE, FALSE, TRUE, FALSE))
 > colnames(m) <- letters[1:3] # works as you would expect
 > names(m) <- letters[1:3]  # destroys the matrix
 > ```
+
