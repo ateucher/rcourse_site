@@ -5,7 +5,7 @@ title: Data structures
 ```{r, include=FALSE}
 cats <- data.frame(coat = c("calico", "black", "tabby"),
                    weight = c(2.1, 5.0, 3.2), 
-                   likes_string = c(TRUE, FALSE, TRUE))
+                   likes_string = c(1, 0, 1))
 write.csv(cats, "data/feline-data.csv", row.names = FALSE, quote = FALSE)
 ```
 
@@ -20,9 +20,9 @@ One of R's most powerful features is its ability to deal with tabular data - lik
 
 ```{r, eval=FALSE}
 coat,weight,likes_string
-calico,2.1,TRUE   
-black,5.0,FALSE   
-tabby,3.2,TRUE 
+calico,2.1,1
+black,5.0,0
+tabby,3.2,1
 ```
 
 We can load this into R via the following:
@@ -32,19 +32,25 @@ cats <- read.csv(file="data/feline-data.csv")
 cats
 ```
 
-We can begin exploring our dataset right away, pulling out columns and rows via the following:
+We can begin exploring our dataset right away, pulling out columns via the following:
 
 ```{r}
 cats$weight
-cats$weight[1]
-cats$weight[2]
-cats$weight[1] + cats$weight[2]
+cats$coat
+```
+
+We can do other operations on the columns:
+
+```{r}
+## We discovered that the scale weighs one pound light:
+cats$weight + 2
+paste("My cat is", cats$coat)
 ```
 
 But what about
 
 ```{r}
-cats$weight[1] + cats$coat[2]
+cats$weight + cats$coat
 ```
 
 Understanding what happened here is key to successfully analyzing data in R.
@@ -54,36 +60,43 @@ Understanding what happened here is key to successfully analyzing data in R.
 If you guessed that the last command will return an error because 2.1 plus black is nonsense, you're right - and you already have some intuition for an important concept in programming called *data types*. We can ask what type of data something is:
 
 ```{r}
-typeof(cats$weight[1])
+class(cats$weight)
+class(cats$coat)
 ```
 
-There are 5 main types: doubles, integers, complex, logical and character.
+There are 5 main classes: numeric (double), integers, logical and character. Factor is a special class that we'll get into later.
 
-```
-typeof(3.14)
-typeof(1L)
-typeof(1+1i)
-typeof(TRUE)
-typeof('banana')
+```{r}
+class(1.25)
+class(1L)
+class(TRUE)
+class('banana')
 ```
 
-Note the `L` suffix to insist that a number is an integer. No matter how complicated our analyses become, all data in R is interpreted as one of these basic data types. This strictness has some really important concequences. Try adding this row to your cat data:
+Note the `L` suffix to insist that a number is an integer. No matter how complicated our analyses become, all data in R is interpreted as one of these basic data types. This strictness has some really important concequences. Try changing the last row of your cat data to this:
 
 ```{r, eval=FALSE}
-tabby,2.3 or 2.4,TRUE
+tabby,2.3 or 2.4,1
+```
+
+```{r, include=FALSE}
+cats <- data.frame(coat = c("calico", "black", "tabby"),
+                   weight = c('2.1', '5.0', '2.3 or 2.4'), 
+                   likes_string = c(1, 0, 1))
+write.csv(cats, "data/feline-data.csv", row.names = FALSE, quote = FALSE)
 ```
 
 Reload your cats data like before, and check what type of data we find in the `weight` column:
 
 ```{r}
 cats <- read.csv(file="data/feline-data.csv")
-typeof(cats$weight[1])
+class(cats$weight)
 ```
 
-Oh no, our weights aren't the double type anymore! If we try to do the same math we did on them before, we run into trouble:
+Oh no, our weights aren't numeric anymore! If we try to do the same math we did on them before, we run into trouble:
 
 ```{r}
-cats$weight[1] + cats$weight[2]
+cats$weight + 1
 ```
 
 What happened? When R reads a csv into one of these tables, it insists that everything in a column be the same basic type; if it can't understand *everything* in the column as a double, then *nobody* in the column gets to be a double. The table that R loaded our cats data into is something called a *data.frame*, and it is our first example of something called a *data structure* - things that R knows how to build out of the basic data types. In order to successfully use our data in R, we need to understand what these basic data structures are, and how they behave. For now, let's remove that extra line from our cats data and reload it, while we investigate this behavior further:
@@ -92,9 +105,16 @@ feline-data.csv:
 
 ```
 coat,weight,likes_string
-calico,2.1,TRUE   
-black,5.0,FALSE   
-tabby,3.2,TRUE 
+calico,2.1,1
+black,5.0,0   
+tabby,3.2,1 
+```
+
+```{r, include=FALSE}
+cats <- data.frame(coat = c("calico", "black", "tabby"),
+                   weight = c(2.1, 5.0, 3.2), 
+                   likes_string = c(1, 0, 1))
+write.csv(cats, "data/feline-data.csv", row.names = FALSE, quote = FALSE)
 ```
 
 And back in RStudio:
@@ -174,12 +194,20 @@ z
 
 As you can see, some surprising things can happen when R forces one basic data type into another! Nitty-gritty of type coercion aside, the point is: if your data doesn't look like what you thought it was going to look like, type coercion may well be to blame; make sure everything is the same type in your vectors and your columns of data.frames, or you will get nasty surprises!
 
-Concatenate will also append things to an existing vector:
+But coercion isn't a bad thing. For example, `likes_string` is numeric, but we know that the 1s and 0s actually represent `TRUE` and `FALSE` (a common way of representing them). R has special kind of data type called logical, which has two states: `TRUE` or `FALSE`, which is exactly what our data represents. We can 'coerce' this column to be `logical` by using the `as.logical` function:
 
 ```{r}
-x <- c('a', 'b')
+cats$likes_string
+cats$likes_string <- as.logical(cats$likes_string)
+cats$likes_string
+```
+
+You can also append things to an existing vector using the `c` (combine) function:
+
+```{r}
+x <- c('a', 'b', 'c')
 x
-x <- c(x, 'SWC')
+x <- c(x, 'd')
 x
 ```
 
@@ -192,7 +220,7 @@ seq(10)
 seq(1,10, by=0.1)
 ```
 
-In addition to asking for elements of a vector with the square bracket notation, we can ask a few other questions about vectors:
+We can ask a few other questions about vectors:
 
 ```{r}
 x <- seq(10)
@@ -218,15 +246,6 @@ x['b']
 
 ## Factors
 
-We said that columns in data.frames were vectors:
-
-```{r}
-str(cats$weight)
-str(cats$likes_string)
-```
-
-But what about
-
 ```{r}
 str(cats$coat)
 ```
@@ -249,8 +268,10 @@ str(CATegories)
 Now R has noticed that there are three possible categories in our data - but it also did something surprising; instead of printing out the strings we gave it, we got a bunch of numbers instead. R has replaced our human-readable categories with numbered indices under the hood:
 
 ```{r}
-typeof(coats[1])
-typeof(CATegories[1])
+class(coats)
+typeof(coats)
+class(CATegories)
+typeof(CATegories)
 ```
 
 > ## Challenge 2 {.challenge}
@@ -447,36 +468,9 @@ Our new column has appeared!
 > will print at this point?
 >
 
-The key to remember when adding data to a data.frame is that *columns are vectors or factors, and rows are lists.*
-We can also glue two dataframes together with `rbind`:
+So far, you've seen the basics of manipulating data.frames with our cat data; now, let's use those skills to digest a more realistic dataset.
 
-```{r}
-cats <- rbind(cats, cats)
-```
-But now the row names are unnecessarily complicated. We can ask R to re-name everything sequentially:
-
-```{r}
-rownames(cats) <- NULL
-cats
-```
-
-> ### Challenge 1 {.challenge}
->
-> You can create a new data.frame right from within R with the following syntax:
-> ```{r}
-> df <- data.frame(id = c('a', 'b', 'c'), x = 1:3, y = c(TRUE, TRUE, FALSE), stringsAsFactors = FALSE)
-> ```
-> Make a data.frame that holds the following information for yourself:
->
-> - first name
-> - last name
-> - lucky number
->
-> Then use `rbind` to add an entry for the people sitting beside you. 
-> Finally, use `cbind` to add a column with each person's answer to the question, "Is it time for coffee break?"
->
-
-So far, you've seen the basics of manipulating data.frames with our cat data; now, let's use those skills to digest a more realistic dataset.## Reading in data
+## Reading in data
 
 Remember earlier we obtained the gapminder dataset, which contains GDP ,population, and life expentancy for many countries around the world. '[Gapminder](https://youtu.be/BPt8ElTQMIg?t=13)'.
 
