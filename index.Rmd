@@ -36,6 +36,8 @@ On this page you will find links to the data we need for the course, as well as 
 #### Data
 [Gapminder dataset](data/gapminder-FiveYearData.csv)
 
+[Gapminder dataset (wide format)](data/gapminder_wide.csv)
+
 #### Credits
 Most of the material here was borrowed and adapted from 
 [Software Carpentry](http://www.softwarecarpentry.org)'s
