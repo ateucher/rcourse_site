@@ -31,12 +31,13 @@ On this page you will find links to the data we need for the course, as well as 
 
 1. [Getting help](getting_help.html)
 
-<!-- 1. [Putting it all together](12-all-together.html) -->
-
 #### Data
 [Gapminder dataset](data/gapminder-FiveYearData.csv)
 
 [Gapminder dataset (wide format)](data/gapminder_wide.csv)
+
+#### Scripts
+You can download all of the scripts we created in the course in a [zip file](course_scripts/r_course_feb16.zip)
 
 #### Credits
 Most of the material here was borrowed and adapted from 
